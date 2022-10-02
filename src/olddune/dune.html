@@ -1,0 +1,1109 @@
+<html>
+<head>
+<script src="modelStrategy/Point.js"></script>
+<script src="modelStrategy/CoordinateSearch.js"></script>
+<script src="mapWorld/model/FleetSacrifive.js"></script>
+<script src="modelStrategy/ModelStrategy.js"></script>
+<script src="modelStrategy/AI_move.js"></script>
+<script src="modelStrategy/MendMoveShip.js"></script>
+<script src="modelStrategy/AI_Behavior.js"></script>
+<script src="modelStrategy/AI_TacticSearch.js"></script>
+<script src="model/BattlePlanetModel.js"></script>
+<script src="modelStrategy/CommandStrategy.js"></script>
+<script src="modelStrategy/SearchImminenFleet.js"></script>
+<script src="modelStrategy/AI_Behavior_Existence.js"></script>
+<script src="modelStrategy/BasicTile.js"></script>
+<script src="modelStrategy/GridFleet.js"></script>
+<script src="modelStrategy/NameHero.js"></script>
+<script src="view/globalMap/BattlePlanetView.js"></script>
+<script src="view/ViewTerraAnimMove.js"></script>
+<script src="modelStrategy/FiendFleet.js"></script>
+<script src="model/seaTactic/ExecuteCommandStrateg.js"></script>
+<script src="modelStrategy/SelectHeroMap.js"></script>
+<script src="model/prototype/PrototypeHeroDemo.js"></script>
+<script src="modelStrategy/MendMoveAbleFire.js"></script>
+<script src="modelStrategy/WayGotoSelectField.js"></script>
+<script src="modelStrategy/WayGotoModel.js"></script>
+<script src="modelStrategy/WayGotoAttack.js"></script>
+<script src="model/tacticModel/IShipCustom.js"></script>
+<script src="model/ArmUnitAndFleet.js"></script>
+<script src="model/TimeSalvoAppendHit.js"></script>
+<script src="model/memento/IslandDemoMemento.js"></script>
+<script src="model/ButtonEvent.js"></script>
+<script src="view/TileBox.js"></script>
+<script src="model/tacticModel/TimeSalvoConstant.js"></script>
+<script src="controller/ControllerButton.js"></script>
+<script src="controller/ControllerConstant.js"></script>
+<script src="mapWorld/MapWorldModel.js"></script>
+<script src="modelStrategy/AgentEvent.js"></script>
+<script src="model/battlePlanet/AnimationMove.js"></script>
+<script src="mapWorld/model/service/ListIsland.js"></script>
+<script src="model/seaTactic/UsingCommand.js"></script>
+<script src="mapWorld/model/MapWorldStartGame.js"></script>
+<script src="modelStrategy/GridCrewScienceShip.js"></script>
+<script src="modelStrategy/GridCrewScience.js"></script>
+<script src="model/tacticModel/CannonAmmunition.js"></script>
+<script src="model/tacticModel/BuilderShipCustom.js"></script>
+<script src="scenario/InitGlobalParams.js"></script>
+<script src="modelStrategy/Island.js"></script>
+<script src="scenario/GridScenario.js"></script>
+<script src="modelStrategy/VictoryStipulation.js"></script>
+<script src="modelStrategy/AI/AttackMoveFleet.js"></script>
+<script src="modelStrategy/ShipUnit.js"></script>
+<script src="modelStrategy/FunctionShare.js"></script>
+<script src="scenario/CreateGridScenario.js"></script>
+<script src="GraficConstant/GraficBibleConstant.js"></script>
+<script src="GraficConstant/MusicBibleConstant.js"></script>
+<script src="model/tacticModel/ShipCustom1.js"></script>
+<script src="modelStrategy/CreateFleetFast.js"></script>
+<script src="modelStrategy/ArmUnitShip.js"></script>
+<script src="modelStrategy/ArmUnit.js"></script>
+<script src="modelStrategy/ShipCapsule.js"></script>
+<script src="modelStrategy/ContactStateProceeding.js"></script>
+<script src="modelStrategy/ContactState.js"></script>
+<script src="modelStrategy/Country.js"></script>
+<script src="model/seaTactic/BasicTactic.js"></script>
+<script src="model/tacticModel/Tactic.js"></script>
+<script src="model/tacticModel/MeleeShip.js"></script>
+<script src="mapWorld/model/MainFormat.js"></script>
+<script src="model/tacticModel/RobotResultMelee.js"></script>
+<script src="model/tacticModel/UnitResultBattleTactic.js"></script>
+<script src="model/tacticModel/MeleeUnitResult.js"></script>
+<script src="model/tacticModel/RobotExistence.js"></script>
+<script src="model/tacticModel/Robot.js"></script>
+<script src="model/tacticModel/BonusIslandTile.js"></script>
+<script src="model/tacticModel/UnitResultTactic.js"></script>
+<script src="view/ViewTacticBattle.js"></script>
+<script src="view/ViewArmUnit.js"></script>
+<script src="model/tacticModel/CapsuleItem.js"></script>
+<script src="model/tacticModel/ItemCustom0.js"></script>
+<script src="model/tacticModel/ItemCustom55.js"></script>
+
+<script src="view/View.js"></script>
+<script type ="text/javascript">
+//44 штуки AgentEvent
+
+
+var ctx=null;
+var elementCtx=null;
+var currentSecond=0;
+var frameCount=0;
+var framesLastSecond=0;
+var lastFrameTime=0;
+
+var unitIconURL ="image/unitIconLine.png";
+var unitIconLoaded = false;
+var _tileset;
+var tilesetURL = "image/DuneTile.png";
+var tankUnitURL = "image/allTank.png";
+var infanteryUnitURL = "image/infLine.png";
+var explodeUnitURL = "image/explodeLine.png";
+var tilesetLoaded = false;
+var attackScreenURL = ["image/duneDefeat.jpg","image/cosmosFon.jpg","image/desertFon.png"];
+var tileW = 40;
+var tileH = 40;
+var mapW=20;
+var mapH=20;
+var mapH=20;
+var WIDTH_FON = 800;
+var HEIGHT_FON = 600;
+var HEIGHT_TACTIC = 400;
+var WIDTH_TACTIC = 800;
+
+var _idSelect =0;
+var GlobalYear =0;
+var _CommandStrategy_ar=[];
+var _commStrCurrent=null;
+var _idCommand =0;
+var _buttonEvent_ar=[];
+var _viewTacticBattle;
+var _battlePlanetModel= new BattlePlanetModel();
+var _battleTerra = {
+	Show : false,
+	Time:0,
+	GridFleetVictimId:0
+};
+new CreateGridScenario().AddCountry();
+/*
+var DispositionCountry_ar = [
+	{PlayerControl:true,Peace:false},
+	{PlayerControl:false,Peace:false}
+];
+*/
+var _tileTypes = {
+0:{colour:"#685b48", sprite:[{x:0,y:0,w:16,h:16}]},
+1:{colour:"#5aa457", sprite:[{x:16,y:0,w:16,h:16}]},
+2:{colour:"#e8bd7a", sprite:[{x:32,y:0,w:16,h:16}]},
+3:{colour:"#286625", sprite:[{x:48,y:0,w:16,h:16}]},
+4:{colour:"#678fd9", sprite:[{x:64,y:0,w:16,w:16,h:16}]},
+5:{colour:"#678fd9", sprite:[{x:256,y:48,w:16,w:16,h:16}]},
+6:{colour:"#678fd9", sprite:[{x:16*39,y:16*2,w:16,w:16,h:16}]},
+7:{colour:"#678fd9", sprite:[{x:16*35,y:16*4,w:16,w:16,h:16}]},
+8:{colour:"#678fd9", sprite:[{x:16*40,y:16*2,w:16,w:16,h:16}]},
+9:{colour:"#678fd9", sprite:[{x:16*43,y:16*9,w:16,w:16,h:16}]},
+10:{colour:"move", sprite:[{x:16*42,y:16*9,w:16,w:16,h:16}]},
+11:{colour:"attack", sprite:[{x:16*41,y:16*9,w:16,w:16,h:16}]}
+};
+var _unitTypes = {
+0:{colour:"#685b48", sprite:[{x:0,y:0,w:32,h:32}]},
+1:{colour:"#685b48", sprite:[{x:32,y:0,w:32,h:32}]},
+2:{colour:"#685b48", sprite:[{x:64,y:0,w:32,h:32}]},
+3:{colour:"#685b48", sprite:[{x:96,y:0,w:32,h:32}]},
+4:{colour:"#685b48", sprite:[{x:128,y:0,w:32,h:32}]},
+5:{colour:"#685b48", sprite:[{x:160,y:0,w:32,h:32}]},
+6:{colour:"#685b48", sprite:[{x:192,y:0,w:32,h:32}]}
+};
+var _unitTypesList = {
+	0:{sprite:[{x:0,y:0,w:117,h:45}],attack:[{x:117,y:0,w:217,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
+	1:{sprite:[{x:0,y:45,w:117,h:90}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
+	2:{sprite:[{x:0,y:90,w:117,h:135}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
+	3:{sprite:[{x:0,y:135,w:117,h:180}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
+	4:{sprite:[{x:0,y:180,w:117,h:225}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
+	5:{sprite:[{x:0,y:225,w:117,h:270}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
+	6:{sprite:[{x:0,y:270,w:117,h:270}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]}
+};
+var _unitAnimInfanteryList = {
+	0:{sprite:[{x:0,y:0,w:160,h:40}]},
+	1:{sprite:[{x:40,y:0,w:160,h:40}]},
+	2:{sprite:[{x:80,y:0,w:160,h:40}]},
+	3:{sprite:[{x:120,y:0,w:160,h:40}]},
+	4:{sprite:[{x:160,y:0,w:160,h:40}]},
+	5:{sprite:[{x:220,y:0,w:160,h:40}]}
+};
+var _explodeAnimList = {
+	0:{sprite:[{x:0,y:0,w:97,h:97}]},
+	1:{sprite:[{x:97,y:0,w:160,h:97}]},
+	2:{sprite:[{x:194,y:0,w:160,h:97}]},
+	3:{sprite:[{x:291,y:0,w:160,h:97}]},
+	4:{sprite:[{x:388,y:0,w:160,h:97}]},
+	5:{sprite:[{x:485,y:0,w:160,h:97}]}
+};
+
+var _mapWorldModel = new MapWorldModel();
+var _countHeroIndex=0;
+var _tileBox_ar;
+//set id select hero
+
+//_battlePlanetModel.SetSelectHeroId(1);
+
+var _gridScenario = new GridScenario();
+_gridScenario.Init();
+
+
+
+var player = new Character();
+
+
+
+function HeroFleetAdd(X, Y,Type,FlagId)
+{
+
+	var nameHero = new GridFleet(X, Y, FlagId,Type);
+
+	/*
+	var nameHero = _mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(
+	2, //spot x
+	3, //spot y
+	FlagId,			//_battlePlanetModel.FlagIdHero,//FlagId
+				new InitGlobalParams().GetOfferNameHero(),
+				Type, //0, //UnitTypeId
+				_battlePlanetModel.GetBasaPurchaseUnitScience(), false, 0));
+	*/
+
+	nameHero.SetPoint(X,Y);
+	nameHero.type=Type;
+	nameHero.position=GetPositionPointArray(X, Y);
+	nameHero.tileToPosition=[tileW*X,tileH*Y];
+	nameHero.tileFrom=[X,Y];
+	nameHero.tileTo=[X,Y];
+	nameHero.move= false;
+	nameHero.flagId=FlagId;
+	nameHero.SetId(_countHeroIndex);
+
+	//add arm
+
+	_mapWorldModel._prototypeHeroDemo.GetHeroFleet().push(nameHero);
+
+
+	_countHeroIndex++;
+}
+function GetPositionPointArray(X, Y) {
+	return [tileW/2+tileW*X,tileH/2+tileH*Y];
+}
+
+function Character() {
+	this.tileFrom =[1,1];
+	this.tileTo =[1,1];
+	this.timeMoved =0;
+	this.dimension = [30,30];
+	this.position =[45,45];
+	this.delayMove =7700;
+	this.direction;
+	this.SpotX = 0;
+	this.SpotY = 0;
+	this.sprites = {};
+};
+
+//GridScenario
+HeroFleetAdd(1, 5, 0,_battlePlanetModel.FlagIdHero);
+HeroFleetAdd(9, 4, 2,_battlePlanetModel.FlagIdHero);
+HeroFleetAdd(4, 6, 1,_battlePlanetModel.FlagIdHero);
+HeroFleetAdd(8, 8, 0,_battlePlanetModel.FlagIdHero);
+HeroFleetAdd(4, 2, 3,1);
+
+HeroFleetAdd(5, 2, 2,1);
+HeroFleetAdd(2, 1, 2,1);
+HeroFleetAdd(2, 4, 3,1);
+HeroFleetAdd(1, 3, 4,1);
+HeroFleetAdd(9, 1, 3,1);
+
+HeroFleetAdd(1, 0, 3,1);
+HeroFleetAdd(0, 1, 5,1);
+HeroFleetAdd(3, 5, 2,1);
+HeroFleetAdd(7, 11, 4,1);
+HeroFleetAdd(11, 11, 4,1);
+HeroFleetAdd(3, 7, 1,0);
+
+_battlePlanetModel.SetSelectHeroId(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[0].GetId());
+
+
+
+var gameMap= new View().GetGameMap();
+
+var Grid_ar=[];
+
+FillGrid();
+function FillGrid() {
+	for(var x=0; x<mapW; x++){
+		for(var y=0; y<mapH; y++){
+			var basicTile = new BasicTile();
+			Grid_ar[Grid_ar.length] = basicTile.Grid(x,y);
+
+		}
+	}
+}
+
+
+var directions ={
+	up:0,
+	right:1,
+	down:2,
+	left:3,
+};
+//Init
+window.onload = function()
+{
+	elementCtx = document.getElementById('game');
+	ctx=document.getElementById('game').getContext('2d');
+	requestAnimationFrame(drawGame);
+
+	_tileset = new Image();
+
+	_tileset.onerror = function() {
+		ctx = null;
+		alert("Failed loading tileset.");
+	};
+	_tileset.onload = function() {tilesetLoaded = true; };
+	_tileset.src = tilesetURL;
+
+	//unitIconURL
+	unitIconSet = new Image();
+	unitIconSet.onerror = function() {
+		ctx = null;
+		alert("Failed loading unitIconSet.");
+	};
+	unitIconSet.onload = function() {unitIconLoaded = true; };
+	unitIconSet.src = unitIconURL;
+
+	screenList=[];
+	for(var i=0;i<attackScreenURL.length;i++){
+		screenList[i] = new Image();
+		screenList[i].src = attackScreenURL[i];
+		screenList[i].onerror = function() {alert("Failed loading tileset.");};
+		screenList[i].onload = function() { };
+	}
+
+	tankUnitScreen = new Image();
+	tankUnitScreen.src = tankUnitURL;
+	tankUnitScreen.onerror = function() {alert("Failed loading tileset.");};
+	tankUnitScreen.onload = function() { };
+
+	//infanteryUnitURL
+	infanteryUnitAnim = new Image();
+	infanteryUnitAnim.src = infanteryUnitURL;
+	infanteryUnitAnim.onerror = function() {alert("Failed loading tileset.");};
+	infanteryUnitAnim.onload = function() { };
+
+	//explodeUnitURL
+	explodeUnitAnim = new Image();
+	explodeUnitAnim.src = explodeUnitURL;
+	explodeUnitAnim.onerror = function() {alert("Failed loading tileset.");};
+	explodeUnitAnim.onload = function() { };
+
+	var heroSel = _battlePlanetModel.GetSelectHeroId();
+
+	//_buttonEvent_ar = new View().MouseDownPathActionFunction(1,[]);
+	_buttonEvent_ar =PathButtonEvent(1,[]);
+
+
+	// mouse
+	elementCtx.addEventListener('mousedown', e => {
+	  var mouseX = e.offsetX;
+	  var mouseY = e.offsetY;
+
+		for(var i=0; i<_tileBox_ar.length; i++){
+			if (_tileBox_ar[i].X<mouseX && _tileBox_ar[i].X+_tileBox_ar[i].Width>mouseX){
+
+				if (_tileBox_ar[i].Y<mouseY && _tileBox_ar[i].Y+_tileBox_ar[i].Height>mouseY){
+					// x mouse correct _tileBox_ar[i].SpotX
+					// y mouse correct _tileBox_ar[i].SpotY
+					var indexEventPath = GetPathIndex(_tileBox_ar[i].SpotX,_tileBox_ar[i].SpotY);
+
+
+
+					if (indexEventPath!=null)
+					{
+
+						var butEventOne = _buttonEvent_ar[indexEventPath];
+
+
+
+					if(butEventOne.NameEvent=="AttackHero"){
+						MouseDownAttackSemiTarget(butEventOne);
+
+
+						//break;
+					}
+
+						SetPathMouseClickMapView();
+
+						//move unit
+
+							var idHero = _battlePlanetModel.GetSelectHeroId();
+
+
+
+							var gridFleet = null;
+
+							for(var y=0; y<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+								if (_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].Id==idHero)
+								{
+									gridFleet = _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y];
+								}
+							}
+
+
+
+
+							var mendMoveShip = new MendMoveShip();
+							var CommandMove = mendMoveShip.GetCommandMoveFleet(null, new Point(_tileBox_ar[i].SpotX,_tileBox_ar[i].SpotY),gridFleet);
+
+
+
+							// click map - true
+							var CommandMove = mendMoveShip.GetCommandMoveFleet(null, _buttonEvent_ar[indexEventPath].Point,gridFleet);
+
+							_CommandStrategy_ar.push(CommandMove);
+
+							SetPathMouseClickMapView();
+
+
+						break;
+					}
+				}
+
+			}
+		}
+	});
+	// create map
+	_tileBox_ar = new View().CreateMap ();
+};
+function PathButtonEvent(idHero,buttonEventPath_ar){
+	_buttonEvent_ar = new View().MouseDownPathActionFunction(idHero,buttonEventPath_ar);
+	return _buttonEvent_ar;
+};
+
+var _countStepResult=0;
+function MouseDownAttackSemiTarget(ButEventOne)
+{
+
+
+		//var CommandAttack = mendMoveShip.GetCommandMoveFleet(null, _buttonEvent_ar[indexEventPath].Point,gridFleet);
+		//_CommandStrategy_ar.push(CommandAttack);
+
+		let CommandAttack = _mapWorldModel.CommandAttackFleet(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
+		//let kkol = new MendMoveShip().GetAttackCommand(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
+
+
+	_CommandStrategy_ar.push(CommandAttack);
+	//return true;
+	_mapWorldModel.GotoTactic(_battlePlanetModel.GetSelectHeroId(),ButEventOne.VictimFleet.GetId(),false,ButEventOne.LongRange,GlobalYear);
+	//_mapWorldModel._tactic = new Tactic();
+
+
+
+
+	   _mapWorldModel._tactic._unitResultTactic_ar.length
+
+
+
+
+	_viewTacticBattle = new ViewTacticBattle(_mapWorldModel._tactic.heroPlayer,_mapWorldModel._tactic.heroFiend);
+	_countStepResult=0;
+}
+function SetPathMouseClickMapView() {
+	//var idPath = 1;
+	//var buttonEventPath_ar =[];
+	//_buttonEvent_ar = new View().MouseDownPathActionFunction(idPath,buttonEventPath_ar);
+	_buttonEvent_ar = PathButtonEvent(1,[]);
+
+	//NameEvent
+	//for(var i=0;i<_buttonEvent_ar.length;i++){
+
+	//}
+
+}
+
+function GetPathIndex(SpotX,SpotY){
+	for(var i=0;i<_buttonEvent_ar.length;i++){
+		if (SpotX == _buttonEvent_ar[i].Point.X && SpotY == _buttonEvent_ar[i].Point.Y){
+			return i;
+		}
+	}
+	return null;
+}
+function GetNameHeroIndex(Id){
+
+}
+function drawGame(){
+	ctx.clearRect(0, 0, tileW*mapW, tileH*mapH);
+
+	var currentFrameTime = Date.now();
+	var timeElapsed = currentFrameTime-lastFrameTime;
+
+	var sec = Math.floor(Date.now()/1000);
+
+	if(sec!=currentSecond){
+		currentSecond = sec;
+		framesLastSecond = frameCount;
+		frameCount =1;
+	}
+	else
+	{
+		frameCount++;
+	}
+
+	//map
+	for(var i=0; i<_tileBox_ar.length; i++){
+		ctx.drawImage(_tileset, _tileBox_ar[i].Tile.sprite[0].x, _tileBox_ar[i].Tile.sprite[0].y, _tileBox_ar[i].Tile.sprite[0].w, _tileBox_ar[i].Tile.sprite[0].h,
+			_tileBox_ar[i].X, _tileBox_ar[i].Y, tileW, tileH);
+	}
+	//map path
+	for(var i=0; i<_buttonEvent_ar.length; i++){
+		var unitTile = _tileTypes[10];
+
+		if (_buttonEvent_ar[i].NameEvent=="AttackHero")
+		{
+			var unitTile = _tileTypes[11];
+		}
+		//movePath
+		ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
+			_buttonEvent_ar[i].Point.X*tileW-(tileW/2)+tileW, _buttonEvent_ar[i].Point.Y*tileH-(tileH/2)+tileH, tileW, tileH);
+
+		//_buttonEvent_ar[i].NameEvent		AttackHero
+
+	}
+
+	var indexNameFleet = _mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
+	//ctx.fillStyle ='#ff0000';
+	//unitIconURL
+	// Draw All static.
+	for(var y=0; y<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+
+
+		if(indexNameFleet!=y){
+
+			var unitType = _unitTypes[_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].type];
+			var position = GetPositionPointArray(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotX, _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotY);
+
+
+				ctx.drawImage(unitIconSet, unitType.sprite[0].x, unitType.sprite[0].y, unitType.sprite[0].w, unitType.sprite[0].h,
+				position[0],
+				position[1],
+				tileW, tileH);
+
+			ctx.fillText(''+_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetCountUnitArm(),position[0]+tileW/2-10,position[1]+tileH);
+
+		}
+	}
+
+	ctx.fillText('FPS = '+framesLastSecond,10,20);
+	//draw move fleet
+
+
+
+	if(currentFrameTime<player.timeMoved+700)
+	{
+		if (_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]!=_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[0] && _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]!=_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[1])
+		{
+			_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] +=player.moveTrend(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[0];
+			_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] +=player.moveTrend(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[1];
+
+		} else {
+
+
+		}
+
+	}
+	else
+	{
+
+
+		player.placeAt(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[0],_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[1],_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet]);
+		_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move = true;
+
+		//if (_commStrCurrent!=null) {
+			//_commStrCurrent.NameCommand=="Stop";
+		//}
+	}
+	var unitType = _unitTypes[_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].type];
+
+	//draw move unit
+	ctx.drawImage(unitIconSet,
+			unitType.sprite[0].x, unitType.sprite[0].y, unitType.sprite[0].w, unitType.sprite[0].h,
+			_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
+			tileW, tileH
+		);
+
+	ctx.fillText('  '+_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
+	_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]+tileW/2-10,
+	_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]+tileH);
+
+
+	lastFrameTime = currentFrameTime;
+
+	requestAnimationFrame(drawGame);
+
+	if (_CommandStrategy_ar!=null && _CommandStrategy_ar.length>0)
+	{
+
+		if(player.timeMoved==0 || _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move==true)
+		{
+
+				var indexNameHero =0;
+				for(var i=0;i<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++){
+
+					let commandStrategy = new View().GetGridFleetCommandStrategy(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id);
+
+
+					if (commandStrategy){
+						_idSelect = _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id;
+
+						_commStrCurrent = commandStrategy;
+
+
+						break;
+					} else {
+						console.log(  _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id+" ^^ ^^^^^^^"+_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].GetId()+"^^^^^^  i = "+i);
+					}
+					//console.log( " PrintAllFleetId = "+_mapWorldModel._prototypeHeroDemo.PrintAllFleetId()+" ^^ ^^^^^^^^^^^^^^^^^^  x= "+i+"     commandStrategy = "+commandStrategy);
+					//if (commandStrategy==null){
+						//return;
+					//}
+				}
+
+
+
+					player.timeMoved = currentFrameTime;
+					indexNameHero = _mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
+
+				//console.log("-------------   _idSelect = "+_idSelect+"------   indexNameHero = "+indexNameHero+"--  _commStrCurrent = "+_commStrCurrent+"-- Name  Y = "+_commStrCurrent);
+
+					_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo =[_commStrCurrent.GridFleetNewPoint.X,_commStrCurrent.GridFleetNewPoint.Y];
+
+					_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileToPosition =_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo;
+
+
+
+				if (_commStrCurrent.NameCommand=="AttackFleet")
+				{
+					//AttackFleet
+
+
+
+
+
+					//Attack
+					_battleTerra.Time =currentFrameTime;
+					_battleTerra.GridFleetVictimId = _commStrCurrent.GridFleetVictim.Id;
+					_battleTerra.Show = true;
+					_battleTerra.GridFleetOldPoint =_commStrCurrent.GridFleetOldPoint;
+
+				}
+				if (_commStrCurrent.NameCommand=="MoveFleet")
+				{
+
+
+				}
+				//register command
+				var viewTerraAnimMove = new ViewTerraAnimMove();
+				viewTerraAnimMove.AnimationCommand(null,//bBattlePlanetView,
+        null,//StageWidthX,
+		null,//Tick,
+           _CommandStrategy_ar[0] //commandStrategy
+			);
+
+			if (_CommandStrategy_ar[0].NameCommand=="MoveFleet"){
+
+				var heroFleet = _CommandStrategy_ar[0].GridFleet;
+				//heroFleet.SetPowerReserve();
+				heroFleet.SetNullPowerReserve();
+			}
+
+				RemoveCommandSteck();
+
+				//var ttt =_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[1];
+
+					if (_CommandStrategy_ar.length>0){
+						if (_CommandStrategy_ar[0].NameCommand=="MoveFleet"){
+							// set select attack fiend hero.
+							//SetSelectAttackFiendHero();
+
+						}
+
+					}
+					SetPathMouseClickMapView();
+
+		}
+	 } else {
+		_commStrCurrent = null;
+	 }
+	 if (_battleTerra.Show==true){
+
+
+
+		ShowTacticBattle(currentFrameTime);
+	 }
+};
+RemoveCommandSteck = function() {
+	_CommandStrategy_ar.shift();
+	_commStrCurrent = null;
+};
+
+var _countAnimInfantery=0;
+// show tactic
+ShowTacticBattle = function(currentFrameTime)
+{
+		var tick = ( currentFrameTime - _battleTerra.Time);
+
+		ctx.drawImage(screenList[1], tileW/2, tileH/2, WIDTH_FON, HEIGHT_FON);
+		ctx.drawImage(screenList[2], tileW/2, tileH/2, WIDTH_FON, HEIGHT_FON);
+
+			var idHero = _battlePlanetModel.GetSelectHeroId();
+			var indexNameHero = _mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(idHero);
+			var playerGridHero = _mapWorldModel._prototypeHeroDemo[indexNameHero];
+			var typeUnit = _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].type;
+
+			var ArmList = _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].GetShipName().GetArmUnitArray();
+
+			var maxLengthMovie = 3500;
+			var stepTickResultTacticInt = maxLengthMovie/_mapWorldModel._tactic._unitResultTactic_ar.length;
+
+			var percentStep = tick%stepTickResultTacticInt;
+			var pointTank = new Point(117, 45);
+
+
+		//if(tick>1000 && tick<1020){}
+
+			if( percentStep > 0 && percentStep<17)
+			{
+				if (_countStepResult<_mapWorldModel._tactic._unitResultTactic_ar.length){
+					//UnitIdDead
+
+					//block move ViewArmUnit
+					var unitDead = _mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(_mapWorldModel._tactic._unitResultTactic_ar[_countStepResult].UnitIdDead);
+					var unitWin = _mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(_mapWorldModel._tactic._unitResultTactic_ar[_countStepResult].UnitIdWin);
+
+					unitDead.ViewArmUnit = new ViewArmUnit(true,tick,false);
+					unitWin.ViewArmUnit = new ViewArmUnit(false,tick,true);
+
+
+
+
+					_countStepResult++;
+
+			}
+		}
+
+		if(tick>3800) {
+		//3500
+			//_mapWorldModel._tactic.ReleaseDead();
+		}
+
+
+
+
+		var imageUnitX = _unitTypesList[typeUnit].sprite[0].x;
+		var imageUnitY = _unitTypesList[typeUnit].sprite[0].y;
+
+		var Yheight = 20;
+		//draw player
+		for(var i=0;i<ArmList.length;i++)
+		{
+
+
+			drawUnitAnim(tick,i,Yheight,typeUnit,ArmList,false);
+
+		}
+
+		//draw fiend
+		var typeUnitFiend = _mapWorldModel._tactic.heroFiend.type;
+
+		var ArmFiendList = _mapWorldModel._tactic.heroFiend.GetShipName().GetArmUnitArray();
+
+
+
+		ctx.save();
+		ctx.scale(-1, 1);
+
+		if (typeUnitFiend == 2){
+		   //on animation unit
+			//attack -4
+			//dead -5
+			_countAnimInfantery+=.06;
+			if(_countAnimInfantery>=3)
+			{
+				_countAnimInfantery =0;
+			}
+			//_countAnimInfantery = 5;
+			var countAnimInf =  Math.round(_countAnimInfantery);
+
+			for(var i=0;i<ArmFiendList.length;i++){
+				drawInfantaryAnim(tick,i,Yheight,typeUnit,ArmFiendList,countAnimInf,true);
+			}
+
+
+			ctx.restore();
+		}
+		else
+		{
+
+			//draw fiend
+			//attack
+			for(var i=0;i<ArmFiendList.length;i++)
+			{
+				//typeUnitFiend
+				drawUnitAnim(tick,i,Yheight,typeUnitFiend,ArmFiendList,true);
+			}
+
+
+			ctx.restore();
+
+		}
+
+		// attack
+		if(currentFrameTime>_battleTerra.Time+(700*5))
+		{
+
+			// end show attack
+			_battleTerra.Show=false;
+			RemoveCommandSteck();
+
+
+
+
+			var indexGridFleetVictim;
+
+				for(var y=0; y<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+					if (_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].Id==_battleTerra.GridFleetVictimId)
+					{
+						indexGridFleetVictim = y;
+					}
+				}
+
+			_mapWorldModel._tactic.ReleaseDead(_battleTerra.GridFleetOldPoint);
+
+
+		}
+
+};
+drawInfantaryAnim = function(tick,i,Yheight,typeUnit,ArmFiendList,countAnimInf,Fiend){
+		var tickUnit = tick;
+			var imageUnitX = _unitAnimInfanteryList[countAnimInf].sprite[0].x;
+			var imageUnitY = _unitAnimInfanteryList[countAnimInf].sprite[0].y;
+				if (ArmFiendList[i].ViewArmUnit!=undefined){
+
+						var countAnimInf = Math.round(ArmFiendList[i].ViewArmUnit.ExplodeTickInt);
+						if (new View().GetDeadArmUnit(ArmFiendList[i])){
+
+							//tickUnit = ArmList[i].ViewArmUnit.Tick;
+							//dead
+							imageUnitX = _unitAnimInfanteryList[5].sprite[0].x;
+							imageUnitY = _unitAnimInfanteryList[5].sprite[0].y;
+						}
+						if (new View().GetAttackArmUnit(ArmFiendList[i])){
+
+							if(countAnimInf>5)	{
+								imageUnitX = _unitTypesList[4].attack[0].x;
+								imageUnitY = _unitTypesList[4].attack[0].y;
+							}
+						}
+					tickUnit = ArmFiendList[i].ViewArmUnit.Tick;
+
+					ArmFiendList[i].ViewArmUnit.ExplodeTickInt +=.06;
+				}
+
+				var placeStartX =_viewTacticBattle._armListFiendList[i].PlaceStartX;
+
+				var weightUnitPlace = -WIDTH_TACTIC+placeStartX+(tickUnit/20);
+				var heightUnitPlace = HEIGHT_TACTIC+(i*Yheight);
+
+				ctx.drawImage(infanteryUnitAnim, imageUnitX, imageUnitY,
+				40, 40,
+				weightUnitPlace,
+				heightUnitPlace,
+				45*new View().GetScalePerspective(i)/3,
+				45*new View().GetScalePerspective(i)/3);
+
+				if (ArmFiendList[i].ViewArmUnit!=undefined){
+					drawExplodeAnim(placeStartX,tickUnit,i,Yheight,ArmFiendList[i].ViewArmUnit.ExplodeTickInt,4,weightUnitPlace,heightUnitPlace);
+				}
+};
+drawUnitAnim = function(tickUnit,i,Yheight,typeUnit,ArmList,Fiend){
+
+
+		var imageUnitX = _unitTypesList[typeUnit].sprite[0].x;
+		var imageUnitY = _unitTypesList[typeUnit].sprite[0].y;
+		var pointTank = new Point(117, 45);
+		var Yheight = 20;
+		var startPlace = Fiend? -WIDTH_TACTIC:100;
+
+		//draw player
+		var placeStartX;
+			if (Fiend){
+				placeStartX =_viewTacticBattle._armListFiendList[i].PlaceStartX;
+			} else {
+				placeStartX =_viewTacticBattle._armListPlayerList[i].PlaceStartX;
+			}
+
+
+			//var tickUnit = tick;
+
+			if (ArmList[i].ViewArmUnit!=undefined){
+
+
+				ArmList[i].ViewArmUnit.ExplodeTickInt +=.06;
+				var countAnimInf = Math.round(ArmList[i].ViewArmUnit.ExplodeTickInt);
+				if (new View().GetDeadArmUnit(ArmList[i])){
+				//if (ArmList[i].ViewArmUnit.DeadUnit){
+					tickUnit = ArmList[i].ViewArmUnit.Tick;
+					//dead
+					imageUnitX = _unitTypesList[typeUnit].dead[0].x;
+					imageUnitY = _unitTypesList[typeUnit].dead[0].y;
+				}
+				if (new View().GetAttackArmUnit(ArmList[i])){
+				//if (ArmList[i].ViewArmUnit.AttackUnitWin){
+					//attack
+					if(countAnimInf>5)	{
+						imageUnitX = _unitTypesList[typeUnit].attack[0].x;
+						imageUnitY = _unitTypesList[typeUnit].attack[0].y;
+					}
+				}
+
+			}
+			var weightUnitPlace = startPlace+placeStartX+(tickUnit/20);
+			var heightUnitPlace = HEIGHT_TACTIC+(i*Yheight);
+
+			ctx.drawImage(tankUnitScreen, imageUnitX, imageUnitY,
+			pointTank.X, pointTank.Y,
+			weightUnitPlace,
+			heightUnitPlace,
+			pointTank.X*new View().GetScalePerspective(i)/2,
+			pointTank.Y*new View().GetScalePerspective(i)/2
+			);
+
+			if (ArmList[i].ViewArmUnit!=undefined){
+				if (new View().GetDeadArmUnit(ArmList[i])){
+				//if (ArmList[i].ViewArmUnit.DeadUnit){
+					drawExplodeAnim(placeStartX,tickUnit,i,Yheight,ArmList[i].ViewArmUnit.ExplodeTickInt,1,weightUnitPlace,heightUnitPlace);
+				}
+			}
+};
+
+drawExplodeAnim = function(placeStartX,tickUnit,i,Yheight,ExplodeTickInt,Scale,weightUnitPlace,heightUnitPlace){
+	var countAnimInf = Math.round(ExplodeTickInt);
+	var pointTank = new Point(97, 97);
+
+	//ctx.save();
+		//ctx.scale(-1, 1);
+	if(countAnimInf>5)	{
+		//countAnimInf =6;HEIGHT_FON
+		return;
+	}
+
+	//var correctY = pointTank.Y-Yheight;
+
+	var correctYinfantery =0;
+	if (Scale==4)
+	{
+		//infantery 85
+		correctYinfantery =85;
+	}
+	//4
+	heightUnitPlace -=pointTank.Y-5-correctYinfantery ;//Scale;
+
+
+	ctx.drawImage(explodeUnitAnim,
+				_explodeAnimList[countAnimInf].sprite[0].x,
+				_explodeAnimList[countAnimInf].sprite[0].y,
+				pointTank.X,
+				pointTank.Y,
+				//-WIDTH_TACTIC+placeStartX+(tickUnit/20)-(pointTank.X/7),
+				weightUnitPlace,
+				//(HEIGHT_TACTIC+(i*Yheight)-correctY),
+				heightUnitPlace,
+				pointTank.X*new View().GetScalePerspective(i)/Scale,
+				pointTank.Y*new View().GetScalePerspective(i)/Scale
+				);
+
+};
+
+Character.prototype.placeAt = function(x,y,PrototypeHeroDemoObj) {
+	PrototypeHeroDemoObj.tileFrom =[x,y];
+	PrototypeHeroDemoObj.tileTo =[x,y];
+	PrototypeHeroDemoObj.SpotX = x;
+	PrototypeHeroDemoObj.SpotY = y;
+	PrototypeHeroDemoObj.position =[32/2+(x*tileW),32/2+(y*tileH)];
+
+};
+
+Character.prototype.moveTrend = function(PrototypeHeroDemoObj) {
+	return [PrototypeHeroDemoObj.tileTo[0]-PrototypeHeroDemoObj.tileFrom[0],PrototypeHeroDemoObj.tileTo[1]-PrototypeHeroDemoObj.tileFrom[1]];
+};
+
+function onTurn() {
+
+	RefreshHeroPower();
+	TurnPush();
+	_idSelect =0;
+
+
+}
+function TurnEvent() {
+
+			TurnPush();
+
+			RefreshHeroPower();
+			var ModelStrategy = new modelStrategy();
+			//ModelStrategy.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+
+			_mapWorldModel.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+}
+function TurnPush(){
+	GlobalYear+=1;
+};
+function RefreshHeroPower() {
+	for(var y=0; y<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+		_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].move=false;
+	}
+};
+function TestClick() {
+ console.log("  TestClick     GotoModel");
+	RefreshHeroPower();
+		var modelStrategy = new ModelStrategy();
+	//_CommandStrategy_ar = modelStrategy.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+	_CommandStrategy_ar = _mapWorldModel.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+
+
+	//var wayGotoModel = new WayGotoModel(3, 4);
+
+	console.log( "   = Atta oFiend.     _CommandStrategy_ar  L = "+_CommandStrategy_ar.length);
+	for (var i=0;i<_CommandStrategy_ar.length;i++){
+		console.log(i+"   TOTAL  "+_CommandStrategy_ar[i].GridFleetNewPoint.X+"  $$$$$$$   = "+_CommandStrategy_ar[i].NameCommand );
+	}
+	console.log( "== $$ _CommandStrategy_ar = "+_CommandStrategy_ar );
+	/*
+	for(var i=0;i<_prototypeHeroDemo.length;i++){
+
+	}
+	*/
+};
+function SelectHeroLeft() {
+
+	var modelEvent =GetSelectHeroButtonEvent(-1);
+
+	new View().SelectHeroLeft(modelEvent);
+
+	RefreshPathButtonEvent();
+};
+function SelectHeroRight() {
+
+
+	var modelEvent =GetSelectHeroButtonEvent(1);
+
+	new View().SelectHeroRight(modelEvent);
+
+	RefreshPathButtonEvent();
+};
+function RefreshPathButtonEvent(){
+	var idHero = _battlePlanetModel.GetSelectHeroId();
+	PathButtonEvent(idHero,[]);
+}
+GetSelectHeroButtonEvent = function(SelectHeroEnumerator) {
+	var IdHero = _battlePlanetModel.GetSelectHeroId();
+
+
+	var heroSel=null;
+	var pointHeroSel = null;
+	for( var i =0; i<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++)
+	{
+		var hero = _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i];
+
+
+		var pointHero = new Point(hero.SpotX, hero.SpotY);
+		if (hero.GetId() == IdHero) {
+			heroSel = hero;
+			pointHeroSel = pointHero;
+
+			break;
+		}
+	}
+
+
+
+	   var modelEvent = new ButtonEvent();
+		modelEvent.HeroFleet = heroSel;
+		modelEvent.Point = pointHeroSel;
+		modelEvent.NameEvent = ControllerConstant.SelectHero;
+		modelEvent.SelectHeroEnumerator = SelectHeroEnumerator
+	return modelEvent;
+};
+
+
+PrintMap = function(GridTile_ar,CreateMap_ar) {
+		for (var GridRow = 0; GridRow < (GridTile_ar[GridTile_ar.length - 1].SpotX + 1); GridRow++)
+	{
+		var line ="";
+		for (var GridLine = 0; GridLine < GridTile_ar[GridTile_ar.length - 1].SpotY + 1; GridLine++)
+		{
+			line+=CreateMap_ar[GridRow][GridLine] ;
+
+		}
+		console.log(" @@@@ PrintMap =  "+line  );
+	}
+	};
+
+
+
+</script>
+
+</head>
+<body>
+<canvas id="game" width="800" height="600"></canvas>
+<br>
+<button  onclick="onTurn()">turn</button>
+<button  onclick="TestClick()">test</button>
+<button  onclick="SelectHeroLeft()"><</button>
+<button  onclick="SelectHeroRight()">></button>
+</body>
+</html>

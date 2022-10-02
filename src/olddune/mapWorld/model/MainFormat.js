@@ -1,0 +1,10 @@
+export class MainFormat {
+	MAP = "Menu";
+	BATTLE = "BATTLE";
+	SEA_BATTLE = "SEA_BATTLE";
+	VICTORY_FAIL = "VICTORY_FAIL";
+	VICTORY_WIN = "VICTORY_WIN";
+	START_GAME = "START_GAME";
+	ISLAND = "ISLAND";
+	
+}
