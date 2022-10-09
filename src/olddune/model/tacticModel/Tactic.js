@@ -66,7 +66,7 @@ var limitDeadUnit = Math.floor(Math.random() * max);
 		this.TacticSingleton = this;
 
 		this.ScenarioTacticBattle();
-		console.log("3^^  ^^^^ InitTacticBattle print  F= " )
+
 		this.PrintScenarioTacticBattle();
 	};
 
@@ -91,10 +91,10 @@ tactic scenario
 		
 		this._TacticScenarioBattle =new TacticScenarioBattle(this._unitResultTactic_ar)
 		this._TacticScenarioBattle.PrintScenarioTacticBattle();
-		console.log(this._TacticScenarioBattle )
+
 	}
     get GetPlayerDead() {
-		console.log(this._TacticScenarioBattle )
+
 		return  this._TacticScenarioBattle.GetPlayerDead;
 	 }
 	 get GetFiendDead() {

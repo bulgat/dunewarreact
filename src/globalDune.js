@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function(){
     console.log( "Global  ready!" );
 	
 });
-console.log( "00000 Global  ready!" );
+
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
 let ctx=null;
@@ -241,7 +241,7 @@ window.onload = function()
 	elementCtx = document.getElementById('game');
 	ctx=document.getElementById('game').getContext('2d');
 
-	console.log("window.onload ready")
+	
 	requestAnimationFrame(drawGame);
 
 	_tileset = new Image();
@@ -517,7 +517,7 @@ function drawGame(){
 
 						break;
 					} else {
-						console.log(  window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id+" ^^ ^^^^^^^"+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].GetId()+"^^^^^^  i = "+i);
+						//console.log(  window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id+" ^^ ^^^^^^^"+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].GetId()+"^^^^^^  i = "+i);
 					}
 					//console.log( " PrintAllFleetId = "+window._mapWorldModel._prototypeHeroDemo.PrintAllFleetId()+" ^^ ^^^^^^^^^^^^^^^^^^  x= "+i+"     commandStrategy = "+commandStrategy);
 					//if (commandStrategy==null){
@@ -663,9 +663,9 @@ export default class GlobalDune{
 		//var wayGotoModel = new WayGotoModel(3, 4);
 
 		
-		for (var i=0;i<window._CommandStrategy_ar.length;i++){
-			console.log(i+"   TOTAL  "+window._CommandStrategy_ar[i].GridFleetNewPoint.X+"  $$$$$$$   = "+window._CommandStrategy_ar[i].NameCommand );
-		}
+		//for (var i=0;i<window._CommandStrategy_ar.length;i++){
+			//console.log(i+"   TOTAL  "+window._CommandStrategy_ar[i].GridFleetNewPoint.X+"  $$$$$$$   = "+window._CommandStrategy_ar[i].NameCommand );
+		//}
 		
 
 	};

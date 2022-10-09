@@ -23,7 +23,7 @@ export class MendMoveShip {
 	) {
 		  var aI_move = new AI_move();
 		  
-		 console.log(  NameHeroFleet.X+" = $ "+NameHeroFleet+" la  = "+NameHeroFleet.Y);
+		
 		//Operate   
 		var point =aI_move.Operate(PrototypeHeroDemo_ar,NameHeroFleet,Grid_ar);
 		
@@ -97,7 +97,7 @@ export class MendMoveShip {
 						//move fleet
 						var commandStr = this.GetCommandMoveFleet(NameHeroFleet,point,NameHeroFleet);
 						CommandStrategy_ar.push(commandStr);
-						console.log( NameHeroFleet.GetId()+"  = F   _"+point.X+" __"+point.Y+"_________________   ="+commandStr.GridFleetNewPoint.X+"    heroPl y ="+commandStr.GridFleetNewPoint.Y);
+			
 								
 					}
 		}
@@ -111,11 +111,11 @@ export class MendMoveShip {
 		}
 		
 		var commandAttack = this.GetFleetVictimSpecial(NameHeroFleet,pointLongRange, PrototypeHeroDemo_ar);
-		console.log( "0000 id = "+NameHeroFleet.GetId()+"   commandAttack = "+commandAttack+"   NameHero.SpotX = "+NameHeroFleet.SpotX+"   SpotY = " +NameHeroFleet.SpotY);
+		
 		
 		
 		if (commandAttack!=null){
-			console.log( "   ## АТАКА ## "+NameHeroFleet.GetId()+" commandAttack = "+commandAttack );
+			
 			fleetVictim = commandAttack.GridFleetVictim;
 			CommandStrategy_ar.push(commandAttack);
 			//commandVictim = commandAttack;
@@ -166,7 +166,7 @@ export class MendMoveShip {
 		// поиск цели
 		var fleetVictim = selectHeroMap.PuttingShadeAttack(NameHero_ar, GridFleet);
 		
-		console.log(" =  %%  < indexNameFleet   fleetVictim =  " +fleetVictim );
+	
 		if (fleetVictim != null)
 		{
 			var commandStrategy = new CommandStrategy();

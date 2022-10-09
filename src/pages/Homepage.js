@@ -10,17 +10,17 @@ const HomePage =()=>{
 
     const handleClick = (e) => {
     // implementation details
-	console.log(e.name+"7657"+this+"56 e ="+e);
+	
     globalDune.onTurn()
     };
     const handleClickkol = (name,e) => {
         // implementation details
-        console.log(name+"-----------6  e == "+e.target);
+        
     globalDune.TestClick() 
     };
     const nameClick = (nam,e) => {
     // implementation details
-	console.log(name+"---superdune== "+e.target);
+	
 	//name = "superdune";
 	setName("superdune")
     globalDune.SelectHeroLeft() 

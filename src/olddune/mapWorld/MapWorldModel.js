@@ -201,7 +201,7 @@ export class MapWorldModel {
 	};
 	GlobalVictoryFailDevelopment = function()
 	{
-		console.log("  GlobalVictoryFailDevelopment  HeroFleet.GetAttackD oFleet.GetPowerRese ttack =  " );
+		
 		var battlePlanetModel = new BattlePlanetModel();
 		new MapWorldStartGame().StartGameFirstReset(battlePlanetModel.VictoryScenario);
 		battlePlanetModel.GotoGlobalFail();
@@ -263,12 +263,12 @@ export class MapWorldModel {
 
 		if (buttonEventmodel.IdHero != -1)
 		{
-console.log("  !!!!!!!!!!!!!!!!! GotoStrateg !!!!!     deadGridFleet IdHero = "+buttonEventmodel.IdHero);
+
 			// delete hero.
 	
 			var deadGridFleet = this.DeadGridFleet(this._prototypeHeroDemo, buttonEventmodel.IdHero);
 			
-			console.log("!!!  PathMouse     deadGridFleet = " +deadGridFleet);
+			
 			
 			if (deadGridFleet == true)
 			{
@@ -322,7 +322,7 @@ console.log("  !!!!!!!!!!!!!!!!! GotoStrateg !!!!!     deadGridFleet IdHero = "+
 		{
 			var hero = new ModelStrategy().GetHeroAll(window._battlePlanetModel.FlagIdHero, this._prototypeHeroDemo.GetHeroFleet())[0];
 			
-			console.log("        DeadHero     hero = "+hero.GetId()+"  nameHero_ar = " +nameHero_ar.length);
+			
 			window._battlePlanetModel.SetSelectHeroId(this.GetHeroSelect(hero));
 
 		}
@@ -381,8 +381,7 @@ console.log("  !!!!!!!!!!!!!!!!! GotoStrateg !!!!!     deadGridFleet IdHero = "+
 		window._battlePlanetModel.SetSelectHeroId(this.GetHeroSelectWithId(idHeroNew));
 	};
 	SelectHeroButton= function(buttonEvent){
-		console.log( "@@@  SelectHero  "+buttonEvent +"     tr = "+window._battlePlanetModel.FlagIdHero
-		+"  buttonEvent.SelectHeroEnumerator =                  id = "+buttonEvent );
+
 		
 		var nameHero_ar = new ModelStrategy().GetHeroAll(window._battlePlanetModel.FlagIdHero, this._prototypeHeroDemo.GetHeroFleet());
 		var idSelectHero = window._battlePlanetModel.GetSelectHeroId();
@@ -390,18 +389,16 @@ console.log("  !!!!!!!!!!!!!!!!! GotoStrateg !!!!!     deadGridFleet IdHero = "+
 		
 		var indexSelectHero = window._battlePlanetModel.GetIndexHero(idSelectHero,nameHero_ar);
 		var newIndexSelectHero =indexSelectHero + buttonEvent.SelectHeroEnumerator;
-		console.log("###############    idHero  "+idSelectHero+"  nameHero_ar  L = " +nameHero_ar.length);
-		console.log(" ==================  newIndexSelectHero = "+newIndexSelectHero+" =================  indexSelectHero = " +indexSelectHero);
-		
+
 		if (newIndexSelectHero>nameHero_ar.length-1){
-			console.log("&&&&&&&&&&&7 #   U  newIndexSelectHero = "+newIndexSelectHero );
+
 			newIndexSelectHero=0;
 		}
 		if (newIndexSelectHero<0){
-			console.log("!!^^^^^^   unit L nit etArmUnit   newIndexSelectHero =  "+newIndexSelectHero);
+		
 			newIndexSelectHero=nameHero_ar.length-1;
 		}
-		console.log(   "______________________________________________________ newIndexSelectHero= "+  newIndexSelectHero);
+		
 		var newIdSelectHero = nameHero_ar[newIndexSelectHero].GetId();
 		window._battlePlanetModel.SetSelectHeroId(newIdSelectHero);
 	};
@@ -418,7 +415,7 @@ console.log("  !!!!!!!!!!!!!!!!! GotoStrateg !!!!!     deadGridFleet IdHero = "+
 				
 				window._battlePlanetModel.SetSelectHeroId(this.GetHeroSelect(buttonEvent.HeroFleet));
 
-				console.log(window._battlePlanetModel.GetSelectHeroId()+"    $$$$$$$$  id = "+buttonEvent.HeroFleet.GetId());
+
 
 				MapWorldModel._changeStateView = true;
 			}
@@ -452,7 +449,7 @@ console.log("  !!!!!!!!!!!!!!!!! GotoStrateg !!!!!     deadGridFleet IdHero = "+
 		var copyFleetGrid_ar = this.CopyHeroNameArray();
 
 //_battlePlanetModel.GridTile_ar = Grid_ar;
-console.log("return  || this.GetCommandStrategyMap() - " +this.GetCommandStrategyMap);
+
 
 		var eventModel = new ModelStrategy().GreatImpDrivingAI
 				(
@@ -471,7 +468,7 @@ console.log("return  || this.GetCommandStrategyMap() - " +this.GetCommandStrateg
 		
 		this._commandStrategyMap_ar = eventModel.CommandStrategy_ar;
 		
-		console.log("  a = _  _commandStrategyMap_ar "+this.GetCommandStrategyMap+"    CommandStrategy_ar = "+eventModel.CommandStrategy_ar+" ********  "+eventModel.SpotX);
+		
 
 		if (this.GetCommandStrategyMap==undefined){
 			this._commandStrategyMap_ar = [];

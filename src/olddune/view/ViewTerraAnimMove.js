@@ -24,9 +24,7 @@ export class ViewTerraAnimMove{
 		{
 			battlePlanetView = new BattlePlanetView();
 		}
-		
-		
-		console.log("battlePlanetView = "+battlePlanetView);
+
 		
 		battlePlanetView.SetCommandStrategy(
 			this._animationMove.AnimationCommand(

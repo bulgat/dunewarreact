@@ -47,7 +47,7 @@ export class AI_Behavior{
 			
 			if (fiendHeroPoint!=null)
 			{
-				console.log( " =  ack  "+NameHero.x+" !!! "+NameHero.y+" !!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+fiendHeroPoint.X+" !!! =  "+fiendHeroPoint.Y);
+				
 				var resultPoint=this.GetPathPoint(new Point(NameHero.x,NameHero.y),fiendHeroPoint,Grid_ar);
 				
 				
@@ -60,12 +60,7 @@ export class AI_Behavior{
 			
 		}
 			
-				
-		
-		
-		
-		
-		console.log("   POINT = null" );
+
 		return null;
 	};
 	

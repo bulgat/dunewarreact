@@ -27,7 +27,7 @@ export class UsingCommand{
 			var countIndex =0;
 			_commandStrategy_ar.forEach (function( commandStrategy)
 			{
-console.log("Use Command ["+commandStrategy.GridFleet+" ]  ")
+
 				if (commandStrategy.Id === Id)
 				{
 
@@ -46,7 +46,7 @@ if (commandStrategy.NameCommand === new CommandStrategy().EnumType("CaptureIslan
 					if (commandStrategy.NameCommand === new CommandStrategy().EnumType("MoveFleet"))
 					{
 
-						console.log("0000======== )");
+		
 						new ExecuteCommandStrateg().PerformCommandMoveFleet(commandStrategy);
 					}
 					if (commandStrategy.NameCommand === new CommandStrategy().EnumType("AttackFleet"))

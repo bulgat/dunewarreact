@@ -12,9 +12,7 @@ export class ViewTacticBattle{
 		this._armListPlayerList = this.CreateList(heroPlayer);
 		this._armListFiendList = this.CreateList(heroFiend);
 
-		
-		
-		console.log(this._armListPlayerList) ;
+
 	}
 	GetArmUnitPLayerList = function(Index) {
 		return  this._armListPlayerList;
