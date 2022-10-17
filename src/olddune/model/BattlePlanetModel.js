@@ -28,6 +28,16 @@ export class BattlePlanetModel{
 		
 		return this.DispositionCountryList;
 	};
+    GetDispositionCountryWithId = function(ContryId) {
+		for(let item of this.DispositionCountryList){
+           // console.log( "=======",item)
+            if (item.IdCountry === ContryId){
+                return item;//.FlagImage 
+            }
+        }
+		return 0;
+	};
+
 	GetBattlePlanetModelSingleton = function() {
         if (this._BattlePlanetModel == null) {
             this._BattlePlanetModel = new BattlePlanetModel();

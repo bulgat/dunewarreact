@@ -112,14 +112,17 @@ var _tankUnitURL = "/imageDune/allTank.png";
 var _infanteryUnitURL = "/imageDune/infLine.png";
 var _explodeUnitURL = "/imageDune/explodeLine.png";
 let _tilesetLoaded = false;
-let _attackScreenURL = ["/imageDune/duneDefeat.jpg","/imageDune/cosmosFon.jpg","/imageDune/desertFon.png"];
+let _attackScreenURL = ["/imageDune/duneDefeat.jpg",
+"/imageDune/cosmosFon.jpg",
+"/imageDune/desertFon.png",
+"/imageDune/shieldLine.png"];
 window.tileW = 40;
 window.tileH = 40;
 window.mapW=20;
 window.mapH=20;
 var mapH=20;
 //var WIDTH_FON = 800;
-//var HEIGHT_FON = 600;
+//shieldLine
 
 var _idSelect =0;
 var GlobalYear =0;
@@ -449,7 +452,7 @@ function drawGame(){
 	var indexNameFleet = window._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
 	
 	// Draw All static.
-	new View().DrawMapUnitGround(ctx,indexNameFleet,_unitTypes,unitIconSet);
+	new View().DrawMapUnitGround(ctx,indexNameFleet,_unitTypes,unitIconSet,screenList);
 
 	ctx.fillText('FPS = '+framesLastSecond,10,20);
 	//draw move fleet
@@ -481,7 +484,7 @@ function drawGame(){
 	var unitType = _unitTypes[window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].type];
 
 	//draw move unit
-	new View().drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet);
+	new View().drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet,screenList);
 
 	ctx.fillText('  '+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
 	window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]+window.tileW/2-10,

@@ -309,7 +309,7 @@ export class View {
 	
 		}
 	};
-	DrawMapUnitGround = function(ctx,indexNameFleet,_unitTypes,unitIconSet){
+	DrawMapUnitGround = function(ctx,indexNameFleet,_unitTypes,unitIconSet,screenList){
 		for(var y=0; y<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
 
 
@@ -319,24 +319,63 @@ export class View {
 				var position = new CreateFleetFast().GetPositionPointArray(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotX, window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotY);
 	
 	
-					ctx.drawImage(unitIconSet, unitType.sprite[0].x, unitType.sprite[0].y, unitType.sprite[0].w, unitType.sprite[0].h,
-					position[0],
-					position[1],
-					window.tileW, window.tileH);
+				ctx.drawImage(unitIconSet,
+					unitType.sprite[0].x, unitType.sprite[0].y, 
+					unitType.sprite[0].w, unitType.sprite[0].h,
+				position[0],
+				position[1],
+				window.tileW, window.tileH);
 	
 				ctx.fillStyle = "black"; 
 				ctx.font = '10px serif';
 				ctx.fillText(''+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetCountUnitArm(),position[0]+window.tileW/2-10,position[1]+window.tileH);
 				
+				////GetDispositionCountryWithId = function(Id)
+				//let item = window._battlePlanetModel.GetDispositionCountryWithId(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
+				//let indexImage = item.FlagImage;
+				let indexImage = this.GetIndexFlagImage(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
+//console.log("0000 flag  ",indexImage)
+				
+				
+				
+				this.drawFlagUnit(ctx,screenList,position[0],position[1],window.tileW,window.tileH,indexImage)
+				
+				
+				////.FlagImage 
 			}
 		}
 	};
-	drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet){
+	GetIndexFlagImage(FlagId){
+		let item = window._battlePlanetModel.GetDispositionCountryWithId(FlagId)
+		return item.FlagImage;
+	}
+
+	drawFlagUnit(ctx,screenList,PositionX,PositionY,TileW,TileH,indexImage){
+		ctx.drawImage(screenList[3], 400*indexImage, 0, 400, 433,
+			PositionX,
+			PositionY,
+			TileW/3, TileH/3);
+	}
+
+	//move
+	drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet,screenList){
 		ctx.drawImage(unitIconSet,
 			unitType.sprite[0].x, unitType.sprite[0].y, unitType.sprite[0].w, unitType.sprite[0].h,
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
+			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
+			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
 			window.tileW, window.tileH
 		);
+
+		//let indexImage = 0;
+
+		let indexImage = this.GetIndexFlagImage(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId());
+		//console.log("0011 flag  ",indexImage)
+		//console.log("0012 flag  ",window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId())
+
+		this.drawFlagUnit(ctx,screenList,
+			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
+			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
+			window.tileW,window.tileH,indexImage)
 	}
 	/*
 	//tactic
