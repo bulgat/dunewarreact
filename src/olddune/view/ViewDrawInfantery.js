@@ -1,4 +1,5 @@
 import { View } from "./View";
+import {ViewTactic} from './ViewTactic';
 
 export class ViewDrawInfantery {
     constructor(){
@@ -47,18 +48,14 @@ let countAnimIndex =tick%3;
                 console.log("-countAnimInf--"+countAnimIndex+" A  ArmFiendUnit.ExplodeTickInt = "+ArmFiendUnit.ExplodeTickInt) ;
 			}
 			
-	
+			console.log( " =  A  = ",index,"=   typeUnit = ",window._viewTacticModel.VIEW_TACTIC_BATTLE.GetArmUnitPLayer(index),"   Fiend = " );
 			let placeStartX =window._viewTacticModel.VIEW_TACTIC_BATTLE.GetArmUnitPLayer(index).PlaceStartX;
 
-			//let weightUnitPlace = -new View().WIDTH_TACTIC+placeStartX+(tick/20);
             let weightUnitPlace = -new View().WIDTH_TACTIC+placeStartX+ArmFiendUnit.Tick;
-            //let weightUnitPlace =ArmFiendUnit.SetUnitSpotX(-new View().WIDTH_TACTIC+placeStartX+ArmFiendUnit.Tick);
 
 			let heightUnitPlace = new View().HEIGHT_TACTIC+(index*Yheight);
 
-			
 
-            //ctx.drawImage(window._viewTacticModel.infanteryUnitAnim,-200, imageUnitY+100,40*5,40);
             console.log( " countAnimInf  ="+countAnimIndex +" tick ="+tick);
 
             //imageUnitX
@@ -74,7 +71,7 @@ let countAnimIndex =tick%3;
 
 			if (ArmFiendUnit!=undefined){
                 if (new View().GetDeadArmUnit(ArmFiendUnit)){
-				new View().drawExplodeAnim(ctx,index,ArmFiendUnit.ExplodeTickInt,4,weightUnitPlace,heightUnitPlace,
+				new ViewTactic().drawExplodeAnim(ctx,index,ArmFiendUnit.ExplodeTickInt,4,weightUnitPlace,heightUnitPlace,
 					window._viewTacticModel.explodeUnitAnim);
                 }
 			}

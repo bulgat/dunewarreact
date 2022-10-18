@@ -3,12 +3,7 @@ export class BasicTactic {
 	heroPlayer;
 	SelectShipFiend = 0;
 	SelectShipPlayer = 0;
-/*
-	public BasicTactic() {
-		SelectShipFiend = 0;
-	SelectShipPlayer = 0;
-}
-*/
+
 	constructor(){
 		
 	};

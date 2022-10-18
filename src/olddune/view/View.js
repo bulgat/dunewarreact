@@ -10,6 +10,7 @@ import {CreateFleetFast} from "../modelStrategy/CreateFleetFast.js";
 import {ViewArmUnit} from "./ViewArmUnit.js";
 import {ViewTacticModel} from "./ViewTacticModel";
 import {ViewDrawInfantery } from './ViewDrawInfantery';
+import {ViewTactic} from './ViewTactic';
 
 export class View {
 	_explodeAnimList = {
@@ -22,12 +23,12 @@ export class View {
 	};
 	_unitTypesList = {
 		0:{sprite:[{x:0,y:0,w:117,h:45}],attack:[{x:117,y:0,w:217,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
-		1:{sprite:[{x:0,y:45,w:117,h:90}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
-		2:{sprite:[{x:0,y:90,w:117,h:135}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
-		3:{sprite:[{x:0,y:135,w:117,h:180}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
-		4:{sprite:[{x:0,y:180,w:117,h:225}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
-		5:{sprite:[{x:0,y:225,w:117,h:270}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]},
-		6:{sprite:[{x:0,y:270,w:117,h:270}],attack:[{x:117,y:0,w:117,h:45}],dead:[{x:234,y:0,w:117,h:45}]}
+		1:{sprite:[{x:0,y:45,w:117,h:90}],attack:[{x:117,y:45,w:117,h:45}],dead:[{x:234,y:45,w:117,h:45}]},
+		2:{sprite:[{x:0,y:90,w:117,h:135}],attack:[{x:117,y:90,w:117,h:45}],dead:[{x:234,y:90,w:117,h:45}]},
+		3:{sprite:[{x:0,y:135,w:117,h:180}],attack:[{x:117,y:135,w:117,h:45}],dead:[{x:234,y:135,w:117,h:45}]},
+		4:{sprite:[{x:0,y:180,w:117,h:225}],attack:[{x:117,y:180,w:117,h:45}],dead:[{x:234,y:180,w:117,h:45}]},
+		5:{sprite:[{x:0,y:225,w:117,h:270}],attack:[{x:117,y:225,w:117,h:45}],dead:[{x:234,y:225,w:117,h:45}]},
+		6:{sprite:[{x:0,y:270,w:117,h:270}],attack:[{x:117,y:270,w:117,h:45}],dead:[{x:234,y:270,w:117,h:45}]}
 	};
 	_unitAnimInfanteryList = {
 		0:{sprite:[{x:0,y:0,w:160,h:40}]},
@@ -39,6 +40,7 @@ export class View {
 	};
 	HEIGHT_TACTIC = 400;
 	WIDTH_TACTIC = 800;
+	
 
 	GetGridFleetCommandStrategy = function (Id) {
 
@@ -381,7 +383,21 @@ export class View {
 	//tactic
 	--
 	*/
+	RemoveCommandSteck = function() {
+		window._CommandStrategy_ar.shift();
+		//_commStrCurrent = null;
+		
+	};
 
+	ShowTacticBattle= function(ctx,currentFrameTime,_battleTerra,_countStepResult,
+		_countAnimInfantery,screenList,ResetCommStrCurrent){
+			new ViewTactic().ShowTacticBattle(ctx,currentFrameTime,_battleTerra,_countStepResult,
+				_countAnimInfantery,screenList,ResetCommStrCurrent);
+		}
+	drawUnitAnim = function(ctx,tickUnit,index,Yheight,ArmUnit,Fiend){
+		new ViewTactic().drawUnitAnim(ctx,tickUnit,index,Yheight,ArmUnit,Fiend);
+	}
+/*
 	ShowTacticBattle = function(ctx,currentFrameTime,_battleTerra,_countStepResult,
 		_countAnimInfantery,screenList,ResetCommStrCurrent)
 	{
@@ -479,15 +495,7 @@ export class View {
 						//typeUnitFiend
 						new View().drawUnitAnim(ctx,tick,i,Yheight,ArmFiendList[i],true);
 					} else {
-					/*
-						_countAnimInfantery+=.06;
-						if(_countAnimInfantery>=3)
-						{
-							_countAnimInfantery =0;
-						}
 			
-						var countAnimInf =  Math.round(_countAnimInfantery);
-			*/
 						//for(let i=0;i<ArmFiendList.length;i++){
 							//var kol = new ViewDrawInfantery()
 							console.log("kol i="+i);
@@ -534,11 +542,7 @@ export class View {
 			}
 		return _countStepResult;
 	};
-	RemoveCommandSteck = function() {
-		window._CommandStrategy_ar.shift();
-		//_commStrCurrent = null;
-		
-	};
+	
 	DrawTacticFonPlanetBacground=function(ctx,screenList){
 		ctx.drawImage(screenList[1], window.tileW/2, window.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);
 		ctx.drawImage(screenList[2], window.tileW/2, window.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);
@@ -556,7 +560,7 @@ export class View {
 			//console.log(ArmListPlayer[armUnutIndex].ArmUnit.Id+" = FFF  = "+unit.Id+ " "+NameEventFight);
 			//console.log(ArmListPlayer[armUnutIndex]);
 	
-			//console.log(armUnutIndex);
+			
 			
 			if(ArmListPlayer[armUnutIndex].ArmUnit.Id ===unit.Id ){
 				if(NameEventFight==="Dead"){
@@ -626,6 +630,8 @@ export class View {
 
 			var heightUnitPlace = new View().HEIGHT_TACTIC+(index*Yheight);
 
+			console.log("===   typeUnit = ",typeUnit," unit   Fiend = ",Fiend);
+
 			ctx.drawImage(window._viewTacticModel.tankUnitScreen, imageUnitX, imageUnitY,
 				pointTank.X, pointTank.Y,
 				ArmUnit.UnitSpotX,
@@ -689,5 +695,6 @@ export class View {
 	GetStartPLaceUnitTactic(Fiend) {
 		return Fiend? -this.WIDTH_TACTIC:100;
 	}
+	*/
 }
 

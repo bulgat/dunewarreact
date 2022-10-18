@@ -88,6 +88,7 @@ import {ViewArmUnit} from "./olddune/view/ViewArmUnit.js";
 import {View} from "./olddune/view/View.js";
 import {ModelParamGame} from "./olddune/model/ModelParamGame";
 import {ViewTacticModel} from "./olddune/view/ViewTacticModel";
+import {ViewImage} from './olddune/view/ViewImage'
 //ModelParamGame
 //ViewTacticModel
 document.addEventListener('DOMContentLoaded', function(){ 
@@ -112,10 +113,12 @@ var _tankUnitURL = "/imageDune/allTank.png";
 var _infanteryUnitURL = "/imageDune/infLine.png";
 var _explodeUnitURL = "/imageDune/explodeLine.png";
 let _tilesetLoaded = false;
+/*
 let _attackScreenURL = ["/imageDune/duneDefeat.jpg",
 "/imageDune/cosmosFon.jpg",
 "/imageDune/desertFon.png",
 "/imageDune/shieldLine.png"];
+*/
 window.tileW = 40;
 window.tileH = 40;
 window.mapW=20;
@@ -232,9 +235,10 @@ function FillGrid() {
 	}
 }
 
+window._ViewImage = new ViewImage();
 
 let unitIconSet;
-let screenList;
+//let _screenList;
 let infanteryUnitAnim;
 let tankUnitScreen;
 let explodeUnitAnim;
@@ -268,17 +272,19 @@ window.onload = function()
 
 	  }
 
-	screenList=[];
+	  window._ViewImage.LoadImage();
+/*
+	_screenList=[];
 	for(var i=0;i<_attackScreenURL.length;i++){
-		screenList[i] = new Image();
-		screenList[i].src = _attackScreenURL[i];
-		screenList[i].onerror = function() {
+		_screenList[i] = new Image();
+		_screenList[i].src = _attackScreenURL[i];
+		_screenList[i].onerror = function() {
 			//alert(attackScreenURL[i]+" Failed loading tileset.");
 			console.error(i+"  == "+_attackScreenURL[i]+" Failed loading tileset.");
 		};
-		screenList[i].onload = function() { };
+		_screenList[i].onload = function() { };
 	}
-
+*/
 	tankUnitScreen = new Image();
 	tankUnitScreen.src = _tankUnitURL;
 	tankUnitScreen.onerror = function() {
@@ -452,7 +458,7 @@ function drawGame(){
 	var indexNameFleet = window._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
 	
 	// Draw All static.
-	new View().DrawMapUnitGround(ctx,indexNameFleet,_unitTypes,unitIconSet,screenList);
+	new View().DrawMapUnitGround(ctx,indexNameFleet,_unitTypes,unitIconSet, window._ViewImage._screenList);
 
 	ctx.fillText('FPS = '+framesLastSecond,10,20);
 	//draw move fleet
@@ -484,7 +490,7 @@ function drawGame(){
 	var unitType = _unitTypes[window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].type];
 
 	//draw move unit
-	new View().drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet,screenList);
+	new View().drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet, window._ViewImage._screenList);
 
 	ctx.fillText('  '+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
 	window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]+window.tileW/2-10,
@@ -600,7 +606,8 @@ function drawGame(){
 
 
 
-		_countStepResult = new View().ShowTacticBattle(ctx,currentFrameTime,_battleTerra,_countStepResult,_countAnimInfantery,screenList,ResetCommStrCurrent);
+		_countStepResult = new View().ShowTacticBattle(ctx,currentFrameTime,_battleTerra,_countStepResult,_countAnimInfantery,
+			 window._ViewImage._screenList,ResetCommStrCurrent);
 		
 	}
 };
