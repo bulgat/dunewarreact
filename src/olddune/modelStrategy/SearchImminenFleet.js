@@ -6,7 +6,7 @@ export class SearchImminenFleet{
 		var SpotStrPlX = 0;
 		var SpotStrPlY = 0;
 		
-		var point = new Point(SpotStrPlX, SpotStrPlY);
+		let point = new Point(SpotStrPlX, SpotStrPlY);
 		
 		if(!Array.isArray(Grid_ar)){
 			console.error("Grid_ar not array! Grid_ar = "+Grid_ar);
@@ -18,13 +18,12 @@ export class SearchImminenFleet{
 		
 		
 		
-		for (var d2 = 0; d2 < NameHero_ar.length; d2++)
+		for (let d2 = 0; d2 < NameHero_ar.length; d2++)
 		{
+			
 			if (NameHero_ar[d2].GetFlagId() != gridFleet.GetFlagId())
 			{
-				var modelStrategy  = new ModelStrategy();
-				
-				
+				let modelStrategy  = new ModelStrategy();
 
 				if (modelStrategy.GetContactPeace(DispositionCountry_ar, new Point(NameHero_ar[d2].GetFlagId(), gridFleet.GetFlagId())))
 				{

@@ -3,7 +3,8 @@ import {ModelStrategy} from "./ModelStrategy";
 
 export class AI_Behavior_Existence{
 	
-	wallObstacleStatic = 2;
+	//wallObstacleStatic = 2;
+	wallObstacleStatic = 1;
 	PreparationMap = function(
 			GridTile_ar,
 			NameHero_ar,
@@ -29,8 +30,8 @@ export class AI_Behavior_Existence{
 			wallObstacle_ar = [ window._battlePlanetModel.ObstacleMap, window._battlePlanetModel.ObstacleSeaMap ];
 		}
 		// obstacle = 2
-
-		var costGround = 1;
+		//var costGround = 1;
+		let costGround = 0;
 
 		var CreateMap_ar = [[]];
 //var GridRow = 0;
@@ -52,6 +53,7 @@ export class AI_Behavior_Existence{
 					if (oneGrid.Terrain == wallObstacle_ar[QuadObstacle])
 					{
 						CreateMap_ar[GridRow][GridLine] = this.wallObstacleStatic;
+						console.log(GridRow,"  war  rn  point = " ,GridLine)
 					}
 				}
 
@@ -61,29 +63,60 @@ export class AI_Behavior_Existence{
 		}
 		
 		
-			var wallObstacleStatic =this.wallObstacleStatic;
+		//let wallObstacleStatic =this.wallObstacleStatic;
 		
 		// set allow visit.
+		/*
 		Island_ar.forEach (function (island)
 		{
 			
 			CreateMap_ar[island.SpotX][island.SpotY] = 0;
 		});
-	
+		*/
+		console.log("00000  war   NameHero   CreateMap_ar = ",CreateMap_ar);
+		for(let island of Island_ar){
+			CreateMap_ar[island.SpotX][island.SpotY] = 0;
+		}
+		console.log("00001  war   NameHero   CreateMap_ar = ",CreateMap_ar);
 		if (StopFiendHero)
 		{
-			
+			/*
 			NameHero_ar.forEach (function (hero)
 			{
 				
 				
 				CreateMap_ar[hero.SpotX][hero.SpotY] = wallObstacleStatic;
 			});
+			*/
+
+			for(let hero of NameHero_ar){
+				CreateMap_ar[hero.SpotX][hero.SpotY] = this.wallObstacleStatic;
+			}
+
+
 		}
 		else
 		{
 
+			console.log("NameHero_ar =",NameHero_ar)
 
+			for(let hero of NameHero_ar){
+				
+				if (hero.GetFlagId() === FlagId)
+				{
+					CreateMap_ar[hero.SpotX][hero.SpotY] = this.wallObstacleStatic;
+				
+				}
+				else
+				{
+				
+					if (new ModelStrategy().GetContactPeace(DispositionCountry_ar, new Point(hero.GetFlagId(), FlagId)))
+					{
+						CreateMap_ar[hero.SpotX][hero.SpotY] = this.wallObstacleStatic;
+					}
+				}
+			}
+			/*
 			NameHero_ar.forEach (function (hero)
 			{
 				if (hero.GetFlagId() == FlagId)
@@ -101,6 +134,7 @@ export class AI_Behavior_Existence{
 				}
 
 			});
+			*/
 		}
 
 		/*

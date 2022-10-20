@@ -78,7 +78,7 @@ export class ModelStrategy{
 						
 						 
 						 // move and search attack enemy.
-							var attackMoveFleet = mendMoveShip.PlaceFiendX(
+							let attackMoveFleet = mendMoveShip.PlaceFiendX(
 									DispositionCountryNameHero_ar[gridFleetInsex],
 									PrototypeHeroDemo,//NameHero_ar,
 									Grid_ar,
@@ -88,7 +88,14 @@ export class ModelStrategy{
 									null,
 									0,
 									0);
-						 
+
+						console.log("    Player=" ,DispositionCountryNameHero_ar[gridFleetInsex] );					 
+						console.log("  attackMoveFleet =",attackMoveFleet);
+						if(attackMoveFleet){
+							console.log("___flag = ",attackMoveFleet.Fleet.FlagId);
+						}
+
+
 						 var fleetSacrifive = this.SetFleetSacrifive(attackMoveFleet,
 									DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet,
 									oldPoint);

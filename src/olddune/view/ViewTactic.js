@@ -42,8 +42,8 @@ export class ViewTactic{
 	
 		//GetPlayerFleet
         //GetFiendFleet
-        console.log("    k  ArmListPlayer=" ,window._mapWorldModel._tactic.GetPlayerFleet());
-console.log(window._mapWorldModel._tactic.GetPlayerFleet().FlagId)
+       
+
         let indexImage = new View().GetIndexFlagImage(window._mapWorldModel._tactic.GetPlayerFleet().FlagId);
         let indexImageFiend = new View().GetIndexFlagImage(window._mapWorldModel._tactic.GetFiendFleet().FlagId);
         
@@ -167,7 +167,7 @@ console.log(window._mapWorldModel._tactic.GetPlayerFleet().FlagId)
 			40+fiendX,
 			100,
 			size/2, size/2);
-            console.log("   indexImage = ",indexImage)
+            
 	}
 	DrawTacticFonPlanetBacground=function(ctx,screenList){
 		ctx.drawImage(screenList[1], window.tileW/2, window.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);

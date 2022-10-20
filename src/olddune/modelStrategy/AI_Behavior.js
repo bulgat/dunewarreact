@@ -2,30 +2,32 @@ import {Point} from "./Point.js";
 import {GridFleet} from "./GridFleet.js";
 import {SearchImminenFleet} from "./SearchImminenFleet.js";
 import {AI_TacticSearch} from "./AI_TacticSearch.js";
-
+import {AI_Behavior_Existence} from './AI_Behavior_Existence'
 
 
 export class AI_Behavior{
 	_test = null;
-	TacticSearchIslandAndHero = function (PrototypeHeroDemo_ar,NameHero,Grid_ar){
+	TacticSearchIslandAndHero = function (PrototypeHeroDemo_ar,NameHeroFleet,Grid_ar,
+		DispositionCountry_ar,Sea,Island_ar
+		){
 		
 		
-		NameHero.x = NameHero.SpotX;
-		NameHero.y = NameHero.SpotY;
+		NameHeroFleet.x = NameHeroFleet.SpotX;
+		NameHeroFleet.y = NameHeroFleet.SpotY;
 		
 		// search near hero
 		var aI_TacticSearch = new AI_TacticSearch()
-		var pointGrab =aI_TacticSearch.GetNearTacticHero(PrototypeHeroDemo_ar,NameHero);
+		var pointGrab =aI_TacticSearch.GetNearTacticHero(PrototypeHeroDemo_ar,NameHeroFleet);
 
 
 
 		if(pointGrab!=null)
 		{
 
-			var resultPoint=this.GetPathPoint(new Point(NameHero.x,NameHero.y), pointGrab,Grid_ar);
+			var resultPoint=this.GetPathPoint(new Point(NameHeroFleet.x,NameHeroFleet.y), pointGrab,Grid_ar);
 			if (resultPoint!=null)
 			{
-				
+				console.log("0111 ",resultPoint.X,resultPoint.Y)
 				return new Point(resultPoint.X,resultPoint.Y);
 			}
 		}
@@ -37,22 +39,27 @@ export class AI_Behavior{
 		{
 			//var nameHero = new GridFleet(X, Y, FlagId,Type);
 			
-			var gridFleet = new GridFleet(NameHero.x,NameHero.y,NameHero.GetFlagId(),NameHero.type);
+			var gridFleet = new GridFleet(NameHeroFleet.x,NameHeroFleet.y,NameHeroFleet.GetFlagId(),NameHeroFleet.type);
 			var searchImminenFleet = new SearchImminenFleet();
 			
 				
 				
 			let fiendHeroPoint = searchImminenFleet.SearchImminenHeroGlob(PrototypeHeroDemo_ar, gridFleet, null, Grid_ar);
 			
-			
+			console.log("0111 ???????? fiendHeroPoint =",fiendHeroPoint)
 			if (fiendHeroPoint!=null)
 			{
-				
-				var resultPoint=this.GetPathPoint(new Point(NameHero.x,NameHero.y),fiendHeroPoint,Grid_ar);
+				let FiendFlagId = NameHeroFleet.FlagId;
+				console.log("0112 ???????? ",NameHeroFleet," fiendHeroPoint =",fiendHeroPoint)
+				let resultPoint=this.GetPathPoint(new Point(NameHeroFleet.x,NameHeroFleet.y),
+				fiendHeroPoint,Grid_ar,
+				PrototypeHeroDemo_ar,FiendFlagId,DispositionCountry_ar,false,Sea,Island_ar
+				);
 				
 				
 				if (resultPoint!=null){
-					
+
+					console.log("0113 ",resultPoint)
 					return resultPoint;
 				}
 				//return new Point(resultPoint.X,resultPoint.Y);
@@ -90,47 +97,32 @@ export class AI_Behavior{
 			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
 			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0]
 		];
+		//Препятствия где?
+
 		return Grid2d_ar;
 		
 	};
 	
-	GetPathPoint = function GetPathPoint(pointAim, FiendPoint,Grid_ar) 
+	GetPathPoint = function GetPathPoint(pointAim, FiendPoint,Grid_ar,
+		NameHero_ar,FiendFlagId,DispositionCountry_ar,StopFiendHero,Sea,Island_ar) 
 	{
 		//covert 1d in 2d massiv
 		//Grid2d_ar =[];
 		var Grid2d_ar =this.Get2Dgrid();
-		/*
-		var Grid2d_ar = [
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0]
-		];
-		*/
+		Grid2d_ar = new AI_Behavior_Existence().PreparationMap(
+			Grid_ar, NameHero_ar, FiendFlagId,
+			DispositionCountry_ar,
+			StopFiendHero, Sea, Island_ar);
+
+			console.log( "    eH  = " ,Grid2d_ar)
+
+		//let wallObstacle
+	
 		
 		var resultPoint=null;
 		
 		
-		
+		//подготовка карты
 		var pathBasa_ar =this.GetFindPathBigArray(pointAim, FiendPoint,null,null,Grid2d_ar);
 	
 		if(pathBasa_ar.length>=2) 
