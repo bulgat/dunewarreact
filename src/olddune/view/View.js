@@ -60,11 +60,11 @@ export class View {
 	};
 	MouseDownPathActionFunction = function (IdPath,buttonEvent_ar)
 	{
-		var idPathHero = window._battlePlanetModel.GetSelectHeroId();
+		let idPathHero = window._battlePlanetModel.GetSelectHeroId();
 
-		var _buttonEvent_ar = this.GetButtonEventPathList(window._battlePlanetModel.GetSelectHeroId());
+		let _buttonEvent_ar = this.GetButtonEventPathList(window._battlePlanetModel.GetSelectHeroId());
 
-
+console.log("!!!!!!@@@@_buttonEvent_ar ",_buttonEvent_ar)
 
 		_buttonEvent_ar.forEach (function(buttonEvent)
         {
@@ -111,10 +111,17 @@ export class View {
 		var islandDemoMemento = new IslandDemoMemento();
 		islandDemoMemento.Init();
 
-		return _battlePlanetModel.GetPathSelectHero(
+let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
+	window._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),
+	_battlePlanetModel.FlagIdHero,
+	_battlePlanetModel.DispositionCountry_ar,
+	true,0,[]);
+
+
+
+		let getPath= _battlePlanetModel.GetPathSelectHero(
 										window._mapWorldModel._prototypeHeroDemo,
-												new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
-												window._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),_battlePlanetModel.FlagIdHero,_battlePlanetModel.DispositionCountry_ar,true,0,[]),// ShoalSeaBasa_ar,
+										gridMapExistence,// ShoalSeaBasa_ar,
 										 islandDemoMemento,//_islandDemoMemento,
 										 window.Grid_ar,//GridTile_ar,
 										 new ControllerConstant().PathHero,//PathHero,
@@ -127,6 +134,8 @@ export class View {
 										 SelectHeroId,
 										 _battlePlanetModel.FlagIdHero,//FlagIdHero
 										 );
+		console.log("SSSSSSSSSS SSSSS")
+		return getPath;
 	};
 	toIndex = function (x,y) {
 		return ((y*window.mapW)+x);

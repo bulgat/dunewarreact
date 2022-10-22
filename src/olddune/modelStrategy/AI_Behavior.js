@@ -7,6 +7,9 @@ import {AI_Behavior_Existence} from './AI_Behavior_Existence'
 
 export class AI_Behavior{
 	_test = null;
+
+
+
 	TacticSearchIslandAndHero = function (PrototypeHeroDemo_ar,NameHeroFleet,Grid_ar,
 		DispositionCountry_ar,Sea,Island_ar
 		){
@@ -71,59 +74,28 @@ export class AI_Behavior{
 		return null;
 	};
 	
-	Get2Dgrid = function() {
-		var Grid2d_ar = [
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0],
-			[0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0]
-		];
-		//Препятствия где?
-
-		return Grid2d_ar;
-		
-	};
 	
 	GetPathPoint = function GetPathPoint(pointAim, FiendPoint,Grid_ar,
 		NameHero_ar,FiendFlagId,DispositionCountry_ar,StopFiendHero,Sea,Island_ar) 
 	{
 		//covert 1d in 2d massiv
 		//Grid2d_ar =[];
-		var Grid2d_ar =this.Get2Dgrid();
+		let Grid2d_ar =new AI_Behavior_Existence().Get2Dgrid();
 		Grid2d_ar = new AI_Behavior_Existence().PreparationMap(
 			Grid_ar, NameHero_ar, FiendFlagId,
 			DispositionCountry_ar,
 			StopFiendHero, Sea, Island_ar);
 
-			console.log( "    eH  = " ,Grid2d_ar)
-
+			
+			 //Grid2d_ar =new AI_Behavior_Existence().Get2Dgrid();
 		//let wallObstacle
-	
+	console.log( " ZZZZZZH  = " ,Grid2d_ar)
 		
 		var resultPoint=null;
 		
 		
 		//подготовка карты
-		var pathBasa_ar =this.GetFindPathBigArray(pointAim, FiendPoint,null,null,Grid2d_ar);
+		var pathBasa_ar =this.GetFindPathBigSearchArray(pointAim, FiendPoint,Grid2d_ar);
 	
 		if(pathBasa_ar.length>=2) 
 		{
@@ -133,24 +105,33 @@ export class AI_Behavior{
 
 		return resultPoint;
 	};
-	GetFindPathBigArray = function(pointAim, FiendPoint,FiendFlagId,
-				NameHero_ar,Grid_ar) {
+	GetFindPathBigSearchArray = function(pointAim, FiendPoint,Grid_ar) {
  
 		
 		///////////pathfinding-browser
+		console.log("Path ",Grid_ar)
 		/*
 		for(var i=0;i<3;i++){
 			console.log(i+"  Te KOL");
 		}
 		*/
+		//Grid_ar = new AI_Behavior_Existence().Get2Dgrid()
 		
-		
-		
-		//var matrix = [
-		//	[0, 0, 0, 1, 0],
-		//	[1, 0, 0, 0, 1],
-		//	[0, 0, 1, 0, 0],
-		//];
+		/*
+		var matrix = [
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		];
+		*/
+		//Grid_ar = matrix;
+
 		var PF = require('pathfinding');
 		var grid = new PF.Grid(Grid_ar);
 
@@ -160,10 +141,11 @@ export class AI_Behavior{
 			dontCrossCorners: true,
 			heuristic: PF.Heuristic.chebyshev
 		});
+		
 		var start = [pointAim.X,pointAim.Y];
 		var end = [FiendPoint.X,FiendPoint.Y];
 
-		//console.log("Path: x= " + start[0]+" y = "+ start[1]+" end = "+ end[0], end[1], grid+"  Grid_ar="+Grid_ar[0].length);
+		console.log("Path: x= " + start[0]+" y = "+ start[1]+" end = "+ end[0], end[1], grid+"  Grid_ar="+Grid_ar[0].length);
 		if(start[0]>=Grid_ar.length || start[1]>=Grid_ar[0].length){
 			console.error("Big X");
 			//return [];
@@ -173,7 +155,7 @@ export class AI_Behavior{
 		
 		for (var i = 0; i < path.length; i++)
 		{
-			//console.log("Path: " + i + ", X: " + path[i][0] + ", Y: " + path[i][1]+"   path L= "+path.length);
+			console.log("Path: i = " + i + ", X: " + path[i][0] + ", Y: " + path[i][1]+"   path L= "+path.length+" field ="+Grid_ar[path[i][0]][path[i][1]]);
 		}
 		
 	

@@ -40,29 +40,31 @@ export class WayGotoSelectField {
 		var modelStrategy = new ModelStrategy();
 
 
-
+		console.log("0221 ===== DDDDDDD",wayRude_ar.length)
 		// all point move.
-		for(var i=0;i< wayRude_ar.length;i++)
+		for(let i=0;i< wayRude_ar.length;i++)
 		{
 			var wayPoint = wayRude_ar[i];
-
 			var mapPoint = new Point(Hero.SpotX + wayPoint.X, Hero.SpotY + wayPoint.Y);
 			
-			
-			
+			console.log("0222 DDDDDDD [ "+mapPoint.X+" x "+mapPoint.Y+" ] ",mapPoint)
+			console.log("0223 DD hero [ "+Hero.SpotX+" x "+Hero.SpotY+" ]",ShoalSeaBasa_ar)
+
+			// Выходит ли x and y за карту.
 			if (modelStrategy.AllowPointMap(ShoalSeaBasa_ar,
 							new Point(mapPoint.X, mapPoint.Y)))
 			{
-
-				var pathPoint_ar = modelStrategy.GetFindPathBigArray(
+				
+				let pathPoint_ar = modelStrategy.GetFindPathBigArray(
 						mapPoint,
 					new Point(Hero.SpotX, Hero.SpotY),
 					Hero.GetFlagId(),
 					prototypeHeroDemo.GetHeroFleet(),
 					GridTile_ar,
-					DispositionCountry_ar, true, Hero.GetSea(), Island_ar);
+					DispositionCountry_ar, true, Hero.GetSea(), Island_ar,
+					new Point(Hero.SpotX, Hero.SpotY));
 
-
+console.log("0224 DDDDDDD L = "+pathPoint_ar .length+"   AllowPointMap true",pathPoint_ar )
 
 				var wayGotoModel = new WayGotoModel(mapPoint.X, mapPoint.Y);
 				wayGotoModel.PathGoto_ar = pathPoint_ar;
@@ -72,6 +74,8 @@ export class WayGotoSelectField {
 
 
 		}
+		console.log("0225 ===== DDDDDDD",wayGotoModel_ar)
+
 		return wayGotoModel_ar;
 	}
 }

@@ -1,89 +1,30 @@
 import {Point} from "./olddune/modelStrategy/Point.js";
-//import {CoordinateSearch} from "./olddune/modelStrategy/CoordinateSearch.js";
-//import {FleetSacrifive} from "./olddune/mapWorld/model/FleetSacrifive.js";
+
 import {ModelStrategy} from "./olddune/modelStrategy/ModelStrategy.js";
-//import {AI_move} from "./olddune/modelStrategy/AI_move.js";
+
 import {MendMoveShip} from "./olddune/modelStrategy/MendMoveShip.js";
-//import {AI_Behavior} from "./olddune/modelStrategy/AI_Behavior.js";
-//import {AI_TacticSearch} from "./olddune/modelStrategy/AI_TacticSearch.js";
 
 import {BattlePlanetModel} from "./olddune/model/BattlePlanetModel.js";
 
-//import {CommandStrategy} from "./olddune/modelStrategy/CommandStrategy.js";
-//import {SearchImminenFleet} from "./olddune/modelStrategy/SearchImminenFleet.js";
-//import {AI_Behavior_Existence} from "./olddune/modelStrategy/AI_Behavior_Existence.js";
 import {BasicTile} from "./olddune/modelStrategy/BasicTile.js";
 
-//import {GridFleet} from "./olddune/modelStrategy/GridFleet.js";
-
-//import {NameHero} from "./olddune/modelStrategy/NameHero.js";
-//import {BattlePlanetView} from "./olddune/view/globalMap/BattlePlanetView.js";
 import {ViewTerraAnimMove} from "./olddune/view/ViewTerraAnimMove.js";
-//import {FiendFleet} from "./olddune/modelStrategy/FiendFleet.js";
-//import {ExecuteCommandStrateg} from "./olddune/model/seaTactic/ExecuteCommandStrateg.js";
-//import {SelectHeroMap} from "./olddune/modelStrategy/SelectHeroMap.js";
-//import {PrototypeHeroDemo} from "./olddune/model/prototype/PrototypeHeroDemo.js";
-//import {MendMoveAbleFire} from "./olddune/modelStrategy/MendMoveAbleFire.js";
-//import {WayGotoSelectField} from "./olddune/modelStrategy/WayGotoSelectField.js";
-//import {WayGotoModel} from "./olddune/modelStrategy/WayGotoModel.js";
-//import {WayGotoAttack} from "./olddune/modelStrategy/WayGotoAttack.js";
-//import {IShipCustom} from "./olddune/model/tacticModel/IShipCustom.js";
-//import {ArmUnitAndFleet} from "./olddune/model/ArmUnitAndFleet.js";
-//import {TimeSalvoAppendHit} from "./olddune/model/TimeSalvoAppendHit.js";
-//import {IslandDemoMemento} from "./olddune/model/memento/IslandDemoMemento.js";
+
 import {ButtonEvent} from "./olddune/model/ButtonEvent.js";
-//import {TileBox} from "./olddune/view/TileBox.js";
-//import {TimeSalvoConstant} from "./olddune/model/tacticModel/TimeSalvoConstant.js";
-//import {ControllerButton} from "./olddune/controller/ControllerButton.js";
+
 import {ControllerConstant} from "./olddune/controller/ControllerConstant.js";
 
 import {MapWorldModel} from "./olddune/mapWorld/MapWorldModel.js";
 
-//import {AgentEvent} from "./olddune/modelStrategy/AgentEvent.js";
-//import {AnimationMove } from "./olddune/model/battlePlanet/AnimationMove.js";
-//import {ListIsland} from "./olddune/mapWorld/model/service/ListIsland.js";
-
-//import {MapWorldStartGame} from "./olddune/mapWorld/model/MapWorldStartGame.js";
-//import {GridCrewScienceShip} from "./olddune/modelStrategy/GridCrewScienceShip.js";
-//import {GridCrewScience} from "./olddune/modelStrategy/GridCrewScience.js";
-//import {CannonAmmunition} from "./olddune/model/tacticModel/CannonAmmunition.js";
-//import {BuilderShipCustom} from "./olddune/model/tacticModel/BuilderShipCustom.js";
-//import {InitGlobalParams} from "./olddune/scenario/InitGlobalParams.js";
-//import {Island} from "./olddune/modelStrategy/Island.js";
 import {GridScenario} from "./olddune/scenario/GridScenario.js";
-//import {VictoryStipulation} from "./olddune/modelStrategy/VictoryStipulation.js";
-//import {AttackMoveFleet} from "./olddune/modelStrategy/AI/AttackMoveFleet.js";
-//import {ShipUnit} from "./olddune/modelStrategy/ShipUnit.js";
-//import {FunctionShare} from "./olddune/modelStrategy/FunctionShare.js";
+
 
 import {CreateGridScenario} from "./olddune/scenario/CreateGridScenario.js";
 
-//import {GraficBibleConstant} from "./olddune/GraficConstant/GraficBibleConstant.js";
-//import {MusicBibleConstant} from "./olddune/GraficConstant/MusicBibleConstant.js";
-//import {ShipCustom1} from "./olddune/model/tacticModel/ShipCustom1.js";
 import {CreateFleetFast} from "./olddune/modelStrategy/CreateFleetFast.js";
-//import {ArmUnitShip} from "./olddune/modelStrategy/ArmUnitShip.js";
-//import {ArmUnit} from "./olddune/modelStrategy/ArmUnit.js";
-//import {ShipCapsule} from "./olddune/modelStrategy/ShipCapsule.js";
-//import {ContactStateProceeding} from "./olddune/modelStrategy/ContactStateProceeding.js";
-//import {ContactState} from "./olddune/modelStrategy/ContactState.js";
-//import {Country} from "./olddune/modelStrategy/Country.js";
-//import {BasicTactic} from "./olddune/model/seaTactic/BasicTactic.js";
-//import {Tactic} from "./olddune/model/tacticModel/Tactic.js";
-//import {MeleeShip} from "./olddune/model/tacticModel/MeleeShip.js";
-//import {MainFormat} from "./olddune/mapWorld/model/MainFormat.js";
-//import {RobotResultMelee} from "./olddune/model/tacticModel/RobotResultMelee.js";
-//import {UnitResultBattleTactic} from "./olddune/model/tacticModel/UnitResultBattleTactic.js";
-//import {MeleeUnitResult} from "./olddune/model/tacticModel/MeleeUnitResult.js";
-//import {RobotExistence} from "./olddune/model/tacticModel/RobotExistence.js";
-//import {Robot} from "./olddune/model/tacticModel/Robot.js";
-//import {BonusIslandTile} from "./olddune/model/tacticModel/BonusIslandTile.js";
-//import {UnitResultTactic} from "./olddune/model/tacticModel/UnitResultTactic.js";
+
 import {ViewTacticBattle} from "./olddune/view/ViewTacticBattle.js";
 import {ViewArmUnit} from "./olddune/view/ViewArmUnit.js";
-//import {CapsuleItem} from "./olddune/model/tacticModel/CapsuleItem.js";
-//import {ItemCustom0} from "./olddune/model/tacticModel/ItemCustom0.js";
-//import {ItemCustom55} from "./olddune/model/tacticModel/ItemCustom55.js";
 
 import {View} from "./olddune/view/View.js";
 import {ModelParamGame} from "./olddune/model/ModelParamGame";
@@ -113,12 +54,7 @@ var _tankUnitURL = "/imageDune/allTank.png";
 var _infanteryUnitURL = "/imageDune/infLine.png";
 var _explodeUnitURL = "/imageDune/explodeLine.png";
 let _tilesetLoaded = false;
-/*
-let _attackScreenURL = ["/imageDune/duneDefeat.jpg",
-"/imageDune/cosmosFon.jpg",
-"/imageDune/desertFon.png",
-"/imageDune/shieldLine.png"];
-*/
+
 window.tileW = 40;
 window.tileH = 40;
 window.mapW=20;
@@ -132,8 +68,8 @@ var GlobalYear =0;
 window._CommandStrategy_ar=[];
 var _commStrCurrent=null;
 window._idCommand =0;
-var _buttonEvent_ar=[];
-//let _viewTacticBattle;
+let _buttonEvent_ar=[];
+
 window._battlePlanetModel= new BattlePlanetModel();
 var _battleTerra = {
 	Show : false,
@@ -320,8 +256,6 @@ window.onload = function()
 
 	var heroSel = window._battlePlanetModel.GetSelectHeroId();
 
-
-	//_buttonEvent_ar =new View().PathButtonEvent(1,[]);
 	_buttonEvent_ar =new View().InitPathButtonEventArray()
 
 	// mouse

@@ -263,19 +263,27 @@ return agentEvent;
 				NameHero_ar,
 				Grid_ar,
 				DispositionCountry_ar, StopFiendHero,
-				Sea, Island_ar)
+				Sea, Island_ar,ClearHeroPoint)
 	{
 
 		var pointPath_ar = [];
 
 		// map?
+		let Grid2d_ar;// = new AI_Behavior_Existence().Get2Dgrid();
+		Grid2d_ar = new AI_Behavior_Existence().PreparationMap(
+			Grid_ar, NameHero_ar, FiendFlagId,
+			DispositionCountry_ar,
+			StopFiendHero, Sea, Island_ar,ClearHeroPoint);
+
+console.log("555  GetFindPathBigArray ",Grid2d_ar," pointAim ["+pointAim.X+" x "+pointAim.Y+" ] = "
++Grid2d_ar[pointAim.X][pointAim.Y]+"  Island_ar = ",Island_ar)
 
 		//StartNode_ID_Fiend
-		var pathBasa_ar = new AI_Behavior().GetFindPathBigArray(pointAim,
-				FiendPoint, FiendFlagId,
-				NameHero_ar,
-				new AI_Behavior().Get2Dgrid(),//Grid_ar,
-				DispositionCountry_ar, StopFiendHero, Sea, Island_ar);
+		var pathBasa_ar = new AI_Behavior().GetFindPathBigSearchArray(pointAim,
+				FiendPoint, //FiendFlagId,
+				//NameHero_ar,
+				Grid2d_ar);//,//Grid_ar,
+				//DispositionCountry_ar, StopFiendHero, Sea, Island_ar);
 
 
 

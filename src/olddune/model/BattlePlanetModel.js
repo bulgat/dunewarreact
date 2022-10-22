@@ -5,7 +5,8 @@ import {ModelStrategy} from "../modelStrategy/ModelStrategy.js";
 import {ButtonEvent} from "../model/ButtonEvent.js";
 
 export class BattlePlanetModel{
-	ObstacleMap = 2;
+    //ObstacleMap = 2
+	ObstacleMap = 1;
 	SelectHeroId =1;
 	FlagIdHero = 9;
 	_BattlePlanetModel;
@@ -62,7 +63,7 @@ export class BattlePlanetModel{
 	
 	GetPathSelectHero = function(
         prototypeHeroDemo,
-            shoalSeaBasa_ar,
+            MapShoalSeaBasa_ar,
             islandDemoMemento,
             GridTile_ar,
             PathHeroName,
@@ -123,15 +124,15 @@ export class BattlePlanetModel{
         }
         
  
- 
-        //////
-        return this.SelectHeroPath(gridFleet,
+        let selectPath = this.SelectHeroPath(gridFleet,
                 prototypeHeroDemo,
                 FlagIdHeroFleet,
-                shoalSeaBasa_ar, islandDemoMemento, GridTile_ar,
+                MapShoalSeaBasa_ar, islandDemoMemento, GridTile_ar,
                 PathHeroName, AttackHeroName, gridFleetSpeed, range);
 
+console.log("GGGGGGGGGGGGGGGgg",selectPath)
 
+                return selectPath;
     };
 	SelectHeroPath = function(HeroFleet,
             prototypeHeroDemo,
@@ -172,16 +173,17 @@ export class BattlePlanetModel{
                             this.DispositionCountry_ar, shoalSeaBasa_ar,
                             islandDemoMemento.GetIslandArray(), prototypeHeroDemo, GridTile_ar);
 
+console.log("329 wayGotoModel_ar",wayGotoModel_ar)
 
 					wayGotoModel_ar.forEach(function(wayPoint)
                     {
 						
-
+                        console.log("330 wayPoint = ",wayPoint)
                         if (wayPoint.PathGoto_ar.length <= HeroFleetSpeed + 1)
                         {
 
-                            var pointHero = new Point(wayPoint.X, wayPoint.Y);
-
+                            let pointHero = new Point(wayPoint.X, wayPoint.Y);
+                            console.log("331   map   pointHero = [",pointHero.X," x "+pointHero.Y+" ] =")
                             if (modelStrategy.AllowPointMap(shoalSeaBasa_ar, pointHero))
                             {
                                 
@@ -198,9 +200,12 @@ export class BattlePlanetModel{
 
 
  //PrintMap(GridTile_ar,map_ar_ar);
+ console.log("332   map_ar_ar  pointHero =",pointHero,"  ",map_ar_ar[0][1]," 0x3 =",map_ar_ar[0][3])
+ console.log("333   map_ar_ar  pointHero =",map_ar_ar[pointHero.X][pointHero.Y],"  ")
 
                                 if (map_ar_ar[pointHero.X][pointHero.Y] != new BattlePlanetModel().ObstacleMap)
                                 {
+                                    console.log("334   map_ar_ar ",wayPoint.PathGoto_ar," map =",map_ar_ar)
 
                                     var modelEvent = new ButtonEvent();
                                     modelEvent.HeroFleet = HeroFleet;
