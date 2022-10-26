@@ -484,18 +484,13 @@ function drawGame(){
 				if (_commStrCurrent.NameCommand=="AttackFleet")
 				{
 					//AttackFleet
-
-
-
-
-
 					//Attack
 					_battleTerra.Time =currentFrameTime;
 					_battleTerra.GridFleetVictimId = _commStrCurrent.GridFleetVictim.Id;
 					_battleTerra.Show = true;
 					_battleTerra.GridFleetOldPoint =_commStrCurrent.GridFleetOldPoint;
 					
-					
+					console.log("3310   fiend = ",_commStrCurrent)
 				}
 				if (_commStrCurrent.NameCommand=="MoveFleet")
 				{
@@ -540,7 +535,10 @@ function drawGame(){
 
 
 
-		_countStepResult = new View().ShowTacticBattle(ctx,currentFrameTime,_battleTerra,_countStepResult,_countAnimInfantery,
+		_countStepResult = new View().ShowTacticBattle(ctx,currentFrameTime,
+			_battleTerra,
+			_countStepResult,
+			_countAnimInfantery,
 			 window._ViewImage._screenList,ResetCommStrCurrent);
 		
 	}

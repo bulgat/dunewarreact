@@ -136,6 +136,7 @@ var meleeUnitResult = new MeleeUnitResult();
 	{
 		if (this._countFrame == 1)
 		{
+			console.log("!!!!! @@@_buttonEvent  " )
 			var unitResultTactic = new MeleeUnitResult().Add_Melee_Unit(
 					window._battlePlanetModel.GetBasaPurchaseUnitScience(),
 					this._heroFiend, this._heroPlayer,

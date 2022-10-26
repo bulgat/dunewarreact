@@ -230,13 +230,24 @@ export class MapWorldModel {
 		let gridFleetFiend = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(IdHeroFiend);
 		let gridFleetPlayer = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(IdHeroPlayer);
 
-
+		
 		
 		if (gridFleetFiend != null)
 		{
+			// break нападение на самого себя
+			if (gridFleetFiend.FlagId===gridFleetPlayer.FlagId)
+			{
+				console.error("MapWorldModel  нападение на самого себя, ошибка пути?  " );
+				return;
+			}
+
+
 			
 
 				this.SetStateGame(new MainFormat().BATTLE);
+
+		
+
 				this._tactic = new Tactic(
 						gridFleetFiend,
 						gridFleetPlayer,
@@ -250,11 +261,11 @@ export class MapWorldModel {
 	{
 		var MainFormat="";
 		if (MainFormat=="SEA_BATTLE") {
-			//LoadSceneChange.LoadSceneRotation("SeaTactic");
+
 			return;
 		}
 
-		//LoadSceneChange.LoadSceneRotation("TacticScene");
+
 	};
 	GotoStrateg = function(buttonEventmodel)
 	{

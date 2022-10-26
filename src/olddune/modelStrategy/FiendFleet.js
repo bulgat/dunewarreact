@@ -108,8 +108,8 @@ export class FiendFleet {
 	HeroAllCoordinateCoincidence = function(spotX, spotY,
 			NameHero_ar)
 	{
-		var squareHero_ar = [];
-		for (var S = 0; S < NameHero_ar.length; S++)
+		let squareHero_ar = [];
+		for (let S = 0; S < NameHero_ar.length; S++)
 		{
 			if (this.CoordinateCoincidence(spotX, spotY, NameHero_ar[S]))
 			{

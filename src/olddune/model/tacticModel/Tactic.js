@@ -39,9 +39,18 @@ export class Tactic extends BasicTactic {
 		
 		
 
-
 		this.SetFiendFleet(HeroFiend);
 		this.SetPlayerFleet(HeroPlayer);
+
+		if (HeroFiend.FlagId===HeroPlayer.FlagId)
+		{
+			console.error("Tactic  нападение на самого себя, ошибка пути?  " );
+			this.CloseTactic(this.GetEventModel());
+		}
+		
+		console.log("556 wayGotoModel pl =",HeroPlayer)
+		console.log("557 Path fiend =",HeroFiend)
+		console.log("555 way ===== " +HeroFiend.FlagId," ==== ",HeroPlayer.FlagId		)
 
 		var meleeShip = new MeleeShip();
 		this.MoveAI = MoveAi;
@@ -49,7 +58,7 @@ export class Tactic extends BasicTactic {
 		meleeShip.Launch();
 		
 		this._AttackMelee = new RobotResultMelee();
-		//var rand = new System.Random();
+
 		//var limitDeadUnit = rand.Next(9)+1;
 		var max = 9+1;
 var limitDeadUnit = Math.floor(Math.random() * max);
@@ -191,13 +200,14 @@ tactic scenario
 	{
 		
 		
-		var meleeShip = new MeleeShip();
+		//var meleeShip = new MeleeShip();
 
-
+		var buttonEventmodel = this.GetEventModel()
+		/*
 		var buttonEventmodel = meleeShip.SetEventEndTactic(
 				this.heroPlayer.GetShipName(),
 				this.heroFiend.GetShipName(),this);
-				
+				*/
 
 		if (buttonEventmodel.IdHero == undefined)
 		{
@@ -207,7 +217,7 @@ tactic scenario
 			//this.heroPlayer.Point = GridFleetOldPoint;
 			this.heroPlayer.SetPoint(GridFleetOldPoint.X,GridFleetOldPoint.Y);
 			
-			var kol = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(this.heroPlayer.GetId());
+			//var kol = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(this.heroPlayer.GetId());
 			//this.heroFiend.Point = GridFleetOldPoint;
 		
 		}
@@ -215,6 +225,16 @@ tactic scenario
 
 	//CloseTactic!
 		// load scenr
-		window._mapWorldModel.GotoStrateg(buttonEventmodel);
+		this.CloseTactic(buttonEventmodel);
+		
 	};
+	CloseTactic = function(buttonEventmodel) {
+		window._mapWorldModel.GotoStrateg(buttonEventmodel);
+	}
+	GetEventModel = function(){
+		var meleeShip = new MeleeShip();
+		return meleeShip.SetEventEndTactic(
+			this.heroPlayer.GetShipName(),
+			this.heroFiend.GetShipName(),this);
+	}
 }

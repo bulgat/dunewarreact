@@ -89,24 +89,30 @@ export class ModelStrategy{
 									0,
 									0);
 
-						console.log("    Player=" ,DispositionCountryNameHero_ar[gridFleetInsex] );					 
-						console.log("  attackMoveFleet =",attackMoveFleet);
+						console.log("666    Player=" ,DispositionCountryNameHero_ar[gridFleetInsex] );					 
+						console.log("667  attackMoveFleet =",attackMoveFleet);
 						if(attackMoveFleet){
-							console.log("___flag = ",attackMoveFleet.Fleet.FlagId);
+							if (DispositionCountryNameHero_ar[gridFleetInsex].FlagId===attackMoveFleet.Fleet.FlagId){
+								console.error("Model Strategy Error - атака своего");
+								//выкидываем результаты в мусор. Что-то не так с верхним скриптом - mendMoveShip.PlaceFiendX
+								attackMoveFleet = null;
+							}		
+							console.log("668  FlagIdHero = "+DispositionCountryNameHero_ar[gridFleetInsex].FlagId+"  _flag = ");
 						}
 
 
-						 var fleetSacrifive = this.SetFleetSacrifive(attackMoveFleet,
-									DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet,
+						 let fleetSacrifive = this.SetFleetSacrifive(
+									attackMoveFleet,
+									DispositionCountryNameHero_ar[gridFleetInsex],
 									oldPoint);
 									
-									var heroPlayerSacrifive = fleetSacrifive.HeroPlayerSacrifive;
+									let heroPlayerSacrifive = fleetSacrifive.HeroPlayerSacrifive;
 									oldPoint = fleetSacrifive.OldPoint;
 									
 									if (heroPlayerSacrifive != null)
 									{
 										// command Attack fleet 
-
+										console.log("GGGGG  PUSH  commandStrategy =" )
 
 										CommandStrategy_ar.push(this.GetCommandAttack(DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet, 
 										heroPlayerSacrifive,
@@ -114,11 +120,11 @@ export class ModelStrategy{
 										
 
 
-var agentEvent =  new AgentEvent().GetButtonEventModelMeeleeFleet(heroPlayerSacrifive,
+										var agentEvent =  new AgentEvent().GetButtonEventModelMeeleeFleet(heroPlayerSacrifive,
 												DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet,
 												true, attackMoveFleet.LongRange,CommandStrategy_ar);
 
-return agentEvent;
+												return agentEvent;
 /*
 										return new AgentEvent().GetButtonEventModelMeeleeFleet(heroPlayerSacrifive,
 												DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet,
@@ -275,8 +281,7 @@ return agentEvent;
 			DispositionCountry_ar,
 			StopFiendHero, Sea, Island_ar,ClearHeroPoint);
 
-console.log("555  GetFindPathBigArray ",Grid2d_ar," pointAim ["+pointAim.X+" x "+pointAim.Y+" ] = "
-+Grid2d_ar[pointAim.X][pointAim.Y]+"  Island_ar = ",Island_ar)
+
 
 		//StartNode_ID_Fiend
 		var pathBasa_ar = new AI_Behavior().GetFindPathBigSearchArray(pointAim,

@@ -89,7 +89,7 @@ export class AI_Behavior{
 			
 			 //Grid2d_ar =new AI_Behavior_Existence().Get2Dgrid();
 		//let wallObstacle
-	console.log( " ZZZZZZH  = " ,Grid2d_ar)
+	
 		
 		var resultPoint=null;
 		
@@ -109,7 +109,7 @@ export class AI_Behavior{
  
 		
 		///////////pathfinding-browser
-		console.log("Path ",Grid_ar)
+		
 		/*
 		for(var i=0;i<3;i++){
 			console.log(i+"  Te KOL");
@@ -145,7 +145,7 @@ export class AI_Behavior{
 		var start = [pointAim.X,pointAim.Y];
 		var end = [FiendPoint.X,FiendPoint.Y];
 
-		console.log("Path: x= " + start[0]+" y = "+ start[1]+" end = "+ end[0], end[1], grid+"  Grid_ar="+Grid_ar[0].length);
+		//console.log("Path: x= " + start[0]+" y = "+ start[1]+" end = "+ end[0], end[1], grid+"  Grid_ar="+Grid_ar[0].length);
 		if(start[0]>=Grid_ar.length || start[1]>=Grid_ar[0].length){
 			console.error("Big X");
 			//return [];
@@ -155,7 +155,7 @@ export class AI_Behavior{
 		
 		for (var i = 0; i < path.length; i++)
 		{
-			console.log("Path: i = " + i + ", X: " + path[i][0] + ", Y: " + path[i][1]+"   path L= "+path.length+" field ="+Grid_ar[path[i][0]][path[i][1]]);
+			//console.log("Path: i = " + i + ", X: " + path[i][0] + ", Y: " + path[i][1]+"   path L= "+path.length+" field ="+Grid_ar[path[i][0]][path[i][1]]);
 		}
 		
 	

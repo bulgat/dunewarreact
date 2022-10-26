@@ -15,8 +15,8 @@ export class ExecuteCommandStrateg {
 	}
 	PerformAttackFleet=function( commandStrategy,CountTurn, GlobalParamsGale)
 	{
-
-
+		
+		//throw new Error("XXXXXXXXXXXXx");
 
 		new ModelStrategy().PerformAttackFleetAction(window._mapWorldModel._prototypeHeroDemo, commandStrategy);
 

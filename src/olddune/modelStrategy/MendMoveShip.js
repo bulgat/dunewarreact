@@ -32,18 +32,20 @@ export class MendMoveShip {
 			DispositionCountryNameHero_ar,Sea,Island_ar
 			);
 
-		console.log("00000000 point = ", point);
+		
 
 		let fleetVictim;
 		if (point != null) {
 
-			fleetVictim = this.GetFleetVictim(PrototypeHeroDemo_ar, point);
+			fleetVictim = this.GetFleetVictim(NameHeroFleet.FlagId,PrototypeHeroDemo_ar, point);
 			var gridFleetOldPoint = new Point(NameHeroFleet.SpotX, NameHeroFleet.SpotY);
 
-			console.log("0000 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim);
+			
 
 			if (fleetVictim != null) {
 
+				
+console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId);
 
 				//var commandStrAttack = this.GetCommandAttackFleet(NameHero, point,PrototypeHeroDemo_ar,fleetVictim);
 				var commandStrAttack = this.GetCommandAttackFleet(NameHeroFleet, point, NameHeroFleet, fleetVictim);
@@ -113,7 +115,7 @@ export class MendMoveShip {
 		var aI_TacticSearch = new AI_TacticSearch()
 		var pointLongRange = aI_TacticSearch.GetNearTacticHero(PrototypeHeroDemo_ar, NameHeroFleet);
 		
-		console.log("0001 fleetVictim  pointLongRange  = ",pointLongRange );
+		console.log("7778 fleetVictim  pointLongRange  = ",pointLongRange );
 		
 		if (pointLongRange == null) {
 
@@ -122,7 +124,7 @@ export class MendMoveShip {
 
 		var commandAttack = this.GetFleetVictimSpecial(NameHeroFleet, pointLongRange, PrototypeHeroDemo_ar);
 
-		console.log("0002 fleetVictim  commandAttack  = ",commandAttack );
+		console.log("7779 fleetVictim  commandAttack  = ",commandAttack );
 
 		if (commandAttack != null) {
 
@@ -207,13 +209,21 @@ export class MendMoveShip {
 		}
 		return attackMoveFleet;
 	}
-	GetFleetVictim = function (NameHero_ar, resultPoint) {
-		var hereinHero_ar =
+	GetFleetVictim = function (HeroFleetFlagId,NameHero_ar, resultPoint) {
+		let hereinHero_ar =
 			new FiendFleet().HeroAllCoordinateCoincidence(
 				resultPoint.X,
 				resultPoint.Y, NameHero_ar);
 		if (hereinHero_ar.length > 0) {
-			return hereinHero_ar[0];
+			for(let victimFleet of hereinHero_ar){
+				console.log( "7779 ZZZ   L = " +hereinHero_ar.length )
+				//block attack самого себя
+				if(HeroFleetFlagId!=victimFleet.FlagId){
+					return victimFleet
+				}
+			}
+
+			//return hereinHero_ar[0];
 		}
 		return null;
 	}

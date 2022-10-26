@@ -130,7 +130,7 @@ export class BattlePlanetModel{
                 MapShoalSeaBasa_ar, islandDemoMemento, GridTile_ar,
                 PathHeroName, AttackHeroName, gridFleetSpeed, range);
 
-console.log("GGGGGGGGGGGGGGGgg",selectPath)
+
 
                 return selectPath;
     };
@@ -173,17 +173,17 @@ console.log("GGGGGGGGGGGGGGGgg",selectPath)
                             this.DispositionCountry_ar, shoalSeaBasa_ar,
                             islandDemoMemento.GetIslandArray(), prototypeHeroDemo, GridTile_ar);
 
-console.log("329 wayGotoModel_ar",wayGotoModel_ar)
+
 
 					wayGotoModel_ar.forEach(function(wayPoint)
                     {
 						
-                        console.log("330 wayPoint = ",wayPoint)
+                        
                         if (wayPoint.PathGoto_ar.length <= HeroFleetSpeed + 1)
                         {
 
                             let pointHero = new Point(wayPoint.X, wayPoint.Y);
-                            console.log("331   map   pointHero = [",pointHero.X," x "+pointHero.Y+" ] =")
+                            
                             if (modelStrategy.AllowPointMap(shoalSeaBasa_ar, pointHero))
                             {
                                 

@@ -64,7 +64,7 @@ export class View {
 
 		let _buttonEvent_ar = this.GetButtonEventPathList(window._battlePlanetModel.GetSelectHeroId());
 
-console.log("!!!!!!@@@@_buttonEvent_ar ",_buttonEvent_ar)
+
 
 		_buttonEvent_ar.forEach (function(buttonEvent)
         {
