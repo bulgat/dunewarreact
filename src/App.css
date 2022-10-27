@@ -44,3 +44,7 @@
   color: var(--color-active);
   cursor: default;
 }
+.backgroundImage {
+  background: url('/public/imageDune/duneDefeat.jpg') center no-repeat;
+	position: relative;
+}
