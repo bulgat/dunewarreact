@@ -14,11 +14,16 @@ export class BattlePlanetModel{
 	OfferNameHero_ar = [ "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ" ];
 	UnitId =0;
 	DispositionCountryList =[];
-	VictoryScenario = new VictoryStipulation();
+	_VictoryScenario;
 	
+
 	constructor(){
-		
+		this._VictoryScenario = new VictoryStipulation();
+        console.log("333   map_ar_ar  pointHero =",this._VictoryScenario,"    0x3 =" )
 	}
+    get GetVictoryScenario(){
+     return this._VictoryScenario;
+    }
     GetIncrementUnitId(){
         return this.UnitId++;
     }
@@ -31,7 +36,7 @@ export class BattlePlanetModel{
 	};
     GetDispositionCountryWithId = function(ContryId) {
 		for(let item of this.DispositionCountryList){
-           // console.log( "=======",item)
+           
             if (item.IdCountry === ContryId){
                 return item;//.FlagImage 
             }
@@ -187,8 +192,7 @@ export class BattlePlanetModel{
                             if (modelStrategy.AllowPointMap(shoalSeaBasa_ar, pointHero))
                             {
                                 
-                               // console.log( " this.DispositionCountry_ar  = "+ this.DispositionCountry_ar );
-//console.log(this.GetDispositionCountry ()+" this.DispositionCountry_ar = " );
+                              
                                 var map_ar_ar = modelStrategy.PreparationMap(
                                         GridTile_ar,
                                         prototypeHeroDemo.GetHeroFleet(),
@@ -200,12 +204,12 @@ export class BattlePlanetModel{
 
 
  //PrintMap(GridTile_ar,map_ar_ar);
- console.log("332   map_ar_ar  pointHero =",pointHero,"  ",map_ar_ar[0][1]," 0x3 =",map_ar_ar[0][3])
- console.log("333   map_ar_ar  pointHero =",map_ar_ar[pointHero.X][pointHero.Y],"  ")
+ 
+
 
                                 if (map_ar_ar[pointHero.X][pointHero.Y] != new BattlePlanetModel().ObstacleMap)
                                 {
-                                    console.log("334   map_ar_ar ",wayPoint.PathGoto_ar," map =",map_ar_ar)
+                                    
 
                                     var modelEvent = new ButtonEvent();
                                     modelEvent.HeroFleet = HeroFleet;

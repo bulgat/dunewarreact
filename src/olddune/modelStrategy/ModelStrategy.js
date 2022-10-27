@@ -15,18 +15,33 @@ import {CreateGridScenario} from "../scenario/CreateGridScenario.js";
 import {CreateFleetFast} from "./CreateFleetFast.js";
 import {PerformCommandModel} from "./AI/PerformCommandModel";
 import { GridFleet } from "./GridFleet.js";
+import {GreatDriveAi} from './GreatDriveAi'
 
 export class ModelStrategy{
-	//_prototypeHeroDemo =[];
-	/*
-	Development = function(Grid_ar,PrototypeHeroDemo) {
-		var commGreatImp = this.GreatImpDrivingAI(Grid_ar,PrototypeHeroDemo);
 	
-	console.log( "=    fla =TEST  commGreatImp =    " +commGreatImp);
-		return commGreatImp;
-		
-	};
-	*/
+	GreatImpDrivingAI = function (
+		DispositionCountry_ar,
+		FlagIdHero,
+		PrototypeHeroDemo,
+		Grid_ar,
+		Island_ar,
+		ShoalSeaBasa_ar,
+		BasaPurchaseUnitScience_ar,
+		HeroMax,
+		GridTile_ar) {
+			return new GreatDriveAi().GreatImpDrivingAI(
+				DispositionCountry_ar,
+				FlagIdHero,
+				PrototypeHeroDemo,
+				Grid_ar,
+				Island_ar,
+				ShoalSeaBasa_ar,
+				BasaPurchaseUnitScience_ar,
+				HeroMax,
+				GridTile_ar);
+		}
+
+	/*
 	GreatImpDrivingAI = function (
 	DispositionCountry_ar,
 	FlagIdHero,
@@ -51,10 +66,10 @@ export class ModelStrategy{
 			
 				if (new ContactStateProceeding().ContactGlobalPeace(window._battlePlanetModel.GetDispositionCountry()[Imperial]))
 				{
-					/*
-					MendMovePeaceShip.moveFiend_MIR(DispositionCountry_ar[Imperial], NameHero_ar, Island_ar,
-							DispositionCountry_ar, Grid_ar, CommandStrategy_ar);
-							*/
+					
+					//MendMovePeaceShip.moveFiend_MIR(DispositionCountry_ar[Imperial], NameHero_ar, Island_ar,
+						//	DispositionCountry_ar, Grid_ar, CommandStrategy_ar);
+							
 				} 
 				else 
 				{
@@ -125,19 +140,9 @@ export class ModelStrategy{
 												true, attackMoveFleet.LongRange,CommandStrategy_ar);
 
 												return agentEvent;
-/*
-										return new AgentEvent().GetButtonEventModelMeeleeFleet(heroPlayerSacrifive,
-												DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet,
-												true, attackMoveFleet.LongRange);
-*/
+
 									}
-							//mendMoveShip.PlaceFiendX(PrototypeHeroDemo,DispositionCountryNameHero_ar[gridFleetInsex],Grid_ar,CommandStrategy_ar);
-							/*
-							var point =Operate(_prototypeHeroDemo,DispositionCountryNameHero_ar[gridFleetInsex]);
-							if (point!=null){
-								
-							}
-							*/
+	
 						}
 						
 					}
@@ -164,6 +169,7 @@ export class ModelStrategy{
 		
 		return CommandStrategy_ar;
 	};
+	*/
 	SetFleetSacrifive = function(attackMoveFleet, gridFleet,
 			oldPoint)
 	{

@@ -601,7 +601,7 @@ export default class GlobalDune{
 		//_CommandStrategy_ar = modelStrategy.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 		window._CommandStrategy_ar = window._mapWorldModel.Development(window.Grid_ar,window._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 
-
+		console.log("88900000  wa   TestClick  CreateMap_ar = ",window._CommandStrategy_ar );
 		//var wayGotoModel = new WayGotoModel(3, 4);
 
 		

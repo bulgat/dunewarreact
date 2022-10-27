@@ -3,7 +3,7 @@ import {ViewTactic} from './ViewTactic';
 
 export class ViewDrawInfantery {
     constructor(){
-        //console.log("# SS  tic     percent  ="  )
+        
     };
     drawInfantaryAnim = function(ctx,tick,index,Yheight,ArmFiendUnit,countAnimInf,Fiend,
 		_unitAnimInfanteryList,_unitTypesList
@@ -24,7 +24,7 @@ let countAnimIndex =tick%3;
 
 					//let countAnimInf = Math.round(ArmFiendUnit.ExplodeTickInt);
                     
-					//console.log( "#__*****  SPLI  ArmFiendList[index].ExplodeTickInt= " +ArmFiendUnit.ExplodeTickInt);
+					
 					
 					
 
@@ -45,10 +45,10 @@ let countAnimIndex =tick%3;
 				let tickUnit = ArmFiendUnit.Tick;
 
 				ArmFiendUnit.ExplodeTickInt +=.06;
-                console.log("-countAnimInf--"+countAnimIndex+" A  ArmFiendUnit.ExplodeTickInt = "+ArmFiendUnit.ExplodeTickInt) ;
+                
 			}
 			
-			console.log( " =  A  = ",index,"=   typeUnit = ",window._viewTacticModel.VIEW_TACTIC_BATTLE.GetArmUnitPLayer(index),"   Fiend = " );
+			
 			let placeStartX =window._viewTacticModel.VIEW_TACTIC_BATTLE.GetArmUnitPLayer(index).PlaceStartX;
 
             let weightUnitPlace = -new View().WIDTH_TACTIC+placeStartX+ArmFiendUnit.Tick;
@@ -56,7 +56,7 @@ let countAnimIndex =tick%3;
 			let heightUnitPlace = new View().HEIGHT_TACTIC+(index*Yheight);
 
 
-            console.log( " countAnimInf  ="+countAnimIndex +" tick ="+tick);
+            
 
             //imageUnitX
 			ctx.drawImage(window._viewTacticModel.infanteryUnitAnim,imageUnitX, imageUnitY,

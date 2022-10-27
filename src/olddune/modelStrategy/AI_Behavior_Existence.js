@@ -88,7 +88,7 @@ export class AI_Behavior_Existence{
 					if (oneGrid.Terrain == wallObstacle_ar[QuadObstacle])
 					{
 						CreateMap_ar[GridRow][GridLine] = this.wallObstacleStatic;
-						console.log(GridRow,"  war  rn  point = " ,GridLine)
+						
 					}
 				}
 
@@ -109,13 +109,13 @@ export class AI_Behavior_Existence{
 		});
 		*/
 
-		console.log("00000  war   NameHero   CreateMap_ar = ",CreateMap_ar);
+		
 		//throw new Error("ffffffff")
 		for(let island of Island_ar){
 			CreateMap_ar[island.SpotX][island.SpotY] = 0;
 		}
 
-		console.log("00001  war   NameHero   CreateMap_ar = ",CreateMap_ar);
+		
 		if (StopFiendHero)
 		{
 			/*
@@ -193,14 +193,14 @@ export class AI_Behavior_Existence{
 			*/
 		
 		if (ClearHeroPoint !=undefined){
-			console.log("00002  ClearHeroPoint ",ClearHeroPoint)
+			
 			CreateMap_ar[ClearHeroPoint.X][ClearHeroPoint.Y] =0;
 		}
 		
 		//this.PrintMap(GridTile_ar,CreateMap_ar);
 
 		//CreateMap_ar = this.Get2Dgrid()
-		console.log("00003 NameHero  CreateMap_ar  =",CreateMap_ar)
+		
 
 		return CreateMap_ar;
 	};

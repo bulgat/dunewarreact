@@ -163,9 +163,10 @@ export class MapWorldModel {
 
 	}
 	CheckGlobalVictory = function() {
-		
+		console.log("200 CheckGlobalVictory   -countAnimIn FiendUnit.ExplodeTickInt = " ) ;
+
 		var islandHero_ar = new ModelStrategy().GetFlagIslandArray(this._islandDemoMemento.GetIslandArray(),
-				BattlePlanetModel.FlagIdHero, false);
+		window._battlePlanetModel.FlagIdHero, false);
 
 		if (islandHero_ar.length== 0)
 		{
@@ -174,37 +175,54 @@ export class MapWorldModel {
 			//this.GlobalVictoryFailDevelopment();
 		}
 	
-		islandHero_ar = new ModelStrategy().GetFlagIslandArray(this._islandDemoMemento.GetIslandArray(), BattlePlanetModel.FlagIdHero, true);
+		islandHero_ar = new ModelStrategy().GetFlagIslandArray(this._islandDemoMemento.GetIslandArray(), window._battlePlanetModel.FlagIdHero, true);
 
 		var listIsland = new ListIsland();
 		listIsland.PrintIslandName(islandHero_ar);
 
-		if (islandHero_ar.Count == 0)
+		console.log( "201  _*****  SPLI  ArmFiendList[index].   islandHero_ar = " ,islandHero_ar);
+		if (islandHero_ar.length == 0)
 		{
+			console.log("202   map   =",window._battlePlanetModel.GetVictoryScenario,"  ")
+			console.log("203   map_ar_ar ",window._battlePlanetModel," map =" );
+			console.log( "204  =======",window._battlePlanetModel._VictoryScenario);
+			console.log("205   this.DispositionCountry_ar = ",window._battlePlanetModel._VictoryScenario.ScenarioNumber );
+			window._battlePlanetModel._VictoryScenario.ScenarioNumber++;
 
-			BattlePlanetModel.VictoryScenario.ScenarioNumber++;
-
-			if (BattlePlanetModel.VictoryScenario.Dual)
+			if (window._battlePlanetModel._VictoryScenario.Dual)
 			{
 
-				MapWorldStartGame.StartGameChange(BattlePlanetModel.VictoryScenario);
+				MapWorldStartGame.StartGameChange(window._battlePlanetModel.VictoryScenario);
 
 			}
 			else
 			{
 
-
-				//GlobalVictoryWinDevelopment();
+console.log("206  S  t GlobalVictoryWinDevelopment ="  )
+				this.GlobalVictoryWinDevelopment();
 			}
 
 		}
 	};
+	GlobalVictoryWinDevelopment = function()
+	{
+ 		console.log( "207  Win   DispositionCountry_ar  = " );
+		// Проверить по юнитам
+		if (MapWorldStartGame.StartGameChange(BattlePlanetModel.VictoryScenario))
+		{
+			BattlePlanetModel.GotoSuperGlobalWinEnd();
+		}
+		else
+		{
+			BattlePlanetModel.GotoGlobalWin();
+		}
+	}
 	GlobalVictoryFailDevelopment = function()
 	{
 		
-		var battlePlanetModel = new BattlePlanetModel();
-		new MapWorldStartGame().StartGameFirstReset(battlePlanetModel.VictoryScenario);
-		battlePlanetModel.GotoGlobalFail();
+		//var battlePlanetModel = new BattlePlanetModel();
+		new MapWorldStartGame().StartGameFirstReset(window._battlePlanetModel.VictoryScenario);
+		window._battlePlanetModel.GotoGlobalFail();
 	};
 	AttackHero = function(buttonEvent)
 	{
@@ -462,7 +480,7 @@ export class MapWorldModel {
 //_battlePlanetModel.GridTile_ar = Grid_ar;
 
 
-		var eventModel = new ModelStrategy().GreatImpDrivingAI
+		let eventModel = new ModelStrategy().GreatImpDrivingAI
 				(
 						window._battlePlanetModel.DispositionCountry_ar,
 						window._battlePlanetModel.FlagIdHero,
@@ -476,8 +494,16 @@ export class MapWorldModel {
 						window._battlePlanetModel.GridTile_ar
 				);
 
-		
+		console.log("900001   Hero   CreateMap_ar = ",eventModel);
+		console.log("901002   Hero = ",this._commandStrategyMap_ar)
+
+		if(eventModel.CommandStrategy_ar == undefined){
+			console.error("MapWorldModel  Not response! Not Data!")
+		}
+
 		this._commandStrategyMap_ar = eventModel.CommandStrategy_ar;
+		//this._commandStrategyMap_ar = eventModel;
+
 		
 		
 
@@ -504,10 +530,10 @@ export class MapWorldModel {
 			this._eventModel = eventModel;
 
 		}
-		if (this.GetCommandStrategyMap.length== 0)
-		{
+		//if (this.GetCommandStrategyMap.length== 0)
+		//{
 			this.CheckGlobalVictory();
-		}
+		//}
 		return this.GetCommandStrategyMap;
 	};
 	CopyHeroNameArray = function()

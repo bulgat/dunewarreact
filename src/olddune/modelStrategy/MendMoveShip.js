@@ -134,7 +134,7 @@ console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId
 		}
 
 
-
+		console.log( "888  r CommandStrategy_ar = " ,CommandStrategy_ar)
 
 		return CommandStrategy_ar;
 	};

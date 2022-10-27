@@ -26,7 +26,7 @@ export class GridScenario{
 		
 		
 			
-			window._mapWorldModel._islandDemoMemento.AddIsland(new Island("Dion", 0, 2, 0, false, window._battlePlanetModel.FlagIdHero));
-		window._mapWorldModel._islandDemoMemento.AddIsland(new Island("Madagascar", 2, 2, 1, false, 1));
+			//window._mapWorldModel._islandDemoMemento.AddIsland(new Island("Dion", 0, 2, 0, false, window._battlePlanetModel.FlagIdHero));
+		//window._mapWorldModel._islandDemoMemento.AddIsland(new Island("Madagascar", 2, 2, 1, false, 1));
 	};
 }
