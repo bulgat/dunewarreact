@@ -40,7 +40,7 @@ export class WayGotoSelectField {
 		var modelStrategy = new ModelStrategy();
 
 
-		console.log("0221 ===== DDDDDDD",wayRude_ar.length)
+		
 		// all point move.
 		for(let i=0;i< wayRude_ar.length;i++)
 		{

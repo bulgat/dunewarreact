@@ -2,6 +2,7 @@
 import {useState} from "react";
 import GlobalDune from "../globalDune";
 import {NavLink } from "react-router-dom"
+import {Container, Card, Form, Button, Row, Spinner} from 'react-bootstrap'
 
 const HomePage =()=>{
     const [name,setName] = useState("dune")
@@ -38,10 +39,10 @@ const HomePage =()=>{
             <NavLink to='/about' style={setActiveStyle}>About</NavLink>
             <canvas id="game" width="800" height="600"></canvas>
             <p>{name} is {money}</p>
-            <button onClick={handleClick.bind(this)}>turn</button>
-            <button onClick={(e)=>{handleClickkol("kol",e)}}>test</button>
-            <button onClick={(e) =>{nameClick("k",e)} }>Left</button>
-            <button onClick={(e) =>{moneyClick(e)}  }>Right</button>
+            <Button onClick={handleClick.bind(this)}>turn</Button>
+            <Button onClick={(e)=>{handleClickkol("kol",e)}}>test</Button>
+            <Button onClick={(e) =>{nameClick("k",e)} }>Left</Button>
+            <Button onClick={(e) =>{moneyClick(e)}  }>Right</Button>
             <script type="text/javascript" src="/globalDune.js"></script>
         </>
     )

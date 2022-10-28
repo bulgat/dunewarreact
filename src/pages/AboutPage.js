@@ -23,7 +23,7 @@ const AboutPage =()=>{
             <li>
        
      
-       <Image width={450} height={450} src={'/imageDune/duneDefeat.jpg'}/> 
+       <Image width={600} height={400} src={'/imageDune/startGame.jpg'}/> 
     
        </li>
        </ul>

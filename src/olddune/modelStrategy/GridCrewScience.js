@@ -39,7 +39,10 @@ export class GridCrewScience extends GridCrewScienceShip{
 			longRange,
 			cost,
 			sea,
-			idTypeShip){
+			idTypeShip,
+			Name,
+			UrlImage
+			){
 				super();
 		this.GridCrewScience(idImage,
 			attack,
@@ -59,7 +62,10 @@ export class GridCrewScience extends GridCrewScienceShip{
 			longRange,
 			cost,
 			sea,
-			idTypeShip);
+			idTypeShip,
+			Name,
+			UrlImage
+			);
 	} ;
 	GridCrewScience = function(
 			idImage,
@@ -80,7 +86,9 @@ export class GridCrewScience extends GridCrewScienceShip{
 			longRange,
 			cost,
 			sea,
-			idTypeShip
+			idTypeShip,
+			Name,
+			UrlImage
 			)
 	{
 		this.IdImage = idImage;
@@ -101,9 +109,10 @@ export class GridCrewScience extends GridCrewScienceShip{
 		this.LongRange = longRange;
 		this.Cost = cost;
 
-
 		this.Sea = sea;
 		this.IdTypeShip = idTypeShip;
+		this.Name = Name;
+		this.UrlImage = UrlImage;
 	};
 
 }

@@ -31,7 +31,7 @@ function App() {
         <Route path="contacts" element ={<p>contact</p>}/>
         <Route path="team" element ={<><h2>super</h2><p>team</p></>}/>
       </Route>
-      <Route path='/button' element ={<ButtonPage/>}/>
+      <Route path='/buttonpage' element ={<ButtonPage/>}/>
       <Route path='/post' element ={<BlogPage/>}/>
       <Route path='/post/:id' element ={<SinglePage/>}/>
       <Route path='/post/:id/edit' element ={<Editpage/>}/>
