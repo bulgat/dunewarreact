@@ -346,4 +346,14 @@ export class BattlePlanetModel{
     {
 		
 	};
+    GotoGlobalWin = function()
+    {
+        //LoadSceneChange.LoadSceneRotation("GlobalWin");
+    
+    }
+    GotoSuperGlobalWinEnd=function()
+    {
+        //throw new Exception("GotoSuperGlobalWinEnd");
+
+    }
 }

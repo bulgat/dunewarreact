@@ -5,6 +5,7 @@ export class GridScenario{
 	
 	Mission = "Вперед рекрут!";
 	NameTileMap = "map/duneMap.tmx";
+	NoTown = true;
 	GetNameTileMap = function()
 	{
 		return this.NameTileMap;

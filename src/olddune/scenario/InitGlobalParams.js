@@ -57,9 +57,6 @@ export class InitGlobalParams {
 		window._battlePlanetModel.DispositionCountry_ar = [];
 	};
 	GetOfferNameHero = function () {
-		//var rand = new System.Random();
-
-		//var num = rand.Next(_battlePlanetModel.OfferNameHero_ar.Length);
 
 		var num = Math.floor(Math.random() * window._battlePlanetModel.OfferNameHero_ar.length);
 

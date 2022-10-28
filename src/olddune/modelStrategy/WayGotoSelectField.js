@@ -64,7 +64,7 @@ export class WayGotoSelectField {
 					DispositionCountry_ar, true, Hero.GetSea(), Island_ar,
 					new Point(Hero.SpotX, Hero.SpotY));
 
-console.log("0224 DDDDDDD L = "+pathPoint_ar .length+"   AllowPointMap true",pathPoint_ar )
+
 
 				var wayGotoModel = new WayGotoModel(mapPoint.X, mapPoint.Y);
 				wayGotoModel.PathGoto_ar = pathPoint_ar;

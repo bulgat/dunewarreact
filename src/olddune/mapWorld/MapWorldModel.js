@@ -6,7 +6,7 @@ import {UsingCommand} from "../model/seaTactic/UsingCommand.js";
 import {ExecuteCommandStrateg} from "../model/seaTactic/ExecuteCommandStrateg.js";
 import {BattlePlanetModel} from "../model/BattlePlanetModel.js";
 import {ListIsland} from "../mapWorld/model/service/ListIsland.js";
-import {MapWorldStartGame} from "../mapWorld/model/MapWorldStartGame.js";
+import {MapWorldStartGame} from "../scenario/MapWorldStartGame.js";
 import {MainFormat} from "../mapWorld/model/MainFormat.js";
 import {Tactic} from "../model/tacticModel/Tactic.js";
 import {AgentEvent} from "../modelStrategy/AgentEvent.js";
@@ -180,13 +180,15 @@ export class MapWorldModel {
 		var listIsland = new ListIsland();
 		listIsland.PrintIslandName(islandHero_ar);
 
-		console.log( "201  _*****  SPLI  ArmFiendList[index].   islandHero_ar = " ,islandHero_ar);
+		
 		if (islandHero_ar.length == 0)
 		{
 			console.log("202   map   =",window._battlePlanetModel.GetVictoryScenario,"  ")
 			console.log("203   map_ar_ar ",window._battlePlanetModel," map =" );
 			console.log( "204  =======",window._battlePlanetModel._VictoryScenario);
-			console.log("205   this.DispositionCountry_ar = ",window._battlePlanetModel._VictoryScenario.ScenarioNumber );
+			console.log( "201  _**** FiendList islandHero_ar = " ,window._battlePlanetModel._VictoryScenario.ReturnStart);
+			console.log("205   this.Disposition = ",window._battlePlanetModel._VictoryScenario.ScenarioNumber );
+			console.log("205224 DDDDDD owPoint  ",window._battlePlanetModel._VictoryScenario.GridScenario );
 			window._battlePlanetModel._VictoryScenario.ScenarioNumber++;
 
 			if (window._battlePlanetModel._VictoryScenario.Dual)
@@ -198,23 +200,23 @@ export class MapWorldModel {
 			else
 			{
 
-console.log("206  S  t GlobalVictoryWinDevelopment ="  )
-				this.GlobalVictoryWinDevelopment();
+
+				this.GlobalVictoryWinDevelopment(window._battlePlanetModel._VictoryScenario);
 			}
 
 		}
 	};
-	GlobalVictoryWinDevelopment = function()
+	GlobalVictoryWinDevelopment = function(VictoryScenario)
 	{
- 		console.log( "207  Win   DispositionCountry_ar  = " );
+ 		console.log( "207   D   = " ,window._battlePlanetModel._VictoryScenario.Scenario);
 		// Проверить по юнитам
-		if (MapWorldStartGame.StartGameChange(BattlePlanetModel.VictoryScenario))
+		if (new MapWorldStartGame().StartGameChange(VictoryScenario))
 		{
-			BattlePlanetModel.GotoSuperGlobalWinEnd();
+			window._battlePlanetModel.GotoSuperGlobalWinEnd();
 		}
 		else
 		{
-			BattlePlanetModel.GotoGlobalWin();
+			window._battlePlanetModel.GotoGlobalWin();
 		}
 	}
 	GlobalVictoryFailDevelopment = function()
