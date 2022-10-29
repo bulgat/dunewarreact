@@ -27,7 +27,7 @@ const BlogPage =()=>{
  
     return (
         <>
-            <div>blog  = {posts.length} 11111111 </div>
+            <div>blog  = {posts.length}  </div>
             
 <BlogFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams}/>
 
@@ -48,6 +48,3 @@ const BlogPage =()=>{
         )
 }
 export {BlogPage}
-/*
-posts.map(post=>(<p>{+post.id}</p>))
-*/

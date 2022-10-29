@@ -28,11 +28,17 @@ const NavBarDune =()=>{
                         <Button   variant={"outline-success"} >Units</Button>
                     </Nav.Link>
                 </Nav.Item>
-             
-                 
-                <Link to="/CommentPage">
+                <Nav.Item>
+                    <Nav.Link href="/commentpage">
+                        <Button   variant={"outline-success"} >Comment</Button>
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/post">
                         <Button   variant={"outline-success"} >Blog</Button>
-                    </Link>
+                    </Nav.Link>
+                </Nav.Item>
+
                      
             </Nav>
         </Navbar>

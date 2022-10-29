@@ -12,7 +12,8 @@ import {ButtonPage} from './pages/ButtonPage';
 import {NotFoundPage} from './pages/NotFoundPage';
 import {Editpage} from './pages/Editpage';
 import {NavBarDune} from './components/NavBarDune'
-import {Loginpage} from './pages/Loginpage'
+import {Loginpage} from './pages/Loginpage';
+import {CommentPage} from './pages/CommentPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {RequireAuth} from './hoc/RequireAuth';
 import {Createpost } from './pages/Createpost'
@@ -42,7 +43,7 @@ function App() {
       </RequireAuth>}
       />
       <Route path='/login' element ={<Loginpage/>}/>
-
+      <Route path='/commentpage' element ={<CommentPage/>}/>
     
   </Routes>
 </AuthProvider>

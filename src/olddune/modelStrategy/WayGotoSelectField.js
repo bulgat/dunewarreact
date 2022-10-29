@@ -74,7 +74,7 @@ export class WayGotoSelectField {
 
 
 		}
-		console.log("0225 ===== DDDDDDD",wayGotoModel_ar)
+		
 
 		return wayGotoModel_ar;
 	}

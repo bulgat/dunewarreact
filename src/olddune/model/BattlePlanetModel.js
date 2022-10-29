@@ -19,7 +19,7 @@ export class BattlePlanetModel{
 
 	constructor(){
 		this._VictoryScenario = new VictoryStipulation();
-        console.log("333   map_ar_ar  pointHero =",this._VictoryScenario,"    0x3 =" )
+        
 	}
     get GetVictoryScenario(){
      return this._VictoryScenario;
