@@ -15,7 +15,7 @@ export class InitGlobalParams {
 		window._battlePlanetModel.BasaPurchaseUnitScienceAdd(new GridCrewScience(0, 20, 20, 1, 1, 117, 53, 0, 0, 2, 2, false,
 			musicBibleConstant.Cannon,
 			musicBibleConstant.Vehicle, false, 3, false, 0,
-			"средний танк",'/imageDune/unit/rocketTank.jpg'));
+			"средний танк",'/imageDune/unit/tank.jpg'));
 
 		window._battlePlanetModel.BasaPurchaseUnitScienceAdd(new GridCrewScience(1, 30, 30, 2, 2, 180, 65, 1, 0, 2, 1, false,
 			musicBibleConstant.Cannon,

@@ -47,8 +47,8 @@ export class WayGotoSelectField {
 			var wayPoint = wayRude_ar[i];
 			var mapPoint = new Point(Hero.SpotX + wayPoint.X, Hero.SpotY + wayPoint.Y);
 			
-			console.log("0222 DDDDDDD [ "+mapPoint.X+" x "+mapPoint.Y+" ] ",mapPoint)
-			console.log("0223 DD hero [ "+Hero.SpotX+" x "+Hero.SpotY+" ]",ShoalSeaBasa_ar)
+			
+			
 
 			// Выходит ли x and y за карту.
 			if (modelStrategy.AllowPointMap(ShoalSeaBasa_ar,

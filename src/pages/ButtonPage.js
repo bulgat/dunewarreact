@@ -6,7 +6,7 @@ const ButtonPage =()=>{
    console.log( " ^^ ^^^^ ^^^^  i = ",window._battlePlanetModel.GetBasaPurchaseUnitScience());
     return (
         <>
-    <div>Unit collection</div>
+    <div><h3>Units</h3></div>
 
     <ul>
     {window._battlePlanetModel.GetBasaPurchaseUnitScience().map(
