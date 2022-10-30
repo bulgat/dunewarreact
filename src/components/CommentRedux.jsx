@@ -4,6 +4,7 @@ import {useDispatch,useSelector} from 'react-redux'
 
 const CommentRedux  =()=>{
     const [textComment,setTextComment]=useState('')
+    const dispatch = useDispatch();
 
     const handleInput=(e) =>{
         console.log("0225 === DD = "+e.target.value )
@@ -14,7 +15,7 @@ const CommentRedux  =()=>{
         e.preventDefault()
         const id = Math.floor(Math.random()*1000000000);
         
-        console.log(id+"  333   map_ar_ar   =" ,e)
+        console.log(id+"  333   map_ar  =" ,e)
         //dispatch(commentCreate(textComment,id))
     }
     return  (
