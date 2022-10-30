@@ -183,12 +183,13 @@ export class MapWorldModel {
 		
 		if (islandHero_ar.length == 0)
 		{
-			console.log("202   map   =",window._battlePlanetModel.GetVictoryScenario,"  ")
-			console.log("203   map_ar_ar ",window._battlePlanetModel," map =" );
-			console.log( "204  =======",window._battlePlanetModel._VictoryScenario);
+			
+			
+			
+			
 			console.log( "201  _**** FiendList islandHero_ar = " ,window._battlePlanetModel._VictoryScenario.ReturnStart);
 			console.log("205   this.Disposition = ",window._battlePlanetModel._VictoryScenario.ScenarioNumber );
-			console.log("205224 DDDDDD owPoint  ",window._battlePlanetModel._VictoryScenario.GridScenario );
+			
 			window._battlePlanetModel._VictoryScenario.ScenarioNumber++;
 
 			if (window._battlePlanetModel._VictoryScenario.Dual)
@@ -474,13 +475,14 @@ export class MapWorldModel {
 	{
 		
 		// get copy island list.
-		var copyIsland_ar = window._mapWorldModel._islandDemoMemento.GetCopyIslandArray();
+		var copyIsland_ar = this._islandDemoMemento.GetCopyIslandArray();
 		this._commandStrategyMap_ar = [];
 		
 		var copyFleetGrid_ar = this.CopyHeroNameArray();
 
 //_battlePlanetModel.GridTile_ar = Grid_ar;
-
+let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel);
+console.log("900001   Her  = ",getIncrementUnitId);
 
 		let eventModel = new ModelStrategy().GreatImpDrivingAI
 				(
@@ -488,16 +490,19 @@ export class MapWorldModel {
 						window._battlePlanetModel.FlagIdHero,
 						copyFleetGrid_ar,
 						Grid_ar,//_battlePlanetModel.GridTile_ar,
-						window._mapWorldModel._islandDemoMemento.GetIslandArray(),
+						window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray(),
 						window._battlePlanetModel.ShoalSeaBasa_ar,
 						window._battlePlanetModel.GetBasaPurchaseUnitScience(),
 						2,
 						this.GetCommandStrategyMap,
-						window._battlePlanetModel.GridTile_ar
+						window._battlePlanetModel.GridTile_ar,
+						getIncrementUnitId
+						//window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel
+							//)
 				);
 
-		console.log("900001   Hero   CreateMap_ar = ",eventModel);
-		console.log("901002   Hero = ",this._commandStrategyMap_ar)
+		
+		
 
 		if(eventModel.CommandStrategy_ar == undefined){
 			console.error("MapWorldModel  Not response! Not Data!")

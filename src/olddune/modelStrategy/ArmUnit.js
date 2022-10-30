@@ -13,6 +13,7 @@ export class ArmUnit extends ArmUnitShip {
 	LongRange;
 	Id;
 	ViewArmUnit;
+	GetIncrementUnitId;
 	GetAttack = function() {
 		return this.Attack;
 	};
@@ -22,8 +23,9 @@ export class ArmUnit extends ArmUnitShip {
 	GetId = function() {
 		return this.Id;
 	};
-	constructor(basaPurchaseUnitScience_ar, unitType, customShip){
+	constructor(basaPurchaseUnitScience_ar, unitType, customShip,GetIncrementUnitId){
 		super();
+		this.GetIncrementUnitId = GetIncrementUnitId;
 
 		this.basaPurchaseUnitScience_ar = basaPurchaseUnitScience_ar;
 		this._gridCrewScience = basaPurchaseUnitScience_ar[unitType];
@@ -33,7 +35,9 @@ export class ArmUnit extends ArmUnitShip {
 		this.Name = "pi_"+ basaPurchaseUnitScience_ar[unitType].SoundMusic;
 		//Unit = unit;
 		this.SetUnit(unitType);
-		this.Id = window._battlePlanetModel.GetIncrementUnitId();
+
+		//console.log( "204  = =",GetIncrementUnitId);
+		this.Id = GetIncrementUnitId();
 		
 		this.Speed = basaPurchaseUnitScience_ar[unitType].StrategySpeed;
 		this.SoundMusic = basaPurchaseUnitScience_ar[unitType].SoundMusic;
@@ -56,7 +60,7 @@ export class ArmUnit extends ArmUnitShip {
 	
 	Copy = function()
 	{
-		var armUnit = new ArmUnit(this.basaPurchaseUnitScience_ar, this.GetUnit(), 0);
+		var armUnit = new ArmUnit(this.basaPurchaseUnitScience_ar, this.GetUnit(), 0,this.GetIncrementUnitId);
 		return armUnit;
 	};
 	GetUnitScience = function()

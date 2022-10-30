@@ -17,7 +17,7 @@ export class GreatDriveAi{
         ShoalSeaBasa_ar,
         BasaPurchaseUnitScience_ar,
         HeroMax,
-        GridTile_ar) {
+        GridTile_ar,GetIncrementUnitId) {
             
             var mendMoveShip = new MendMoveShip();
             var CommandStrategy_ar = [];

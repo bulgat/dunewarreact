@@ -20,8 +20,8 @@ export class MendMoveShip {
 		Null,
 		Null0,
 		Null1,
-		NameHero_ar,Sea
-
+		NameHero_ar,Sea,
+		BasaPurchaseUnitScience_ar,GetIncrementUnitId
 	) {
 		var aI_move = new AI_move();
 
@@ -29,7 +29,7 @@ export class MendMoveShip {
 
 		//Operate   
 		var point = aI_move.Operate(PrototypeHeroDemo_ar, NameHeroFleet, Grid_ar,
-			DispositionCountryNameHero_ar,Sea,Island_ar
+			DispositionCountryNameHero_ar,Sea,Island_ar,BasaPurchaseUnitScience_ar,GetIncrementUnitId
 			);
 
 		

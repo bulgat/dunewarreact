@@ -18,7 +18,7 @@ import {ViewTacticModel} from "./olddune/view/ViewTacticModel";
 import {ViewImage} from './olddune/view/ViewImage'
 
 document.addEventListener('DOMContentLoaded', function(){ 
-    console.log( "Global  ready!" );
+    
 	
 });
 
@@ -87,13 +87,16 @@ var _unitTypes = {
 6:{colour:"#685b48", sprite:[{x:192,y:0,w:32,h:32}]}
 };
 
-window._mapWorldModel = new MapWorldModel();
+//window._mapWorldModel = new MapWorldModel();
+//window._mapWorldModel =window._battlePlanetModel.MapWorldModelPlanetModel;
 window._countHeroIndex=0;
 var _tileBox_ar;
 //set id select hero
 
-var _gridScenario = new GridScenario();
-_gridScenario.Init();
+
+
+//var _gridScenario = new GridScenario();
+//_gridScenario.Init();
 
 
 
@@ -116,6 +119,7 @@ function Character() {
 };
 
 //GridScenario
+/*
 new CreateFleetFast().HeroFleetAdd(1, 5, 0,window._battlePlanetModel.FlagIdHero);
 new CreateFleetFast().HeroFleetAdd(9, 4, 2,window._battlePlanetModel.FlagIdHero);
 new CreateFleetFast().HeroFleetAdd(4, 6, 1,window._battlePlanetModel.FlagIdHero);
@@ -134,8 +138,8 @@ new CreateFleetFast().HeroFleetAdd(3, 5, 2,1);
 new CreateFleetFast().HeroFleetAdd(7, 11, 4,1);
 new CreateFleetFast().HeroFleetAdd(11, 11, 4,1);
 new CreateFleetFast().HeroFleetAdd(3, 7, 1,0);
-
-window._battlePlanetModel.SetSelectHeroId(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[0].GetId());
+*/
+window._battlePlanetModel.SetSelectHeroId(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[0].GetId());
 
 
 
@@ -361,8 +365,8 @@ function drawGame(){
 	//map path
 	new View().DrawMapTilePachground(ctx,_tileBox_ar,_tileset,_buttonEvent_ar);
 
-	var indexNameFleet = window._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
-	
+	let indexNameFleet = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
+	//console.log(_idSelect+"   202   ma ",indexNameFleet,"  ")
 	// Draw All static.
 	new View().DrawMapUnitGround(ctx,indexNameFleet,_unitTypes,unitIconSet, window._ViewImage._screenList);
 
@@ -387,20 +391,23 @@ function drawGame(){
 	else
 	{
 
+		//console.log(indexNameFleet+"   203   ma   =",window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+		player.placeAt(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[0],
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[1],
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet]);
 
-		player.placeAt(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[0],window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[1],window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet]);
-		window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move = true;
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move = true;
 
 
 	}
-	var unitType = _unitTypes[window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].type];
+	var unitType = _unitTypes[window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].type];
 
 	//draw move unit
 	new View().drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet, window._ViewImage._screenList);
 
-	ctx.fillText('  '+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
-	window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]+window.tileW/2-10,
-	window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]+window.tileH);
+	ctx.fillText('  '+window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
+	window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]+window.tileW/2-10,
+	window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]+window.tileH);
 
 
 	lastFrameTime = currentFrameTime;
@@ -410,17 +417,17 @@ function drawGame(){
 	if (window._CommandStrategy_ar!=null && window._CommandStrategy_ar.length>0)
 	{
 
-		if(player.timeMoved==0 || window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move==true)
+		if(player.timeMoved==0 || window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move==true)
 		{
 
 				var indexNameHero =0;
-				for(var i=0;i<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++){
+				for(var i=0;i<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++){
 
-					let commandStrategy = new View().GetGridFleetCommandStrategy(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id);
+					let commandStrategy = new View().GetGridFleetCommandStrategy(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id);
 
 
 					if (commandStrategy){
-						_idSelect = window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id;
+						_idSelect = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id;
 
 						_commStrCurrent = commandStrategy;
 
@@ -443,13 +450,13 @@ function drawGame(){
 
 
 					player.timeMoved = currentFrameTime;
-					indexNameHero = window._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
+					indexNameHero = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
 
 				
 
-					window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo =[_commStrCurrent.GridFleetNewPoint.X,_commStrCurrent.GridFleetNewPoint.Y];
+					window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo =[_commStrCurrent.GridFleetNewPoint.X,_commStrCurrent.GridFleetNewPoint.Y];
 
-					window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileToPosition =window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo;
+					window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileToPosition =window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo;
 
 
 
@@ -547,8 +554,8 @@ function TurnPush(){
 	GlobalYear+=1;
 };
 function RefreshHeroPower() {
-	for(var y=0; y<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
-		window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].move=false;
+	for(var y=0; y<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].move=false;
 	}
 };
 
@@ -569,9 +576,9 @@ export default class GlobalDune{
 		RefreshHeroPower();
 			var modelStrategy = new ModelStrategy();
 		
-		window._CommandStrategy_ar = window._mapWorldModel.Development(window.Grid_ar,window._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+		window._CommandStrategy_ar = window._battlePlanetModel._mapWorldModel.Development(window.Grid_ar,window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 
-		console.log("88900000  wa   TestClick  CreateMap_ar = ",window._CommandStrategy_ar );
+		//console.log("88900000  wa   TestClick  CreateMap_ar = ",window._CommandStrategy_ar );
 
 		//for (var i=0;i<window._CommandStrategy_ar.length;i++){
 			//console.log(i+"   TOTAL  "+window._CommandStrategy_ar[i].GridFleetNewPoint.X+"  $$$$$$$   = "+window._CommandStrategy_ar[i].NameCommand );

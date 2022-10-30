@@ -46,5 +46,11 @@ export class IslandDemoMemento {
 		this.Island_ar.push(island);
 		this._id++;
 	};
-	
+	AddIslandAll = function(island_ar){
+		this.Island_ar=island_ar;
+		for(let island of this.Island_ar){
+			island.Id = this._id;
+			this._id++;
+		}
+	}
 }

@@ -15,28 +15,32 @@ export class GridFleet extends BasicTile {
 	maxSpeed = 1;
 	AttackDone=false;
 	TurnDone = false;
-
-	constructor(x,y,flagId,Type) {
+	GetIncrementUnitId;
+	BasaPurchaseUnitScience_ar;
+	constructor(x,y,flagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId) {
 
 		super(x,y);
-
+		this.GetIncrementUnitId = GetIncrementUnitId;
+		this.BasaPurchaseUnitScience_ar = BasaPurchaseUnitScience_ar;
 		this.SpotX =x;
 		this.SpotY =y;
 		this.FlagId = flagId;
 		this.ShipNameUnit = new ShipUnit();
-		this.Id = window._countHeroIndex++;
-		//if(Type.length) {}
+
+		console.log("205224 DDDDD    ",GetIncrementUnitId);
+		this.Id = GetIncrementUnitId();
+	
 		this.type = Type;
 
 
 
 		this.ShipNameUnit.SetArmUnitArray(
-		[new ArmUnit(window._battlePlanetModel.BasaPurchaseUnitScience_ar, Type, null),
-		new ArmUnit(window._battlePlanetModel.BasaPurchaseUnitScience_ar, Type, null),
-		new ArmUnit(window._battlePlanetModel.BasaPurchaseUnitScience_ar, Type, null),
-		new ArmUnit(window._battlePlanetModel.BasaPurchaseUnitScience_ar, Type, null),
-		new ArmUnit(window._battlePlanetModel.BasaPurchaseUnitScience_ar, Type, null),
-		new ArmUnit(window._battlePlanetModel.BasaPurchaseUnitScience_ar, Type, null)
+		[new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
+		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
+		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
+		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
+		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
+		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId)
 		]
 		);
 
@@ -189,7 +193,8 @@ var returnRange = false;
 	{
 		//var fleetCopy = new GridFleet(this.Name, this.SpotX, this.SpotY, this.FlagId, this.Image);
 
-		let fleetCopy = new GridFleet(this.SpotX, this.SpotY, this.FlagId,this.type);
+		let fleetCopy = new GridFleet(this.SpotX, this.SpotY, this.FlagId,this.type,
+			this.BasaPurchaseUnitScience_ar,this.GetIncrementUnitId);
 		fleetCopy.Id = this.Id;
 		fleetCopy.ShipNameUnit = new ShipUnit();
 

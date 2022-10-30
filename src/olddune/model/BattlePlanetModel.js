@@ -3,6 +3,14 @@ import {MendMoveAbleFire} from "../modelStrategy/MendMoveAbleFire.js";
 import {Point} from "../modelStrategy/Point.js";
 import {ModelStrategy} from "../modelStrategy/ModelStrategy.js";
 import {ButtonEvent} from "../model/ButtonEvent.js";
+import {GridScenario} from "../scenario/GridScenario";
+import {InitGlobalParams} from "../scenario/InitGlobalParams";
+import {MapWorldModel} from "../mapWorld/MapWorldModel"
+import { PrototypeHeroDemo } from "../model/prototype/PrototypeHeroDemo";
+import { IslandDemoMemento } from "../model/memento/IslandDemoMemento.js";
+
+
+
 
 export class BattlePlanetModel{
     //ObstacleMap = 2
@@ -15,16 +23,32 @@ export class BattlePlanetModel{
 	UnitId =0;
 	DispositionCountryList =[];
 	_VictoryScenario;
-	
+	_mapWorldModel;
 
 	constructor(){
-		this._VictoryScenario = new VictoryStipulation();
+        var initGlobalParams = new InitGlobalParams();
+        this.BasaPurchaseUnitScienceAll(initGlobalParams.InitGlobalParams());
+        this.DispositionCountry_ar = [];
+        var _gridScenario = new GridScenario();
         
+		this._VictoryScenario = new VictoryStipulation(_gridScenario);
+        this._mapWorldModel = new MapWorldModel();
+        this._mapWorldModel._prototypeHeroDemo = new PrototypeHeroDemo();
+		this._mapWorldModel._prototypeHeroDemo.HeroFleetInit();
+		this._mapWorldModel._islandDemoMemento = new IslandDemoMemento();
+		this._mapWorldModel._islandDemoMemento.Init();
+       let island_ar = _gridScenario.Init(this.FlagIdHero,this.BasaPurchaseUnitScience_ar,
+        this.GetIncrementUnitId.bind(this),this._mapWorldModel._prototypeHeroDemo);
+       this._mapWorldModel._islandDemoMemento.AddIslandAll(island_ar);
 	}
+    get MapWorldModelPlanetModel(){
+        return this._mapWorldModel;
+    }
     get GetVictoryScenario(){
      return this._VictoryScenario;
     }
     GetIncrementUnitId(){
+        
         return this.UnitId++;
     }
 	DispositionCountryAdd = function(Country) {
@@ -333,6 +357,15 @@ export class BattlePlanetModel{
         this.BasaPurchaseUnitScience_ar.push(gridCrewScience);
 		
     };
+    BasaPurchaseUnitScienceAll= function(gridCrewScience_ar)
+    {
+		
+		
+        this.BasaPurchaseUnitScience_ar =gridCrewScience_ar;
+		
+    };
+
+
 	GotoGlobalFail = function() {
 		
 	};

@@ -46,10 +46,10 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 		shipPlayer.GetArmUnitArray().push(new ArmUnit(BasaPurchaseUnitScience_ar, UnitTypeId, customShip));
 	};
 	
-	HeroFleetAdd(X, Y,Type,FlagId)
+	HeroFleetAdd(X, Y,Type,FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo)
 	{
 
-		var nameHero = new GridFleet(X, Y, FlagId,Type);
+		var nameHero = new GridFleet(X, Y, FlagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
 
 		/*
 		var nameHero = _mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(
@@ -73,7 +73,7 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 
 		//add arm
 
-		window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().push(nameHero);
+		prototypeHeroDemo.GetHeroFleet().push(nameHero);
 
 
 		window._countHeroIndex++;

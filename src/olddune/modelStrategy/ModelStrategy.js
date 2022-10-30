@@ -28,7 +28,11 @@ export class ModelStrategy{
 		ShoalSeaBasa_ar,
 		BasaPurchaseUnitScience_ar,
 		HeroMax,
-		GridTile_ar) {
+		GridTile_ar,
+		GetIncrementUnitId) {
+
+			console.log(HeroMax,"  9010  ",GridTile_ar,"  H = ",GetIncrementUnitId)
+
 			return new GreatDriveAi().GreatImpDrivingAI(
 				DispositionCountry_ar,
 				FlagIdHero,
@@ -38,7 +42,8 @@ export class ModelStrategy{
 				ShoalSeaBasa_ar,
 				BasaPurchaseUnitScience_ar,
 				HeroMax,
-				GridTile_ar);
+				GridTile_ar,
+				GetIncrementUnitId);
 		}
 
 	/*

@@ -11,7 +11,7 @@ export class AI_Behavior{
 
 
 	TacticSearchIslandAndHero = function (PrototypeHeroDemo_ar,NameHeroFleet,Grid_ar,
-		DispositionCountry_ar,Sea,Island_ar
+		DispositionCountry_ar,Sea,Island_ar,BasaPurchaseUnitScience_ar,GetIncrementUnitId
 		){
 		
 		
@@ -42,7 +42,9 @@ export class AI_Behavior{
 		{
 			//var nameHero = new GridFleet(X, Y, FlagId,Type);
 			
-			var gridFleet = new GridFleet(NameHeroFleet.x,NameHeroFleet.y,NameHeroFleet.GetFlagId(),NameHeroFleet.type);
+			let gridFleet = new GridFleet(NameHeroFleet.x,NameHeroFleet.y,
+				NameHeroFleet.GetFlagId(),NameHeroFleet.type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
+			
 			var searchImminenFleet = new SearchImminenFleet();
 			
 				

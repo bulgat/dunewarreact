@@ -92,7 +92,8 @@ export class View {
 
 	   //selectHeroId =0;
 
-	   var gridFleet = window._battlePlanetModel.GetHeroWithId(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet(), selectHeroId);
+	   var gridFleet = window._battlePlanetModel.GetHeroWithId(
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(), selectHeroId);
 
 
 
@@ -112,7 +113,7 @@ export class View {
 		islandDemoMemento.Init();
 
 let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
-	window._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),
+	window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),
 	_battlePlanetModel.FlagIdHero,
 	_battlePlanetModel.DispositionCountry_ar,
 	true,0,[]);
@@ -120,7 +121,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 
 
 		let getPath= _battlePlanetModel.GetPathSelectHero(
-										window._mapWorldModel._prototypeHeroDemo,
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,
 										gridMapExistence,// ShoalSeaBasa_ar,
 										 islandDemoMemento,//_islandDemoMemento,
 										 window.Grid_ar,//GridTile_ar,
@@ -134,7 +135,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 										 SelectHeroId,
 										 _battlePlanetModel.FlagIdHero,//FlagIdHero
 										 );
-		console.log("SSSSSSSSSS SSSSS")
+		
 		return getPath;
 	};
 	toIndex = function (x,y) {
@@ -321,13 +322,14 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 		}
 	};
 	DrawMapUnitGround = function(ctx,indexNameFleet,_unitTypes,unitIconSet,screenList){
-		for(var y=0; y<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+		for(var y=0; y<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
 
 
 			if(indexNameFleet!=y){
 	
-				var unitType = _unitTypes[window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].type];
-				var position = new CreateFleetFast().GetPositionPointArray(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotX, window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotY);
+				var unitType = _unitTypes[window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].type];
+				var position = new CreateFleetFast().GetPositionPointArray(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotX,
+				 window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotY);
 	
 	
 				ctx.drawImage(unitIconSet,
@@ -339,12 +341,12 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	
 				ctx.fillStyle = "black"; 
 				ctx.font = '10px serif';
-				ctx.fillText(''+window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetCountUnitArm(),position[0]+window.tileW/2-10,position[1]+window.tileH);
+				ctx.fillText(''+window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetCountUnitArm(),position[0]+window.tileW/2-10,position[1]+window.tileH);
 				
-				////GetDispositionCountryWithId = function(Id)
+
 				//let item = window._battlePlanetModel.GetDispositionCountryWithId(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
 				//let indexImage = item.FlagImage;
-				let indexImage = this.GetIndexFlagImage(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
+				let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
 //console.log("0000 flag  ",indexImage)
 				
 				
@@ -372,20 +374,20 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	drawMapMoveUnitGround(ctx,unitIconSet,unitType,indexNameFleet,screenList){
 		ctx.drawImage(unitIconSet,
 			unitType.sprite[0].x, unitType.sprite[0].y, unitType.sprite[0].w, unitType.sprite[0].h,
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
 			window.tileW, window.tileH
 		);
 
 		//let indexImage = 0;
 
-		let indexImage = this.GetIndexFlagImage(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId());
+		let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId());
 		//console.log("0011 flag  ",indexImage)
 		//console.log("0012 flag  ",window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId())
 
 		this.drawFlagUnit(ctx,screenList,
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
 			window.tileW,window.tileH,indexImage)
 	}
 	/*

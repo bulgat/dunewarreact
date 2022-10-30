@@ -6,7 +6,8 @@ export class VictoryStipulation{
 	Dual;
 	ReturnStart;
 	EndGame;
-	constructor(){
+	constructor(GridScenario){
 		this.ScenarioNumber = 0;
+		this.Scenario = GridScenario;
 	}
 }

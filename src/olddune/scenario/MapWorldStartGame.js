@@ -6,6 +6,7 @@ import {MainFormat} from "../mapWorld/model/MainFormat";
 export class MapWorldStartGame {
 	StartGameFirstReset = function(VictoryScenario)
 	{
+		console.log("20600  SSSSSSS SS")
 		new BattlePlanetModel()._initGlobalParams = new InitGlobalParams();
 		
 		
@@ -16,7 +17,7 @@ export class MapWorldStartGame {
 	};
 	StartGameChange = function(VictoryScenario)
 	{
-console.log("20600  Victory Dev  =" ,VictoryScenario )
+console.log("20601  Victory Dev  =" ,VictoryScenario )
 		if (VictoryScenario.Dual)
 		{
 			// hak
