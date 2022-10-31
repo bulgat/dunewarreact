@@ -37,10 +37,19 @@ export class BattlePlanetModel{
 		this._mapWorldModel._prototypeHeroDemo.HeroFleetInit();
 		this._mapWorldModel._islandDemoMemento = new IslandDemoMemento();
 		this._mapWorldModel._islandDemoMemento.Init();
+        this.InitScenario(_gridScenario);
+        /*
        let island_ar = _gridScenario.Init(this.FlagIdHero,this.BasaPurchaseUnitScience_ar,
         this.GetIncrementUnitId.bind(this),this._mapWorldModel._prototypeHeroDemo);
-       this._mapWorldModel._islandDemoMemento.AddIslandAll(island_ar);
+        this._mapWorldModel._islandDemoMemento.AddIslandAll(island_ar);
+        */
+       
 	}
+    InitScenario(gridScenario){
+        let island_ar = gridScenario.Init(this.FlagIdHero,this.BasaPurchaseUnitScience_ar,
+            this.GetIncrementUnitId.bind(this),this._mapWorldModel._prototypeHeroDemo);
+            this._mapWorldModel._islandDemoMemento.AddIslandAll(island_ar);
+    }
     get MapWorldModelPlanetModel(){
         return this._mapWorldModel;
     }

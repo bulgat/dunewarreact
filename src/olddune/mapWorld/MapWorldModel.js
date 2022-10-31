@@ -187,7 +187,8 @@ export class MapWorldModel {
 			
 			
 			
-			console.log( "201  _**** FiendList islandHero_ar = " ,window._battlePlanetModel._VictoryScenario.ReturnStart);
+			console.log( "204  _**** Fiend  islandHero_ar = " ,window._battlePlanetModel._VictoryScenario.Scenario.NoTown
+			);
 			console.log("205   this.Disposition = ",window._battlePlanetModel._VictoryScenario.ScenarioNumber );
 			
 			window._battlePlanetModel._VictoryScenario.ScenarioNumber++;
@@ -200,9 +201,11 @@ export class MapWorldModel {
 			}
 			else
 			{
+				if (window._battlePlanetModel._VictoryScenario.Scenario.NoTown===false)
+				{
 
-
-				this.GlobalVictoryWinDevelopment(window._battlePlanetModel._VictoryScenario);
+					this.GlobalVictoryWinDevelopment(window._battlePlanetModel._VictoryScenario);
+				}
 			}
 
 		}
@@ -248,8 +251,8 @@ export class MapWorldModel {
 	{
 
 
-		let gridFleetFiend = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(IdHeroFiend);
-		let gridFleetPlayer = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(IdHeroPlayer);
+		let gridFleetFiend = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetFleetWithId(IdHeroFiend);
+		let gridFleetPlayer = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetFleetWithId(IdHeroPlayer);
 
 		
 		
@@ -482,7 +485,7 @@ export class MapWorldModel {
 
 //_battlePlanetModel.GridTile_ar = Grid_ar;
 let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel);
-console.log("900001   Her  = ",getIncrementUnitId);
+console.log("900001  ",window._battlePlanetModel," H  getIncrementUnitId = ",getIncrementUnitId);
 
 		let eventModel = new ModelStrategy().GreatImpDrivingAI
 				(

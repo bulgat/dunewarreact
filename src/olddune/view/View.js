@@ -38,6 +38,22 @@ export class View {
 		4:{sprite:[{x:160,y:0,w:160,h:40}]},
 		5:{sprite:[{x:220,y:0,w:160,h:40}]}
 	};
+	_tileTypes = {
+		0:{colour:"ground", sprite:[{x:0,y:0,w:16,h:16}]},
+		1:{colour:"ground", sprite:[{x:16,y:0,w:16,h:16}]},
+		2:{colour:"ground", sprite:[{x:32,y:0,w:16,h:16}]},
+		3:{colour:"ground", sprite:[{x:48,y:0,w:16,h:16}]},
+		4:{colour:"ground", sprite:[{x:64,y:0,w:16,w:16,h:16}]},
+		5:{colour:"ground", sprite:[{x:256,y:48,w:16,w:16,h:16}]},
+		6:{colour:"ground", sprite:[{x:16*39,y:16*2,w:16,w:16,h:16}]},
+		7:{colour:"ground", sprite:[{x:16*35,y:16*4,w:16,w:16,h:16}]},
+		8:{colour:"ground", sprite:[{x:16*40,y:16*2,w:16,w:16,h:16}]},
+		9:{colour:"ground", sprite:[{x:16*43,y:16*9,w:16,w:16,h:16}]},
+		10:{colour:"move", sprite:[{x:16*42,y:16*9,w:16,w:16,h:16}]},
+		11:{colour:"attack", sprite:[{x:16*41,y:16*9,w:16,w:16,h:16}]},
+		12:{colour:"town", sprite:[{x:15*41,y:9*9,w:16,w:16,h:16}]}
+		};
+		//0x9
 	HEIGHT_TACTIC = 400;
 	WIDTH_TACTIC = 800;
 	
@@ -146,10 +162,10 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 		for(var y=0; y<window.mapW; y++){
 			for(var x=0;x<window.mapH; x++)
 			{
-				var tileBox = new TileBox();
-				tileBox.Tile = window._tileTypes[window.gameMap[new View().toIndex(x,y)]];
-				tileBox.X= window._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].w+(x*window.tileW);
-				tileBox.Y= window._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].h+(y*window.tileH);
+				let tileBox = new TileBox();
+				tileBox.Tile = this._tileTypes[window.gameMap[new View().toIndex(x,y)]];
+				tileBox.X= this._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].w+(x*window.tileW);
+				tileBox.Y= this._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].h+(y*window.tileH);
 				tileBox.Width =window.tileW;
 				tileBox.Height = window.tileH;
 				tileBox.SpotX= x;
@@ -244,9 +260,9 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	
 		let heroSel=null;
 		var pointHeroSel = null;
-		for( var i =0; i<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++)
+		for( var i =0; i<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++)
 		{
-			var hero = window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i];
+			var hero = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i];
 	
 	
 			var pointHero = new Point(hero.SpotX, hero.SpotY);
@@ -305,19 +321,40 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 				_tileBox_ar[i].X, _tileBox_ar[i].Y, window.tileW, window.tileH);
 		}
 	};
+	DrawIsland=function(ctx,_tileBox_ar,_tileset){
+		let island_ar = window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray();
+	
+		let _buttonEvent_ar =[new Point(3,3),new Point(6,6),new Point(6,6)];
+
+
+		let i =0;
+		for(let island of island_ar)
+		{
+
+			console.log( island.SpotX,"   20   ",island_ar,"   index ="+i+"  _buttonEvent_ar =",_buttonEvent_ar);
+			
+			let unitTile = this._tileTypes[12];
+			
+			ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
+				island.SpotX*window.tileW-(window.tileW/2)+window.tileW, island.SpotX*window.tileH-(window.tileH/2)+window.tileH, window.tileW, window.tileH);
+
+			i++;
+		}
+
+	};
 	DrawMapTilePachground = function(ctx,_tileBox_ar,_tileset,_buttonEvent_ar){
 		for(var i=0; i<_buttonEvent_ar.length; i++){
-			var unitTile = window._tileTypes[10];
+			var unitTile = this._tileTypes[10];
 	
 			if (_buttonEvent_ar[i].NameEvent=="AttackHero")
 			{
-				var unitTile = window._tileTypes[11];
+				var unitTile = this._tileTypes[11];
 			}
 			//movePath
 			ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
 				_buttonEvent_ar[i].Point.X*window.tileW-(window.tileW/2)+window.tileW, _buttonEvent_ar[i].Point.Y*window.tileH-(window.tileH/2)+window.tileH, window.tileW, window.tileH);
 	
-			//_buttonEvent_ar[i].NameEvent		AttackHero
+		
 	
 		}
 	};

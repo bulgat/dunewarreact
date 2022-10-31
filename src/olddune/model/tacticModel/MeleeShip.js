@@ -69,7 +69,7 @@ export class MeleeShip{
 				CrewFiend_ar = this.GetShipUnitLife(ShipOneNameFiend.GetArmUnitArray(), deadIdUnit_ar);
 
 
-var meleeUnitResult = new MeleeUnitResult();
+				let meleeUnitResult = new MeleeUnitResult();
 
 				var unitResultTactic = meleeUnitResult.Add_Melee_Unit(
 						window._battlePlanetModel.GetBasaPurchaseUnitScience(),
@@ -77,7 +77,7 @@ var meleeUnitResult = new MeleeUnitResult();
 					CrewPLayer_ar,
 					CrewFiend_ar,
 					MoveAi, LongRange,
-					window._mapWorldModel._islandDemoMemento);
+					window._battlePlanetModel._mapWorldModel._islandDemoMemento);
 					
 
 				
@@ -143,7 +143,7 @@ var meleeUnitResult = new MeleeUnitResult();
 					this._shipOneNamePLayer.GetArmUnitArray(),
 					this._shipOneNameFiend.GetArmUnitArray(),
 					Tactic.GetTactic().MoveAI, Tactic.GetTactic().LongRange,
-					window._mapWorldModel._islandDemoMemento);
+					window._battlePlanetModel._mapWorldModel._islandDemoMemento);
 		}
 		if (this._countFrame >= 25)
 		{
@@ -181,7 +181,7 @@ var meleeUnitResult = new MeleeUnitResult();
 			else
 			{
 				var model = this.SetEventEndTactic(this._shipOneNamePLayer, this._shipOneNameFiend);
-				window._mapWorldModel.GotoStrateg(model);
+				window._battlePlanetModel._mapWorldModel.GotoStrateg(model);
 
 
 			}

@@ -62,7 +62,7 @@ var _battleTerra = {
 	GridFleetVictimId:0
 };
 new CreateGridScenario().AddCountry();
-
+/*
 window._tileTypes = {
 0:{colour:"#685b48", sprite:[{x:0,y:0,w:16,h:16}]},
 1:{colour:"#5aa457", sprite:[{x:16,y:0,w:16,h:16}]},
@@ -77,6 +77,7 @@ window._tileTypes = {
 10:{colour:"move", sprite:[{x:16*42,y:16*9,w:16,w:16,h:16}]},
 11:{colour:"attack", sprite:[{x:16*41,y:16*9,w:16,w:16,h:16}]}
 };
+*/
 var _unitTypes = {
 0:{colour:"#685b48", sprite:[{x:0,y:0,w:32,h:32}]},
 1:{colour:"#685b48", sprite:[{x:32,y:0,w:32,h:32}]},
@@ -87,23 +88,12 @@ var _unitTypes = {
 6:{colour:"#685b48", sprite:[{x:192,y:0,w:32,h:32}]}
 };
 
-//window._mapWorldModel = new MapWorldModel();
-//window._mapWorldModel =window._battlePlanetModel.MapWorldModelPlanetModel;
+
 window._countHeroIndex=0;
-var _tileBox_ar;
+let _tileBox_ar;
 //set id select hero
 
-
-
-//var _gridScenario = new GridScenario();
-//_gridScenario.Init();
-
-
-
-var player = new Character();
-
-
-
+let player = new Character();
 
 function Character() {
 	this.tileFrom =[1,1];
@@ -118,30 +108,8 @@ function Character() {
 	this.sprites = {};
 };
 
-//GridScenario
-/*
-new CreateFleetFast().HeroFleetAdd(1, 5, 0,window._battlePlanetModel.FlagIdHero);
-new CreateFleetFast().HeroFleetAdd(9, 4, 2,window._battlePlanetModel.FlagIdHero);
-new CreateFleetFast().HeroFleetAdd(4, 6, 1,window._battlePlanetModel.FlagIdHero);
-new CreateFleetFast().HeroFleetAdd(8, 8, 0,window._battlePlanetModel.FlagIdHero);
-new CreateFleetFast().HeroFleetAdd(4, 2, 3,1);
 
-new CreateFleetFast().HeroFleetAdd(5, 2, 2,1);
-new CreateFleetFast().HeroFleetAdd(2, 1, 2,1);
-new CreateFleetFast().HeroFleetAdd(2, 4, 3,1);
-new CreateFleetFast().HeroFleetAdd(1, 3, 4,1);
-new CreateFleetFast().HeroFleetAdd(9, 1, 3,1);
-
-new CreateFleetFast().HeroFleetAdd(1, 0, 3,1);
-new CreateFleetFast().HeroFleetAdd(0, 1, 5,1);
-new CreateFleetFast().HeroFleetAdd(3, 5, 2,1);
-new CreateFleetFast().HeroFleetAdd(7, 11, 4,1);
-new CreateFleetFast().HeroFleetAdd(11, 11, 4,1);
-new CreateFleetFast().HeroFleetAdd(3, 7, 1,0);
-*/
 window._battlePlanetModel.SetSelectHeroId(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[0].GetId());
-
-
 
 window.gameMap= new View().GetGameMap();
 
@@ -273,10 +241,10 @@ window.onload = function()
 
 							var gridFleet = null;
 
-							for(var y=0; y<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
-								if (window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].Id==idHero)
+							for(let y=0; y<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+								if (window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].Id==idHero)
 								{
-									gridFleet = window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y];
+									gridFleet = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y];
 								}
 							}
 
@@ -311,11 +279,11 @@ let _countStepResult=0;
 function MouseDownAttackSemiTarget(ButEventOne)
 {
 
-		let CommandAttack = window._mapWorldModel.CommandAttackFleet(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
+		let CommandAttack = window._battlePlanetModel._mapWorldModel.CommandAttackFleet(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
 
 		window._CommandStrategy_ar.push(CommandAttack);
 
-	window._mapWorldModel.GotoCreateTactic(window._battlePlanetModel.GetSelectHeroId(),ButEventOne.VictimFleet.GetId(),false,ButEventOne.LongRange,GlobalYear);
+		window._battlePlanetModel._mapWorldModel.GotoCreateTactic(window._battlePlanetModel.GetSelectHeroId(),ButEventOne.VictimFleet.GetId(),false,ButEventOne.LongRange,GlobalYear);
 
 	InitTacticBattleAttack();
 	
@@ -324,7 +292,7 @@ function MouseDownAttackSemiTarget(ButEventOne)
 function InitTacticBattleAttack(){
 	 
 	 
-	window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._mapWorldModel._tactic.heroPlayer,window._mapWorldModel._tactic.heroFiend);
+	window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._battlePlanetModel._mapWorldModel._tactic.heroPlayer,window._battlePlanetModel._mapWorldModel._tactic.heroFiend);
 }
 function InitTacticBattleAttackFiendAI(CommStrCurrent){
 	//FlagId
@@ -366,7 +334,10 @@ function drawGame(){
 	new View().DrawMapTilePachground(ctx,_tileBox_ar,_tileset,_buttonEvent_ar);
 
 	let indexNameFleet = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
-	//console.log(_idSelect+"   202   ma ",indexNameFleet,"  ")
+	
+
+	// draw island
+	new View().DrawIsland(ctx,_tileBox_ar,_tileset);
 	// Draw All static.
 	new View().DrawMapUnitGround(ctx,indexNameFleet,_unitTypes,unitIconSet, window._ViewImage._screenList);
 
@@ -377,10 +348,11 @@ function drawGame(){
 
 	if(currentFrameTime<player.timeMoved+700)
 	{
-		if (window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]!=window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[0] && window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]!=window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[1])
+		if (window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]!=window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[0] &&
+		 window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]!=window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[1])
 		{
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] +=player.moveTrend(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[0];
-			window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] +=player.moveTrend(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[1];
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] +=player.moveTrend(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[0];
+			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] +=player.moveTrend(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[1];
 
 		} else {
 

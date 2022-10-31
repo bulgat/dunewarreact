@@ -10,7 +10,8 @@ export class MapWorldStartGame {
 		
 		VictoryScenario.Scenario = new GridScenario();
 
-		VictoryScenario.Scenario.Init();
+		//VictoryScenario.Scenario.Init();
+		return VictoryScenario;
 
 	};
 	StartGameChange = function(VictoryScenario)

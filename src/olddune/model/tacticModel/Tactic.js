@@ -157,7 +157,7 @@ tactic scenario
 
 	
 	
-		this.BasicStopBattleVictory(window._mapWorldModel._prototypeHeroDemo,GridFleetOldPoint);
+		this.BasicStopBattleVictory(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,GridFleetOldPoint);
 
 	};
 	
@@ -198,27 +198,17 @@ tactic scenario
 	};
 	BasicStopBattleVictory = function(prototypeHeroDemo,GridFleetOldPoint)
 	{
-		
-		
-		//var meleeShip = new MeleeShip();
+
 
 		var buttonEventmodel = this.GetEventModel()
-		/*
-		var buttonEventmodel = meleeShip.SetEventEndTactic(
-				this.heroPlayer.GetShipName(),
-				this.heroFiend.GetShipName(),this);
-				*/
+
 
 		if (buttonEventmodel.IdHero == undefined)
 		{
 			//abolish turn unit
-			
 
-			//this.heroPlayer.Point = GridFleetOldPoint;
 			this.heroPlayer.SetPoint(GridFleetOldPoint.X,GridFleetOldPoint.Y);
-			
-			//var kol = window._mapWorldModel._prototypeHeroDemo.GetFleetWithId(this.heroPlayer.GetId());
-			//this.heroFiend.Point = GridFleetOldPoint;
+
 		
 		}
 
@@ -229,7 +219,7 @@ tactic scenario
 		
 	};
 	CloseTactic = function(buttonEventmodel) {
-		window._mapWorldModel.GotoStrateg(buttonEventmodel);
+		window._battlePlanetModel._mapWorldModel.GotoStrateg(buttonEventmodel);
 	}
 	GetEventModel = function(){
 		var meleeShip = new MeleeShip();

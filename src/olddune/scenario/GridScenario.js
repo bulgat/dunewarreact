@@ -23,7 +23,7 @@ export class GridScenario{
 	Init = function(FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo)
 	{
 		//var initGlobalParams = new InitGlobalParams();
-		console.log( "1001 bal  ready!" );
+		
 		/*
 		_mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(2, 3,
 				_battlePlanetModel.FlagIdHero,
@@ -31,9 +31,10 @@ export class GridScenario{
 				_battlePlanetModel.GetBasaPurchaseUnitScience(), false, 0));
 		*/
 		new CreateFleetFast().HeroFleetAdd(1, 5, 0,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
-		new CreateFleetFast().HeroFleetAdd(9, 4, 2,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
-		new CreateFleetFast().HeroFleetAdd(4, 6, 1,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
-		new CreateFleetFast().HeroFleetAdd(8, 8, 0,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
+		new CreateFleetFast().HeroFleetAdd(1, 4, 2,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
+		new CreateFleetFast().HeroFleetAdd(1, 6, 1,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
+		new CreateFleetFast().HeroFleetAdd(1, 8, 0,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
+
 		new CreateFleetFast().HeroFleetAdd(4, 2, 3,1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
 
 		new CreateFleetFast().HeroFleetAdd(5, 2, 2,1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
@@ -52,8 +53,8 @@ export class GridScenario{
 
 		let island_ar = [];
 			
-		//island_ar.push(new Island("Dion", 0, 2, 0, false, FlagIdHero));
-		//island_ar.push(new Island("Madagascar", 2, 2, 1, false, 1));
+		island_ar.push(new Island("Dion", 3, 3, 0, false, FlagIdHero));
+		island_ar.push(new Island("Madagascar", 5, 5, 1, false, 1));
 		return island_ar;
 	};
 }

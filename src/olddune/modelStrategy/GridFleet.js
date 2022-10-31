@@ -27,7 +27,7 @@ export class GridFleet extends BasicTile {
 		this.FlagId = flagId;
 		this.ShipNameUnit = new ShipUnit();
 
-		console.log("205224 DDDDD    ",GetIncrementUnitId);
+		
 		this.Id = GetIncrementUnitId();
 	
 		this.type = Type;

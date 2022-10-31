@@ -55,7 +55,7 @@ export class GreatDriveAi{
                              // old point 
                                 var oldPoint = new Point(DispositionCountryNameHero_ar[gridFleetInsex].SpotX, DispositionCountryNameHero_ar[gridFleetInsex].SpotY);
                              
-                            
+                                console.log( "1001 b ady! = ",GetIncrementUnitId );
                              
                              // move and search attack enemy.
                                 let attackMoveFleet = mendMoveShip.PlaceFiendX(
@@ -67,7 +67,12 @@ export class GreatDriveAi{
                                         CommandStrategy_ar,
                                         null,
                                         0,
-                                        0);
+                                        0,
+                                        null,//NameHero_ar,
+                                        null,//Sea,
+                                        BasaPurchaseUnitScience_ar,//BasaPurchaseUnitScience_ar,
+                                        GetIncrementUnitId
+                                        );
     
                             console.log("666    Player=" ,DispositionCountryNameHero_ar[gridFleetInsex] );					 
                             console.log("667  attackMoveFleet =",attackMoveFleet);

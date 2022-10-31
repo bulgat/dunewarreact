@@ -13,10 +13,7 @@ import {ViewDrawInfantery } from './ViewDrawInfantery';
 import {View} from './View';
 
 export class ViewTactic{
-    /*
-	//tactic
-	--
-	*/
+
 
 	ShowTacticBattle = function(ctx,currentFrameTime,_battleTerra,_countStepResult,
 		_countAnimInfantery,screenList,ResetCommStrCurrent)
@@ -27,16 +24,15 @@ export class ViewTactic{
 			this.TextTacticFon(ctx);
 	
 				var idHero = window._battlePlanetModel.GetSelectHeroId();
-				//var indexNameHero = window._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(idHero);
-				//var playerGridHero = window._mapWorldModel._prototypeHeroDemo[indexNameHero];
 
-				let ArmListPlayer =window._mapWorldModel._tactic.GetTimeArmUnitPLayerList()
-				let ArmFiendList =window._mapWorldModel._tactic.GetTimeArmUnitFiendList();
+
+				let ArmListPlayer =window._battlePlanetModel._mapWorldModel._tactic.GetTimeArmUnitPLayerList()
+				let ArmFiendList =window._battlePlanetModel._mapWorldModel._tactic.GetTimeArmUnitFiendList();
 
 				//3500
 				let maxLengthMovie = 2000;
 			
-				let stepTickResultTacticInt = maxLengthMovie/window._mapWorldModel._tactic.GetUnitResultTacticLength()
+				let stepTickResultTacticInt = maxLengthMovie/window._battlePlanetModel._mapWorldModel._tactic.GetUnitResultTacticLength()
 				let percentStep = tick%stepTickResultTacticInt;
 				var pointTank = new Point(117, 45);
 	
@@ -44,8 +40,8 @@ export class ViewTactic{
         //GetFiendFleet
        
 
-        let indexImage = new View().GetIndexFlagImage(window._mapWorldModel._tactic.GetPlayerFleet().FlagId);
-        let indexImageFiend = new View().GetIndexFlagImage(window._mapWorldModel._tactic.GetFiendFleet().FlagId);
+        let indexImage = new View().GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._tactic.GetPlayerFleet().FlagId);
+        let indexImageFiend = new View().GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._tactic.GetFiendFleet().FlagId);
         
 				
                 
@@ -54,14 +50,14 @@ export class ViewTactic{
 				if( percentStep >= 0 && percentStep<17)
 				{
 					
-					if (_countStepResult<window._mapWorldModel._tactic._unitResultTactic_ar.length){
+					if (_countStepResult<window._battlePlanetModel._mapWorldModel._tactic._unitResultTactic_ar.length){
 						//UnitIdDead
 						
 	
 						//block move ViewArmUnit
 	
-						let unitDead = window._mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(window._mapWorldModel._tactic.GetResultTacticBattleToIndex(_countStepResult).UnitIdDead);
-						let unitWin = window._mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(window._mapWorldModel._tactic.GetResultTacticBattleToIndex(_countStepResult).UnitIdWin);
+						let unitDead = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(window._battlePlanetModel._mapWorldModel._tactic.GetResultTacticBattleToIndex(_countStepResult).UnitIdDead);
+						let unitWin = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(window._battlePlanetModel._mapWorldModel._tactic.GetResultTacticBattleToIndex(_countStepResult).UnitIdWin);
 						unitDead.ViewArmUnit = new ViewArmUnit(true,tick,false,unitDead.Id);
 						unitWin.ViewArmUnit = new ViewArmUnit(false,tick,true,unitWin.Id);
 	
@@ -92,7 +88,7 @@ export class ViewTactic{
 			}
 	
 			//draw fiend
-			var typeUnitFiend = window._mapWorldModel._tactic.heroFiend.type;
+			var typeUnitFiend = window._battlePlanetModel._mapWorldModel._tactic.heroFiend.type;
 	
 			ctx.save();
 				
@@ -141,14 +137,14 @@ export class ViewTactic{
 	
 				var indexGridFleetVictim;
 	
-					for(var y=0; y<window._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
-						if (window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].Id==_battleTerra.GridFleetVictimId)
+					for(var y=0; y<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
+						if (window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].Id==_battleTerra.GridFleetVictimId)
 						{
 							indexGridFleetVictim = y;
 						}
 					}
 	
-				window._mapWorldModel._tactic.ReleaseDead(_battleTerra.GridFleetOldPoint);
+					window._battlePlanetModel._mapWorldModel._tactic.ReleaseDead(_battleTerra.GridFleetOldPoint);
 	
 	
 			}
@@ -177,8 +173,8 @@ export class ViewTactic{
 		ctx.font = '18px serif';
 		ctx.fillStyle = "yellow";
 		ctx.fillText('total battle:' ,30,40);
-		ctx.fillText('player dead = '+window._mapWorldModel._tactic.GetPlayerDead ,30,60);
-		ctx.fillText('fiend dead = '+window._mapWorldModel._tactic.GetFiendDead ,30,80);
+		ctx.fillText('player dead = '+window._battlePlanetModel._mapWorldModel._tactic.GetPlayerDead ,30,60);
+		ctx.fillText('fiend dead = '+window._battlePlanetModel._mapWorldModel._tactic.GetFiendDead ,30,80);
 		
 	}
 	MutationViewArmUnit = function(ArmListPlayer,unit,NameEventFight){
@@ -218,12 +214,12 @@ export class ViewTactic{
 		let placeStartX=0;
 			if (Fiend){
 
-				placeStartX =window._mapWorldModel._tactic.GetTimeArmUnitFiend(index).PlaceStartX;
+				placeStartX =window._battlePlanetModel._mapWorldModel._tactic.GetTimeArmUnitFiend(index).PlaceStartX;
 				
 				
 			} else {
 
-				placeStartX =window._mapWorldModel._tactic.GetTimeArmUnitPlayer(index).PlaceStartX;
+				placeStartX =window._battlePlanetModel._mapWorldModel._tactic.GetTimeArmUnitPlayer(index).PlaceStartX;
 			}
 			
 

@@ -49,7 +49,7 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 	HeroFleetAdd(X, Y,Type,FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo)
 	{
 
-		var nameHero = new GridFleet(X, Y, FlagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
+		let nameHero = new GridFleet(X, Y, FlagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
 
 		/*
 		var nameHero = _mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(
