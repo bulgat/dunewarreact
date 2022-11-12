@@ -30,7 +30,7 @@ export class AI_Behavior{
 			var resultPoint=this.GetPathPoint(new Point(NameHeroFleet.x,NameHeroFleet.y), pointGrab,Grid_ar);
 			if (resultPoint!=null)
 			{
-				console.log("0111 ",resultPoint.X,resultPoint.Y)
+				
 				return new Point(resultPoint.X,resultPoint.Y);
 			}
 		}

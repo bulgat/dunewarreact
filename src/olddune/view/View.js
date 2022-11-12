@@ -71,7 +71,7 @@ export class View {
 				return window._CommandStrategy_ar[i];
 			}
 		}
-		console.log("  ничего не найдено");
+		
 		return null;
 	};
 	MouseDownPathActionFunction = function (IdPath,buttonEvent_ar)
@@ -331,7 +331,6 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 		for(let island of island_ar)
 		{
 
-			console.log( island.SpotX,"   20   ",island_ar,"   index ="+i+"  _buttonEvent_ar =",_buttonEvent_ar);
 			
 			let unitTile = this._tileTypes[12];
 			
