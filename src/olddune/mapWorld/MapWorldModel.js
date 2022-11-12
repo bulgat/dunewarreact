@@ -485,7 +485,7 @@ export class MapWorldModel {
 
 //_battlePlanetModel.GridTile_ar = Grid_ar;
 let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel);
-
+console.log("900001  ",window._battlePlanetModel," H  getIncrementUnitId = ",getIncrementUnitId);
 
 		let eventModel = new ModelStrategy().GreatImpDrivingAI
 				(
