@@ -32,7 +32,7 @@ const HomePage =()=>{
         setMoney(5001)
         globalDune.SelectHeroRight()
     }
-    //const setActiveNameClass = ({isActive})=>isActive?'active-link':'';
+    
     const setActiveStyle = ({isActive})=>({color:isActive?'var(--color-active)':'white'});
 
     const [brandVisible,setBrandVisible] = useState(false);
@@ -45,7 +45,11 @@ const HomePage =()=>{
         //setBrandVisible(true);
         setBrandVisible(true);
     }
-    
+    const GoToTown =()=>{
+        console.log("GoToTown = Name= "  )
+        window.location.href = "/town";
+    }
+
     window.ClickTownCard =ClickTownCard;
 
 
@@ -64,10 +68,11 @@ const HomePage =()=>{
             onHide={()=>setBrandVisible(false)} 
             UrlImage={'./imageDune/spaceport.jpg'}
             name ={name}
+            GoToTown = {()=>GoToTown()}
             />
             
         </>
     )
 }
-//<script type="text/javascript" src="/globalDune.js"></script>
+
 export {HomePage}

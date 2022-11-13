@@ -18,6 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {RequireAuth} from './hoc/RequireAuth';
 import {Createpost } from './pages/Createpost'
 import {AuthProvider} from './hoc/Authprovider';
+import {TownPage} from './pages/TownPage';
 //Editpage
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
       </RequireAuth>}
       />
       <Route path='/login' element ={<Loginpage/>}/>
+      <Route path='/town' element ={<TownPage/>}/>
       <Route path='/commentpage' element ={<CommentPage/>}/>
     
   </Routes>
