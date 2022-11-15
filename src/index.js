@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import {createStore} from 'redux';
 import rooReducer from './reducer/rootReducer';
 
-const store = createStore(rooReducer);
+//const store = createStore(rooReducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

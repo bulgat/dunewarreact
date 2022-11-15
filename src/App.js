@@ -19,12 +19,17 @@ import {RequireAuth} from './hoc/RequireAuth';
 import {Createpost } from './pages/Createpost'
 import {AuthProvider} from './hoc/Authprovider';
 import {TownPage} from './pages/TownPage';
-//Editpage
+//refux
+import {createStore} from 'redux';
+import rooReducer from './reducer/rootReducer';
+import {Provider} from 'react-redux'
 
 function App() {
 	
+  const store = createStore(rooReducer);
+
   return (
-    <>
+    <Provider store ={store}>
 <NavBarDune/>
 <AuthProvider>
   <Routes>
@@ -52,7 +57,7 @@ function App() {
       <header>
       
       </header>
-    </>
+    </Provider>
   );
 }
 
