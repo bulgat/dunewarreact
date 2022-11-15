@@ -274,7 +274,7 @@ window.onload = function () {
 							{
 								console.log("  ничего не на  ",island.Name);
 								//this.ClickTownCard();
-								window.ClickTownCard(island.Name);
+								window.ClickTownCard(island.Name,island.Id);
 							}
 						}
 					}

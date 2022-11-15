@@ -51,11 +51,11 @@ export class AI_Behavior{
 				
 			let fiendHeroPoint = searchImminenFleet.SearchImminenHeroGlob(PrototypeHeroDemo_ar, gridFleet, null, Grid_ar);
 			
-			console.log("0111 ???????? fiendHeroPoint =",fiendHeroPoint)
+			
 			if (fiendHeroPoint!=null)
 			{
 				let FiendFlagId = NameHeroFleet.FlagId;
-				console.log("0112 ???????? ",NameHeroFleet," fiendHeroPoint =",fiendHeroPoint)
+				
 				let resultPoint=this.GetPathPoint(new Point(NameHeroFleet.x,NameHeroFleet.y),
 				fiendHeroPoint,Grid_ar,
 				PrototypeHeroDemo_ar,FiendFlagId,DispositionCountry_ar,false,Sea,Island_ar

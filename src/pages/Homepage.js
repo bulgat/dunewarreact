@@ -7,8 +7,10 @@ import {TownModal} from  '../modalWindow/TownModal'
 import {globalDune} from '../globalDune'
 
 const HomePage =()=>{
-    const [name,setName] = useState("dune")
-	const [money,setMoney] = useState(3500)
+    const [name,setName] = useState("dune");
+    const [idIsland,setIdIsland] = useState(0);
+	const [money,setMoney] = useState(3500);
+    const [urlImage,setUrlImage] = useState("");
     const globalDune = new GlobalDune();
 
     const handleClick = (e) => {
@@ -19,7 +21,7 @@ const HomePage =()=>{
     const handleClickkol = (name,e) => {
         // implementation details
         
-    globalDune.TestClick() 
+        globalDune.TestClick() 
     };
     const nameClick = (nam,e) => {
     // implementation details
@@ -37,17 +39,22 @@ const HomePage =()=>{
 
     const [brandVisible,setBrandVisible] = useState(false);
 
-    const ClickTownCard = (Name) =>{
+    const ClickTownCard = (Name,IdIsland) =>{
         
-        setName(Name)
-    
-        console.log("0 = Name= " ,Name)
+        setName(Name);
+        setIdIsland(IdIsland);
+        let island_ar = window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray();
+        const island = island_ar.filter(isl => isl.Id == IdIsland)[0];
+
+        setUrlImage(island.Image);
+        console.log(IdIsland,"  Name= " ,Name)
         //setBrandVisible(true);
         setBrandVisible(true);
+        
     }
     const GoToTown =()=>{
-        console.log("GoToTown = Name= "  )
-        window.location.href = "/town";
+        
+        window.location.href = "/town/"+idIsland;
     }
 
     window.ClickTownCard =ClickTownCard;
@@ -63,11 +70,12 @@ const HomePage =()=>{
             <Button onClick={(e)=>{handleClickkol("kol",e)}}>test</Button>
             <Button onClick={(e) =>{nameClick("k",e)} }>Left</Button>
             <Button onClick={(e) =>{moneyClick(e)}  }>Right</Button>
-            <Button onClick={(e) =>{ClickTownCard(e)}  }>push</Button>
+            <Button onClick={(event) =>{ClickTownCard(event,0)}  }>push</Button>
             <TownModal show={brandVisible} 
             onHide={()=>setBrandVisible(false)} 
-            UrlImage={'./imageDune/spaceport.jpg'}
+            UrlImage={urlImage}
             name ={name}
+            IdIsland ={idIsland}
             GoToTown = {()=>GoToTown()}
             />
             

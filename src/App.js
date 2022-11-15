@@ -49,7 +49,7 @@ function App() {
       </RequireAuth>}
       />
       <Route path='/login' element ={<Loginpage/>}/>
-      <Route path='/town' element ={<TownPage/>}/>
+      <Route path='/town/:id' element ={<TownPage/>}/>
       <Route path='/commentpage' element ={<CommentPage/>}/>
     
   </Routes>
