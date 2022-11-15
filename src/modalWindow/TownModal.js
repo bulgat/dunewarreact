@@ -2,10 +2,10 @@ import Modal from 'react-bootstrap/Modal';
 import {Container, Card, Form, Button, Row, Spinner, Image} from 'react-bootstrap'
 
 
-const TownModal =({show,onHide,UrlImage,name}) =>{
+const TownModal =({show,onHide,UrlImage,name,GoToTown,IdIsland}) =>{
 
     console.log("0223 DD  UrlImage ",UrlImage," " )
-    console.log("0222 DDDD  name "+name )
+    console.log("0222 "+IdIsland+"  name "+name )
 
     return (
          <Modal 
@@ -20,7 +20,7 @@ const TownModal =({show,onHide,UrlImage,name}) =>{
                 <div>Перейти в город {name} ?</div>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='outline-danger' onClick={onHide}>Перейти</Button>
+                <Button variant='outline-danger' onClick={GoToTown}>Перейти</Button>
                 <Button variant='outline-danger' onClick={onHide}>Закрыть</Button>
                 
             </Modal.Footer>
