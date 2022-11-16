@@ -4,7 +4,7 @@ import {Container, Card, Form, Button, Row, Spinner, Image} from 'react-bootstra
 
 const TownModal =({show,onHide,UrlImage,name,GoToTown,IdIsland}) =>{
 
-    console.log("0223 DD  UrlImage ",UrlImage," " )
+    
     console.log("0222 "+IdIsland+"  name "+name )
 
     return (

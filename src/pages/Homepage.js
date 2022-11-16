@@ -67,9 +67,9 @@ const HomePage =()=>{
             <canvas id="game" width="800" height="600"></canvas>
             <p>{name} is {money}</p>
             <Button onClick={handleClick.bind(this)}>turn</Button>
-            <Button onClick={(e)=>{handleClickkol("kol",e)}}>test</Button>
-            <Button onClick={(e) =>{nameClick("k",e)} }>Left</Button>
-            <Button onClick={(e) =>{moneyClick(e)}  }>Right</Button>
+            <Button onClick={(e)=>{handleClickkol("kol",e)}}>test turn</Button>
+            <Button onClick={(e) =>{nameClick("k",e)} }>-Left</Button>
+            <Button onClick={(e) =>{moneyClick(e)}  }>Right-</Button>
             <Button onClick={(event) =>{ClickTownCard(event,0)}  }>push</Button>
             <TownModal show={brandVisible} 
             onHide={()=>setBrandVisible(false)} 

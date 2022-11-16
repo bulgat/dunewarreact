@@ -457,6 +457,9 @@ export class MapWorldModel {
 			
 		//}
 	};
+	SelectHeroWithId = function(buttonEvent){
+		window._battlePlanetModel.SetSelectHeroId(buttonEvent.IdHero)
+	}
 	GetHeroSelect = function(hero)
 	{
 		return this.GetHeroSelectWithId (hero.GetId());

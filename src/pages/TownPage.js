@@ -9,7 +9,7 @@ const TownPage =()=>{
     
 const island = island_ar.filter(isl => isl.Id == id)[0];
 console.log(island_ar,"town id = ",island)
-console.log( "  island= ",island.Image )
+
 const urlImage = island.Image ;
     return (
         <>

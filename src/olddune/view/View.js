@@ -337,6 +337,13 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 			ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
 				island.SpotX*window.tileW-(window.tileW/2)+window.tileW, island.SpotX*window.tileH-(window.tileH/2)+window.tileH, window.tileW, window.tileH);
 
+
+			let indexImage = this.GetIndexFlagImage(island.GetFlagId())
+			
+			this.drawFlagUnit(ctx,window._ViewImage._screenList,
+				island.SpotX*window.tileW-(window.tileW/2)+window.tileW,
+				island.SpotX*window.tileH-(window.tileH/2)+window.tileH,
+				window.tileW,window.tileH,indexImage)
 			i++;
 		}
 
@@ -383,7 +390,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 				//let item = window._battlePlanetModel.GetDispositionCountryWithId(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
 				//let indexImage = item.FlagImage;
 				let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
-//console.log("0000 flag  ",indexImage)
+
 				
 				
 				
@@ -400,6 +407,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	}
 
 	drawFlagUnit(ctx,screenList,PositionX,PositionY,TileW,TileH,indexImage){
+		//console.log(" flag     x = ",PositionX,"  y = ",PositionY,"   indexImage = ",indexImage)
 		ctx.drawImage(screenList[3], 400*indexImage, 0, 400, 433,
 			PositionX,
 			PositionY,
@@ -418,7 +426,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 		//let indexImage = 0;
 
 		let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId());
-		//console.log("0011 flag  ",indexImage)
+		
 		//console.log("0012 flag  ",window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId())
 
 		this.drawFlagUnit(ctx,screenList,

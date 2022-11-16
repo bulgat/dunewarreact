@@ -36,6 +36,14 @@ export class ControllerButton{
 			window._battlePlanetModel._mapWorldModel.SelectHeroButton(buttonEvent);
 			return;
 		}
+		if (ConstantName === new ControllerConstant().SelectHeroWithId)
+		{
+			console.log("022 D  Url   indexIm  ",ConstantName )
+			window._battlePlanetModel._mapWorldModel.SelectHeroWithId(EventButton);
+			return;
+		}
+
+
 	};
 	SetCommandPerform = function(CommandId,commandStrategy)
 	{

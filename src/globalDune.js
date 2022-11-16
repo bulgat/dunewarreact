@@ -15,7 +15,9 @@ import { ViewArmUnit } from "./olddune/view/ViewArmUnit.js";
 import { View } from "./olddune/view/View.js";
 import { ModelParamGame } from "./olddune/model/ModelParamGame";
 import { ViewTacticModel } from "./olddune/view/ViewTacticModel";
-import { ViewImage } from './olddune/view/ViewImage'
+import { ViewImage } from './olddune/view/ViewImage';
+import {ControllerButton} from './olddune/controller/ControllerButton';
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -62,22 +64,7 @@ var _battleTerra = {
 	GridFleetVictimId: 0
 };
 new CreateGridScenario().AddCountry();
-/*
-window._tileTypes = {
-0:{colour:"#685b48", sprite:[{x:0,y:0,w:16,h:16}]},
-1:{colour:"#5aa457", sprite:[{x:16,y:0,w:16,h:16}]},
-2:{colour:"#e8bd7a", sprite:[{x:32,y:0,w:16,h:16}]},
-3:{colour:"#286625", sprite:[{x:48,y:0,w:16,h:16}]},
-4:{colour:"#678fd9", sprite:[{x:64,y:0,w:16,w:16,h:16}]},
-5:{colour:"#678fd9", sprite:[{x:256,y:48,w:16,w:16,h:16}]},
-6:{colour:"#678fd9", sprite:[{x:16*39,y:16*2,w:16,w:16,h:16}]},
-7:{colour:"#678fd9", sprite:[{x:16*35,y:16*4,w:16,w:16,h:16}]},
-8:{colour:"#678fd9", sprite:[{x:16*40,y:16*2,w:16,w:16,h:16}]},
-9:{colour:"#678fd9", sprite:[{x:16*43,y:16*9,w:16,w:16,h:16}]},
-10:{colour:"move", sprite:[{x:16*42,y:16*9,w:16,w:16,h:16}]},
-11:{colour:"attack", sprite:[{x:16*41,y:16*9,w:16,w:16,h:16}]}
-};
-*/
+
 var _unitTypes = {
 	0: { colour: "#685b48", sprite: [{ x: 0, y: 0, w: 32, h: 32 }] },
 	1: { colour: "#685b48", sprite: [{ x: 32, y: 0, w: 32, h: 32 }] },
@@ -129,7 +116,7 @@ function FillGrid() {
 window._ViewImage = new ViewImage();
 
 let unitIconSet;
-//let _screenList;
+
 let infanteryUnitAnim;
 let tankUnitScreen;
 let explodeUnitAnim;
@@ -205,8 +192,6 @@ window.onload = function () {
 		let mouseX = e.offsetX;
 		let mouseY = e.offsetY;
 
-
-
 		for (var i = 0; i < _tileBox_ar.length; i++) {
 			if (_tileBox_ar[i].X < mouseX && _tileBox_ar[i].X + _tileBox_ar[i].Width > mouseX) {
 
@@ -275,6 +260,26 @@ window.onload = function () {
 								console.log("  ничего не на  ",island.Name);
 								//this.ClickTownCard();
 								window.ClickTownCard(island.Name,island.Id);
+							}
+						}
+						// select unit Player
+						for (let z = 0; z < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; z++) {
+							if (window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[z].SpotX == _tileBox_ar[i].SpotX &&
+							window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[z].SpotY == _tileBox_ar[i].SpotY
+							) {
+								let gridFleetMouseClick = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[z];
+								if(window._battlePlanetModel.FlagIdHero===gridFleetMouseClick.FlagId){
+									console.log("0 flag  = ",gridFleetMouseClick.GetId())
+									console.log( window._battlePlanetModel.FlagIdHero,"  isl = " ,gridFleetMouseClick.FlagId	)
+								
+									let modelEvent = new ButtonEvent();
+									modelEvent.IdHero = gridFleetMouseClick.GetId();
+
+									new ControllerButton().EventCall(new ControllerConstant().SelectHeroWithId, new ControllerConstant().SelectHeroWithId,modelEvent);
+									_buttonEvent_ar = new View().RefreshPathButtonEvent();
+								}
+								
+								
 							}
 						}
 					}
