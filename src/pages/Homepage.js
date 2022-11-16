@@ -71,6 +71,7 @@ const HomePage =()=>{
             <Button onClick={(e) =>{nameClick("k",e)} }>-Left</Button>
             <Button onClick={(e) =>{moneyClick(e)}  }>Right-</Button>
             <Button onClick={(event) =>{ClickTownCard(event,0)}  }>push</Button>
+            <Button >Start</Button>
             <TownModal show={brandVisible} 
             onHide={()=>setBrandVisible(false)} 
             UrlImage={urlImage}

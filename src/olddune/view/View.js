@@ -11,6 +11,7 @@ import {ViewArmUnit} from "./ViewArmUnit.js";
 import {ViewTacticModel} from "./ViewTacticModel";
 import {ViewDrawInfantery } from './ViewDrawInfantery';
 import {ViewTactic} from './ViewTactic';
+import { BasicTile } from "../modelStrategy/BasicTile";
 
 export class View {
 	_explodeAnimList = {
@@ -53,11 +54,30 @@ export class View {
 		11:{colour:"attack", sprite:[{x:16*41,y:16*9,w:16,w:16,h:16}]},
 		12:{colour:"town", sprite:[{x:15*41,y:9*9,w:16,w:16,h:16}]}
 		};
+	 _unitTypes = {
+			0: { colour: "#685b48", sprite: [{ x: 0, y: 0, w: 32, h: 32 }] },
+			1: { colour: "#685b48", sprite: [{ x: 32, y: 0, w: 32, h: 32 }] },
+			2: { colour: "#685b48", sprite: [{ x: 64, y: 0, w: 32, h: 32 }] },
+			3: { colour: "#685b48", sprite: [{ x: 96, y: 0, w: 32, h: 32 }] },
+			4: { colour: "#685b48", sprite: [{ x: 128, y: 0, w: 32, h: 32 }] },
+			5: { colour: "#685b48", sprite: [{ x: 160, y: 0, w: 32, h: 32 }] },
+			6: { colour: "#685b48", sprite: [{ x: 192, y: 0, w: 32, h: 32 }] }
+	};
 		//0x9
 	HEIGHT_TACTIC = 400;
 	WIDTH_TACTIC = 800;
-	
+	mapH = 20;
 
+	FillGrid = function() {
+		for (var x = 0; x < window.mapW; x++) {
+			for (var y = 0; y < this.mapH; y++) {
+				var basicTile = new BasicTile();
+				window.Grid_ar[window.Grid_ar.length] = basicTile.Grid(x, y);
+	
+			}
+		}
+	}
+	
 	GetGridFleetCommandStrategy = function (Id) {
 
 		if (typeof Id!="number")
@@ -401,6 +421,14 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 			}
 		}
 	};
+	DrawPrintFPS(ctx,framesLastSecond){
+		ctx.fillText('FPS = ' + framesLastSecond, 10, 20);
+	}
+	DrawTextCountUnit(ctx,indexNameFleet) {
+		ctx.fillText('  ' + window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] + window.tileW / 2 - 10,
+		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] + window.tileH);
+	}
 	GetIndexFlagImage(FlagId){
 		let item = window._battlePlanetModel.GetDispositionCountryWithId(FlagId)
 		return item.FlagImage;

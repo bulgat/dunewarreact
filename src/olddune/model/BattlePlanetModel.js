@@ -8,7 +8,7 @@ import {InitGlobalParams} from "../scenario/InitGlobalParams";
 import {MapWorldModel} from "../mapWorld/MapWorldModel"
 import { PrototypeHeroDemo } from "../model/prototype/PrototypeHeroDemo";
 import { IslandDemoMemento } from "../model/memento/IslandDemoMemento.js";
-
+import {CreateGridScenario} from '../scenario/CreateGridScenario';
 
 
 
@@ -43,7 +43,7 @@ export class BattlePlanetModel{
         this.GetIncrementUnitId.bind(this),this._mapWorldModel._prototypeHeroDemo);
         this._mapWorldModel._islandDemoMemento.AddIslandAll(island_ar);
         */
-       
+        new CreateGridScenario().AddCountry(this);
 	}
     InitScenario(gridScenario){
         let island_ar = gridScenario.Init(this.FlagIdHero,this.BasaPurchaseUnitScience_ar,
