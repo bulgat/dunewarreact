@@ -38,7 +38,7 @@ export class ControllerButton{
 		}
 		if (ConstantName === new ControllerConstant().SelectHeroWithId)
 		{
-			console.log("022 D  Url   indexIm  ",ConstantName )
+			
 			window._battlePlanetModel._mapWorldModel.SelectHeroWithId(EventButton);
 			return;
 		}

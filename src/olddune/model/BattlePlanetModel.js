@@ -150,7 +150,7 @@ export class BattlePlanetModel{
 		
         if (fleetFiend != null && fleetPlayer != null)
         {
-            
+            console.log("0099 D  Ur exIm  "  )
             range = new MendMoveAbleFire().DetermineAbleFirePlayer(fleetFiend, fleetPlayer, gridFleet,
                     new Point(gridFleet.SpotX + 2, gridFleet.SpotY + 2),
                     GlobalParamsTimeQuick, GlobalParamsGale);
@@ -160,17 +160,17 @@ export class BattlePlanetModel{
         {
             range = gridFleet.GetRange();
         }
-        
+        console.log("0100   GlobalVictory   -countAnimIn FiendUnit.ExplodeTick  = ",gridFleet.GetAttackDone() ) ;
  
-        let selectPath = this.SelectHeroPath(gridFleet,
+        let selectPath_ar = this.SelectHeroPath(gridFleet,
                 prototypeHeroDemo,
                 FlagIdHeroFleet,
                 MapShoalSeaBasa_ar, islandDemoMemento, GridTile_ar,
                 PathHeroName, AttackHeroName, gridFleetSpeed, range);
 
+                console.log( "0101  _PowerReserve ="+gridFleet.GetPowerReserve()+"  ndHero_ar = " ,selectPath_ar );
 
-
-                return selectPath;
+                return selectPath_ar;
     };
 	SelectHeroPath = function(HeroFleet,
             prototypeHeroDemo,
@@ -268,7 +268,8 @@ export class BattlePlanetModel{
          
             var attack = !HeroFleet.GetAttackDone() && HeroFleet.GetPowerReserve() <= 0;
             
-			
+			console.log("0102   this.Disposi  = ",HeroFleet.GetAttackDone()," === ",HeroFleet.GetPowerReserve() );
+
             if (attack)
             {
                 // click Attack

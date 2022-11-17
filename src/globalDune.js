@@ -17,7 +17,8 @@ import { ModelParamGame } from "./olddune/model/ModelParamGame";
 import { ViewTacticModel } from "./olddune/view/ViewTacticModel";
 import { ViewImage } from './olddune/view/ViewImage';
 import {ControllerButton} from './olddune/controller/ControllerButton';
-
+import {ControllerTactic} from './olddune/controller/ControllerTactic';
+import {ControllerTacticConstant} from './olddune/controller/ControllerTacticConstant';
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
+window._controllerTactic = new ControllerTactic();
 let ctx = null;
 var elementCtx = null;
 var currentSecond = 0;
@@ -340,8 +342,10 @@ function MouseDownAttackSemiTarget(ButEventOne) {
 }
 function InitTacticBattleAttack() {
 
-
-	window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._battlePlanetModel._mapWorldModel._tactic.heroPlayer, window._battlePlanetModel._mapWorldModel._tactic.heroFiend);
+	window._controllerTactic.GetTacticModel();
+	//window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._battlePlanetModel._mapWorldModel._tactic.heroPlayer, window._battlePlanetModel._mapWorldModel._tactic.heroFiend);
+	window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._controllerTactic.GetTacticModel().heroPlayer, window._controllerTactic.GetTacticModel().heroFiend);
+	
 }
 function InitTacticBattleAttackFiendAI(CommStrCurrent) {
 
@@ -435,99 +439,7 @@ function drawGame() {
 	requestAnimationFrame(drawGame);
 
 	CommandStrManagerScene(indexNameFleet,currentFrameTime);
-/*
-	if (window._CommandStrategy_ar != null && window._CommandStrategy_ar.length > 0) {
 
-		if (playerCharacter.timeMoved == 0 || window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move == true) {
-
-			var indexNameHero = 0;
-			for (var i = 0; i < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; i++) {
-
-				let commandStrategy = new View().GetGridFleetCommandStrategy(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id);
-
-
-				if (commandStrategy) {
-					_idSelect = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id;
-
-					_commStrCurrent = commandStrategy;
-
-					if (_commStrCurrent.NameCommand == "AttackFleet") {
-
-						InitTacticBattleAttackFiendAI(_commStrCurrent)
-					}
-
-					break;
-				} else {
-
-				}
-				//console.log( " PrintAllFleetId = "+window._mapWorldModel._prototypeHeroDemo.PrintAllFleetId()+" ^^ ^^^^^^^^^^^^^^^^^^  x= "+i+"     commandStrategy = "+commandStrategy);
-				//if (commandStrategy==null){
-				//return;
-				//}
-			}
-
-
-
-			playerCharacter.timeMoved = currentFrameTime;
-			indexNameHero = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
-
-
-
-			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo = [_commStrCurrent.GridFleetNewPoint.X, _commStrCurrent.GridFleetNewPoint.Y];
-
-			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileToPosition = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo;
-
-
-
-			if (_commStrCurrent.NameCommand == "AttackFleet") {
-				//AttackFleet
-				//Attack
-				_battleTerra.Time = currentFrameTime;
-				_battleTerra.GridFleetVictimId = _commStrCurrent.GridFleetVictim.Id;
-				_battleTerra.Show = true;
-				_battleTerra.GridFleetOldPoint = _commStrCurrent.GridFleetOldPoint;
-
-				console.log("3310   fiend = ", _commStrCurrent)
-			}
-			if (_commStrCurrent.NameCommand == "MoveFleet") {
-
-
-			}
-			//register command
-			var viewTerraAnimMove = new ViewTerraAnimMove();
-			viewTerraAnimMove.AnimationCommand(null,//bBattlePlanetView,
-				null,//StageWidthX,
-				null,//Tick,
-				window._CommandStrategy_ar[0] //commandStrategy
-			);
-
-			if (window._CommandStrategy_ar[0].NameCommand == "MoveFleet") {
-
-				var heroFleet = window._CommandStrategy_ar[0].GetGridFleet();
-				//heroFleet.SetPowerReserve();
-				heroFleet.SetNullPowerReserve();
-			}
-
-			new View().RemoveCommandSteck();
-			ResetCommStrCurrent();
-
-			//var ttt =_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[1];
-
-			if (window._CommandStrategy_ar.length > 0) {
-				if (window._CommandStrategy_ar[0].NameCommand == "MoveFleet") {
-					// set select attack fiend hero.
-					//SetSelectAttackFiendHero();
-
-				}
-
-			}
-			SetPathMouseClickMapView();
-
-		}
-	} else {
-		_commStrCurrent = null;
-	}
-	*/
 	if (_battleTerra.Show == true) {
 
 

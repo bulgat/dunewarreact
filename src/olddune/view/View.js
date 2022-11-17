@@ -128,10 +128,10 @@ export class View {
 
 	   //selectHeroId =0;
 
-	   var gridFleet = window._battlePlanetModel.GetHeroWithId(
+	   let gridFleet = window._battlePlanetModel.GetHeroWithId(
 		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(), selectHeroId);
 
-
+		console.log( "0088  Name= " ,gridFleet)
 
         var buttonEvent_ar = this.GetButtonEventPathList(selectHeroId);
         var count=0;
@@ -156,7 +156,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 
 
 
-		let getPath= _battlePlanetModel.GetPathSelectHero(
+		let getPath_ar= _battlePlanetModel.GetPathSelectHero(
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,
 										gridMapExistence,// ShoalSeaBasa_ar,
 										 islandDemoMemento,//_islandDemoMemento,
@@ -172,7 +172,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 										 _battlePlanetModel.FlagIdHero,//FlagIdHero
 										 );
 		
-		return getPath;
+		return getPath_ar;
 	};
 	toIndex = function (x,y) {
 		return ((y*window.mapW)+x);
@@ -435,7 +435,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	}
 
 	drawFlagUnit(ctx,screenList,PositionX,PositionY,TileW,TileH,indexImage){
-		//console.log(" flag     x = ",PositionX,"  y = ",PositionY,"   indexImage = ",indexImage)
+		
 		ctx.drawImage(screenList[3], 400*indexImage, 0, 400, 433,
 			PositionX,
 			PositionY,

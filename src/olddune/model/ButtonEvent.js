@@ -19,4 +19,14 @@ export class ButtonEvent{
 	DownMouseX;
 	DownMouseY;
 	SelectHeroEnumerator;
+
+	FleetFiend;
+	FleetPlayer;
+	MoveAI;
+	LongRange;
+	unitResultTactic_ar;
+	BasaPurchaseUnitScience_ar;
+	CrewPlayer;
+	CrewFiend;
+	GridFleetOldPoint;
 }

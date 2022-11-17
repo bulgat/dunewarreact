@@ -18,9 +18,9 @@ export class Island extends BasicTile {
 		this.Race = race;
 		this.Castle = castle;
 		this.FlagId = flagId;
-		console.log("0111 ???????? fiendHero =",race)
+		
 		this.Image = new GraficBibleConstant().town_ar[race]
-		console.log("0112 ???????? eroPoint =",this.Image)
+		
 	};
 	GetCopy = function()
 	{

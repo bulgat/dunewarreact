@@ -10,6 +10,11 @@ import {MapWorldStartGame} from "../scenario/MapWorldStartGame.js";
 import {MainFormat} from "../mapWorld/model/MainFormat.js";
 import {Tactic} from "../model/tacticModel/Tactic.js";
 import {AgentEvent} from "../modelStrategy/AgentEvent.js";
+import { ButtonEvent } from "../model/ButtonEvent.js";
+import { ControllerTacticConstant } from "../controller/ControllerTacticConstant.js";
+import { ControllerTactic } from "../controller/ControllerTactic.js";
+import { Robot } from "../model/tacticModel/Robot.js";
+import { MeleeShip } from "../model/tacticModel/MeleeShip.js";
 
 export class MapWorldModel {
 	_turnCount = 0;
@@ -163,7 +168,7 @@ export class MapWorldModel {
 
 	}
 	CheckGlobalVictory = function() {
-		console.log("200 CheckGlobalVictory   -countAnimIn FiendUnit.ExplodeTickInt = " ) ;
+		
 
 		var islandHero_ar = new ModelStrategy().GetFlagIslandArray(this._islandDemoMemento.GetIslandArray(),
 		window._battlePlanetModel.FlagIdHero, false);
@@ -187,9 +192,8 @@ export class MapWorldModel {
 			
 			
 			
-			console.log( "204  _**** Fiend  islandHero_ar = " ,window._battlePlanetModel._VictoryScenario.Scenario.NoTown
-			);
-			console.log("205   this.Disposition = ",window._battlePlanetModel._VictoryScenario.ScenarioNumber );
+			
+			
 			
 			window._battlePlanetModel._VictoryScenario.ScenarioNumber++;
 
@@ -270,17 +274,100 @@ export class MapWorldModel {
 
 				this.SetStateGame(new MainFormat().BATTLE);
 
-		
 
+		// Event start tactic
+		let buttonEvent = new ButtonEvent();
+		buttonEvent.FleetFiend=gridFleetFiend;
+		buttonEvent.FleetPlayer=gridFleetPlayer;
+		buttonEvent.MoveAI=MoveAI;
+		buttonEvent.LongRange=LongRange;
+
+		//new ControllerTactic().TacticEventCall(new ControllerTacticConstant().StartBattleTactic,buttonEvent)
+		window._controllerTactic.TacticEventCall(new ControllerTacticConstant().StartBattleTactic,buttonEvent);
+		/*
 				this._tactic = new Tactic(
 						gridFleetFiend,
 						gridFleetPlayer,
 						MoveAI, LongRange);
-		
+		*/
 
 		}
 
 	};
+	MeleeShipReleaseDead = function(EventButton)
+	{
+		let unitResultTactic_ar = EventButton.unitResultTactic_ar;
+		let BasaPurchaseUnitScience_ar = EventButton.BasaPurchaseUnitScience_ar;
+		let CrewPlayer = EventButton.CrewPlayer;
+		let CrewFiend = EventButton.CrewFiend;
+
+		console.log("0112 ??????? Point =" )
+
+		var robot = new Robot();
+
+		console.log("0111 ?? ??? fiend  =",unitResultTactic_ar)
+		unitResultTactic_ar.forEach (function (unitResultTactic)
+		{
+			
+			
+			if (unitResultTactic.BlockDead)
+			{
+				
+			}
+			else
+			{
+				
+
+				// dead ship
+				robot.DeadUnit(
+						unitResultTactic.UnitIdDead,
+						unitResultTactic.UnitIdWin,
+							BasaPurchaseUnitScience_ar,
+							CrewPlayer,
+							CrewFiend
+						);
+			}
+			
+		});
+		
+		
+	};
+	BasicStopBattleVictory = function(EventButton)
+	{
+
+let GridFleetOldPoint = EventButton.GridFleetOldPoint;
+		var buttonEventmodel = this.GetEventModel()
+
+
+		if (buttonEventmodel.IdHero == undefined)
+		{
+			//abolish turn unit
+
+			this.heroPlayer.SetPoint(GridFleetOldPoint.X,GridFleetOldPoint.Y);
+
+		
+		}
+
+
+	//CloseTactic!
+		// load scenr
+		this.CloseTactic(buttonEventmodel);
+		
+	};
+	CloseTactic = function(buttonEventmodel) {
+		window._battlePlanetModel._mapWorldModel.GotoStrateg(buttonEventmodel);
+	}
+
+
+
+	GetEventModel = function(){
+		var meleeShip = new MeleeShip();
+		return meleeShip.SetEventEndTactic(
+			this.heroPlayer.GetShipName(),
+			this.heroFiend.GetShipName(),this);
+	}
+
+
 	SetStateGame = function(MainFormat)
 	{
 		var MainFormat="";

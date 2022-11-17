@@ -47,7 +47,7 @@ const HomePage =()=>{
         const island = island_ar.filter(isl => isl.Id == IdIsland)[0];
 
         setUrlImage(island.Image);
-        console.log(IdIsland,"  Name= " ,Name)
+        
         //setBrandVisible(true);
         setBrandVisible(true);
         

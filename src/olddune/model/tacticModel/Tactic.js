@@ -4,6 +4,9 @@ import {RobotResultMelee} from "./RobotResultMelee.js";
 import {Robot} from "./Robot.js";
 import { TimeArmUnit } from "./TimeArmUnit.js";
 import {TacticScenarioBattle } from './TacticScenarioBattle';
+import {ControllerTactic} from '../../controller/ControllerTactic';
+import { ControllerTacticConstant } from "../../controller/ControllerTacticConstant.js";
+import {ButtonEvent} from '../../model/ButtonEvent';
 
 export class Tactic extends BasicTactic {
 	Select_Unit_Fiend = 0;
@@ -48,7 +51,7 @@ export class Tactic extends BasicTactic {
 			this.CloseTactic(this.GetEventModel());
 		}
 		
-		console.log("556 wayGotoModel pl =",HeroPlayer)
+		
 		console.log("557 Path fiend =",HeroFiend)
 		console.log("555 way ===== " +HeroFiend.FlagId," ==== ",HeroPlayer.FlagId		)
 
@@ -148,19 +151,34 @@ tactic scenario
 	{
 
 		// Должно сработать в конце.
+		let buttonEventMelee = new ButtonEvent();
+		buttonEventMelee.unitResultTactic_ar = this._unitResultTactic_ar
+		buttonEventMelee.BasaPurchaseUnitScience_ar =window._battlePlanetModel.GetBasaPurchaseUnitScience(); 
+		buttonEventMelee.CrewPlayer = this.GetPlayerFleet().GetShipNameFirst().GetArmUnitArray();
+		buttonEventMelee.CrewFiend = this.GetFiendFleet().GetShipNameFirst().GetArmUnitArray();
 
+		new ControllerTactic().TacticEventCall(new ControllerTacticConstant().MeleeShipReleaseDead,buttonEventMelee)
+/*
 		this.MeleeShipReleaseDead(this._unitResultTactic_ar,
 				window._battlePlanetModel.GetBasaPurchaseUnitScience(),
 				this.GetPlayerFleet().GetShipNameFirst().GetArmUnitArray(),
 				this.GetFiendFleet().GetShipNameFirst().GetArmUnitArray()
 				);
-
+*/
 	
 	
-		this.BasicStopBattleVictory(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,GridFleetOldPoint);
+		//this.BasicStopBattleVictory(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,GridFleetOldPoint);
+		let buttonEventVictory = new ButtonEvent();
+		buttonEventVictory.GridFleetOldPoint = GridFleetOldPoint;
+		new ControllerTactic().TacticEventCall(new ControllerTacticConstant().BasicStopBattleVictory,buttonEventVictory)
 
+
+		console.log("556 wayGoto   =",this.GetPlayerFleet().GetId())
+		let buttonEvent = new ButtonEvent();
+		buttonEvent.IdHero = this.GetPlayerFleet().GetId();
+		new ControllerTactic().TacticEventCall(new ControllerTacticConstant().EndBattleTactic,buttonEvent)
 	};
-	
+	/*
 	MeleeShipReleaseDead = function(unitResultTactic_ar,
 			BasaPurchaseUnitScience_ar,
 			CrewPlayer,
@@ -195,7 +213,8 @@ tactic scenario
 		});
 		
 		
-	};
+	};*/
+	/*
 	BasicStopBattleVictory = function(prototypeHeroDemo,GridFleetOldPoint)
 	{
 
@@ -227,4 +246,5 @@ tactic scenario
 			this.heroPlayer.GetShipName(),
 			this.heroFiend.GetShipName(),this);
 	}
+	*/
 }
