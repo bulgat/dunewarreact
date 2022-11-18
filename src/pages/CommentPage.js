@@ -1,5 +1,6 @@
 import { CommentRedux } from "../components/CommentRedux"
 import CarList from '../reducerComponent/CarList'
+import ReduxDetailCar from './ReduxDetailCar'
 
 const CommentPage =()=>{
     return (
@@ -8,6 +9,7 @@ const CommentPage =()=>{
         <CarList/>
         {//<CommentRedux/>
         }
+<ReduxDetailCar/>
         </>
     )
 }
