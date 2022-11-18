@@ -190,9 +190,12 @@ export class MeleeShip{
 		}
 	}; 
 	SetEventEndTactic = function(
-			shipNamePlayer,
-			shipNameFiend,tactic)
+			shipNamePlayerFleet,
+			shipNameFiendFleet,
+			MoveAI)
 	{
+		let shipNamePlayer = shipNamePlayerFleet.GetShipName();
+		let shipNameFiend = shipNameFiendFleet.GetShipName();
 
 		var buttonEventmodel = new ButtonEvent();
 var IdHero;
@@ -200,21 +203,22 @@ var IdHero;
 		{
 			
 			
-			IdHero = tactic.GetTactic().GetPlayerFleet().GetId();
-			
+			//IdHero = tactic.GetTactic().GetPlayerFleet().GetId();
+			IdHero = shipNamePlayerFleet.GetId();
 		}
 
 		if (!new Robot().Yes_Refreshment(shipNameFiend))
 		{
 
-			IdHero = tactic.GetTactic().GetFiendFleet().GetId();
-			
+			//IdHero = tactic.GetTactic().GetFiendFleet().GetId();
+			IdHero =shipNameFiendFleet.GetId();
 		}
+		console.log("0  ???    =" ,buttonEventmodel)
 		// not dead
 
-buttonEventmodel.IdHero = IdHero;
+		buttonEventmodel.IdHero = IdHero;
 
-		buttonEventmodel.MoveAI = tactic.GetTactic().MoveAI;
+		buttonEventmodel.MoveAI = MoveAI;
 
 		return buttonEventmodel;
 	};

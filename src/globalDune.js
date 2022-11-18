@@ -66,18 +66,7 @@ var _battleTerra = {
 	Time: 0,
 	GridFleetVictimId: 0
 };
-//new CreateGridScenario().AddCountry();
-/*
-var _unitTypes = {
-	0: { colour: "#685b48", sprite: [{ x: 0, y: 0, w: 32, h: 32 }] },
-	1: { colour: "#685b48", sprite: [{ x: 32, y: 0, w: 32, h: 32 }] },
-	2: { colour: "#685b48", sprite: [{ x: 64, y: 0, w: 32, h: 32 }] },
-	3: { colour: "#685b48", sprite: [{ x: 96, y: 0, w: 32, h: 32 }] },
-	4: { colour: "#685b48", sprite: [{ x: 128, y: 0, w: 32, h: 32 }] },
-	5: { colour: "#685b48", sprite: [{ x: 160, y: 0, w: 32, h: 32 }] },
-	6: { colour: "#685b48", sprite: [{ x: 192, y: 0, w: 32, h: 32 }] }
-};
-*/
+
 
 window._countHeroIndex = 0;
 let _tileBox_ar;
@@ -106,21 +95,7 @@ function Character() {
 		return [PrototypeHeroDemoObj.tileTo[0] - PrototypeHeroDemoObj.tileFrom[0], PrototypeHeroDemoObj.tileTo[1] - PrototypeHeroDemoObj.tileFrom[1]];
 	};
 };
-/*
-Character.prototype.placeAt = function (x, y, PrototypeHeroDemoObj) {
-	PrototypeHeroDemoObj.tileFrom = [x, y];
-	PrototypeHeroDemoObj.tileTo = [x, y];
-	PrototypeHeroDemoObj.SpotX = x;
-	PrototypeHeroDemoObj.SpotY = y;
-	PrototypeHeroDemoObj.position = [32 / 2 + (x * window.tileW), 32 / 2 + (y * window.tileH)];
 
-};
-*/
-/*
-Character.prototype.moveTrend = function (PrototypeHeroDemoObj) {
-	return [PrototypeHeroDemoObj.tileTo[0] - PrototypeHeroDemoObj.tileFrom[0], PrototypeHeroDemoObj.tileTo[1] - PrototypeHeroDemoObj.tileFrom[1]];
-};
-*/
 
 window._battlePlanetModel.SetSelectHeroId(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[0].GetId());
 
@@ -129,17 +104,7 @@ window.gameMap = new View().GetGameMap();
 window.Grid_ar = [];
 
 new View().FillGrid();
-/*
-function FillGrid() {
-	for (var x = 0; x < window.mapW; x++) {
-		for (var y = 0; y < mapH; y++) {
-			var basicTile = new BasicTile();
-			window.Grid_ar[window.Grid_ar.length] = basicTile.Grid(x, y);
 
-		}
-	}
-}
-*/
 window._ViewImage = new ViewImage();
 
 var LoadImageManager = function() {
@@ -149,11 +114,6 @@ var LoadImageManager = function() {
 	this.explodeUnitAnim = null;
 }
 
-//let unitIconSet;
-
-//let infanteryUnitAnim;
-//let tankUnitScreen;
-//let explodeUnitAnim;
 //Init
 window.onload = function () {
 	elementCtx = document.getElementById('game');
@@ -334,7 +294,16 @@ function MouseDownAttackSemiTarget(ButEventOne) {
 
 	window._CommandStrategy_ar.push(CommandAttack);
 
-	window._battlePlanetModel._mapWorldModel.GotoCreateTactic(window._battlePlanetModel.GetSelectHeroId(), ButEventOne.VictimFleet.GetId(), false, ButEventOne.LongRange, GlobalYear);
+	//window._battlePlanetModel._mapWorldModel.GotoCreateTactic(window._battlePlanetModel.GetSelectHeroId(), ButEventOne.VictimFleet.GetId(), false, ButEventOne.LongRange, GlobalYear);
+	let buttonEvent = new ButtonEvent();
+	buttonEvent.IdHero = window._battlePlanetModel.GetSelectHeroId();
+	buttonEvent.VictimFleetId = ButEventOne.VictimFleet.GetId();
+	buttonEvent.MoveAI = false;
+	buttonEvent.LongRange = ButEventOne.LongRange;
+	buttonEvent.GlobalYear = GlobalYear;
+	
+
+	new ControllerButton().EventCall(new ControllerConstant().GotoCreateTactic, new ControllerConstant().GotoCreateTactic,buttonEvent);
 
 	InitTacticBattleAttack();
 
@@ -483,9 +452,7 @@ function CommandStrManagerScene(indexNameFleet,currentFrameTime){
 
 				}
 				//console.log( " PrintAllFleetId = "+window._mapWorldModel._prototypeHeroDemo.PrintAllFleetId()+" ^^ ^^^^^^^^^^^^^^^^^^  x= "+i+"     commandStrategy = "+commandStrategy);
-				//if (commandStrategy==null){
-				//return;
-				//}
+		
 			}
 
 
@@ -510,6 +477,7 @@ function CommandStrManagerScene(indexNameFleet,currentFrameTime){
 				_battleTerra.GridFleetOldPoint = _commStrCurrent.GridFleetOldPoint;
 
 				console.log("3310   fiend = ", _commStrCurrent)
+
 			}
 			if (_commStrCurrent.NameCommand == "MoveFleet") {
 
@@ -535,14 +503,10 @@ function CommandStrManagerScene(indexNameFleet,currentFrameTime){
 
 			//var ttt =_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[1];
 
-			if (window._CommandStrategy_ar.length > 0) {
-				if (window._CommandStrategy_ar[0].NameCommand == "MoveFleet") {
-					// set select attack fiend hero.
-					//SetSelectAttackFiendHero();
+			//if (window._CommandStrategy_ar.length > 0) {
 
-				}
 
-			}
+			//}
 			SetPathMouseClickMapView();
 
 		}
@@ -566,9 +530,13 @@ function TurnPush() {
 	GlobalYear += 1;
 };
 function RefreshHeroPower() {
+	//RefreshHeroPower
+	/*
 	for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
 		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].move = false;
 	}
+	*/
+	new ControllerButton().EventCall(new ControllerConstant().RefreshHeroPower, new ControllerConstant().RefreshHeroPower,null);
 };
 
 export default class GlobalDune {
@@ -590,7 +558,7 @@ export default class GlobalDune {
 
 		window._CommandStrategy_ar = window._battlePlanetModel._mapWorldModel.Development(window.Grid_ar, window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 
-		//console.log("88900000  wa   TestClick  CreateMap_ar = ",window._CommandStrategy_ar );
+		
 
 		//for (var i=0;i<window._CommandStrategy_ar.length;i++){
 		//console.log(i+"   TOTAL  "+window._CommandStrategy_ar[i].GridFleetNewPoint.X+"  $$$$$$$   = "+window._CommandStrategy_ar[i].NameCommand );

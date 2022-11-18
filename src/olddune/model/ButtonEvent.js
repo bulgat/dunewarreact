@@ -3,12 +3,13 @@ export class ButtonEvent{
 	PathGoto_ar;
 	HeroFleet;
 	VictimFleet;
+	VictimFleetId;
 	Island;
 	TypeEventId;
 	NotFlagDisplay;
 	UnitId;
 	NameEvent;
-	MoveAI;
+	
 	IdHero;
 	IdHeroVictim;
 	SpotX;
@@ -23,10 +24,10 @@ export class ButtonEvent{
 	FleetFiend;
 	FleetPlayer;
 	MoveAI;
-	LongRange;
 	unitResultTactic_ar;
 	BasaPurchaseUnitScience_ar;
 	CrewPlayer;
 	CrewFiend;
 	GridFleetOldPoint;
+	GlobalYear
 }

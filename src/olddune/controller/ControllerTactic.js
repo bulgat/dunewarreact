@@ -7,7 +7,7 @@ export class ControllerTactic {
 	{
         if (ConstantName === new ControllerTacticConstant().StartBattleTactic)
 		{
-            console.log("0111 start  x    dexIm  = ",EventButton )
+            
             this._tactic = new Tactic(
                 EventButton.FleetFiend,
                 EventButton.FleetPlayer,
@@ -17,6 +17,7 @@ export class ControllerTactic {
         if (ConstantName === new ControllerTacticConstant().EndBattleTactic)
 		{
             console.log("0112 end     x    dexIm  = ",EventButton )
+            window._battlePlanetModel._mapWorldModel.EndBattleTactic(EventButton);
         }
        if(ConstantName===new ControllerTacticConstant().MeleeShipReleaseDead){
 

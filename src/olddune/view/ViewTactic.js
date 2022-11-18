@@ -37,10 +37,6 @@ export class ViewTactic{
 				let stepTickResultTacticInt = maxLengthMovie/window._controllerTactic.GetTacticModel().GetUnitResultTacticLength()
 				let percentStep = tick%stepTickResultTacticInt;
 				var pointTank = new Point(117, 45);
-	
-		//GetPlayerFleet
-        //GetFiendFleet
-       
 
         let indexImage = new View().GetIndexFlagImage(window._controllerTactic.GetTacticModel().GetPlayerFleet().FlagId);
         let indexImageFiend = new View().GetIndexFlagImage(window._controllerTactic.GetTacticModel().GetFiendFleet().FlagId);
@@ -182,8 +178,8 @@ export class ViewTactic{
 	}
 	MutationViewArmUnit = function(ArmListPlayer,unit,NameEventFight){
 		for(let armUnutIndex in ArmListPlayer){
-			//console.log(ArmListPlayer[armUnutIndex].ArmUnit.Id+" = FFF  = "+unit.Id+ " "+NameEventFight);
-			//console.log(ArmListPlayer[armUnutIndex]);
+			
+			
 	
 			
 			
@@ -306,9 +302,9 @@ export class ViewTactic{
 					new View()._explodeAnimList[countAnimInf].sprite[0].y,
 					pointTank.X,
 					pointTank.Y,
-					//-WIDTH_TACTIC+placeStartX+(tickUnit/20)-(pointTank.X/7),
+					
 					weightUnitPlace,
-					//(HEIGHT_TACTIC+(i*Yheight)-correctY),
+					
 					heightUnitPlace,
 					pointTank.X*new View().GetScalePerspective(i)/Scale,
 					pointTank.Y*new View().GetScalePerspective(i)/Scale

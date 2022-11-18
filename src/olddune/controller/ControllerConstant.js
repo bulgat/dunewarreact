@@ -4,4 +4,6 @@ export class ControllerConstant{
 	SelectHeroLeft = "SelectHeroLeft";
 	SelectHeroRight = "SelectHeroRight";
 	SelectHeroWithId ="SelectHeroWithId";
+	RefreshHeroPower="RefreshHeroPower";
+	GotoCreateTactic ="GotoCreateTactic";
 }

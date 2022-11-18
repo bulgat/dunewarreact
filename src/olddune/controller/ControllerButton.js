@@ -42,7 +42,14 @@ export class ControllerButton{
 			window._battlePlanetModel._mapWorldModel.SelectHeroWithId(EventButton);
 			return;
 		}
-
+		if(ConstantName === new ControllerConstant().RefreshHeroPower){
+			window._battlePlanetModel._mapWorldModel.RefreshHeroPower();
+			return;
+		}
+		if(ConstantName === new ControllerConstant().GotoCreateTactic){
+			window._battlePlanetModel._mapWorldModel.GotoCreateTacticStart(EventButton);
+			return;
+		}
 
 	};
 	SetCommandPerform = function(CommandId,commandStrategy)

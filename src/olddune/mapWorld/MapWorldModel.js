@@ -36,6 +36,12 @@ export class MapWorldModel {
 		
 		this._commandStrategyMap_ar.push(Command);
 	}
+	RefreshHeroPower = function(){
+		for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
+			this._prototypeHeroDemo.GetHeroFleet()[y].move = false;
+		}
+		console.log("88900000  wa   TestClick Map_ar = " );
+	}
 	GotoHero = function(buttonEvent)
 	{
 
@@ -249,6 +255,15 @@ export class MapWorldModel {
 		this.AddCommandStrategy([ this.CommandAttackFleet(buttonEvent.HeroFleet, heroFiend, buttonEvent.LongRange) ]);
 
 	};
+	GotoCreateTacticStart= function(buttonEvent){
+		console.log(" = F    ",buttonEvent );
+		window._battlePlanetModel._mapWorldModel.GotoCreateTactic(
+			buttonEvent.IdHero,
+			buttonEvent.VictimFleetId,
+			buttonEvent.MoveAI,
+			buttonEvent.LongRange,
+		    buttonEvent.GlobalYear);
+	};
 	GotoCreateTactic= function(
 			IdHeroPlayer, IdHeroFiend, MoveAI, LongRange, CountTurn
 			)
@@ -294,6 +309,15 @@ export class MapWorldModel {
 		}
 
 	};
+	EndBattleTactic= function(EventButton)
+	{
+		var fleet = this._prototypeHeroDemo.GetFleetWithId(EventButton.IdHero);
+		
+		console.log("0111 "+EventButton.IdHero+" ? nd  =",EventButton )
+		fleet.SetAttackDone(true);
+		fleet.SetNullPowerReserve()
+		console.log("0111 start  EndBattleTactic= "  )
+	}
 	MeleeShipReleaseDead = function(EventButton)
 	{
 		let unitResultTactic_ar = EventButton.unitResultTactic_ar;
@@ -301,11 +325,11 @@ export class MapWorldModel {
 		let CrewPlayer = EventButton.CrewPlayer;
 		let CrewFiend = EventButton.CrewFiend;
 
-		console.log("0112 ??????? Point =" )
+		
 
 		var robot = new Robot();
 
-		console.log("0111 ?? ??? fiend  =",unitResultTactic_ar)
+		
 		unitResultTactic_ar.forEach (function (unitResultTactic)
 		{
 			
@@ -335,15 +359,15 @@ export class MapWorldModel {
 	BasicStopBattleVictory = function(EventButton)
 	{
 
-let GridFleetOldPoint = EventButton.GridFleetOldPoint;
-		var buttonEventmodel = this.GetEventModel()
+		let GridFleetOldPoint = EventButton.GridFleetOldPoint;
+		var buttonEventmodel = this.GetEventModel(EventButton)
 
 
 		if (buttonEventmodel.IdHero == undefined)
 		{
 			//abolish turn unit
 
-			this.heroPlayer.SetPoint(GridFleetOldPoint.X,GridFleetOldPoint.Y);
+			EventButton.FleetPlayer.SetPoint(GridFleetOldPoint.X,GridFleetOldPoint.Y);
 
 		
 		}
@@ -360,11 +384,20 @@ let GridFleetOldPoint = EventButton.GridFleetOldPoint;
 
 
 
-	GetEventModel = function(){
+	GetEventModel = function(EventButton){
+
+		
+		 
+
+
 		var meleeShip = new MeleeShip();
+		
+		
+		console.log("EventButton = ",EventButton);
+		
 		return meleeShip.SetEventEndTactic(
-			this.heroPlayer.GetShipName(),
-			this.heroFiend.GetShipName(),this);
+			EventButton.FleetPlayer,
+			EventButton.FleetFiend,EventButton.MoveAI);
 	}
 
 

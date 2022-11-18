@@ -473,13 +473,14 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	};
 
 	ShowTacticBattle= function(ctx,currentFrameTime,_battleTerra,_countStepResult,
-		_countAnimInfantery,screenList,ResetCommStrCurrent){
+		_countAnimInfantery,screenList,ResetCommStrCurrent)
+	{
 			new ViewTactic().ShowTacticBattle(ctx,currentFrameTime,_battleTerra,_countStepResult,
 				_countAnimInfantery,screenList,ResetCommStrCurrent);
-		}
+	};
 	drawUnitAnim = function(ctx,tickUnit,index,Yheight,ArmUnit,Fiend){
 		new ViewTactic().drawUnitAnim(ctx,tickUnit,index,Yheight,ArmUnit,Fiend);
-	}
+	};
 
 }
 

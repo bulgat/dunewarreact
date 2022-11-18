@@ -170,6 +170,10 @@ tactic scenario
 		//this.BasicStopBattleVictory(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,GridFleetOldPoint);
 		let buttonEventVictory = new ButtonEvent();
 		buttonEventVictory.GridFleetOldPoint = GridFleetOldPoint;
+		buttonEventVictory.FleetFiend =this.heroFiend;
+		buttonEventVictory.FleetPlayer= this.heroPlayer;
+		buttonEventVictory.MoveAI = this.MoveAI;
+		
 		new ControllerTactic().TacticEventCall(new ControllerTacticConstant().BasicStopBattleVictory,buttonEventVictory)
 
 

@@ -64,7 +64,7 @@ export class GridFleet extends BasicTile {
 		{
 			return true;
 		}
-var returnRange = false;
+			let returnRange = false;
 			this.ShipNameUnit.GetArmUnitArray().forEach (function (armUnit)
 			{
 
