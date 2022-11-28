@@ -25,7 +25,7 @@ export class ControllerTactic {
         }
         if (ConstantName === new ControllerTacticConstant().EndBattleTactic)
 		{
-            console.log("0112 end   dexIm  = ",EventButton )
+            
             window._battlePlanetModel._mapWorldModel.EndBattleTactic(EventButton);
             ControllerTactic._callBackEndBattle();
         }

@@ -243,15 +243,15 @@ window.onload = function () {
 
 						break;
 					} else {
-						console.log("90  Incre   = ",  _tileBox_ar[i].SpotX, _tileBox_ar[i].SpotY);
+						
 						//island
 						let island_ar = window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray();
 						for(let island of island_ar)
 						{
-							console.log("011 island = ",island)
+							
 							if (island.SpotX ===_tileBox_ar[i].SpotX && island.SpotY ===_tileBox_ar[i].SpotY) 
 							{
-								console.log("  ничего не на  ",island.Name);
+								
 								//this.ClickTownCard();
 								window.ClickTownCard(island.Name,island.Id);
 							}
@@ -263,7 +263,7 @@ window.onload = function () {
 							) {
 								let gridFleetMouseClick = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[z];
 								if(window._battlePlanetModel.FlagIdHero===gridFleetMouseClick.FlagId){
-									//console.log("0 flag  = ",gridFleetMouseClick.GetId())
+									
 									//console.log( window._battlePlanetModel.FlagIdHero,"  isl = " ,gridFleetMouseClick.FlagId	)
 								
 									let modelEvent = new ButtonEvent();
@@ -545,12 +545,15 @@ export default class GlobalDune {
 
 	TestClick() {
 
-		RefreshHeroPower();
-		var modelStrategy = new ModelStrategy();
+		
 
 		window._CommandStrategy_ar = window._battlePlanetModel._mapWorldModel.Development(window.Grid_ar, window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 
-
+		RefreshHeroPower();
+		TurnPush();
+		for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
+			console.log("0100   Global countAnimIn FiendUnit.  power = ",window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetPowerReserve()," id",window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetId() ) ;
+		}
 	};
 	SelectHeroLeft() {
 

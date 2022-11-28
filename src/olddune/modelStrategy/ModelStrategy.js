@@ -32,7 +32,7 @@ export class ModelStrategy{
 		GridTile_ar,
 		GetIncrementUnitId) {
 
-			console.log(HeroMax,"  9010  ",GridTile_ar,"  H GetIncrementUnitId = ",GetIncrementUnitId)
+			
 
 			return new GreatDriveAi().GreatImpDrivingAI(
 				DispositionCountry_ar,
@@ -95,10 +95,8 @@ export class ModelStrategy{
 				Island_ar, prototypeHeroDemo,
 				GridTile_ar) {
 					
-			var wayGotoSelectField = new WayGotoSelectField();
-			
-			
-			
+			let wayGotoSelectField = new WayGotoSelectField();
+
 			
 		return wayGotoSelectField.SelectVariationWayFleet(HeroFleet, wayRude_ar,
 				DispositionCountry_ar, ShoalSeaBasa_ar, Island_ar, prototypeHeroDemo,

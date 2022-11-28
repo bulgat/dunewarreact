@@ -130,7 +130,7 @@ export class BattlePlanetModel{
             FlagIdHeroFleet = gridFleet.GetFlagId();
         }
 		
-        var gridFleetSpeed = gridFleet.GetSpeed();
+        let gridFleetSpeed = gridFleet.GetSpeed();
 		
      
    
@@ -156,7 +156,7 @@ export class BattlePlanetModel{
         {
             range = gridFleet.GetRange();
         }
-        console.log("0100   GlobalVictory   -countAnimIn FiendUnit.ExplodeTick  = ",gridFleet.GetAttackDone() ) ;
+        
  
         let selectPath_ar = this.SelectHeroPath(gridFleet,
                 prototypeHeroDemo,
@@ -164,7 +164,7 @@ export class BattlePlanetModel{
                 MapShoalSeaBasa_ar, islandDemoMemento, GridTile_ar,
                 PathHeroName, AttackHeroName, gridFleetSpeed, range);
 
-                console.log( "0101  _PowerReserve ="+gridFleet.GetPowerReserve()+"  ndHero_ar = " ,selectPath_ar );
+                
 
                 return selectPath_ar;
     };
@@ -194,21 +194,21 @@ export class BattlePlanetModel{
             if (HeroFleet.GetFlagId() == flagIdHero)
             {
 
-
+                console.log("999096 =     ",HeroFleet.GetPowerReserve(),"   fleet id",HeroFleet.GetId() );
                 if (HeroFleet.GetPowerReserve() > 0)
                 {
                     
 					var wayRude_ar = modelStrategy.CreateVariationWay(HeroFleetSpeed);
 
+                    console.log("999097   GetIncrementUnit  HeroFleetSpeed = ",HeroFleetSpeed)
 
-
-                    var wayGotoModel_ar =
+                    let wayGotoModel_ar =
                             modelStrategy.SelectVariationWayFleet(HeroFleet, wayRude_ar,
                             this.DispositionCountry_ar, shoalSeaBasa_ar,
                             islandDemoMemento.GetIslandArray(), prototypeHeroDemo, GridTile_ar);
 
 
-
+                    console.log("999098  and = ",wayGotoModel_ar)
 					wayGotoModel_ar.forEach(function(wayPoint)
                     {
 						
@@ -257,13 +257,13 @@ export class BattlePlanetModel{
 						}
                      
 					 });
-               
+                     console.log("999099  Inc  wayGotoModel_ar = ", wayGotoModel_ar);
 				}
 				
             }
          
             let attack = !HeroFleet.GetAttackDone() && HeroFleet.GetPowerReserve() <= 0;
-            console.log("999100  fie  = ",HeroFleet)
+            console.log("999100  f = ",HeroFleet.GetId())
             console.log("999101  attack   inde  _buttonE  AttackDone =", HeroFleet.GetAttackDone());
             console.log("999102  attack    PowerReserve  =",HeroFleet.GetPowerReserve());
 			console.log("999103  attack   is.Disposi  = ",HeroFleet.GetAttackDone()," === ",HeroFleet.GetPowerReserve() );

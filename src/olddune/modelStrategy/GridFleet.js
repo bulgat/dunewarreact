@@ -103,6 +103,12 @@ export class GridFleet extends BasicTile {
 	{
 		return this.Speed;
 	};
+	RefreshSpeed()	{
+		this.Speed =this.maxSpeed ;
+		for(let armUnit of this.ShipNameUnit.GetArmUnitArray()){
+			armUnit.RefreshSpeed();
+		}
+	}
 	GetSpeed= function(){
 
 
@@ -116,10 +122,12 @@ export class GridFleet extends BasicTile {
 			}
 			var localMaxSpeed = this.maxSpeed ;
 
+			console.log("0110 fl   = ",this.maxSpeed)
+
 			this.ShipNameUnit.GetArmUnitArray().forEach (function(armUnit)
 			{
 
-
+				console.log("0111     ни  ",localMaxSpeed," на  ",armUnit.Speed);
 
 				if (armUnit.Speed < localMaxSpeed)
 				{
@@ -127,10 +135,11 @@ export class GridFleet extends BasicTile {
 				}
 			});
 			this.maxSpeed = localMaxSpeed;
-
+		console.log("0112 end   dex  speed = ",this.maxSpeed)
 		return this.maxSpeed;
 
 	};
+	
 	GetSea = function()
 	{
 		var sea = false;

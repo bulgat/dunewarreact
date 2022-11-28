@@ -14,15 +14,7 @@ export class ArmUnit extends ArmUnitShip {
 	Id;
 	ViewArmUnit;
 	GetIncrementUnitId;
-	GetAttack = function() {
-		return this.Attack;
-	};
-	GetDefence = function() {
-		return this.Defence;
-	};
-	GetId = function() {
-		return this.Id;
-	};
+
 	constructor(basaPurchaseUnitScience_ar, unitType, customShip,GetIncrementUnitId){
 		super();
 		this.GetIncrementUnitId = GetIncrementUnitId;
@@ -57,6 +49,19 @@ export class ArmUnit extends ArmUnitShip {
 			this.SetShip(basaPurchaseUnitScience_ar[unitType].IdTypeShip, customShip);
 		}
 	};
+	RefreshSpeed=function(){
+		this.Speed =1;
+	}
+	GetAttack = function() {
+		return this.Attack;
+	};
+	GetDefence = function() {
+		return this.Defence;
+	};
+	GetId = function() {
+		return this.Id;
+	};
+	
 	
 	Copy = function()
 	{

@@ -37,9 +37,20 @@ export class MapWorldModel {
 		this._commandStrategyMap_ar.push(Command);
 	}
 	RefreshHeroPower = function(){
+		console.log( "0101207  RefreshHeroPower = " );
 		for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
 			this._prototypeHeroDemo.GetHeroFleet()[y].move = false;
+			
+			this._prototypeHeroDemo.GetHeroFleet()[y].SetPowerReserve();
+			/*
+			this._prototypeHeroDemo.GetHeroFleet()[y].SetAttackDone(false);
+			*/
+			this._prototypeHeroDemo.GetHeroFleet()[y].PowerReserveChange(2);
+			this._prototypeHeroDemo.GetHeroFleet()[y].RefreshSpeed();
+			
+			console.log( "0088 ",this._prototypeHeroDemo.GetHeroFleet()[y].GetId(),"  power  " , this._prototypeHeroDemo.GetHeroFleet()[y].GetPowerReserve())
 		}
+		console.log( "0101208  _PowerReserve  Hero_ar = " ,window._battlePlanetModel._mapWorldModel._prototypeHeroDemo );
 		
 	}
 	GotoHero = function(buttonEvent)
@@ -222,7 +233,7 @@ export class MapWorldModel {
 	};
 	GlobalVictoryWinDevelopment = function(VictoryScenario)
 	{
- 		console.log( "207   D   = " ,window._battlePlanetModel._VictoryScenario.Scenario);
+ 		
 		// Проверить по юнитам
 		if (new MapWorldStartGame().StartGameChange(VictoryScenario))
 		{
@@ -256,7 +267,7 @@ export class MapWorldModel {
 
 	};
 	GotoCreateTacticStart= function(buttonEvent){
-		console.log("000 = F    ",buttonEvent );
+		
 		this.GotoCreateTactic(
 			buttonEvent.IdHero,
 			buttonEvent.VictimFleetId,

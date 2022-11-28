@@ -142,7 +142,7 @@ export class View {
     };
 	GetButtonEventPathList = function (SelectHeroId) {
 
-console.log( "0088  Na  "  )
+
 		let battlePlanetModel = new BattlePlanetModel();
 
 		var islandDemoMemento = new IslandDemoMemento();
