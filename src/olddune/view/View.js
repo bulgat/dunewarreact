@@ -98,11 +98,11 @@ export class View {
 	{
 		let idPathHero = window._battlePlanetModel.GetSelectHeroId();
 
-		let _buttonEvent_ar = this.GetButtonEventPathList(window._battlePlanetModel.GetSelectHeroId());
+		let buttonPathEvent_ar = this.GetButtonEventPathList(window._battlePlanetModel.GetSelectHeroId());
 
 
 
-		_buttonEvent_ar.forEach (function(buttonEvent)
+		buttonPathEvent_ar.forEach (function(buttonEvent)
         {
 
 
@@ -112,7 +112,7 @@ export class View {
 				var controllerButton = new ControllerButton();
 								 //EventCall
                 controllerButton.EventCall(controllerConstant.PathHero, controllerConstant.PathHero, buttonEvent);
-                //DestroyDrawPathHero();
+                
             }
             idPathHero++;
         });
@@ -120,7 +120,7 @@ export class View {
         this.SetSelectAttackFiendHero();
   
 
-		return _buttonEvent_ar;
+		return buttonPathEvent_ar;
 	};
 	SetSelectAttackFiendHero = function() {
 
@@ -131,7 +131,7 @@ export class View {
 	   let gridFleet = window._battlePlanetModel.GetHeroWithId(
 		window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(), selectHeroId);
 
-		console.log( "0088  Name= " ,gridFleet)
+		
 
         var buttonEvent_ar = this.GetButtonEventPathList(selectHeroId);
         var count=0;
@@ -142,21 +142,21 @@ export class View {
     };
 	GetButtonEventPathList = function (SelectHeroId) {
 
-
-		var _battlePlanetModel = new BattlePlanetModel();
+console.log( "0088  Na  "  )
+		let battlePlanetModel = new BattlePlanetModel();
 
 		var islandDemoMemento = new IslandDemoMemento();
 		islandDemoMemento.Init();
 
 let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),
-	_battlePlanetModel.FlagIdHero,
-	_battlePlanetModel.DispositionCountry_ar,
+	battlePlanetModel.FlagIdHero,
+	battlePlanetModel.DispositionCountry_ar,
 	true,0,[]);
 
 
 
-		let getPath_ar= _battlePlanetModel.GetPathSelectHero(
+		let getPath_ar= battlePlanetModel.GetPathSelectHero(
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,
 										gridMapExistence,// ShoalSeaBasa_ar,
 										 islandDemoMemento,//_islandDemoMemento,
@@ -169,7 +169,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 										 0,
 										 0,
 										 SelectHeroId,
-										 _battlePlanetModel.FlagIdHero,//FlagIdHero
+										 battlePlanetModel.FlagIdHero,//FlagIdHero
 										 );
 		
 		return getPath_ar;
@@ -451,11 +451,9 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 			window.tileW, window.tileH
 		);
 
-		//let indexImage = 0;
-
 		let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId());
 		
-		//console.log("0012 flag  ",window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId())
+		
 
 		this.drawFlagUnit(ctx,screenList,
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],

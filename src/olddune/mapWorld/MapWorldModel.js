@@ -40,7 +40,7 @@ export class MapWorldModel {
 		for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
 			this._prototypeHeroDemo.GetHeroFleet()[y].move = false;
 		}
-		console.log("88900000  wa   TestClick Map_ar = " );
+		
 	}
 	GotoHero = function(buttonEvent)
 	{
@@ -256,8 +256,8 @@ export class MapWorldModel {
 
 	};
 	GotoCreateTacticStart= function(buttonEvent){
-		console.log(" = F    ",buttonEvent );
-		window._battlePlanetModel._mapWorldModel.GotoCreateTactic(
+		console.log("000 = F    ",buttonEvent );
+		this.GotoCreateTactic(
 			buttonEvent.IdHero,
 			buttonEvent.VictimFleetId,
 			buttonEvent.MoveAI,
@@ -297,14 +297,9 @@ export class MapWorldModel {
 		buttonEvent.MoveAI=MoveAI;
 		buttonEvent.LongRange=LongRange;
 
-		//new ControllerTactic().TacticEventCall(new ControllerTacticConstant().StartBattleTactic,buttonEvent)
+		
 		window._controllerTactic.TacticEventCall(new ControllerTacticConstant().StartBattleTactic,buttonEvent);
-		/*
-				this._tactic = new Tactic(
-						gridFleetFiend,
-						gridFleetPlayer,
-						MoveAI, LongRange);
-		*/
+	
 
 		}
 
@@ -313,10 +308,10 @@ export class MapWorldModel {
 	{
 		var fleet = this._prototypeHeroDemo.GetFleetWithId(EventButton.IdHero);
 		
-		console.log("0111 "+EventButton.IdHero+" ? nd  =",EventButton )
+		console.log("0111 EndBattleTactic   "+EventButton.IdHero+" ? nd  =",EventButton )
 		fleet.SetAttackDone(true);
-		fleet.SetNullPowerReserve()
-		console.log("0111 start  EndBattleTactic= "  )
+		fleet.SetNullPowerReserve();
+		console.log("0112  end  art  EndBattleTactic= " ,fleet )
 	}
 	MeleeShipReleaseDead = function(EventButton)
 	{

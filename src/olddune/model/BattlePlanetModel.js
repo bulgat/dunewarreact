@@ -116,11 +116,7 @@ export class BattlePlanetModel{
             )
     {
         
-        
-  
-        var gridFleet = this.GetHeroWithId(prototypeHeroDemo.GetHeroFleet(), SelectHeroId);
-
-
+        let gridFleet = this.GetHeroWithId(prototypeHeroDemo.GetHeroFleet(), SelectHeroId);
 
         if (gridFleet == null)
         {
@@ -150,7 +146,7 @@ export class BattlePlanetModel{
 		
         if (fleetFiend != null && fleetPlayer != null)
         {
-            console.log("0099 D  Ur exIm  "  )
+            
             range = new MendMoveAbleFire().DetermineAbleFirePlayer(fleetFiend, fleetPlayer, gridFleet,
                     new Point(gridFleet.SpotX + 2, gridFleet.SpotY + 2),
                     GlobalParamsTimeQuick, GlobalParamsGale);
@@ -266,9 +262,12 @@ export class BattlePlanetModel{
 				
             }
          
-            var attack = !HeroFleet.GetAttackDone() && HeroFleet.GetPowerReserve() <= 0;
-            
-			console.log("0102   this.Disposi  = ",HeroFleet.GetAttackDone()," === ",HeroFleet.GetPowerReserve() );
+            let attack = !HeroFleet.GetAttackDone() && HeroFleet.GetPowerReserve() <= 0;
+            console.log("999100  fie  = ",HeroFleet)
+            console.log("999101  attack   inde  _buttonE  AttackDone =", HeroFleet.GetAttackDone());
+            console.log("999102  attack    PowerReserve  =",HeroFleet.GetPowerReserve());
+			console.log("999103  attack   is.Disposi  = ",HeroFleet.GetAttackDone()," === ",HeroFleet.GetPowerReserve() );
+            console.log("999104  attack  PrintAll   attack = "+attack+" ^^ ^^^^^^^^^^^^^^^^^^   andStrategy = " );
 
             if (attack)
             {

@@ -158,13 +158,7 @@ tactic scenario
 		buttonEventMelee.CrewFiend = this.GetFiendFleet().GetShipNameFirst().GetArmUnitArray();
 
 		new ControllerTactic().TacticEventCall(new ControllerTacticConstant().MeleeShipReleaseDead,buttonEventMelee)
-/*
-		this.MeleeShipReleaseDead(this._unitResultTactic_ar,
-				window._battlePlanetModel.GetBasaPurchaseUnitScience(),
-				this.GetPlayerFleet().GetShipNameFirst().GetArmUnitArray(),
-				this.GetFiendFleet().GetShipNameFirst().GetArmUnitArray()
-				);
-*/
+
 	
 	
 		//this.BasicStopBattleVictory(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo,GridFleetOldPoint);
@@ -182,73 +176,5 @@ tactic scenario
 		buttonEvent.IdHero = this.GetPlayerFleet().GetId();
 		new ControllerTactic().TacticEventCall(new ControllerTacticConstant().EndBattleTactic,buttonEvent)
 	};
-	/*
-	MeleeShipReleaseDead = function(unitResultTactic_ar,
-			BasaPurchaseUnitScience_ar,
-			CrewPlayer,
-			CrewFiend
-			  )
-	{
-
-		var robot = new Robot();
-
-		unitResultTactic_ar.forEach (function (unitResultTactic)
-		{
-			
-			
-			if (unitResultTactic.BlockDead)
-			{
-				
-			}
-			else
-			{
-				
-
-				// dead ship
-				robot.DeadUnit(
-						unitResultTactic.UnitIdDead,
-						unitResultTactic.UnitIdWin,
-							BasaPurchaseUnitScience_ar,
-							CrewPlayer,
-							CrewFiend
-						);
-			}
-			
-		});
-		
-		
-	};*/
-	/*
-	BasicStopBattleVictory = function(prototypeHeroDemo,GridFleetOldPoint)
-	{
-
-
-		var buttonEventmodel = this.GetEventModel()
-
-
-		if (buttonEventmodel.IdHero == undefined)
-		{
-			//abolish turn unit
-
-			this.heroPlayer.SetPoint(GridFleetOldPoint.X,GridFleetOldPoint.Y);
-
-		
-		}
-
-
-	//CloseTactic!
-		// load scenr
-		this.CloseTactic(buttonEventmodel);
-		
-	};
-	CloseTactic = function(buttonEventmodel) {
-		window._battlePlanetModel._mapWorldModel.GotoStrateg(buttonEventmodel);
-	}
-	GetEventModel = function(){
-		var meleeShip = new MeleeShip();
-		return meleeShip.SetEventEndTactic(
-			this.heroPlayer.GetShipName(),
-			this.heroFiend.GetShipName(),this);
-	}
-	*/
+	
 }
