@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import { Button } from 'react-bootstrap'
 
 function Like(props){
-    //console.log(props)
+    console.log(props)
 
 
     return (
