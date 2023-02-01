@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import { Button } from 'react-bootstrap'
+import {decrementLikes,incrementLikes} from '../reducerAction/indexAction'
 
 function Like(props){
     console.log(props)
@@ -7,17 +8,17 @@ function Like(props){
 
     return (
     <div className="button-control">
-        <Button onClick={props.onIncrementLikes}>Like{props.likes}</Button>
+        <Button onClick={props.onIncrementLikes}>Like={props.like}</Button>
         <Button onClick={props.onDecrementLikes}>Dislike</Button>
         
     </div>)
 } 
-/*
+
 function mapStateToProps(state){
-    // console.log("mapStateToProps >",state)
-     const {likesReducer} = state
+     console.log("===mapStateToProps >",state)
+     const {likeReducer} = state
      return (
-         {likes:likesReducer.likes}
+         {like:likeReducer.like}
      )
  }
  function mapDispatchToProps(dispatch){
@@ -28,6 +29,6 @@ function mapStateToProps(state){
      }
     }
  }
- */
-//export default connect(mapStateToProps,mapDispatchToProps)(Like)
-export default (Like)
+ 
+export default connect(mapStateToProps,mapDispatchToProps)(Like)
+//export default (Like)

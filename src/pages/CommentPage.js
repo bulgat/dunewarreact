@@ -2,6 +2,7 @@ import { CommentRedux } from "../components/CommentRedux"
 import CarList from '../reducerComponent/CarList'
 import ReduxDetailCar from './ReduxDetailCar'
 import Like from "../reducer/Like"
+import Comment from "../reducer/Comment"
 
 const CommentPage =()=>{
     return (
@@ -12,6 +13,7 @@ const CommentPage =()=>{
         }
         <ReduxDetailCar/>
         <Like/>
+        <Comment/>
         </>
     )
 }
