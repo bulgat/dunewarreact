@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Button } from 'react-bootstrap';
 import SingleOneComment from "./SingleOneComment";
+import {useSelector} from 'react-redux'
+import { CommentsReducer } from "./CommentsReducer";
+import { useDispatch } from "react-redux";
+import { CommentCreate } from "../reducerAction/indexAction";
+import { useEffect } from "react";
+import { CommentLoad } from "../reducerAction/indexAction";
 
 function Comment(props){
     
@@ -10,15 +16,19 @@ function Comment(props){
         
         setTextComment(e.target.value)
     }
-    /*
+    
     const dispatch = useDispatch();
+    
+    
     const comments=useSelector(
         state=>{
-            
-            const {commentsReducer} = state
-            return commentsReducer.comments
+            console.log("ZZZZZZZZZZZZ state = ",state);
+            const {CommentsReducer} = state
+            return CommentsReducer.comments
         }
     )
+    
+   
     
     
     const handleSubmit=(e)=>{
@@ -26,11 +36,11 @@ function Comment(props){
         e.preventDefault()
         const id = Math.floor(Math.random()*1000000000);
         
-        dispatch(commentCreate(textComment,id))
+        dispatch(CommentCreate(textComment,id))
     }
-
+/*
     useEffect(()=>{
-        dispatch(commentLoad())
+        dispatch(CommentLoad())
     },[])
 */
     const EnterSubmit=()=>{
@@ -42,7 +52,7 @@ function Comment(props){
         <h6>EEEEEEEEEEEEEEEEEE</h6>
         <input type='text' value={textComment} onChange={handleInput}/>
         <Button onClick={EnterSubmit}>Enter</Button>
-<SingleOneComment key={9999} data={6666}/>
+        {!!comments.length && <SingleOneComment key={9999} data={6666}/>}
     </div>
 }
 
