@@ -6,11 +6,7 @@ import { CommentDelete } from '../reducerAction/indexAction';
 import { CommentUpdate } from '../reducerAction/indexAction';
 
 function SingleOneComment({data}){
-    /*
-    if(data==undefined){
-        data=999;
-    }
-    */
+
     const {text,id} = data
     const [commentText,setCommentText] = useState('')
 

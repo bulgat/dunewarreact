@@ -84,6 +84,7 @@ export function CommentLoad(){
 
     
     return async dispatch=>{
+    
         try{
 
             dispatch(loaderOn());
@@ -100,6 +101,7 @@ export function CommentLoad(){
                 dispatch(errorOn('error API'))
                 dispatch(loaderOff());
             }
+            
     }
 
 }

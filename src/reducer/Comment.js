@@ -11,16 +11,17 @@ import { CommentLoad } from "../reducerAction/indexAction";
 function Comment(props){
     
     const [textComment,setTextComment]=useState('')
+    const dispatch = useDispatch();
 
     const handleInput=(e) =>{
         
         setTextComment(e.target.value)
     }
     
-    const dispatch = useDispatch();
     
     
-    const comments=useSelector(
+    
+    const commentList=useSelector(
         state=>{
             console.log("ZZZZZZZZZZZZ state = ",state);
             const {CommentsReducer} = state
@@ -38,13 +39,17 @@ function Comment(props){
         
         dispatch(CommentCreate(textComment,id))
     }
-/*
+
     useEffect(()=>{
-        dispatch(CommentLoad())
+        //dispatch(CommentLoad())
     },[])
-*/
-    const EnterSubmit=()=>{
-        console.log("ZZZZZZZZZZZZ");
+
+    const EnterSubmit=(e)=>{
+        console.log("[",textComment,"] = ZZZZZZZZZZZZ = ",e);
+        e.preventDefault()
+        const id = Math.floor(Math.random()*1000000000);
+        
+        dispatch(CommentCreate(textComment,id))
     }
 
     return <div className="card-comments">
@@ -52,7 +57,7 @@ function Comment(props){
         <h6>EEEEEEEEEEEEEEEEEE</h6>
         <input type='text' value={textComment} onChange={handleInput}/>
         <Button onClick={EnterSubmit}>Enter</Button>
-        {!!comments.length && <SingleOneComment key={9999} data={6666}/>}
+        {!!commentList.length && commentList.map(res=><SingleOneComment key={res.id} data={res}/>)}
     </div>
 }
 
