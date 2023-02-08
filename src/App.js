@@ -4,7 +4,7 @@ import "./duneHide.js";
 import "./globalDune.js";
 import React from "react";
 import {Routes,Route} from 'react-router-dom';
-import {HomePage} from './pages/Homepage';
+import {GamePage} from './pages/GamePage';
 import {AboutPage} from './pages/AboutPage';
 import {BlogPage} from './pages/Blogpage';
 import {SinglePage} from './pages/SinglePage';
@@ -33,7 +33,7 @@ function App() {
 <NavBarDune/>
 <AuthProvider>
   <Routes>
-      <Route path='/' element ={<HomePage/>}/>
+      <Route path='/' element ={<GamePage/>}/>
       <Route path='about/*' element ={<AboutPage/>}>
         <Route path="contacts" element ={<p>contact</p>}/>
         <Route path="team" element ={<><h2>super</h2><p>team</p></>}/>

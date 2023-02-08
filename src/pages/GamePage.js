@@ -5,19 +5,41 @@ import {NavLink } from "react-router-dom"
 import {Container, Card, Form, Button, Row, Spinner} from 'react-bootstrap';
 import {TownModal} from  '../modalWindow/TownModal'
 import {globalDune} from '../globalDune'
+import { useDispatch } from "react-redux";
+import { DuneTurnRedux } from "../reducerAction/indexAction";
+import {useSelector} from 'react-redux';
 
-const HomePage =()=>{
+const GamePage =(props)=>{
     const [name,setName] = useState("dune");
     const [idIsland,setIdIsland] = useState(0);
 	const [money,setMoney] = useState(3500);
     const [urlImage,setUrlImage] = useState("");
     const globalDune = new GlobalDune();
+    const dispatch = useDispatch();
 
-    const handleClick = (e) => {
-    // implementation details
-	
-    globalDune.onTurn()
+
+
+    const TurnClick = (e) => {
+        // implementation details
+        console.log("9991  f ############################# ",props )
+        
+        
+        dispatch(DuneTurnRedux ())
+
+        globalDune.onTurn()
     };
+    const commentList=useSelector(
+        state=>{
+            console.log("999102  attack %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%==   ="  );
+            console.log("ZZZZZZZZZZZZ state = ",state);
+
+            const {CommentsReducer} = state
+            console.log("999101  attack   inde  _buttonE     =" ,CommentsReducer.comments);
+            return CommentsReducer.comments
+        }
+    )
+
+
     const handleClickkol = (name,e) => {
         // implementation details
         
@@ -66,7 +88,7 @@ const HomePage =()=>{
             <NavLink to='/about' style={setActiveStyle}>About</NavLink>
             <canvas id="game" width="800" height="600"></canvas>
             <p>{name} is {money}</p>
-            <Button onClick={handleClick.bind(this)}>turn</Button>
+            <Button onClick={TurnClick.bind(this)}>turn</Button>
             <Button onClick={(e)=>{handleClickkol("kol",e)}}>test turn</Button>
             <Button onClick={(e) =>{nameClick("k",e)} }>-Left</Button>
             <Button onClick={(e) =>{moneyClick(e)}  }>Right-</Button>
@@ -84,4 +106,4 @@ const HomePage =()=>{
     )
 }
 
-export {HomePage}
+export {GamePage}

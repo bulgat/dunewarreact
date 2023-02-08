@@ -8,7 +8,8 @@ import { INCREMENT,
     LOADER_DISPLAY_ON,
     LOADER_DISPLAY_OFF,
     ERROR_DISPLAY_ON,
-    ERROR_DISPLAY_OFF
+    ERROR_DISPLAY_OFF,
+    DUNE_TURN
  } from "./type";
 
 export const selectAction=(car)=>{
@@ -45,6 +46,14 @@ export function CommentCreate(text,id){
         data:{text,id}
     }
 }
+export function DuneTurnRedux(){
+    console.log("  = ZZZZZZZZZ DUNE_TURN = " );
+    return{
+       type:DUNE_TURN,
+       data:"99999"
+    }
+}
+
 
 export function loaderOn(){
     

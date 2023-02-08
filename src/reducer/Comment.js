@@ -45,7 +45,7 @@ function Comment(props){
     },[])
 
     const EnterSubmit=(e)=>{
-        console.log("[",textComment,"] = ZZZZZZZZZZZZ = ",e);
+        
         e.preventDefault()
         const id = Math.floor(Math.random()*1000000000);
         
@@ -54,7 +54,7 @@ function Comment(props){
 
     return <div className="card-comments">
 
-        <h6>EEEEEEEEEEEEEEEEEE</h6>
+        <h6>EEEEEEEEEEEEEEE </h6>
         <input type='text' value={textComment} onChange={handleInput}/>
         <Button onClick={EnterSubmit}>Enter</Button>
         {!!commentList.length && commentList.map(res=><SingleOneComment key={res.id} data={res}/>)}

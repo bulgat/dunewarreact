@@ -263,9 +263,7 @@ export class BattlePlanetModel{
             }
          
             let attack = !HeroFleet.GetAttackDone() && HeroFleet.GetPowerReserve() <= 0;
-            console.log("999100  f = ",HeroFleet.GetId())
-            console.log("999101  attack   inde  _buttonE  AttackDone =", HeroFleet.GetAttackDone());
-            console.log("999102  attack    PowerReserve  =",HeroFleet.GetPowerReserve());
+            
 			console.log("999103  attack   is.Disposi  = ",HeroFleet.GetAttackDone()," === ",HeroFleet.GetPowerReserve() );
             console.log("999104  attack  PrintAll   attack = "+attack+" ^^ ^^^^^^^^^^^^^^^^^^   andStrategy = " );
 

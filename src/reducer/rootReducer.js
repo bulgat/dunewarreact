@@ -3,12 +3,14 @@ import CarReducers from './car.js'
 import carActive from "./carActive.js";
 import { likeReducer } from "./LikeReducer.js";
 import { CommentsReducer } from "./CommentsReducer.js";
+import { DuneReducer } from "./DuneReducer.js";
 
 export const rootReducer = combineReducers({
     cars:CarReducers,
     active: carActive,
     likeReducer,
-    CommentsReducer
+    CommentsReducer,
+    DuneReducer
 })
 
 export default rootReducer;
