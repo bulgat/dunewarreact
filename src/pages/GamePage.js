@@ -8,6 +8,9 @@ import {globalDune} from '../globalDune'
 import { useDispatch } from "react-redux";
 import { DuneTurnRedux } from "../reducerAction/indexAction";
 import {useSelector} from 'react-redux';
+import { DuneLeftMove } from "../reducerAction/indexAction";
+import { DuneRightMove } from "../reducerAction/indexAction";
+import { DUNE_LEFT_MOVE,DUNE_RIGHT_MOVE,DUNE_TURN } from "../reducerAction/type";
 
 const GamePage =(props)=>{
     const [name,setName] = useState("dune");
@@ -20,41 +23,61 @@ const GamePage =(props)=>{
 
 
     const TurnClick = (e) => {
-        // implementation details
         console.log("9991  f ############################# ",props )
         
         
         dispatch(DuneTurnRedux ())
 
-        globalDune.onTurn()
+        //globalDune.onTurn()
     };
-    const commentList=useSelector(
+    const turnDune=useSelector(
         state=>{
-            console.log("999102  attack %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%==   ="  );
-            console.log("ZZZZZZZZZZZZ state = ",state);
+            console.log("999102  attack %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%==   =" ,state );
+           
 
-            const {CommentsReducer} = state
-            console.log("999101  attack   inde  _buttonE     =" ,CommentsReducer.comments);
-            return CommentsReducer.comments
+            const {DuneReducer} = state;
+            console.log("attack   tt     =" ,DuneReducer.duneCommand.Command);
+            
+
+            switch(DuneReducer.duneCommand.Command){
+
+                case DUNE_TURN:
+                     console.log("0001 ||  DuneReducer  ",DuneReducer.duneCommand.Command);
+                    globalDune.onTurn();
+                    return
+                case DUNE_LEFT_MOVE:
+                    console.log("0002 ||  DuneReducer  ",DuneReducer.duneCommand.Command);
+                    globalDune.SelectHeroLeft();
+                     console.log("ZZZZZZZZZZ state = ");
+                     return
+                case DUNE_RIGHT_MOVE:
+                    console.log("0003 ||  DuneReducer  ",DuneReducer.duneCommand.Command);
+                    globalDune.SelectHeroRight();
+                    return
+                default:
+                    console.log("0004 ||  DuneReducer  [",DuneReducer.duneCommand.Command,"]");
+            }
+            
+
+            return DuneReducer.duneCommand
         }
     )
 
 
-    const handleClickkol = (name,e) => {
-        // implementation details
-        
+    const TestClick = (name,e) => {
         globalDune.TestClick() 
     };
-    const nameClick = (nam,e) => {
-    // implementation details
-	
-	//name = "superdune";
-	setName("superdune")
-    globalDune.SelectHeroLeft() 
+    const LeftClick = (nam,e) => {
+
+        setName("superdune")
+        dispatch(DuneLeftMove())
+        //globalDune.SelectHeroLeft() 
+
     };
-    const moneyClick = (e) => {
+    const RightClick = (e) => {
         setMoney(5001)
-        globalDune.SelectHeroRight()
+        dispatch(DuneRightMove())
+        //globalDune.SelectHeroRight()
     }
     
     const setActiveStyle = ({isActive})=>({color:isActive?'var(--color-active)':'white'});
@@ -89,9 +112,9 @@ const GamePage =(props)=>{
             <canvas id="game" width="800" height="600"></canvas>
             <p>{name} is {money}</p>
             <Button onClick={TurnClick.bind(this)}>turn</Button>
-            <Button onClick={(e)=>{handleClickkol("kol",e)}}>test turn</Button>
-            <Button onClick={(e) =>{nameClick("k",e)} }>-Left</Button>
-            <Button onClick={(e) =>{moneyClick(e)}  }>Right-</Button>
+            <Button onClick={(e)=>{TestClick("kol",e)}}>test turn</Button>
+            <Button onClick={(e) =>{LeftClick("k",e)} }>-Left</Button>
+            <Button onClick={(e) =>{RightClick(e)}  }>Right-</Button>
             <Button onClick={(event) =>{ClickTownCard(event,0)}  }>push</Button>
             <Button >Start</Button>
             <TownModal show={brandVisible} 

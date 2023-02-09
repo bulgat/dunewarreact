@@ -12,3 +12,5 @@ export const ERROR_DISPLAY_ON = 'ERROR_DISPLAY_ON'
 export const ERROR_DISPLAY_OFF = 'ERROR_DISPLAY_OFF'
 
 export const DUNE_TURN = 'DUNE_TURN'
+export const DUNE_LEFT_MOVE = 'DUNE_LEFT_MOVE'
+export const DUNE_RIGHT_MOVE = 'DUNE_RIGHT_MOVE'

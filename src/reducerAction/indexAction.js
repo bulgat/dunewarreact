@@ -9,7 +9,9 @@ import { INCREMENT,
     LOADER_DISPLAY_OFF,
     ERROR_DISPLAY_ON,
     ERROR_DISPLAY_OFF,
-    DUNE_TURN
+    DUNE_TURN,
+    DUNE_LEFT_MOVE,
+    DUNE_RIGHT_MOVE
  } from "./type";
 
 export const selectAction=(car)=>{
@@ -47,13 +49,26 @@ export function CommentCreate(text,id){
     }
 }
 export function DuneTurnRedux(){
-    console.log("  = ZZZZZZZZZ DUNE_TURN = " );
+  
     return{
        type:DUNE_TURN,
-       data:"99999"
+       data:DUNE_TURN
     }
 }
-
+export function DuneRightMove(){
+  
+    return{
+       type:DUNE_RIGHT_MOVE,
+       data:DUNE_RIGHT_MOVE
+    }
+}
+export function DuneLeftMove(){
+ 
+    return{
+       type:DUNE_LEFT_MOVE,
+       data:DUNE_LEFT_MOVE
+    }
+}
 
 export function loaderOn(){
     

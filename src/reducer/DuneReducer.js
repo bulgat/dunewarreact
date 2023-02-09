@@ -1,38 +1,33 @@
-import { INCREMENT,DECREMENT,INPUT_TEXT,COMMENT_CREATE,COMMENT_UPDATE, COMMENT_DELETE, COMMENT_LOAD,DUNE_TURN } from "../reducerAction/type"
+import { 
+    INCREMENT,
+    DECREMENT,
+    INPUT_TEXT,
+    COMMENT_CREATE,
+    COMMENT_UPDATE,
+     COMMENT_DELETE,
+      COMMENT_LOAD,
+      DUNE_TURN,DUNE_LEFT_MOVE,DUNE_RIGHT_MOVE } from "../reducerAction/type"
 
 const initionState ={
-    comments:[]
+    duneCommand:{}
 }
 export const DuneReducer=(state=initionState,action)=>{
     
-   // console.log("||  comments = "+action);
+   
     switch(action.type){
 
         case DUNE_TURN:
+             console.log("||  DuneReducer  ",state," comment = ",action);
             return {...state,
-            comments:[...state.comments,action.data]
+                duneCommand:{Command:action.data}
         }
-        case COMMENT_LOAD:
-            const commentNew = action.data.map(res=>{
-                
-                return {
-                    text:res.body,
-                    id:res.id
-                }
-            
-            })
+        case DUNE_LEFT_MOVE:
             return {...state,
-                comments:commentNew
+                duneCommand:{Command:action.data}
             }
-        case COMMENT_UPDATE:
-            const {data} =action;
-            const {comments} = state;
-            const itemIndex = comments.findIndex(res=>res.id===data.id)
-            const nextComments =[...comments.slice(0,itemIndex),data,...comments.slice(itemIndex+1)]
-
-
+        case DUNE_RIGHT_MOVE:
             return {...state,
-            comments:nextComments
+                duneCommand:{Command:action.data}
         }
         
 
