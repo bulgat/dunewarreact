@@ -20,7 +20,7 @@ export class ControllerButton{
 		}
 		if (ConstantName === new ControllerConstant().SelectHeroLeft)
 		{
-			//SoundPlayPiano.PlaySound(MusicBibleConstant.Click);
+	
 			var buttonEvent = EventButton;
 
 
@@ -29,7 +29,7 @@ export class ControllerButton{
 		}
 		if (ConstantName === new ControllerConstant().SelectHeroRight)
 		{
-			//SoundPlayPiano.PlaySound(MusicBibleConstant.Click);
+		
 			var buttonEvent = EventButton;
 
 

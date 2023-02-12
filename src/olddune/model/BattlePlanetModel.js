@@ -9,7 +9,7 @@ import {MapWorldModel} from "../mapWorld/MapWorldModel"
 import { PrototypeHeroDemo } from "../model/prototype/PrototypeHeroDemo";
 import { IslandDemoMemento } from "../model/memento/IslandDemoMemento.js";
 import {CreateGridScenario} from '../scenario/CreateGridScenario';
-
+import { HeroSelectData } from "./HeroSelectData";
 
 
 export class BattlePlanetModel{
@@ -90,6 +90,30 @@ export class BattlePlanetModel{
 	GetSelectHeroId = function(){
 		return this.SelectHeroId;
 	};
+    GetHeroSelect = function(IdHero) {
+        let heroSel=null;
+        var pointHeroSel = null;
+        for( var i =0; i<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++)
+        {
+            var hero = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i];
+
+
+            var pointHero = new Point(hero.SpotX, hero.SpotY);
+            if (hero.GetId() == IdHero) {
+                heroSel = hero;
+                pointHeroSel = pointHero;
+
+                break;
+            }
+        }
+return new HeroSelectData(heroSel,pointHeroSel);
+/*
+        return {heroSel: heroSel,
+            pointHeroSel : pointHeroSel}
+            */
+    }
+
+
 	GetIndexHero = function(SelectHeroId,NameHero_ar) {
 		for(var i=0;i<NameHero_ar.length;i++){
 			if(NameHero_ar[i].GetId()==SelectHeroId){
@@ -132,7 +156,7 @@ export class BattlePlanetModel{
 		
         let gridFleetSpeed = gridFleet.GetSpeed();
 		
-     
+        console.log("0110 gridFleetSpeed = ",gridFleetSpeed)
    
         if (SpeedStatic)
         {
@@ -141,6 +165,7 @@ export class BattlePlanetModel{
             // emulation set speed fleet.
 
         }
+        console.log("0111  gridFleetSpeed = ",gridFleetSpeed);
       
         var range = false;
 		
@@ -162,9 +187,10 @@ export class BattlePlanetModel{
                 prototypeHeroDemo,
                 FlagIdHeroFleet,
                 MapShoalSeaBasa_ar, islandDemoMemento, GridTile_ar,
-                PathHeroName, AttackHeroName, gridFleetSpeed, range);
+                PathHeroName, AttackHeroName, 
+                gridFleetSpeed, range);
 
-                
+                console.log("===mapStateTo gridFleetSpeed == "+gridFleetSpeed+" > selectPath_ar = ",selectPath_ar)
 
                 return selectPath_ar;
     };
@@ -180,7 +206,7 @@ export class BattlePlanetModel{
         {
             return [];
         }
-		
+		console.log("999096 =     ",HeroFleet.GetPowerReserve(),"   fleet id",HeroFleet.GetId() );
 
 
         var buttonEvent_ar = [];
@@ -194,7 +220,7 @@ export class BattlePlanetModel{
             if (HeroFleet.GetFlagId() == flagIdHero)
             {
 
-                console.log("999096 =     ",HeroFleet.GetPowerReserve(),"   fleet id",HeroFleet.GetId() );
+                
                 if (HeroFleet.GetPowerReserve() > 0)
                 {
                     
@@ -202,8 +228,7 @@ export class BattlePlanetModel{
 
                     console.log("999097   GetIncrementUnit  HeroFleetSpeed = ",HeroFleetSpeed)
 
-                    let wayGotoModel_ar =
-                            modelStrategy.SelectVariationWayFleet(HeroFleet, wayRude_ar,
+                    let wayGotoModel_ar = modelStrategy.SelectVariationWayFleet(HeroFleet, wayRude_ar,
                             this.DispositionCountry_ar, shoalSeaBasa_ar,
                             islandDemoMemento.GetIslandArray(), prototypeHeroDemo, GridTile_ar);
 
@@ -264,8 +289,8 @@ export class BattlePlanetModel{
          
             let attack = !HeroFleet.GetAttackDone() && HeroFleet.GetPowerReserve() <= 0;
             
-			console.log("999103  attack   is.Disposi  = ",HeroFleet.GetAttackDone()," === ",HeroFleet.GetPowerReserve() );
-            console.log("999104  attack  PrintAll   attack = "+attack+" ^^ ^^^^^^^^^^^^^^^^^^   andStrategy = " );
+			console.log("999103  atta HeroFleet.GetAttackDone() = ",HeroFleet.GetAttackDone(),"    HeroFleet.GetPowerReserve() === ",HeroFleet.GetPowerReserve() );
+            console.log("999104  attack  Print   attack = ["+attack+"] ^^ ^^^^^^^^^^^^^^^^^^   andStrategy = " );
 
             if (attack)
             {

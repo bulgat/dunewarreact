@@ -72,7 +72,7 @@ export class ModelStrategy{
 		return fleetSacrifive;
 	}
 	GetHeroAll = function (FlagId,PrototypeHeroDemo) {
-		var prototypeHeroDemo=[];
+		let prototypeHeroDemo=[];
 		for (var i=0;i<PrototypeHeroDemo.length;i++){
 				
 			if(PrototypeHeroDemo[i].FlagId==FlagId){
@@ -95,10 +95,10 @@ export class ModelStrategy{
 				Island_ar, prototypeHeroDemo,
 				GridTile_ar) {
 					
-			let wayGotoSelectField = new WayGotoSelectField();
+			//let wayGotoSelectField = new WayGotoSelectField();
 
 			
-		return wayGotoSelectField.SelectVariationWayFleet(HeroFleet, wayRude_ar,
+		return new WayGotoSelectField().SelectVariationWayFleet(HeroFleet, wayRude_ar,
 				DispositionCountry_ar, ShoalSeaBasa_ar, Island_ar, prototypeHeroDemo,
 				GridTile_ar);
 				

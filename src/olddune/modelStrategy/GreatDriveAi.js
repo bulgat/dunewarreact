@@ -17,7 +17,8 @@ export class GreatDriveAi{
         ShoalSeaBasa_ar,
         BasaPurchaseUnitScience_ar,
         HeroMax,
-        GridTile_ar,GetIncrementUnitId) {
+        GridTile_ar,GetIncrementUnitId) 
+        {
             
             var mendMoveShip = new MendMoveShip();
             var CommandStrategy_ar = [];
@@ -151,6 +152,6 @@ export class GreatDriveAi{
             console.log( "100 countAnim return CommandStrategy_ar =",CommandStrategy_ar);
             console.log( "101 =  A     typeUnit = ",agentEventCommand,"   Fi " );
             return agentEventCommand;
-            //return CommandStrategy_ar;
+   
         };
 }

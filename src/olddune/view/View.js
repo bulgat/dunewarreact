@@ -7,9 +7,7 @@ import {TileBox} from "./TileBox";
 import {Point} from "../modelStrategy/Point";
 import {ButtonEvent} from "../model/ButtonEvent";
 import {CreateFleetFast} from "../modelStrategy/CreateFleetFast.js";
-import {ViewArmUnit} from "./ViewArmUnit.js";
-import {ViewTacticModel} from "./ViewTacticModel";
-import {ViewDrawInfantery } from './ViewDrawInfantery';
+
 import {ViewTactic} from './ViewTactic';
 import { BasicTile } from "../modelStrategy/BasicTile";
 
@@ -277,7 +275,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 		var IdHero = window._battlePlanetModel.GetSelectHeroId();
 
 		
-	
+	/*
 		let heroSel=null;
 		var pointHeroSel = null;
 		for( var i =0; i<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++)
@@ -293,14 +291,18 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 				break;
 			}
 		}
+	*/
+
+		let HeroSelectData = window._battlePlanetModel.GetHeroSelect(IdHero);
 	
-	
-	
-		   var modelEvent = new ButtonEvent();
-			modelEvent.HeroFleet = heroSel;
-			modelEvent.Point = pointHeroSel;
-			modelEvent.NameEvent = new ControllerConstant().SelectHero;
-			modelEvent.SelectHeroEnumerator = SelectHeroEnumerator
+		var modelEvent = new ButtonEvent();
+		//modelEvent.HeroFleet = heroSel;
+		//modelEvent.Point = pointHeroSel;
+		modelEvent.HeroFleet = HeroSelectData.HeroSelect;
+		modelEvent.Point = HeroSelectData.PointHeroSelect;
+
+		modelEvent.NameEvent = new ControllerConstant().SelectHero;
+		modelEvent.SelectHeroEnumerator = SelectHeroEnumerator
 		return modelEvent;
 	};
 	RefreshPathButtonEvent(){

@@ -15,7 +15,7 @@ function Like(props){
 } 
 
 function mapStateToProps(state){
-     console.log("===mapStateToProps >",state)
+     
      const {likeReducer} = state
      return (
          {like:likeReducer.like}

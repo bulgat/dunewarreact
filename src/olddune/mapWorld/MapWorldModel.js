@@ -42,9 +42,9 @@ export class MapWorldModel {
 			this._prototypeHeroDemo.GetHeroFleet()[y].move = false;
 			
 			this._prototypeHeroDemo.GetHeroFleet()[y].SetPowerReserve();
-			/*
+			
 			this._prototypeHeroDemo.GetHeroFleet()[y].SetAttackDone(false);
-			*/
+			
 			this._prototypeHeroDemo.GetHeroFleet()[y].PowerReserveChange(2);
 			this._prototypeHeroDemo.GetHeroFleet()[y].RefreshSpeed();
 			
@@ -548,8 +548,8 @@ export class MapWorldModel {
 		var idSelectHero = window._battlePlanetModel.GetSelectHeroId();
 		
 		
-		var indexSelectHero = window._battlePlanetModel.GetIndexHero(idSelectHero,nameHero_ar);
-		var newIndexSelectHero =indexSelectHero + buttonEvent.SelectHeroEnumerator;
+		let indexSelectHero = window._battlePlanetModel.GetIndexHero(idSelectHero,nameHero_ar);
+		let newIndexSelectHero =indexSelectHero + buttonEvent.SelectHeroEnumerator;
 
 		if (newIndexSelectHero>nameHero_ar.length-1){
 
@@ -560,7 +560,7 @@ export class MapWorldModel {
 			newIndexSelectHero=nameHero_ar.length-1;
 		}
 		
-		var newIdSelectHero = nameHero_ar[newIndexSelectHero].GetId();
+		let newIdSelectHero = nameHero_ar[newIndexSelectHero].GetId();
 		window._battlePlanetModel.SetSelectHeroId(newIdSelectHero);
 	};
 	SelectHero = function(buttonEvent)
@@ -612,7 +612,7 @@ export class MapWorldModel {
 		
 		var copyFleetGrid_ar = this.CopyHeroNameArray();
 
-//_battlePlanetModel.GridTile_ar = Grid_ar;
+
 let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel);
 
 
@@ -669,10 +669,9 @@ let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(windo
 			this._eventModel = eventModel;
 
 		}
-		//if (this.GetCommandStrategyMap.length== 0)
-		//{
+
 			this.CheckGlobalVictory();
-		//}
+
 		return this.GetCommandStrategyMap;
 	};
 	CopyHeroNameArray = function()

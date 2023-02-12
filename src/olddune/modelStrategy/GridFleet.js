@@ -87,7 +87,7 @@ export class GridFleet extends BasicTile {
 		{
 				armUnit.Speed =0;
 		});
-		this.maxSpeed = 0;
+		//this.maxSpeed = 0;
 		this.PowerReserve =0;
 	}
 	GetPowerReserve = function() {
@@ -113,29 +113,29 @@ export class GridFleet extends BasicTile {
 
 
 
-			if (this.ShipNameUnit.GetArmUnitArray()==undefined) {
-				return 1;
-			}
-			if (this.ShipNameUnit.GetArmUnitArray().length==0){
-				console.error("count arm in fleet L = "+this.ShipNameUnit.GetArmUnitArray().length);
-				return 1;
-			}
-			var localMaxSpeed = this.maxSpeed ;
+		if (this.ShipNameUnit.GetArmUnitArray()==undefined) {
+			return 1;
+		}
+		if (this.ShipNameUnit.GetArmUnitArray().length==0){
+			console.error("count arm in fleet L = "+this.ShipNameUnit.GetArmUnitArray().length);
+			return 1;
+		}
+		let localMaxSpeed = this.maxSpeed ;
 
-			console.log("0110 fl   = ",this.maxSpeed)
+		
 
-			this.ShipNameUnit.GetArmUnitArray().forEach (function(armUnit)
+		this.ShipNameUnit.GetArmUnitArray().forEach (function(armUnit)
+		{
+
+			
+
+			if (armUnit.Speed < localMaxSpeed)
 			{
-
-				console.log("0111     ни  ",localMaxSpeed," на  ",armUnit.Speed);
-
-				if (armUnit.Speed < localMaxSpeed)
-				{
-					localMaxSpeed = armUnit.Speed;
-				}
-			});
-			this.maxSpeed = localMaxSpeed;
-		console.log("0112 end   dex  speed = ",this.maxSpeed)
+				localMaxSpeed = armUnit.Speed;
+			}
+		});
+		//this.maxSpeed = localMaxSpeed;
+		console.log("0112 end  ["+this.ShipNameUnit.GetArmUnitArray()+"]  this.maxSpeed= ",this.maxSpeed)
 		return this.maxSpeed;
 
 	};

@@ -14,7 +14,7 @@ export class ExecuteCommandStrateg {
 		
 		new ModelStrategy().PerformCommandMoveFleet(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo, commandStrategy);
 	}
-	PerformAttackFleet=function( commandStrategy,CountTurn, GlobalParamsGale)
+	PerformAttackFleet=function( commandStrategy,CountTurn)
 	{
 		
 		//throw new Error("XXXXXXXXXXXXx");
@@ -25,11 +25,13 @@ export class ExecuteCommandStrateg {
 		// fiend attack
 		if (commandStrategy.AttackPlayer)
 		{
+			console.log("2051 Execu  commandStrategy  = ",commandStrategy)
 			// attack player
-			commandStrategy.GridFleet.SpotX = commandStrategy.GridFleetOldPoint.X;
-			commandStrategy.GridFleet.SpotY = commandStrategy.GridFleetOldPoint.Y;
+			commandStrategy.GetGridFleet().SpotX = commandStrategy.GridFleetOldPoint.X;
+			commandStrategy.GetGridFleet().SpotY = commandStrategy.GridFleetOldPoint.Y;
 
-			window._mapWorldModel.GotoCreateTactic(
+
+			window._battlePlanetModel._mapWorldModel.GotoCreateTactic(
 					commandStrategy.GetGridFleet().GetId(),
 					commandStrategy.GridFleetVictim.GetId(),
 					false,
@@ -39,8 +41,8 @@ export class ExecuteCommandStrateg {
 		else
 		{
 
-console.log("2051 Execute  commandStrategy.Grid = ")
-console.log("2052  DDDD    ");
+
+			console.log("2052  DDDD    ");
 			// attack fiend
 			window._battlePlanetModel._mapWorldModel.GotoCreateTactic(
 					commandStrategy.GridFleetVictim.GetId(),
