@@ -41,7 +41,8 @@ export class GridCrewScience extends GridCrewScienceShip{
 			sea,
 			idTypeShip,
 			Name,
-			UrlImage
+			UrlImage,
+			TehName
 			){
 				super();
 		this.GridCrewScience(idImage,
@@ -64,7 +65,8 @@ export class GridCrewScience extends GridCrewScienceShip{
 			sea,
 			idTypeShip,
 			Name,
-			UrlImage
+			UrlImage,
+			TehName
 			);
 	} ;
 	GridCrewScience = function(
@@ -88,7 +90,8 @@ export class GridCrewScience extends GridCrewScienceShip{
 			sea,
 			idTypeShip,
 			Name,
-			UrlImage
+			UrlImage,
+			TehName
 			)
 	{
 		this.IdImage = idImage;
@@ -113,6 +116,7 @@ export class GridCrewScience extends GridCrewScienceShip{
 		this.IdTypeShip = idTypeShip;
 		this.Name = Name;
 		this.UrlImage = UrlImage;
+		this.TehName = TehName;
 	};
 
 }

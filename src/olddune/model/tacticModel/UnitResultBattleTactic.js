@@ -7,7 +7,9 @@ export class UnitResultBattleTactic {
 	{
 
 		let armPsevdo = new ArmUnit(BasaPurchaseUnitScience_ar,
-				unit.GetUnit(), 0,window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel)
+				//unit.GetUnit(),
+				 0,window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel),
+				 unit.Name
 				);
 		armPsevdo.Level = unit.Level;
 		armPsevdo.SoundMusic = unit.SoundMusic;

@@ -146,7 +146,7 @@ export class View {
 		var islandDemoMemento = new IslandDemoMemento();
 		islandDemoMemento.Init();
 
-let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
+	let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),
 	battlePlanetModel.FlagIdHero,
 	battlePlanetModel.DispositionCountry_ar,

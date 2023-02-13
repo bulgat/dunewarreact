@@ -1,6 +1,7 @@
 import {BasicTile} from "./BasicTile.js";
 import {ShipUnit} from "./ShipUnit.js";
 import {ArmUnit} from "./ArmUnit.js";
+import { BasaPurchaseUnitScienceHelp } from "./BasaPurchaseUnitScienceHelp.js";
 
 export class GridFleet extends BasicTile {
 	FlagId=0;
@@ -15,9 +16,10 @@ export class GridFleet extends BasicTile {
 	maxSpeed = 1;
 	AttackDone=false;
 	TurnDone = false;
+	NameUnit;
 	GetIncrementUnitId;
 	BasaPurchaseUnitScience_ar;
-	constructor(x,y,flagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId) {
+	constructor(x,y,flagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,NameType) {
 
 		super(x,y);
 		this.GetIncrementUnitId = GetIncrementUnitId;
@@ -29,18 +31,22 @@ export class GridFleet extends BasicTile {
 
 		
 		this.Id = GetIncrementUnitId();
-	
-		this.type = Type;
-
+		this.NameUnit = NameType;
+		//let nameUnit =new BasaPurchaseUnitScienceHelp().ConvertIdInName(Type,BasaPurchaseUnitScience_ar)
+		console.log("009990 nameUnit =     Type= " )
+		let typeUnit = new BasaPurchaseUnitScienceHelp().GetUnitType(this.NameUnit,BasaPurchaseUnitScience_ar)
+		//this.type = Type;
+		console.log("009991     way =  ",typeUnit," typeUnit.ImageId = ", typeUnit.IdImage);
+		this.type = typeUnit.IdImage;
 
 
 		this.ShipNameUnit.SetArmUnitArray(
-		[new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
-		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
-		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
-		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
-		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
-		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId)
+		[new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),
+		new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),
+		new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),
+		new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),
+		new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),
+		new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit)
 		]
 		);
 
@@ -202,8 +208,8 @@ export class GridFleet extends BasicTile {
 	{
 		//var fleetCopy = new GridFleet(this.Name, this.SpotX, this.SpotY, this.FlagId, this.Image);
 
-		let fleetCopy = new GridFleet(this.SpotX, this.SpotY, this.FlagId,this.type,
-			this.BasaPurchaseUnitScience_ar,this.GetIncrementUnitId);
+		let fleetCopy = new GridFleet(this.SpotX, this.SpotY, this.FlagId,//this.type,
+			this.BasaPurchaseUnitScience_ar,this.GetIncrementUnitId,this.NameUnit);
 		fleetCopy.Id = this.Id;
 		fleetCopy.ShipNameUnit = new ShipUnit();
 

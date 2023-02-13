@@ -206,7 +206,7 @@ return new HeroSelectData(heroSel,pointHeroSel);
         {
             return [];
         }
-		console.log("999096 =     ",HeroFleet.GetPowerReserve(),"   fleet id",HeroFleet.GetId() );
+		
 
 
         var buttonEvent_ar = [];
@@ -226,14 +226,14 @@ return new HeroSelectData(heroSel,pointHeroSel);
                     
 					var wayRude_ar = modelStrategy.CreateVariationWay(HeroFleetSpeed);
 
-                    console.log("999097   GetIncrementUnit  HeroFleetSpeed = ",HeroFleetSpeed)
+                    
 
                     let wayGotoModel_ar = modelStrategy.SelectVariationWayFleet(HeroFleet, wayRude_ar,
                             this.DispositionCountry_ar, shoalSeaBasa_ar,
                             islandDemoMemento.GetIslandArray(), prototypeHeroDemo, GridTile_ar);
 
 
-                    console.log("999098  and = ",wayGotoModel_ar)
+                    
 					wayGotoModel_ar.forEach(function(wayPoint)
                     {
 						
@@ -282,7 +282,7 @@ return new HeroSelectData(heroSel,pointHeroSel);
 						}
                      
 					 });
-                     console.log("999099  Inc  wayGotoModel_ar = ", wayGotoModel_ar);
+                     
 				}
 				
             }

@@ -1,6 +1,7 @@
 import {GridFleet} from "./GridFleet.js";
 import {ShipUnit} from "./ShipUnit.js";
 import {ArmUnit} from "./ArmUnit.js";
+import { BasaPurchaseUnitScienceHelp } from "./BasaPurchaseUnitScienceHelp.js";
 
 export class CreateFleetFast{
 	GetFleetFast = function(SpotX, SpotY, FlagId, image,
@@ -48,18 +49,10 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 	
 	HeroFleetAdd(X, Y,Type,FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo)
 	{
+		let nameUnit =new BasaPurchaseUnitScienceHelp().ConvertIdInName(Type,BasaPurchaseUnitScience_ar)
+		let nameHero = new GridFleet(X, Y, FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,nameUnit);
 
-		let nameHero = new GridFleet(X, Y, FlagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
-
-		/*
-		var nameHero = _mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(
-		2, //spot x
-		3, //spot y
-		FlagId,			//_battlePlanetModel.FlagIdHero,//FlagId
-					new InitGlobalParams().GetOfferNameHero(),
-					Type, //0, //UnitTypeId
-					_battlePlanetModel.GetBasaPurchaseUnitScience(), false, 0));
-		*/
+		
 
 		nameHero.SetPoint(X,Y);
 		nameHero.type=Type;

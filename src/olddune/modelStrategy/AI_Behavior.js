@@ -43,7 +43,8 @@ export class AI_Behavior{
 			//var nameHero = new GridFleet(X, Y, FlagId,Type);
 			
 			let gridFleet = new GridFleet(NameHeroFleet.x,NameHeroFleet.y,
-				NameHeroFleet.GetFlagId(),NameHeroFleet.type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
+				NameHeroFleet.GetFlagId(),//NameHeroFleet.type,
+				BasaPurchaseUnitScience_ar,GetIncrementUnitId,NameHeroFleet.NameUnit);
 			
 			var searchImminenFleet = new SearchImminenFleet();
 			
