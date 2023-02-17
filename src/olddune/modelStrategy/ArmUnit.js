@@ -58,6 +58,10 @@ export class ArmUnit extends ArmUnitShip {
 	RefreshSpeed=function(){
 		this.Speed =1;
 	}
+	GetUnit = function()
+	{
+		return this.TypeShip;
+	};
 	GetAttack = function() {
 		return this.Attack;
 	};

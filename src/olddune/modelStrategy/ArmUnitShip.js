@@ -28,10 +28,7 @@ export class ArmUnitShip {
 	{
 		this.Unit = Value;
 	};
-	GetUnit = function()
-	{
-		return this.Unit;
-	};
+	
 	GetTypeShip = function()
 	{
 		return this.TypeShip;

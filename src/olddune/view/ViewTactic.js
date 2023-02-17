@@ -197,9 +197,10 @@ export class ViewTactic{
 
 
 
-		let typeUnit =ArmUnit.ArmUnit.GetUnit();
-		
+		//let typeUnit =ArmUnit.ArmUnit.GetUnit();
+		let typeUnit =ArmUnit.ArmUnit.TypeShip ;
 	
+console.log("0112 e p  ",ArmUnit," type=  TYPE  ",typeUnit ,"  TypeShip = ",ArmUnit.ArmUnit.TypeShip )
 
 
 		let imageUnitX = new View()._unitTypesList[typeUnit].sprite[0].x;

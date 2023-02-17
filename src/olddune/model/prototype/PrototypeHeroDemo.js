@@ -15,7 +15,9 @@ export class PrototypeHeroDemo{
 	};
 	HeroFleetRemove = function(gridFleet)
 	{
-		this._NameHeroFleet_ar.Remove(gridFleet);
+		//this._NameHeroFleet_ar.Remove(gridFleet);
+		this._NameHeroFleet_ar = this._NameHeroFleet_ar.filter(a=>a.GetId()!=gridFleet.GetId());
+
 	};
 	HeroFleetAddAll=function(gridFleet_ar)
 	{

@@ -37,10 +37,10 @@ export class GridFleet extends BasicTile {
 		let typeUnit = new BasaPurchaseUnitScienceHelp().GetUnitType(this.NameUnit,BasaPurchaseUnitScience_ar)
 		//this.type = Type;
 		
-		console.log("99      wa =  ",typeUnit," typeUnit.ImageId = ", typeUnit.IdImageType);
+		
 		this.type = typeUnit.IdImageType;
 		this.Type = typeUnit.IdImageType;
-console.log("00999  Unit =     Type= ",this.type)
+
 
 		this.ShipNameUnit.SetArmUnitArray(
 		[new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),

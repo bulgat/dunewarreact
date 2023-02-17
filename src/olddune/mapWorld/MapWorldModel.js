@@ -322,7 +322,23 @@ export class MapWorldModel {
 		console.log("0111 EndBattleTactic   "+EventButton.IdHero+" ? nd  =",EventButton )
 		fleet.SetAttackDone(true);
 		fleet.SetNullPowerReserve();
-		console.log("0112  end  art  EndBattleTactic= " ,fleet )
+		//remove null unit
+		this.RemoveNullUnit();
+		
+	}
+	RemoveNullUnit(){
+		console.log("0112  end    EndBattleTactic= " ,this._prototypeHeroDemo.GetHeroFleet().length )
+		let indexRemove =0;
+		for(let item of this._prototypeHeroDemo.GetHeroFleet()){
+			console.log("20tem   d =  ",item.GetCountUnitArm());
+			if(item.GetCountUnitArm()==0){
+				console.log("009 nit =     Type= " )
+				this._prototypeHeroDemo.HeroFleetRemove(item)
+				//indexRemove
+			}
+			indexRemove++;
+		}
+		console.log("99      wa =  ",this._prototypeHeroDemo.GetHeroFleet().length);
 	}
 	MeleeShipReleaseDead = function(EventButton)
 	{

@@ -58,7 +58,7 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 		nameHeroFleet.SetPoint(X,Y);
 		nameHeroFleet.type=nameHeroFleet.GetType();
 		;
-		console.log("209 "+nameHeroFleet.GetFirstArmUnit().GetIdTypeShip().TypeShip+" item  .",nameHeroFleet.GetType()," id = [" ,nameHeroFleet.type+"]" );
+		
 		//nameHero.type=Type;
 		nameHeroFleet.position=this.GetPositionPointArray(X, Y);
 		nameHeroFleet.tileToPosition=[window.tileW*X,window.tileH*Y];

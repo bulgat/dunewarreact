@@ -396,9 +396,7 @@ export class View {
 				let position = new CreateFleetFast().GetPositionPointArray(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotX,
 				 window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].SpotY);
 	
-				console.log("0112 e ",unitIconSet,"Sp ",unitType,"  e type=",window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].type,
-				" TYPE  ",window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFirstArmUnit().GetIdTypeShip())
-
+				
 				ctx.drawImage(unitIconSet,
 					unitType.sprite[0].x, unitType.sprite[0].y, 
 					unitType.sprite[0].w, unitType.sprite[0].h,
