@@ -33,12 +33,14 @@ export class GridFleet extends BasicTile {
 		this.Id = GetIncrementUnitId();
 		this.NameUnit = NameType;
 		//let nameUnit =new BasaPurchaseUnitScienceHelp().ConvertIdInName(Type,BasaPurchaseUnitScience_ar)
-		console.log("009990 nameUnit =     Type= " )
+		
 		let typeUnit = new BasaPurchaseUnitScienceHelp().GetUnitType(this.NameUnit,BasaPurchaseUnitScience_ar)
 		//this.type = Type;
-		console.log("009991     way =  ",typeUnit," typeUnit.ImageId = ", typeUnit.IdImage);
-		this.type = typeUnit.IdImage;
-
+		
+		console.log("99      wa =  ",typeUnit," typeUnit.ImageId = ", typeUnit.IdImageType);
+		this.type = typeUnit.IdImageType;
+		this.Type = typeUnit.IdImageType;
+console.log("00999  Unit =     Type= ",this.type)
 
 		this.ShipNameUnit.SetArmUnitArray(
 		[new ArmUnit(BasaPurchaseUnitScience_ar, null,GetIncrementUnitId,this.NameUnit),
@@ -51,6 +53,9 @@ export class GridFleet extends BasicTile {
 		);
 
 	};
+	GetType(){
+		return this.type;
+	}
 	SetPoint = function(X,Y) {
 		this.SpotX =X;
 		this.SpotY =Y;
@@ -141,7 +146,7 @@ export class GridFleet extends BasicTile {
 			}
 		});
 		//this.maxSpeed = localMaxSpeed;
-		console.log("0112 end  ["+this.ShipNameUnit.GetArmUnitArray()+"]  this.maxSpeed= ",this.maxSpeed)
+		
 		return this.maxSpeed;
 
 	};
@@ -192,6 +197,9 @@ export class GridFleet extends BasicTile {
 
 		return this.ShipNameUnit.GetArmUnitArray().length;
 	};
+	GetFirstArmUnit(){
+		return this.ShipNameUnit.GetArmUnitArray()[0];
+	}
 	SetTurnDone = function(turnDone)
 	{
 		this.TurnDone = turnDone;

@@ -18,10 +18,10 @@ export class GridCrewScience extends GridCrewScienceShip{
 	SoundMove;
 	Cost = 1;
 	LongRange;
-	IdImage;
+	IdImageType;
 	Sea;
 	
-	constructor(idImage,
+	constructor(idImageType,
 			attack,
 			defence,
 			bonusAttack,
@@ -45,7 +45,7 @@ export class GridCrewScience extends GridCrewScienceShip{
 			TehName
 			){
 				super();
-		this.GridCrewScience(idImage,
+		this.GridCrewScience(idImageType,
 			attack,
 			defence,
 			bonusAttack,
@@ -70,7 +70,7 @@ export class GridCrewScience extends GridCrewScienceShip{
 			);
 	} ;
 	GridCrewScience = function(
-			idImage,
+			idImageType,
 			attack,
 			defence,
 			bonusAttack,
@@ -94,7 +94,7 @@ export class GridCrewScience extends GridCrewScienceShip{
 			TehName
 			)
 	{
-		this.IdImage = idImage;
+		this.IdImageType = idImageType;
 		this.Attack = attack;
 		this.Defence = defence;
 		this.BonusAttack = bonusAttack;

@@ -4,8 +4,7 @@ import {BuilderShipCustom} from "../model/tacticModel/BuilderShipCustom.js";
 
 export class ArmUnitShip {
 	
-	constructor() {
-	};
+	
 	
 	Id = 0;
 	HeartPowerState;
@@ -23,11 +22,7 @@ export class ArmUnitShip {
 	Unit = 1;
 	Sea;
 
-	ArmUnitShip = function()
-	{
-		
-
-
+	constructor() {
 	};
 	SetUnit = function(Value)
 	{

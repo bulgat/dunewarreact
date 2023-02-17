@@ -47,26 +47,30 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 		shipPlayer.GetArmUnitArray().push(new ArmUnit(BasaPurchaseUnitScience_ar, UnitTypeId, customShip));
 	};
 	
-	HeroFleetAdd(X, Y,Type,FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo)
+	HeroFleetAdd(X, Y,FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,TypeName)
 	{
-		let nameUnit =new BasaPurchaseUnitScienceHelp().ConvertIdInName(Type,BasaPurchaseUnitScience_ar)
-		let nameHero = new GridFleet(X, Y, FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,nameUnit);
+		let nameUnit =TypeName;
+		//let nameUnit =new BasaPurchaseUnitScienceHelp().ConvertIdInName(Type,BasaPurchaseUnitScience_ar)
+		let nameHeroFleet = new GridFleet(X, Y, FlagId,BasaPurchaseUnitScience_ar,GetIncrementUnitId,nameUnit);
 
 		
 
-		nameHero.SetPoint(X,Y);
-		nameHero.type=Type;
-		nameHero.position=this.GetPositionPointArray(X, Y);
-		nameHero.tileToPosition=[window.tileW*X,window.tileH*Y];
-		nameHero.tileFrom=[X,Y];
-		nameHero.tileTo=[X,Y];
-		nameHero.move= false;
-		nameHero.flagId=FlagId;
-		nameHero.SetId(window._countHeroIndex);
+		nameHeroFleet.SetPoint(X,Y);
+		nameHeroFleet.type=nameHeroFleet.GetType();
+		;
+		console.log("209 "+nameHeroFleet.GetFirstArmUnit().GetIdTypeShip().TypeShip+" item  .",nameHeroFleet.GetType()," id = [" ,nameHeroFleet.type+"]" );
+		//nameHero.type=Type;
+		nameHeroFleet.position=this.GetPositionPointArray(X, Y);
+		nameHeroFleet.tileToPosition=[window.tileW*X,window.tileH*Y];
+		nameHeroFleet.tileFrom=[X,Y];
+		nameHeroFleet.tileTo=[X,Y];
+		nameHeroFleet.move= false;
+		nameHeroFleet.flagId=FlagId;
+		nameHeroFleet.SetId(window._countHeroIndex);
 
 		//add arm
 
-		prototypeHeroDemo.GetHeroFleet().push(nameHero);
+		prototypeHeroDemo.GetHeroFleet().push(nameHeroFleet);
 
 
 		window._countHeroIndex++;

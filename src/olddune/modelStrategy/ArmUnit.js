@@ -41,7 +41,8 @@ export class ArmUnit extends ArmUnitShip {
 		this.LongRange = unitScience.LongRange;
 		this.Sea = unitScience.Sea;
 
-
+		this.TypeShip = unitScience.IdTypeShip;
+		this.IdTypeShip= unitScience.IdTypeShip;
 
 
 		// ship sea

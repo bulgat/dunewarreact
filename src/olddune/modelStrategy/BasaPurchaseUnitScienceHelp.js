@@ -4,7 +4,7 @@ export class BasaPurchaseUnitScienceHelp{
             if(itemUnit.TehName===TehName){
                 return itemUnit;
             }
-            console.log("99909 itemUnit.TehName = "+itemUnit.TehName+" id" ,itemUnit );
+            
         }
         throw new Error("Not teh name");
     };
@@ -14,9 +14,9 @@ export class BasaPurchaseUnitScienceHelp{
                 
                 return itemUnit.TehName;
             }
-            console.log(Id,"   99 eet id" ,itemUnit );
+            //console.log(Id,"   99 eet id" ,itemUnit );
         }
-        console.log("999097   GetIncrementUnit  HeroFleet  Id = ",Id)
+        //console.log("999097   GetIncrementUnit  HeroFleet  Id = ",Id)
         throw new Error("Not id teh Id = ",Id);
     }
     
