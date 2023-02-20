@@ -319,7 +319,7 @@ export class MapWorldModel {
 	{
 		var fleet = this._prototypeHeroDemo.GetFleetWithId(EventButton.IdHero);
 		
-		console.log("0111 EndBattleTactic   "+EventButton.IdHero+" ? nd  =",EventButton )
+		//console.log("0111 EndBattleTactic   "+EventButton.IdHero+" ? nd  =",EventButton )
 		fleet.SetAttackDone(true);
 		fleet.SetNullPowerReserve();
 		//remove null unit
@@ -327,18 +327,18 @@ export class MapWorldModel {
 		
 	}
 	RemoveNullUnit(){
-		console.log("0112  end    EndBattleTactic= " ,this._prototypeHeroDemo.GetHeroFleet().length )
+		//console.log("0112  end    EndBattleTactic= " ,this._prototypeHeroDemo.GetHeroFleet().length )
 		let indexRemove =0;
 		for(let item of this._prototypeHeroDemo.GetHeroFleet()){
-			console.log("20tem   d =  ",item.GetCountUnitArm());
+			//console.log("20tem   d =  ",item.GetCountUnitArm());
 			if(item.GetCountUnitArm()==0){
-				console.log("009 nit =     Type= " )
+				//console.log("009 nit =     Type= " )
 				this._prototypeHeroDemo.HeroFleetRemove(item)
 				//indexRemove
 			}
 			indexRemove++;
 		}
-		console.log("99      wa =  ",this._prototypeHeroDemo.GetHeroFleet().length);
+		//console.log("99      wa =  ",this._prototypeHeroDemo.GetHeroFleet().length);
 	}
 	MeleeShipReleaseDead = function(EventButton)
 	{
@@ -415,7 +415,7 @@ export class MapWorldModel {
 		var meleeShip = new MeleeShip();
 		
 		
-		console.log("EventButton = ",EventButton);
+		//console.log("EventButton = ",EventButton);
 		
 		return meleeShip.SetEventEndTactic(
 			EventButton.FleetPlayer,
@@ -575,7 +575,7 @@ export class MapWorldModel {
 		
 			newIndexSelectHero=nameHero_ar.length-1;
 		}
-		
+		console.log( "204 buttonEvent =",buttonEvent,"  ty  nameHero_ar L= ",nameHero_ar.length," s newIndexSelectHero = ",newIndexSelectHero);
 		let newIdSelectHero = nameHero_ar[newIndexSelectHero].GetId();
 		window._battlePlanetModel.SetSelectHeroId(newIdSelectHero);
 	};
@@ -681,7 +681,7 @@ let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(windo
 
 			// Ai 
 			// attack player/ 
-			//GotoTactic(eventModel);
+	
 			this._eventModel = eventModel;
 
 		}

@@ -95,6 +95,7 @@ export class GridCrewScience extends GridCrewScienceShip{
 			)
 	{
 		this.IdImageType = idImageType;
+		this.IdTypeShip = idImageType;
 		this.Attack = attack;
 		this.Defence = defence;
 		this.BonusAttack = bonusAttack;
@@ -113,7 +114,7 @@ export class GridCrewScience extends GridCrewScienceShip{
 		this.Cost = cost;
 
 		this.Sea = sea;
-		this.IdTypeShip = idTypeShip;
+		
 		this.Name = Name;
 		this.UrlImage = UrlImage;
 		this.TehName = TehName;

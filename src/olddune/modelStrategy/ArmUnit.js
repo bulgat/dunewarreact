@@ -33,16 +33,17 @@ export class ArmUnit extends ArmUnitShip {
 	
 		this.SetUnit(unitScience.IdImage);
 
-		//console.log( "204  = =",GetIncrementUnitId);
+		
 		this.Id = GetIncrementUnitId();
+		
 		
 		this.Speed = unitScience.StrategySpeed;
 		this.SoundMusic = unitScience.SoundMusic;
 		this.LongRange = unitScience.LongRange;
 		this.Sea = unitScience.Sea;
 
-		this.TypeShip = unitScience.IdTypeShip;
-		this.IdTypeShip= unitScience.IdTypeShip;
+		this.TypeShip = unitScience.IdImageType		;
+		this.IdTypeShip= unitScience.IdImageType		;
 
 
 		// ship sea

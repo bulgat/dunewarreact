@@ -115,6 +115,7 @@ tactic scenario
 
 
 	ScenarioTacticBattle(){
+		console.log("Fi Inde L=",this.heroPlayer);
 		this._timeArmPlayerList = this.ScenarioTacticCreateList (this.heroPlayer);
 		this._timeArmFiendList= this.ScenarioTacticCreateList (this.heroFiend);
 	}
@@ -143,7 +144,7 @@ tactic scenario
 		return this._timeArmPlayerList[Index];
 	}
 	GetTimeArmUnitFiend = function(Index) {
-		//console.log("Fi Index = "+Index+'  L='+this._timeArmPlayerList.length)
+		
 		return this._timeArmFiendList[Index];
 	}
 

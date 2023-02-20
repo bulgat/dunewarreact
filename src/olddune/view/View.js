@@ -95,10 +95,7 @@ export class View {
 	MouseDownPathActionFunction = function (IdPath,buttonEvent_ar)
 	{
 		let idPathHero = window._battlePlanetModel.GetSelectHeroId();
-
 		let buttonPathEvent_ar = this.GetButtonEventPathList(window._battlePlanetModel.GetSelectHeroId());
-
-
 
 		buttonPathEvent_ar.forEach (function(buttonEvent)
         {
@@ -131,8 +128,8 @@ export class View {
 
 		
 
-        var buttonEvent_ar = this.GetButtonEventPathList(selectHeroId);
-        var count=0;
+        let buttonEvent_ar = this.GetButtonEventPathList(selectHeroId);
+        let count=0;
         buttonEvent_ar.forEach (function (item) {
 
             count++;
@@ -275,29 +272,10 @@ export class View {
 		var IdHero = window._battlePlanetModel.GetSelectHeroId();
 
 		
-	/*
-		let heroSel=null;
-		var pointHeroSel = null;
-		for( var i =0; i<window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length;i++)
-		{
-			var hero = window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i];
-	
-	
-			var pointHero = new Point(hero.SpotX, hero.SpotY);
-			if (hero.GetId() == IdHero) {
-				heroSel = hero;
-				pointHeroSel = pointHero;
-	
-				break;
-			}
-		}
-	*/
 
 		let HeroSelectData = window._battlePlanetModel.GetHeroSelect(IdHero);
 	
 		var modelEvent = new ButtonEvent();
-		//modelEvent.HeroFleet = heroSel;
-		//modelEvent.Point = pointHeroSel;
 		modelEvent.HeroFleet = HeroSelectData.HeroSelect;
 		modelEvent.Point = HeroSelectData.PointHeroSelect;
 
@@ -323,7 +301,7 @@ export class View {
 				line+=CreateMap_ar[GridRow][GridLine] ;
 
 			}
-			console.log(" @@@@ PrintMap =  "+line  );
+			console.console.warn("PrintMap =  "+line  );
 		}
 	};
 	InitPathButtonEventArray() {

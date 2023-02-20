@@ -13,7 +13,7 @@ export class GridFleet extends BasicTile {
 	type =0;
 	StaticLongRange =0;
 	PowerReserve = 1;
-	maxSpeed = 1;
+	maxSpeed = 9;
 	AttackDone=false;
 	TurnDone = false;
 	NameUnit;
@@ -133,10 +133,11 @@ export class GridFleet extends BasicTile {
 		}
 		let localMaxSpeed = this.maxSpeed ;
 
-		
-
+		console.log(" @@@@ Print localMaxSpeed =  "+localMaxSpeed );
+/*
 		this.ShipNameUnit.GetArmUnitArray().forEach (function(armUnit)
 		{
+
 
 			
 
@@ -145,9 +146,17 @@ export class GridFleet extends BasicTile {
 				localMaxSpeed = armUnit.Speed;
 			}
 		});
+*/
+		for(var armUnit of this.ShipNameUnit.GetArmUnitArray()){
+			if (armUnit.Speed < localMaxSpeed)
+			{
+				localMaxSpeed = armUnit.Speed;
+			}
+		}
+
 		//this.maxSpeed = localMaxSpeed;
-		
-		return this.maxSpeed;
+		console.log("0222 unitScience.StrategySpeed =  "+this.maxSpeed )
+		return localMaxSpeed;
 
 	};
 	

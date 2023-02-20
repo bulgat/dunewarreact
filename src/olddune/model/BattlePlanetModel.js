@@ -156,7 +156,7 @@ return new HeroSelectData(heroSel,pointHeroSel);
 		
         let gridFleetSpeed = gridFleet.GetSpeed();
 		
-        console.log("0110 gridFleetSpeed = ",gridFleetSpeed)
+        console.log("0110   gridFleetSpeed = ",gridFleetSpeed)
    
         if (SpeedStatic)
         {

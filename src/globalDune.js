@@ -147,7 +147,7 @@ window.onload = function () {
 	LoadImageManager.tankUnitScreen = new Image();
 	LoadImageManager.tankUnitScreen.src = _tankUnitURL;
 	LoadImageManager.tankUnitScreen.onerror = function () {
-		//alert(_tankUnitURL+" Failed loading tileset.");
+
 		console.error(_tankUnitURL + " Failed loading tileset.");
 	};
 	LoadImageManager.tankUnitScreen.onload = function () {
@@ -158,7 +158,7 @@ window.onload = function () {
 	LoadImageManager.infanteryUnitAnim = new Image();
 	LoadImageManager.infanteryUnitAnim.src = _infanteryUnitURL;
 	LoadImageManager.infanteryUnitAnim.onerror = function () {
-		//alert(_infanteryUnitURL+" Failed loading tileset.");
+
 		console.error(_infanteryUnitURL + " Failed loading tileset.");
 	};
 	LoadImageManager.infanteryUnitAnim.onload = function () {
@@ -170,7 +170,7 @@ window.onload = function () {
 	LoadImageManager.explodeUnitAnim = new Image();
 	LoadImageManager.explodeUnitAnim.src = _explodeUnitURL;
 	LoadImageManager.explodeUnitAnim.onerror = function () {
-		//alert(_explodeUnitURL+" Failed loading tileset.");
+	
 		console.error(_explodeUnitURL + " Failed loading tileset.");
 	};
 	LoadImageManager.explodeUnitAnim.onload = function () {
@@ -252,7 +252,7 @@ window.onload = function () {
 							if (island.SpotX ===_tileBox_ar[i].SpotX && island.SpotY ===_tileBox_ar[i].SpotY) 
 							{
 								
-								//this.ClickTownCard();
+						
 								window.ClickTownCard(island.Name,island.Id);
 							}
 						}

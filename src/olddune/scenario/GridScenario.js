@@ -28,17 +28,18 @@ export class GridScenario{
 		new CreateFleetFast().HeroFleetAdd(1, 4, FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"infant");
 		new CreateFleetFast().HeroFleetAdd(1, 6, FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"hTank");
 		new CreateFleetFast().HeroFleetAdd(1, 8, FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"mTank");
+		new CreateFleetFast().HeroFleetAdd(2, 9, FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
 
 		new CreateFleetFast().HeroFleetAdd(4, 2, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
 
 		new CreateFleetFast().HeroFleetAdd(5, 2, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"infant");
-		new CreateFleetFast().HeroFleetAdd(2, 1, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"infant");
-		new CreateFleetFast().HeroFleetAdd(2, 4, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
-		new CreateFleetFast().HeroFleetAdd(1, 3, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"rTank");
+		new CreateFleetFast().HeroFleetAdd(7, 1, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"infant");
+		new CreateFleetFast().HeroFleetAdd(8, 4, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
+		new CreateFleetFast().HeroFleetAdd(3, 3, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"rTank");
 		new CreateFleetFast().HeroFleetAdd(9, 1, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
 
-		new CreateFleetFast().HeroFleetAdd(1, 0, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
-		new CreateFleetFast().HeroFleetAdd(0, 1, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
+		new CreateFleetFast().HeroFleetAdd(4, 0, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
+		new CreateFleetFast().HeroFleetAdd(6, 1, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"car");
 		new CreateFleetFast().HeroFleetAdd(3, 5, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"infant");
 		new CreateFleetFast().HeroFleetAdd(7, 11, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"rTank");
 		new CreateFleetFast().HeroFleetAdd(11, 11, 1,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo,"rTank");
