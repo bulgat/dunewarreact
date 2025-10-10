@@ -1,4 +1,4 @@
-name: dunewar_react
+name: run
 on: push
 jobs:
     lint:

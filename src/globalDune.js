@@ -60,22 +60,7 @@ var _battleTerra = {
     GridFleetVictimId: 0
 };
 new CreateGridScenario().AddCountry();
-/*
-window._tileTypes = {
-0:{colour:"#685b48", sprite:[{x:0,y:0,w:16,h:16}]},
-1:{colour:"#5aa457", sprite:[{x:16,y:0,w:16,h:16}]},
-2:{colour:"#e8bd7a", sprite:[{x:32,y:0,w:16,h:16}]},
-3:{colour:"#286625", sprite:[{x:48,y:0,w:16,h:16}]},
-4:{colour:"#678fd9", sprite:[{x:64,y:0,w:16,w:16,h:16}]},
-5:{colour:"#678fd9", sprite:[{x:256,y:48,w:16,w:16,h:16}]},
-6:{colour:"#678fd9", sprite:[{x:16*39,y:16*2,w:16,w:16,h:16}]},
-7:{colour:"#678fd9", sprite:[{x:16*35,y:16*4,w:16,w:16,h:16}]},
-8:{colour:"#678fd9", sprite:[{x:16*40,y:16*2,w:16,w:16,h:16}]},
-9:{colour:"#678fd9", sprite:[{x:16*43,y:16*9,w:16,w:16,h:16}]},
-10:{colour:"move", sprite:[{x:16*42,y:16*9,w:16,w:16,h:16}]},
-11:{colour:"attack", sprite:[{x:16*41,y:16*9,w:16,w:16,h:16}]}
-};
-*/
+
 var _unitTypes = {
     0: { colour: "#685b48", sprite: [{ x: 0, y: 0, w: 32, h: 32 }] },
     1: { colour: "#685b48", sprite: [{ x: 32, y: 0, w: 32, h: 32 }] },
@@ -100,7 +85,6 @@ function Character() {
     this.dimension = [30, 30];
     this.position = [45, 45];
     this.delayMove = 7700;
-    //this.direction;
     this.SpotX = 0;
     this.SpotY = 0;
     this.sprites = {};
@@ -127,7 +111,6 @@ function FillGrid() {
 window._ViewImage = new ViewImage();
 
 let unitIconSet;
-//let _screenList;
 let infanteryUnitAnim;
 let tankUnitScreen;
 let explodeUnitAnim;
@@ -164,7 +147,6 @@ window.onload = function () {
     tankUnitScreen = new Image();
     tankUnitScreen.src = _tankUnitURL;
     tankUnitScreen.onerror = function () {
-        //alert(_tankUnitURL+" Failed loading tileset.");
         console.error(_tankUnitURL + " Failed loading tileset.");
     };
     tankUnitScreen.onload = function () {
