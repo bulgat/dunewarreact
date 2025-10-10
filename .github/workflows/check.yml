@@ -4,7 +4,9 @@ jobs:
     lint:
         runs-on: ubuntu-latest
         steps:
-            name: install deps
-            run: npm install
-            -name: run
-            -run: npm run start
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: install deps
+              run: npm install
+            - name: run
+              run: npm run start
