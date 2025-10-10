@@ -2,9 +2,9 @@ name: dunewar_react
 on: push
 jobs:
     lint:
-        runs: ubuntu-latest
+        runs-on: ubuntu-latest
         steps:
-           -name: Install deps
-            run: npm install
-           -name: run
-            run: npm run start
+        - name: Install deps
+            run:npm install
+           -name:run
+            run:npm run start
