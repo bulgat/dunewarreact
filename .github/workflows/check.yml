@@ -26,3 +26,8 @@ jobs:
               run: npm install
             - name: run
               run: npm run start
+    secret:
+        runs-on: ubuntu-latest
+        steps:
+           - name: print-secret
+             run: echo ${{ secret.TEST}}
