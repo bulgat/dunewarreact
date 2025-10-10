@@ -1,9 +1,0 @@
-name: run
-on: push
-jobs:lint:
-runs-on: ubuntu-latest
-steps:
-- name: Install deps
-    runs:npm install
-    -name:run
-    run:npm run start
