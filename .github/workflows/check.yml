@@ -11,6 +11,7 @@ jobs:
             - name: run
               run: npm run start
     test:
+        needs: [lint]
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
