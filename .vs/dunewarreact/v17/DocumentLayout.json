@@ -34,8 +34,7 @@
               "RelativeToolTip": "src\\globalDune.js",
               "ViewState": "AgIAANYAAAAAAAAAAAAgwJQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-10T13:26:24.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T13:26:24.532Z"
             },
             {
               "$type": "Document",
@@ -47,8 +46,7 @@
               "RelativeToolTip": "src\\duneHide.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-10-10T13:26:19.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T13:26:19.159Z"
             },
             {
               "$type": "Document",
@@ -56,8 +54,8 @@
               "Title": "check.yml",
               "DocumentMoniker": "C:\\Users\\Pizza\\Documents\\GitHub\\dunewarreact\\.github\\workflows\\check.yml",
               "RelativeDocumentMoniker": ".github\\workflows\\check.yml",
-              "ToolTip": "C:\\Users\\Pizza\\Documents\\GitHub\\dunewarreact\\.github\\workflows\\check.yml*",
-              "RelativeToolTip": ".github\\workflows\\check.yml*",
+              "ToolTip": "C:\\Users\\Pizza\\Documents\\GitHub\\dunewarreact\\.github\\workflows\\check.yml",
+              "RelativeToolTip": ".github\\workflows\\check.yml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
               "WhenOpened": "2025-10-10T13:23:15.934Z",
@@ -69,6 +67,10 @@
           "DockedWidth": 162,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
@@ -88,10 +90,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{007a3a6b-b5b2-454d-a2bd-cf929f989be2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         }
