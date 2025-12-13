@@ -16,7 +16,7 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetVersion")]
         public string GetVersion()
         {
-            return "Version = 890ljklj";
+            return "1.0.0";
         }
 
         [HttpGet("GetUnitList")]
