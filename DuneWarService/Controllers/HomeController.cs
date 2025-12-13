@@ -13,13 +13,17 @@ namespace DuneWarSpeed.Controllers
         {
             _logger = logger;
         }
-        [HttpGet(Name = "GetVersion")]
+        [HttpGet("GetVersion")]
         public string GetVersion()
         {
             return "Version = 890ljklj";
         }
 
- 
+        [HttpGet("GetUnitList")]
+        public string GetUnitList()
+        {
+            return "Version = 890 j";
+        }
 
     }
 }
