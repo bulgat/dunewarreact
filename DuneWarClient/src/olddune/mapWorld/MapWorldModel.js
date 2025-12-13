@@ -483,7 +483,6 @@ export class MapWorldModel {
 		
 		var copyFleetGrid_ar = this.CopyHeroNameArray();
 
-//_battlePlanetModel.GridTile_ar = Grid_ar;
 let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel);
 
 
@@ -492,7 +491,7 @@ let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(windo
 						window._battlePlanetModel.DispositionCountry_ar,
 						window._battlePlanetModel.FlagIdHero,
 						copyFleetGrid_ar,
-						Grid_ar,//_battlePlanetModel.GridTile_ar,
+						Grid_ar,
 						window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray(),
 						window._battlePlanetModel.ShoalSeaBasa_ar,
 						window._battlePlanetModel.GetBasaPurchaseUnitScience(),
@@ -500,8 +499,6 @@ let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(windo
 						this.GetCommandStrategyMap,
 						window._battlePlanetModel.GridTile_ar,
 						getIncrementUnitId
-						//window._battlePlanetModel.GetIncrementUnitId.bind(window._battlePlanetModel
-							//)
 				);
 
 		
@@ -512,38 +509,23 @@ let getIncrementUnitId = window._battlePlanetModel.GetIncrementUnitId.bind(windo
 		}
 
 		this._commandStrategyMap_ar = eventModel.CommandStrategy_ar;
-		//this._commandStrategyMap_ar = eventModel;
-
-		
-		
 
 		if (this.GetCommandStrategyMap==undefined){
 			this._commandStrategyMap_ar = [];
 		}
 
 		// input command
-		this._commandStrategyMap_ar.forEach (function(commandStrategy)
-		{
-			
-			if (commandStrategy.GetGridFleet() === null)
-			{
-				//Debug.Log("unknow command GridFleet  ");
-			}
-
-		});
 		if (eventModel != null)
 		{
 
 			// Ai 
 			// attack player/ 
-			//GotoTactic(eventModel);
 			this._eventModel = eventModel;
 
 		}
-		//if (this.GetCommandStrategyMap.length== 0)
-		//{
+
 			this.CheckGlobalVictory();
-		//}
+
 		return this.GetCommandStrategyMap;
 	};
 	CopyHeroNameArray = function()

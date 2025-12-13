@@ -197,18 +197,7 @@ var player = new Character();
 
 function HeroFleetAdd(X, Y,Type,FlagId)
 {
-
 	var nameHero = new GridFleet(X, Y, FlagId,Type);
-
-	/*
-	var nameHero = _mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(
-	2, //spot x
-	3, //spot y
-	FlagId,			//_battlePlanetModel.FlagIdHero,//FlagId
-				new InitGlobalParams().GetOfferNameHero(),
-				Type, //0, //UnitTypeId
-				_battlePlanetModel.GetBasaPurchaseUnitScience(), false, 0));
-	*/
 
 	nameHero.SetPoint(X,Y);
 	nameHero.type=Type;
