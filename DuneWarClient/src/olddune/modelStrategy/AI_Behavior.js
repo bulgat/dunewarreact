@@ -8,8 +8,6 @@ import {AI_Behavior_Existence} from './AI_Behavior_Existence'
 export class AI_Behavior{
 	_test = null;
 
-
-
 	TacticSearchIslandAndHero = function (PrototypeHeroDemo_ar,NameHeroFleet,Grid_ar,
 		DispositionCountry_ar,Sea,Island_ar,BasaPurchaseUnitScience_ar,GetIncrementUnitId
 		){

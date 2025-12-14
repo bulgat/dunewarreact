@@ -22,14 +22,7 @@ export class GridScenario{
 	}
 	Init = function(FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo)
 	{
-		//var initGlobalParams = new InitGlobalParams();
-		
-		/*
-		_mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(2, 3,
-				_battlePlanetModel.FlagIdHero,
-				initGlobalParams.GetOfferNameHero(), 0,
-				_battlePlanetModel.GetBasaPurchaseUnitScience(), false, 0));
-		*/
+
 		new CreateFleetFast().HeroFleetAdd(1, 5, 0,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
 		new CreateFleetFast().HeroFleetAdd(1, 4, 2,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);
 		new CreateFleetFast().HeroFleetAdd(1, 6, 1,FlagIdHero,BasaPurchaseUnitScience_ar,GetIncrementUnitId,prototypeHeroDemo);

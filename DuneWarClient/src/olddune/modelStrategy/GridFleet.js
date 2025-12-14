@@ -32,8 +32,6 @@ export class GridFleet extends BasicTile {
 	
 		this.type = Type;
 
-
-
 		this.ShipNameUnit.SetArmUnitArray(
 		[new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
 		new ArmUnit(BasaPurchaseUnitScience_ar, Type, null,GetIncrementUnitId),
@@ -59,7 +57,6 @@ export class GridFleet extends BasicTile {
 		return this.Id;
 	};
 	GetRange = function(){
-		//var maxSpeed = 999;
 		if (this.StaticLongRange)
 		{
 			return true;
@@ -104,9 +101,6 @@ var returnRange = false;
 		return this.Speed;
 	};
 	GetSpeed= function(){
-
-
-
 			if (this.ShipNameUnit.GetArmUnitArray()==undefined) {
 				return 1;
 			}
@@ -118,9 +112,6 @@ var returnRange = false;
 
 			this.ShipNameUnit.GetArmUnitArray().forEach (function(armUnit)
 			{
-
-
-
 				if (armUnit.Speed < localMaxSpeed)
 				{
 					localMaxSpeed = armUnit.Speed;
@@ -191,8 +182,6 @@ var returnRange = false;
 	}
 	Copy = function()
 	{
-		//var fleetCopy = new GridFleet(this.Name, this.SpotX, this.SpotY, this.FlagId, this.Image);
-
 		let fleetCopy = new GridFleet(this.SpotX, this.SpotY, this.FlagId,this.type,
 			this.BasaPurchaseUnitScience_ar,this.GetIncrementUnitId);
 		fleetCopy.Id = this.Id;

@@ -24,9 +24,6 @@ export class MendMoveShip {
 		BasaPurchaseUnitScience_ar,GetIncrementUnitId
 	) {
 		var aI_move = new AI_move();
-
-		
-
 		//Operate   
 		var point = aI_move.Operate(PrototypeHeroDemo_ar, NameHeroFleet, Grid_ar,
 			DispositionCountryNameHero_ar,Sea,Island_ar,BasaPurchaseUnitScience_ar,GetIncrementUnitId
@@ -43,11 +40,6 @@ export class MendMoveShip {
 			
 
 			if (fleetVictim != null) {
-
-				
-console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId);
-
-				//var commandStrAttack = this.GetCommandAttackFleet(NameHero, point,PrototypeHeroDemo_ar,fleetVictim);
 				var commandStrAttack = this.GetCommandAttackFleet(NameHeroFleet, point, NameHeroFleet, fleetVictim);
 
 
@@ -58,65 +50,16 @@ console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId
 
 			}
 			else {
-				/*
-				if (ArmUnitFleet == null)
-				{
-
-
-					// LongRange
-					// attack fleet is far.
-					if (gridFleet.GetRange())
-					{
-						Point pointLongRange = AI_TacticSearch.GetNearTacticHero(NameHero_ar,
-								gridFleet,
-								DispositionCountry_ar, CoordinateSearch.GetXmapNear(true));
-						// attack fleet with far range.
-
-						if (pointLongRange != null)
-						{
-							fleetVictim = GetFleetVictim(NameHero_ar, pointLongRange);
-							return GetAttackMoveFleet(fleetVictim, true, null);
-
-
-						}
-					}
-				}
-				else
-				{
-					//dinamic tactic long range
-					Point pointLongRange = AI_TacticSearch.GetNearTacticHero(NameHero_ar,
-							gridFleet,
-							DispositionCountry_ar, CoordinateSearch.GetXmapNear(true));
-					if (pointLongRange != null)
-					{
-						
-						if (new MendMoveAbleFire().DetermineAbleFire(gridFleet,
-								pointLongRange, ArmUnitFleet,
-								GlobalParamsTimeQuick, GlobalParamsGale
-								))
-						{
-							fleetVictim = GetFleetVictim(NameHero_ar, pointLongRange);
-							return GetAttackMoveFleet(fleetVictim, true, null);
-						}
-					
-
-					}
-				}
-				*/
 				//move fleet
 				var commandStr = this.GetCommandMoveFleet(NameHeroFleet, point, NameHeroFleet);
 				CommandStrategy_ar.push(commandStr);
-
-
 			}
 		}
 		//attack fleet is neighborn
 		fleetVictim = null;
 		var aI_TacticSearch = new AI_TacticSearch()
 		var pointLongRange = aI_TacticSearch.GetNearTacticHero(PrototypeHeroDemo_ar, NameHeroFleet);
-		
-		console.log("7778 fleetVictim  pointLongRange  = ",pointLongRange );
-		
+
 		if (pointLongRange == null) {
 
 			return null;
@@ -124,18 +67,11 @@ console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId
 
 		var commandAttack = this.GetFleetVictimSpecial(NameHeroFleet, pointLongRange, PrototypeHeroDemo_ar);
 
-		console.log("7779 fleetVictim  commandAttack  = ",commandAttack );
-
 		if (commandAttack != null) {
 
 			fleetVictim = commandAttack.GridFleetVictim;
 			CommandStrategy_ar.push(commandAttack);
-			//commandVictim = commandAttack;
 		}
-
-
-		console.log( "888  r CommandStrategy_ar = " ,CommandStrategy_ar)
-
 		return CommandStrategy_ar;
 	};
 	GetCommandMoveFleet = function (GridFleetOldPoint, ResultPoint, GridFleet) {
@@ -188,8 +124,6 @@ console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId
 			commandStrategy.NameCommand = commandStrategy.EnumType("AttackFleet");
 			commandStrategy.Id = window._idCommand;
 			window._idCommand++;
-			//CommandStrategy_ar.Add(commandStrategy);
-			//return [commandStrategy,fleetVictim];
 			return commandStrategy;
 		}
 		return null;
@@ -216,14 +150,12 @@ console.log("7777 ",NameHeroFleet.FlagId,"   fleetVictim = ", fleetVictim.FlagId
 				resultPoint.Y, NameHero_ar);
 		if (hereinHero_ar.length > 0) {
 			for(let victimFleet of hereinHero_ar){
-				console.log( "7779 ZZZ   L = " +hereinHero_ar.length )
 				//block attack самого себя
 				if(HeroFleetFlagId!=victimFleet.FlagId){
 					return victimFleet
 				}
 			}
 
-			//return hereinHero_ar[0];
 		}
 		return null;
 	}

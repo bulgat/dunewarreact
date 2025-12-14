@@ -47,16 +47,7 @@ export class InitGlobalParams {
 			musicBibleConstant.Vehicle, true, 4, true, 30,
 			"самолет",'/imageDune/unit/top.png'));
 
-			
-/*
-		window._mapWorldModel._prototypeHeroDemo = new PrototypeHeroDemo();
-		window._mapWorldModel._prototypeHeroDemo.HeroFleetInit();
-		window._mapWorldModel._islandDemoMemento = new IslandDemoMemento();
-		window._mapWorldModel._islandDemoMemento.Init();
-*/
-
 		return InitBasaPurchaseUnitScience_ar;
-		//window._battlePlanetModel.DispositionCountry_ar = [];
 	};
 	GetOfferNameHero = function () {
 

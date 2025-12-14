@@ -64,7 +64,6 @@ export class MeleeShip{
 			if (count <= LimitDeadUnit)
 			{
 
-
 				CrewPLayer_ar = this.GetShipUnitLife(ShipOneNamePLayer.GetArmUnitArray(), deadIdUnit_ar);
 				CrewFiend_ar = this.GetShipUnitLife(ShipOneNameFiend.GetArmUnitArray(), deadIdUnit_ar);
 
@@ -78,9 +77,7 @@ export class MeleeShip{
 					CrewFiend_ar,
 					MoveAi, LongRange,
 					window._battlePlanetModel._mapWorldModel._islandDemoMemento);
-					
 
-				
 				unitResultTactic_ar.push(unitResultTactic);
 				deadIdUnit_ar.push(unitResultTactic.UnitIdDead);
 

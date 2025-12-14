@@ -7,15 +7,8 @@ export class CreateFleetFast{
 			Name, UnitTypeId, BasaPurchaseUnitScience_ar,
 			AddOne, customShip)
 	{
-   
-
-
-
-
 		var heroPlayer = new GridFleet( SpotX, SpotY, FlagId,UnitTypeId);
-		
-		
-		
+
 		var shipPlayer = new ShipUnit();
 		if (AddOne)
 		{
@@ -32,7 +25,6 @@ export class CreateFleetFast{
 this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 
 		heroPlayer.AddShipName(shipPlayer);
-		//heroPlayer.SetId(BattlePlanetModel.FleetId);
 		window._battlePlanetModel.FleetId += 1;
 
 		return heroPlayer;
@@ -50,16 +42,6 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 	{
 
 		let nameHero = new GridFleet(X, Y, FlagId,Type,BasaPurchaseUnitScience_ar,GetIncrementUnitId);
-
-		/*
-		var nameHero = _mapWorldModel._prototypeHeroDemo.HeroFleetAdd(new ModelStrategy().GetFleetFast(
-		2, //spot x
-		3, //spot y
-		FlagId,			//_battlePlanetModel.FlagIdHero,//FlagId
-					new InitGlobalParams().GetOfferNameHero(),
-					Type, //0, //UnitTypeId
-					_battlePlanetModel.GetBasaPurchaseUnitScience(), false, 0));
-		*/
 
 		nameHero.SetPoint(X,Y);
 		nameHero.type=Type;

@@ -45,25 +45,7 @@ var order =Math.floor(Math.random() * Crew_ar.length);
 		return false;
 
 	};
-	/*
-	AllAttack = function(Unit, ShipAttack, HeroAttack)
-	{
-		
-		
-		var TehPlayer = parseInt(Unit.Attack)
-				+ parseInt(ShipAttack)
-				+ parseInt(HeroAttack);
-				
-		return TehPlayer;
-	};
-	AllDefence = function(Unit, ShipDefence,
-			HeroDefence)
-	{
-		var MaterielFiend = Unit.Attack 
-				+ ShipDefence + HeroDefence;
-		return MaterielFiend;
-	};
-*/
+
 	GetShip = function(Fleet)
 	{
 		return Fleet.GetShipName();

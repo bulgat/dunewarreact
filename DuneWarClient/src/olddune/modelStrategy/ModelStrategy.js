@@ -172,13 +172,8 @@ export class ModelStrategy{
 		//StartNode_ID_Fiend
 		var pathBasa_ar = new AI_Behavior().GetFindPathBigSearchArray(pointAim,
 				FiendPoint, //FiendFlagId,
-				//NameHero_ar,
 				Grid2d_ar);//,//Grid_ar,
-				//DispositionCountry_ar, StopFiendHero, Sea, Island_ar);
 
-
-
-		//pathBasa_ar.forEach (function( superNode)
 		for(let superNode in pathBasa_ar) 
 		{
 
@@ -210,14 +205,9 @@ export class ModelStrategy{
 		commandStrategy.GridFleetNewPoint = new Point(gridFleet.SpotX, gridFleet.SpotY);
 
 		commandStrategy.GridFleetVictim = heroPlayerSacrifive;
-		//commandStrategy.NameCommand = CommandStrategy.Type.AttackFleet;
 		commandStrategy.NameCommand = commandStrategy.EnumType("AttackFleet");
 		
 		commandStrategy.SetGridFleet(gridFleet);
-		
-		//commandStrategy.GridFleet.SpotX = heroPlayerSacrifive.SpotX;
-		//commandStrategy.GridFleet.SpotY = heroPlayerSacrifive.SpotY;
-		//GridFleetOldPoint
 
 		commandStrategy.GridFleetOldPoint = oldPoint;
 		commandStrategy.GridFleetNewPoint = new Point(heroPlayerSacrifive.SpotX, heroPlayerSacrifive.SpotY);
@@ -279,35 +269,6 @@ export class ModelStrategy{
 
 
 		var heroCountry_ar = new FiendFleet().GetHeroAll(country.IdCountry, NameHero_ar);
-		if (heroCountry_ar.Count < HeroMax)
-		{
-			console.error("UNITY var rand = new System.Random();");
-			/*
-			var typeUnit =0;
-			
-			//var rand = new System.Random();
-
-			//int typeUnit = (int)Math.floor(Math.random() * BasaPurchaseUnitScience_ar.size());
-			//var typeUnit = rand.Next( BasaPurchaseUnitScience_ar.Count);
-
-			var cost = UnitTech.GetUnit(typeUnit).Cost * BattlePlanetModel.SizeSquad;
-
-			if (country.Money - cost >= 0)
-			{
-
-
-				var fleet = new AI_Behavior_Replace().Replace_Ship_AfterLoss(
-						country.IdCountry, Island_ar, ShoalSeaBasa_ar,
-						DispositionCountry_ar, BasaPurchaseUnitScience_ar, typeUnit, GridTile_ar);
-				if (fleet != null)
-				{
-					country.Money -= cost;
-				}
-				return fleet;
-
-			}
-			*/
-		}
 		return null;
 	};
 	PerformCommandMoveFleet= function(prototypeHeroDemo,

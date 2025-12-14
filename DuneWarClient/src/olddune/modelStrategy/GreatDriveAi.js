@@ -31,10 +31,6 @@ export class GreatDriveAi{
                 
                     if (new ContactStateProceeding().ContactGlobalPeace(window._battlePlanetModel.GetDispositionCountry()[Imperial]))
                     {
-                        /*
-                        MendMovePeaceShip.moveFiend_MIR(DispositionCountry_ar[Imperial], NameHero_ar, Island_ar,
-                                DispositionCountry_ar, Grid_ar, CommandStrategy_ar);
-                                */
                     } 
                     else 
                     {
@@ -46,7 +42,6 @@ export class GreatDriveAi{
                         for (var gridFleetInsex=0; gridFleetInsex<DispositionCountryNameHero_ar.length;gridFleetInsex++) {
                             
                             // move and search attack enemy.
-                            //var point = TacticSearchIslandAndHero(_prototypeHeroDemo,DispositionCountryNameHero_ar[gridFleetInsex]);
                             if (DispositionCountryNameHero_ar[gridFleetInsex].GetTurnDone())
                             {
                                 
@@ -54,9 +49,7 @@ export class GreatDriveAi{
                              
                              // old point 
                                 var oldPoint = new Point(DispositionCountryNameHero_ar[gridFleetInsex].SpotX, DispositionCountryNameHero_ar[gridFleetInsex].SpotY);
-                             
-                                console.log( "1001 b ady! = ",GetIncrementUnitId );
-                             
+      
                              // move and search attack enemy.
                                 let attackMoveFleet = mendMoveShip.PlaceFiendX(
                                         DispositionCountryNameHero_ar[gridFleetInsex],
@@ -73,16 +66,13 @@ export class GreatDriveAi{
                                         BasaPurchaseUnitScience_ar,//BasaPurchaseUnitScience_ar,
                                         GetIncrementUnitId
                                         );
-    
-                            console.log("666    Player=" ,DispositionCountryNameHero_ar[gridFleetInsex] );					 
-                            console.log("667  attackMoveFleet =",attackMoveFleet);
+
                             if(attackMoveFleet){
                                 if (DispositionCountryNameHero_ar[gridFleetInsex].FlagId===attackMoveFleet.Fleet.FlagId){
                                     console.error("Model Strategy Error - атака своего");
                                     //выкидываем результаты в мусор. Что-то не так с верхним скриптом - mendMoveShip.PlaceFiendX
                                     attackMoveFleet = null;
                                 }		
-                                console.log("668  FlagIdHero = "+DispositionCountryNameHero_ar[gridFleetInsex].FlagId+"  _flag = ");
                             }
     
     
@@ -96,9 +86,6 @@ export class GreatDriveAi{
                                         
                                         if (heroPlayerSacrifive != null)
                                         {
-                                            // command Attack fleet 
-                                            console.log("GGGGG  PUSH  commandStrategy =" )
-    
                                             CommandStrategy_ar.push(new ModelStrategy().GetCommandAttack(DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet, 
                                             heroPlayerSacrifive,
                                                     attackMoveFleet, oldPoint));
@@ -110,19 +97,8 @@ export class GreatDriveAi{
                                                     true, attackMoveFleet.LongRange,CommandStrategy_ar);
     
                                                     return agentEvent;
-    /*
-                                            return new AgentEvent().GetButtonEventModelMeeleeFleet(heroPlayerSacrifive,
-                                                    DispositionCountryNameHero_ar[gridFleetInsex],//gridFleet,
-                                                    true, attackMoveFleet.LongRange);
-    */
                                         }
-                                //mendMoveShip.PlaceFiendX(PrototypeHeroDemo,DispositionCountryNameHero_ar[gridFleetInsex],Grid_ar,CommandStrategy_ar);
-                                /*
-                                var point =Operate(_prototypeHeroDemo,DispositionCountryNameHero_ar[gridFleetInsex]);
-                                if (point!=null){
-                                    
-                                }
-                                */
+
                             }
                             
                         }
@@ -141,16 +117,11 @@ export class GreatDriveAi{
                         commandStrategy.SetGridFleet(fleet);
     
                         CommandStrategy_ar.push(commandStrategy);
-                        //PrototypeHeroDemo.GetHeroFleet().add(fleet);
                     }
                     
                 }
             }
             let agentEventCommand =  new AgentEvent(null,null,null,null,CommandStrategy_ar);
-
-            console.log( "100 countAnim return CommandStrategy_ar =",CommandStrategy_ar);
-            console.log( "101 =  A     typeUnit = ",agentEventCommand,"   Fi " );
             return agentEventCommand;
-            //return CommandStrategy_ar;
         };
 }

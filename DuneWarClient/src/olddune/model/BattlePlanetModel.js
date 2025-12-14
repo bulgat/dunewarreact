@@ -9,9 +9,6 @@ import {MapWorldModel} from "../mapWorld/MapWorldModel"
 import { PrototypeHeroDemo } from "../model/prototype/PrototypeHeroDemo";
 import { IslandDemoMemento } from "../model/memento/IslandDemoMemento.js";
 
-
-
-
 export class BattlePlanetModel{
     //ObstacleMap = 2
 	ObstacleMap = 1;
@@ -38,12 +35,6 @@ export class BattlePlanetModel{
 		this._mapWorldModel._islandDemoMemento = new IslandDemoMemento();
 		this._mapWorldModel._islandDemoMemento.Init();
         this.InitScenario(_gridScenario);
-        /*
-       let island_ar = _gridScenario.Init(this.FlagIdHero,this.BasaPurchaseUnitScience_ar,
-        this.GetIncrementUnitId.bind(this),this._mapWorldModel._prototypeHeroDemo);
-        this._mapWorldModel._islandDemoMemento.AddIslandAll(island_ar);
-        */
-       
 	}
     InitScenario(gridScenario){
         let island_ar = gridScenario.Init(this.FlagIdHero,this.BasaPurchaseUnitScience_ar,
