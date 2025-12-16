@@ -3,10 +3,12 @@ import {IncreaseModal} from  '../modalWindow/IncreaseModal'
 import { useState } from 'react';
 
 const CardBattleUnit =({item})=>{
-    const [brandVisible,setBrandVisible] = useState(false);
+    const [brandVisible, setBrandVisible] = useState(false);
+    console.log(" 2 == ", item.urlImage, " = ", item)
+
     const ClickCard = () =>{
         
-        console.log("022 == ",item.UrlImage," = ",item)
+
         //setBrandVisible(true);
         setBrandVisible(true);
     }
@@ -15,7 +17,7 @@ const CardBattleUnit =({item})=>{
        <>
   
         <Card style={{width:500,height:500}} className="p-5" onClick={ClickCard }>
-            <div><h5> {item.Name}</h5></div>
+            <div><h5> {item.name}</h5></div>
             <div>Cost: {item.Cost}</div>
             <div>Attack: {item.Attack}</div>
             <div>Defence: {item.Defence}</div>
@@ -23,13 +25,13 @@ const CardBattleUnit =({item})=>{
             <div>BonusDefence: {item.BonusDefence}</div>
             <div>LongRange: {item.LongRange}</div>
             <div>StrategySpeed: {item.StrategySpeed}</div>
-            <Image width={300} height={200} src={item.UrlImage}/> 
+            <Image width={300} height={200} src={item.urlImage}/> 
         </Card>
 
         <IncreaseModal show={brandVisible} 
         onHide={()=>setBrandVisible(false)} 
-        UrlImage={item.UrlImage}
-        name ={item.Name}
+        UrlImage={item.urlImage}
+        name ={item.name}
         />
        </> 
     )
