@@ -19,6 +19,13 @@ namespace DuneWarSpeed.Controllers
             return "1.0.0";
         }
 
+        [HttpGet("GetMethod")]
+        public string GetMethod()
+        {
+            string methodName = ControllerContext.ActionDescriptor.ActionName;
+            return methodName;
+        }
+
         [HttpPost("GetStatus")]
         public string GetStatus()
         {
