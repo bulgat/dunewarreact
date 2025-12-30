@@ -24,7 +24,7 @@ const NavBarDune =()=>{
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/buttonpage">
+                    <Nav.Link href="/unitpage">
                         <Button   variant={"outline-success"} >Units</Button>
                     </Nav.Link>
                 </Nav.Item>

@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom"
-import { CustomLink } from "react"
 import { CardBattleUnit } from "../components/CardBattleUnit";
 import { HOST_SERVER } from '../environment'
 import { useState } from 'react'
 
-const ButtonPage = () => {
+const UnitPage = () => {
     const [getBasaPurchaseUnitScience, setBasaPurchaseUnitScience] = useState([]);
 
     const getListUnit = () => {
@@ -32,7 +31,7 @@ const ButtonPage = () => {
             })
             .then(data => {
                 setBasaPurchaseUnitScience(data);
-                //setVersion(data);
+                console.log("end load list")
             })
             .catch(err => {
                 console.error('Error fetching data');
@@ -54,4 +53,4 @@ const ButtonPage = () => {
         </>
     )
 }
-export { ButtonPage }
+export { UnitPage }

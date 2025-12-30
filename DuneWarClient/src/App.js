@@ -8,7 +8,7 @@ import {HomePage} from './pages/Homepage';
 import {AboutPage} from './pages/AboutPage';
 import {BlogPage} from './pages/Blogpage';
 import {SinglePage} from './pages/SinglePage';
-import {ButtonPage} from './pages/ButtonPage';
+import {UnitPage} from './pages/UnitPage';
 import {NotFoundPage} from './pages/NotFoundPage';
 import {Editpage} from './pages/Editpage';
 import {NavBarDune} from './components/NavBarDune'
@@ -38,7 +38,7 @@ function App() {
         <Route path="contacts" element ={<p>contact</p>}/>
         <Route path="team" element ={<><h2>super</h2><p>team</p></>}/>
       </Route>
-      <Route path='/buttonpage' element ={<ButtonPage/>}/>
+      <Route path='/unitpage' element ={<UnitPage/>}/>
       <Route path='/post' element ={<BlogPage/>}/>
       <Route path='/post/:id' element ={<SinglePage/>}/>
       <Route path='/post/:id/edit' element ={<Editpage/>}/>
