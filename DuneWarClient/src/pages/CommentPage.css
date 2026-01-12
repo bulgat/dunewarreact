@@ -1,0 +1,9 @@
+.btn-comment{
+    background-color:red;
+    &:hover {
+        background-color: gold;
+    }
+    &:active {
+        background-color:blue;
+    }
+}

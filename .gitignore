@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/DuneWarClient/node_modules
+/DuneWarClient/.vs
 /.pnp
 .pnp.js
 

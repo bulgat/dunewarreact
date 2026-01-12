@@ -1,6 +1,6 @@
-import { CommentRedux } from "../components/CommentRedux"
 import { HOST_SERVER } from '../environment'
 import { useState } from 'react'
+import '../pages/CommentPage.css'
 
 const CommentPage = () => {
 
@@ -34,10 +34,19 @@ const CommentPage = () => {
     }
     getListUnit();
 
+ 
+
+    console.log("apple".localeCompare("banana")); 
+        console.log("banana".localeCompare("apple"));  
+            console.log("apple".localeCompare("apple")); 
+ 
+
     return (
         <>
-        <h5>Comment</h5>
-        
+            <h5>Comment</h5>
+            <button className="btn-comment">Comment</button>
+            <br></br>
+
           Secret revealed:  {secret}
         </>
     )
