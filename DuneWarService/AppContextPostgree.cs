@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DuneWarLastFantasy.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace DuneWarLastFantasy
@@ -9,6 +10,7 @@ namespace DuneWarLastFantasy
         {
 
         }
+        public DbSet<Score> Score { get; set; }
         /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
