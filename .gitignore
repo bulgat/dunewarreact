@@ -4,8 +4,10 @@
 /node_modules
 /DuneWarClient/node_modules
 /DuneWarClient/.vs
+/DuneWarService/.vs
 /.pnp
 .pnp.js
+/.vs
 
 # testing
 /coverage
