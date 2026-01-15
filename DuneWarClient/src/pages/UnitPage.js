@@ -1,11 +1,29 @@
 import { Link } from "react-router-dom"
 import { CardBattleUnit } from "../components/CardBattleUnit";
 import { HOST_SERVER } from '../environment'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { UnitService } from '../services/unit.service'
 
 const UnitPage = () => {
     const [getBasaPurchaseUnitScience, setBasaPurchaseUnitScience] = useState([]);
+    const ref = useRef();
+    const [trigger, setTrigger] = useState(false);
 
+    useEffect(() => {
+        //getListUnit();
+
+        UnitService().getListUnit().then(data => {
+            setBasaPurchaseUnitScience(data);
+            console.log("end load list")
+        })
+
+    },[])
+
+    console.log("SV ", UnitService().getNum()  );
+    console.log("0111 ????????  endHero =", UnitService().getListUnit())
+
+
+    /*
     const getListUnit = () => {
 
         fetch(HOST_SERVER + '/Basa/GetUnitList',
@@ -37,15 +55,22 @@ const UnitPage = () => {
                 console.error('Error fetching data');
             });
     }
-    getListUnit();
+    */
+
+    const handlerLight = () => {
+
+        setTrigger(trigger == false);
+    }
 
     return (
         <>
             <div><h3>Units</h3></div>
-
+            <button onClick={handlerLight}>Показать</button>
+            <br />
+            <br />
             <ul>
                 {getBasaPurchaseUnitScience.map(
-                    item => <li key={item.IdImage} ><CardBattleUnit item={item} /> </li>)}
+                    item => <li key={item.IdImage} ><CardBattleUnit item={item} trigger={trigger} /> </li>)}
             </ul>
             <Link to='/'>Home</Link>
             {
