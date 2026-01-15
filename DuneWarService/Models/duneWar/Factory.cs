@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DuneWarLastFantasy.Models;
-[Table("Arsenal", Schema = "DuneWar")]
-public partial class Arsenal
+namespace DuneWarLastFantasy.Models.other;
+[Table("Factory", Schema = "DuneWar")]
+public partial class Factory
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
 
     public string Name { get; set; } = null!;
-
-    public int NumCannon { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

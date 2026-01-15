@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DuneWarLastFantasy.Models.other;
 using Microsoft.EntityFrameworkCore;
 
 namespace DuneWarLastFantasy.Models;
@@ -71,7 +72,7 @@ public partial class CsharpCornerDbContext : DbContext
         {
             entity.ToTable("Arsenal", "DuneWar");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ID).HasColumnName("ID");
             entity.Property(e => e.NumCannon).HasDefaultValue(0);
         });
 
@@ -118,7 +119,7 @@ public partial class CsharpCornerDbContext : DbContext
         {
             entity.ToTable("Factory", "DuneWar");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ID).HasColumnName("ID");
         });
 
         modelBuilder.Entity<History>(entity =>
@@ -141,17 +142,17 @@ public partial class CsharpCornerDbContext : DbContext
         {
             entity.ToTable("Product", "DuneWar");
 
-            entity.HasIndex(e => e.ArsenalId, "IX_Product_Arsenal_ID");
+            entity.HasIndex(e => e.ArsenalID, "IX_Product_Arsenal_ID");
 
-            entity.HasIndex(e => e.FactorioId, "IX_Product_Factorio_ID");
+            entity.HasIndex(e => e.FactorioID, "IX_Product_Factorio_ID");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.ArsenalId).HasColumnName("Arsenal_ID");
-            entity.Property(e => e.FactorioId).HasColumnName("Factorio_ID");
+            entity.Property(e => e.ID).HasColumnName("ID");
+            entity.Property(e => e.ArsenalID).HasColumnName("Arsenal_ID");
+            entity.Property(e => e.FactorioID).HasColumnName("Factorio_ID");
 
-            entity.HasOne(d => d.Arsenal).WithMany(p => p.Products).HasForeignKey(d => d.ArsenalId);
+            entity.HasOne(d => d.Arsenal).WithMany(p => p.Products).HasForeignKey(d => d.ArsenalID);
 
-            entity.HasOne(d => d.Factorio).WithMany(p => p.Products).HasForeignKey(d => d.FactorioId);
+            entity.HasOne(d => d.Factorio).WithMany(p => p.Products).HasForeignKey(d => d.FactorioID);
         });
 
         modelBuilder.Entity<SalaryDepartament>(entity =>

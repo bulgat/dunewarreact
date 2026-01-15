@@ -1,7 +1,9 @@
 using System.Diagnostics;
 using DuneWarLastFantasy;
 using DuneWarLastFantasy.Models;
+using DuneWarLastFantasy.Models.other;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DuneWarSpeed.Controllers
 {
@@ -43,19 +45,33 @@ namespace DuneWarSpeed.Controllers
             List<Author> scoreList = _context.Author.ToList();
             return scoreList;
         }
-        [HttpGet("GetProduct")]
-        public List<Product> GetProduct()
+        [HttpGet("GetProductClassic")]
+        public List<Product> GetProductClassic()
         {
-            List<Product> scoreList = _context.Product.ToList();
-            return scoreList;
+            List<Arsenal> arsenalList = _context.Arsenal.ToList();
+            List<Factory> factoryList = _context.Factory.ToList();
+            List<Product> productList = _context.Product.ToList();
+            return productList;
+        }
+        [HttpGet("GetProductInclude")]
+        public List<Product> GetProductInclude()
+        {
+            List<Product> productList = _context.Product.Include(a=>a.Arsenal).Include(b=>b.Factorio).ToList();
+            return productList;
         }
         [HttpGet("GetArsenal")]
         public List<Arsenal> GetArsenal()
         {
-            List<Arsenal> scoreList = _context.Arsenal.ToList();
+            List<Arsenal> arsenalList = _context.Arsenal.Include(a=>a.Products).ToList();
+            return arsenalList;
+        }
+        [HttpGet("GetFactory")]
+        public List<Factory> GetFactory()
+        {
+            
+            List<Factory> scoreList = _context.Factory.ToList();
             return scoreList;
         }
-
         [HttpGet("GetMethod")]
         public string GetMethod()
         {
