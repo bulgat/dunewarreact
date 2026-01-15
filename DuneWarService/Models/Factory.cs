@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DuneWarLastFantasy.Models;
-
+[Table("Factory", Schema = "DuneWar")]
 public partial class Factory
 {
     public int Id { get; set; }

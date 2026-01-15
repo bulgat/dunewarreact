@@ -29,8 +29,32 @@ namespace DuneWarSpeed.Controllers
             List<Score> scoreList = _context.Score.ToList();
             return scoreList;
         }
-
-
+        [HttpGet("GetArticle")]
+        public List<Article> GetArticle()
+        {
+            //Article автозаполн€ютс€ авторами если р€дом выт€гивваешь.
+            List<Author> authorList = _context.Author.ToList();
+            List<Article> articleList = _context.Article.ToList();
+            return articleList;
+        }
+        [HttpGet("GetAuthor")]
+        public List<Author> GetAuthor()
+        {
+            List<Author> scoreList = _context.Author.ToList();
+            return scoreList;
+        }
+        [HttpGet("GetProduct")]
+        public List<Product> GetProduct()
+        {
+            List<Product> scoreList = _context.Product.ToList();
+            return scoreList;
+        }
+        [HttpGet("GetArsenal")]
+        public List<Arsenal> GetArsenal()
+        {
+            List<Arsenal> scoreList = _context.Arsenal.ToList();
+            return scoreList;
+        }
 
         [HttpGet("GetMethod")]
         public string GetMethod()
