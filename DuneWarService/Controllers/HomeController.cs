@@ -45,6 +45,42 @@ namespace DuneWarSpeed.Controllers
             List<Author> scoreList = _context.Author.ToList();
             return scoreList;
         }
+        [HttpPut("AddProduct")]
+        public async void AddProduct(string name)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    Arsenal arsenal = _context.Arsenal.FirstOrDefault();
+                    Factory factory = _context.Factory.FirstOrDefault();
+                    Product product = new Product()
+                    {
+                        Name = name,
+                        ArsenalID = arsenal.ID,
+                        FactorioID = factory.ID
+                    };
+
+                    _context.Product.Add(product);
+                    _context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex) {
+                    transaction.Rollback();
+                }
+            }
+        }
+        [HttpPatch("PatchArsenal")]
+        public async void PatchArsenal(string name, int numCannon)
+        {
+            Arsenal arsenal = _context.Arsenal.FirstOrDefault();
+            arsenal.Name = name;
+            arsenal.NumCannon = numCannon;
+            _context.Arsenal.Update(arsenal);
+            _context.SaveChangesAsync();
+
+        }
+
         [HttpGet("GetProductClassic")]
         public List<Product> GetProductClassic()
         {

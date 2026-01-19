@@ -244,7 +244,7 @@ window.onload = function () {
 
                         break;
                     } else {
-                        console.log("90  Incre   = ", _tileBox_ar[i].SpotX, _tileBox_ar[i].SpotY);
+
                         //island
                         let island_ar = window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray();
                         for (let island of island_ar) {

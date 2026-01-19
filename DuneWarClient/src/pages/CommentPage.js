@@ -1,13 +1,18 @@
 import { HOST_SERVER } from '../environment'
 import { useState } from 'react'
 import '../pages/CommentPage.css'
+import { HomeService } from '../services/home.service'
 
 const CommentPage = () => {
-
+    const _unitService = HomeService();
     const [secret, setSecret] = useState(0);
+    const [product, setProduct] = useState('');
+    const [arsenal, setArsenal] = useState('');
+
+    console.log("mat  = ", localStorage['product'])
 
     const getListUnit = () => {
-        console.log("   ^ i = ", HOST_SERVER);
+
         fetch(HOST_SERVER + '/Basa/GetRevealedSecret',
             {
                 method: 'POST',
@@ -24,7 +29,7 @@ const CommentPage = () => {
                 return response.json();
             })
             .then(data => {
-                console.log("   ^  ^ i = ", data);
+
  
                 setSecret(data);
             })
@@ -34,7 +39,23 @@ const CommentPage = () => {
     }
     getListUnit();
 
+    const handleAddProduct = () => {
+
+        _unitService.addProduct(product);
+    }
+
+    const handleAddArsenal = () => {
  
+        _unitService.addArsenal(arsenal,9);
+    }
+
+    const submitForm = (formAction) => {
+        localStorage['product'] = formAction.get('product');
+//localStorage['product'] = formAction.product.value;
+        //formAction.stopPropagation();
+        console.log("90  Inc    = ", formAction.product.value);
+ 
+    }
 
     console.log("apple".localeCompare("banana")); 
         console.log("banana".localeCompare("apple"));  
@@ -44,9 +65,16 @@ const CommentPage = () => {
     return (
         <>
             <h5>Comment</h5>
-            <button className="btn-comment">Comment</button>
-            <br></br>
-
+            <form autoComplete='off' action={submitForm}>
+                <input type='text' name='product' placeholder='product' onChange={(e) => setProduct(e.target.value)} />
+                <button className="btn-comment" onClick={handleAddProduct}>Add Product</button>
+                <br />
+                <br />
+                <input type='text' name='arsenal' placeholder='arsenal' onChange={(e) => setArsenal(e.target.value)} />
+                <button className="btn-comment" onClick={handleAddArsenal}>Add Arsenal</button>
+                <br/>
+                <button type='submit'>Submit</button>
+            </form>
           Secret revealed:  {secret}
         </>
     )
