@@ -1,9 +1,11 @@
-using System.Diagnostics;
 using DuneWarLastFantasy;
 using DuneWarLastFantasy.Models;
 using DuneWarLastFantasy.Models.other;
+using DuneWarLastFantasy.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace DuneWarSpeed.Controllers
 {
@@ -12,13 +14,16 @@ namespace DuneWarSpeed.Controllers
     public class HomeController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
+        private HomeSevice _homeSevice;
         AppContextPostgree _context;
 
-        public HomeController(ILogger<HomeController> logger, AppContextPostgree context)
+        public HomeController(ILogger<HomeController> logger, AppContextPostgree context, HomeSevice homeSevice)
         {
             _logger = logger;
             _context = context;
+            _homeSevice = homeSevice;
         }
+
         [HttpGet("GetVersion")]
         public string GetVersion()
         {
@@ -70,6 +75,19 @@ namespace DuneWarSpeed.Controllers
                 }
             }
         }
+        [HttpPut("AddArsenal")]
+        public async void AddArsenal(string name, int numCannon)
+        {
+            Arsenal arsenal = new Arsenal()
+            {
+                Name = name,
+                NumCannon = numCannon
+            };
+
+            _context.Arsenal.Add(arsenal);
+            _context.SaveChangesAsync();
+
+        }
         [HttpPatch("PatchArsenal")]
         public async void PatchArsenal(string name, int numCannon)
         {
@@ -98,7 +116,7 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetArsenal")]
         public List<Arsenal> GetArsenal()
         {
-            List<Arsenal> arsenalList = _context.Arsenal.Include(a=>a.Products).ToList();
+            List<Arsenal> arsenalList = _homeSevice.GetArsenal();
             return arsenalList;
         }
         [HttpGet("GetFactory")]

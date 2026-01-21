@@ -10,6 +10,8 @@ const CommentPage = () => {
     const [product, setProduct] = useState('');
     const [arsenal, setArsenal] = useState('');
     const [visibleModal, setVisibleModal] = useState(false);
+    const [createArsenalName, setCreateArsenalName] = useState('');
+    const [createArsenalNumCannon, setCreateArsenalNumCannon] = useState('');
 
     console.log("mat  = ", localStorage['product'])
 
@@ -48,9 +50,13 @@ const CommentPage = () => {
         });
     }
 
-    const handleAddArsenal = () => {
+    const patchArsenal = () => {
  
-        _unitService.addArsenal(arsenal,9);
+        _unitService.patchArsenal(arsenal,9);
+    }
+    const addArsenal = () => {
+
+        _unitService.addArsenal(createArsenalName, createArsenalNumCannon);
     }
 
     const submitForm = () => {
@@ -76,9 +82,14 @@ const CommentPage = () => {
                 <br />
                 <br />
                 <input type='text' name='arsenal' placeholder='arsenal' onChange={(e) => setArsenal(e.target.value)} />
-                <button className="btn-comment" onClick={handleAddArsenal}>Add Arsenal</button>
+                    <button className="btn-comment" onClick={patchArsenal}>Update Arsenal</button>
                     <br />
-                    <br/>
+                    <br />
+                    <input type='text' name='arsenalName' placeholder='name arsenal' onChange={(e) => setCreateArsenalName(e.target.value)} />
+                    <input type='text' name='arsenalNumCannon' placeholder='num cannon arsenal' onChange={(e) => setCreateArsenalNumCannon(e.target.value)} />
+                    <button className="btn-comment" onClick={addArsenal}>Add Arsenal</button>
+                    <br />
+                    <br />
                     <button onClick={submitForm}>Submit</button>
                     <br />
                     <br />

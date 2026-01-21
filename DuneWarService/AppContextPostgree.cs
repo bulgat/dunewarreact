@@ -1,4 +1,5 @@
 ﻿using DuneWarLastFantasy.Models;
+using DuneWarLastFantasy.Models.other;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -11,10 +12,12 @@ namespace DuneWarLastFantasy
 
         }
         public DbSet<Score> Score { get; set; }
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=CSharpCornerDB;Username=postgres;Password=avaria");
-        }*/
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Article> Article { get; set; }
+
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Arsenal> Arsenal {  get; set; }
+        public DbSet<Factory> Factory { get; set; }
+
     }
 }

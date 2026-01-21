@@ -1,4 +1,5 @@
 using DuneWarLastFantasy;
+using DuneWarLastFantasy.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppContextPostgree>(opt =>
 opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddTransient<HomeSevice>();
 
 var app = builder.Build();
 
