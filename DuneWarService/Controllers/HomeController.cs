@@ -15,13 +15,18 @@ namespace DuneWarSpeed.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private HomeSevice _homeSevice;
+        private ProductSevice _productSevice;
         AppContextPostgree _context;
 
-        public HomeController(ILogger<HomeController> logger, AppContextPostgree context, HomeSevice homeSevice)
+        public HomeController(ILogger<HomeController> logger,
+            AppContextPostgree context,
+            HomeSevice homeSevice,
+            ProductSevice productSevice)
         {
             _logger = logger;
             _context = context;
             _homeSevice = homeSevice;
+            _productSevice = productSevice;
         }
 
         [HttpGet("GetVersion")]
@@ -98,13 +103,16 @@ namespace DuneWarSpeed.Controllers
             _context.SaveChangesAsync();
 
         }
-
-        [HttpGet("GetProductClassic")]
-        public List<Product> GetProductClassic()
+        [HttpDelete("DeleteProduct")]
+        public async Task<bool> DeleteProduct(int id)
         {
-            List<Arsenal> arsenalList = _context.Arsenal.ToList();
-            List<Factory> factoryList = _context.Factory.ToList();
-            List<Product> productList = _context.Product.ToList();
+            return await _productSevice.DeleteProduct(id);
+        }
+        [HttpGet("GetProductClassic")]
+        public List<Product> GetProductClassic(bool? isArsenal)
+        {
+            var productList = _productSevice.GetProductClassic(isArsenal);
+
             return productList;
         }
         [HttpGet("GetProductInclude")]
@@ -114,11 +122,18 @@ namespace DuneWarSpeed.Controllers
             return productList;
         }
         [HttpGet("GetArsenal")]
-        public List<Arsenal> GetArsenal()
+        public List<Arsenal> GetArsenal(bool sort)
         {
-            List<Arsenal> arsenalList = _homeSevice.GetArsenal();
+            List<Arsenal> arsenalList = _homeSevice.GetArsenal(sort);
             return arsenalList;
         }
+        [HttpGet("ArsenalCount")]
+        public int ArsenalCount(bool sort)
+        {
+            int arsenalCount = _homeSevice.ArsenalCount(sort);
+            return arsenalCount;
+        }
+
         [HttpGet("GetFactory")]
         public List<Factory> GetFactory()
         {

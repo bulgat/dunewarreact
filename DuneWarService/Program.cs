@@ -1,4 +1,5 @@
 using DuneWarLastFantasy;
+using DuneWarLastFantasy.Repositories;
 using DuneWarLastFantasy.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -13,6 +14,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppContextPostgree>(opt =>
 opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<HomeSevice>();
+builder.Services.AddTransient<ProductSevice>();
+builder.Services.AddTransient<ArsenalRepository>();
+builder.Services.AddTransient<ProductRepository>();
 
 var app = builder.Build();
 
