@@ -7,7 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/Homepage';
 import { AboutPage } from './pages/AboutPage';
 import { BlogPage } from './pages/Blogpage';
-import { SinglePage } from './pages/SinglePage';
+import { PostPage } from './pages/PostPage';
 import { UnitPage } from './pages/UnitPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { Editpage } from './pages/Editpage';
@@ -39,7 +39,7 @@ function App() {
                     </Route>
                     <Route path='/unitpage' element={<UnitPage />} />
                     <Route path='/post' element={<BlogPage />} />
-                    <Route path='/post/:id' element={<SinglePage />} />
+                    <Route path='/post/:id' element={<PostPage />} />
                     <Route path='/post/:id/edit' element={<Editpage />} />
 
                     <Route path='*' element={<NotFoundPage />} />

@@ -12,6 +12,26 @@ const HomeService = () => {
                     }
                 })
         },
+        getProductList(sort) {
+            return fetch(HOST_SERVER + `/Home/getProductClassic?sort=${sort}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+                    }
+                })
+        },
+        deleteProduct(id) {
+            return fetch(HOST_SERVER + `/Home/deleteProduct?id=${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+                    }
+                })
+        },
         patchArsenal(name, numCannon) {
             return fetch(HOST_SERVER + `/Home/PatchArsenal?name=${name}&numCannon=${numCannon}`,
                 {

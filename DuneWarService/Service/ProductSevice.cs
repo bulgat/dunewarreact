@@ -14,9 +14,9 @@ namespace DuneWarLastFantasy.Service
         {
             _productRepository = productRepository;
         }
-        public List<Product> GetProductClassic(bool? isArsenal)
+        public async Task<List<Product>> GetProductClassic(bool? isArsenal)
         {
-            return _productRepository.GetProductClassic(isArsenal);
+            return await _productRepository.GetProductClassic(isArsenal);
         }
         public async Task<bool> DeleteProduct(int id)
         {

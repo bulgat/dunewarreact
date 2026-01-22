@@ -104,14 +104,19 @@ namespace DuneWarSpeed.Controllers
 
         }
         [HttpDelete("DeleteProduct")]
-        public async Task<bool> DeleteProduct(int id)
+        public async Task<ActionResult> DeleteProduct(int id)
         {
-            return await _productSevice.DeleteProduct(id);
+            var res =  await _productSevice.DeleteProduct(id);
+            if (res)
+            {
+                return Ok("Delete");
+            }
+            return BadRequest("Error delete");
         }
         [HttpGet("GetProductClassic")]
-        public List<Product> GetProductClassic(bool? isArsenal)
+        public async Task<List<Product>> GetProductClassic(bool? isArsenal)
         {
-            var productList = _productSevice.GetProductClassic(isArsenal);
+            var productList = await _productSevice.GetProductClassic(isArsenal);
 
             return productList;
         }
