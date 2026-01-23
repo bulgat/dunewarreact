@@ -9,17 +9,32 @@ namespace DuneWarLastFantasy.Repositories
         public ProductRepository(AppContextPostgree context) { 
             _context = context;
         }
-        public async Task<List<Product>> GetProductClassic(bool? isArsenal)
+        public async Task<IEnumerable<Product>> GetProductClassic(bool? isArsenal)
         {
-            List<Arsenal> arsenalList = await _context.Arsenal.ToListAsync();
-            List<Factory> factoryList = await _context.Factory.ToListAsync();
-            List<Product> productList = await _context.Product
+            IEnumerable<Arsenal> arsenalList = await _context.Arsenal.ToListAsync();
+            IEnumerable<Factory> factoryList = await _context.Factory.ToListAsync();
+            IEnumerable<Product> productList = await _context.Product
                 .Where(a=> isArsenal==null || isArsenal==true? a.Arsenal!=null : a.Arsenal == null).ToListAsync();
             return productList;
         }
         public async Task<bool> DeleteProduct(int id)
         {
             var kol = await _context.Product.Where(a => a.ID == id).ExecuteDeleteAsync();
+            return true;
+        }
+        public List<Product> GetProductInclude()
+        {
+            List<Product> productList = _context.Product.Include(a => a.Arsenal).Include(b => b.Factorio).ToList();
+            return productList;
+        }
+        public async Task<Product> GetProduct(int id)
+        {
+            return _context.Product.FirstOrDefault(a=>a.ID==id);
+        }
+        public async Task<bool> AddProduct(Product product)
+        {
+            await _context.Product.AddAsync(product);
+            _context.SaveChanges();
             return true;
         }
     }

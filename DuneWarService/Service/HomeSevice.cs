@@ -16,18 +16,24 @@ namespace DuneWarLastFantasy.Service
             _context = context;
             _arsenalRepository = arsenalRepository;
         }
-        public List<Arsenal> GetArsenal(bool sort)
+        public async Task<IEnumerable<Arsenal>> GetArsenal(bool sort)
         {
-            var arsenalList = _arsenalRepository.GetArsenal(sort);
+            return await _arsenalRepository.GetArsenal(sort);
 
-            return arsenalList;
         }
         public int ArsenalCount(bool sort)
         {
             return _arsenalRepository.ArsenalCount(sort);
         }
-
+        public async Task<Arsenal> GetArsenalWithId(int id)
+        {
+            return await _arsenalRepository.GetArsenalWithId(id);
         }
+        public async Task<bool> AddArsenal(Arsenal arsenal)
+        {
+            return await _arsenalRepository.AddArsenal(arsenal);
+        }
+    }
  
     
 }

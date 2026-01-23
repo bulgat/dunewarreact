@@ -13,10 +13,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppContextPostgree>(opt =>
 opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<HomeSevice>();
-builder.Services.AddTransient<ProductSevice>();
-builder.Services.AddTransient<ArsenalRepository>();
-builder.Services.AddTransient<ProductRepository>();
+builder.Services.AddScoped<HomeSevice>();
+builder.Services.AddScoped<ProductSevice>();
+builder.Services.AddScoped<ArsenalRepository>();
+builder.Services.AddScoped<ProductRepository>();
 
 var app = builder.Build();
 

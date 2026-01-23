@@ -19,8 +19,8 @@ const NavBarDune =()=>{
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/post/new">
-                        <Button   variant={"outline-success"} >Post new</Button>
+                    <Nav.Link href="/arsenal">
+                        <Button   variant={"outline-success"} >Arsenal</Button>
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -30,15 +30,24 @@ const NavBarDune =()=>{
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link href="/commentpage">
-                        <Button   variant={"outline-success"} >Comment</Button>
+                        <Button   variant={"outline-success"} >Add Items</Button>
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="/post">
-                        <Button   variant={"outline-success"} >Post Blog</Button>
+                    <Nav.Link href="/blog">
+                        <Button   variant={"outline-success"} >Blog</Button>
                     </Nav.Link>
                 </Nav.Item>
-
+                <Nav.Item>
+                    <Nav.Link href="/login">
+                        <Button variant={"outline-success"} >Login</Button>
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/loginout">
+                        <Button variant={"outline-success"} >Log out</Button>
+                    </Nav.Link>
+                </Nav.Item>
                      
             </Nav>
         </Navbar>

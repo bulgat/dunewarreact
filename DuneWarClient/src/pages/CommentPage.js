@@ -3,11 +3,11 @@ import { useState } from 'react'
 import '../pages/CommentPage.css'
 import { HomeService } from '../services/home.service'
 import { ActionModal } from '../modalWindow/ActionModal'
+import { AddproductComponent } from '../components/addProduct.component'
 
 const CommentPage = () => {
     const _unitService = HomeService();
     const [secret, setSecret] = useState(0);
-    const [product, setProduct] = useState('');
     const [arsenal, setArsenal] = useState('');
     const [visibleModal, setVisibleModal] = useState(false);
     const [createArsenalName, setCreateArsenalName] = useState('');
@@ -43,12 +43,7 @@ const CommentPage = () => {
     }
     getListUnit();
 
-    const handleAddProduct = () => {
-
-        _unitService.addProduct(product).catch(err => {
-            console.log("90  I    = ", err);
-        });
-    }
+    
 
     const patchArsenal = () => {
  
@@ -56,7 +51,8 @@ const CommentPage = () => {
     }
     const addArsenal = () => {
 
-        _unitService.addArsenal(createArsenalName, createArsenalNumCannon);
+        _unitService.addArsenal(createArsenalName, createArsenalNumCannon)
+        .then(a => { alert('add arsenal = '+a.ok)});
     }
 
     const submitForm = () => {
@@ -77,9 +73,8 @@ const CommentPage = () => {
         <div>
             <h5>Comment</h5>
             <div autoComplete='off' >
-                <input type='text' name='product' placeholder='product' onChange={(e) => setProduct(e.target.value)} />
-                <button className="btn-comment" onClick={handleAddProduct}>Add Product</button>
-                <br />
+
+                    <AddproductComponent/>
                 <br />
                 <input type='text' name='arsenal' placeholder='arsenal' onChange={(e) => setArsenal(e.target.value)} />
                     <button className="btn-comment" onClick={patchArsenal}>Update Arsenal</button>

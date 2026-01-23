@@ -22,6 +22,17 @@ const HomeService = () => {
                     }
                 })
         },
+        getProduct(id) {
+            return fetch(HOST_SERVER + `/Home/getProduct?id=${id}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+                    }
+                })
+        },
+
         deleteProduct(id) {
             return fetch(HOST_SERVER + `/Home/deleteProduct?id=${id}`,
                 {
@@ -56,6 +67,16 @@ const HomeService = () => {
                         variables: {
                         }
                     }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+                    }
+                })
+        },
+        GetArsenalWithId(id) {
+            return fetch(HOST_SERVER + `/Home/GetArsenalWithId?id=${id}`,
+                {
+                    method: 'Get',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: 'bearer gdfhdfhjdfhjdfjdj'

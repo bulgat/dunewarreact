@@ -16,7 +16,7 @@ const BlogPage = () => {
 
 
     useEffect(() => {
-        //fetch('http://jsonplaceholder.typicode.com/posts')
+
         _homeService.getProductList(true)
             .then(res => {
 
@@ -69,7 +69,7 @@ const BlogPage = () => {
             {posts.length !== undefined ?
                 posts.filter(post => post.name.includes(postQuery) && post.id >= startForn)
                     .map(post => (<div><Link key={post.id} to={'/post/${post.id}'}>
-                        <li>{post.id} == {post.name}</li>
+                        <li>{post.id} == {post.name}  <a href={'post/'+post.id}> ссылкa</a> </li>
                     </Link><button onClick={()=>handleDelete(post.id) }>delete</button></div>))
                 :
                 ""

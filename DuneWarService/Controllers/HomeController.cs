@@ -56,7 +56,7 @@ namespace DuneWarSpeed.Controllers
             return scoreList;
         }
         [HttpPut("AddProduct")]
-        public async void AddProduct(string name)
+        public async Task<IActionResult> AddProduct(string name)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -70,28 +70,39 @@ namespace DuneWarSpeed.Controllers
                         ArsenalID = arsenal.ID,
                         FactorioID = factory.ID
                     };
+                    _productSevice.AddProduct(product);
 
-                    _context.Product.Add(product);
-                    _context.SaveChanges();
+                    //_context.Product.Add(product);
+                    //_context.SaveChanges();
                     transaction.Commit();
+                    return Ok("save");
                 }
                 catch (Exception ex) {
                     transaction.Rollback();
                 }
             }
+            return BadRequest("Error save");
         }
-        [HttpPut("AddArsenal")]
-        public async void AddArsenal(string name, int numCannon)
+        [HttpGet("GetProduct")]
+        public async Task<Product> GetProduct(int id)
         {
+            return await _productSevice.GetProduct(id);
+        }
+
+        [HttpPut("AddArsenal")]
+        public async Task<bool> AddArsenal(string name, int numCannon)
+        {
+            //var productList = _productSevice.GetProductInclude();
             Arsenal arsenal = new Arsenal()
             {
                 Name = name,
-                NumCannon = numCannon
+                NumCannon = numCannon,
+                //Products = productList.ToList()
             };
 
-            _context.Arsenal.Add(arsenal);
-            _context.SaveChangesAsync();
-
+            //_context.Arsenal.Add(arsenal);
+            await _homeSevice.AddArsenal(arsenal);
+            return true;
         }
         [HttpPatch("PatchArsenal")]
         public async void PatchArsenal(string name, int numCannon)
@@ -114,7 +125,7 @@ namespace DuneWarSpeed.Controllers
             return BadRequest("Error delete");
         }
         [HttpGet("GetProductClassic")]
-        public async Task<List<Product>> GetProductClassic(bool? isArsenal)
+        public async Task<IEnumerable<Product>> GetProductClassic(bool? isArsenal)
         {
             var productList = await _productSevice.GetProductClassic(isArsenal);
 
@@ -123,15 +134,24 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetProductInclude")]
         public List<Product> GetProductInclude()
         {
-            List<Product> productList = _context.Product.Include(a=>a.Arsenal).Include(b=>b.Factorio).ToList();
+            List<Product> productList = _productSevice.GetProductInclude();
             return productList;
         }
+
         [HttpGet("GetArsenal")]
-        public List<Arsenal> GetArsenal(bool sort)
+        public async Task<IEnumerable<Arsenal>> GetArsenal(bool sort)
         {
-            List<Arsenal> arsenalList = _homeSevice.GetArsenal(sort);
+            IEnumerable<Arsenal> arsenalList =await _homeSevice.GetArsenal(sort);
             return arsenalList;
         }
+        [HttpGet("GetArsenalWithId")]
+        public async Task<Arsenal> GetArsenalWithId(int id)
+        {
+            Arsenal arsenal = await _homeSevice.GetArsenalWithId(id);
+            return arsenal;
+        }
+
+
         [HttpGet("ArsenalCount")]
         public int ArsenalCount(bool sort)
         {

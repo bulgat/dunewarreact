@@ -4,27 +4,12 @@ import { LoginService } from '../services/login.service'
 import { useEffect, useState } from 'react'
 
 const Loginpage = () => {
-    const _loginService = LoginService();
-    const [arsenalList, setArsenalList] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
     const {signin} = useAuth();
     const fromPage = location.state?.from?.pathname || '/'
 
-    useEffect(() => {
-        _loginService.getArsenal()
-            .then(res => {
-                console.log('@@@@@@@@@22 res = ', res);
-                setArsenalList(res);
-            })
-            .catch(err => {
-                console.log("90  I    = ", err);
-            });
-    }, []);
 
-
-console.log('  location = ', location)
-console.log('  fromPage = ',fromPage)
 
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -44,13 +29,6 @@ console.log('  fromPage = ',fromPage)
                     </label>
                     <button type="submit">Login</button>
                 </form>
-            </div>
-            <div>
-                <ul>
-                    {arsenalList.map(a => {
-                        return <li key={a.id}>{a.name} **********{ a.numCannon}</li>
-                    })}
-                </ul>
             </div>
         </>)
 }
