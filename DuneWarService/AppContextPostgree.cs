@@ -19,5 +19,7 @@ namespace DuneWarLastFantasy
         public DbSet<Arsenal> Arsenal {  get; set; }
         public DbSet<Factory> Factory { get; set; }
 
+        //dotnet ef migrations add kol
+        //dotnet ef update-datasbase
     }
 }
