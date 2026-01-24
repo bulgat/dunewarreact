@@ -4,6 +4,7 @@ import { LoginService } from '../services/login.service'
 import { useEffect, useState } from 'react'
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd';
+import { AddArsenalComponent } from '../components/addArsenal.component'
 
 const ArsenalPage = () => {
     const _loginService = LoginService();
@@ -50,6 +51,8 @@ const ArsenalPage = () => {
                     </label>
                     <button type="submit">Login</button>
                 </form>
+                <AddArsenalComponent />
+                
             </div>
             <h6>arsenal:</h6>
             <div>

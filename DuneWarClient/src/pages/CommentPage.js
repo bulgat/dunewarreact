@@ -4,18 +4,17 @@ import '../pages/CommentPage.css'
 import { HomeService } from '../services/home.service'
 import { ActionModal } from '../modalWindow/ActionModal'
 import { AddproductComponent } from '../components/addProduct.component'
+import { AddArsenalComponent } from '../components/addArsenal.component'
 
 const CommentPage = () => {
     const _unitService = HomeService();
     const [secret, setSecret] = useState(0);
-    const [arsenal, setArsenal] = useState('');
     const [visibleModal, setVisibleModal] = useState(false);
-    const [createArsenalName, setCreateArsenalName] = useState('');
-    const [createArsenalNumCannon, setCreateArsenalNumCannon] = useState('');
+
 
     console.log("mat  = ", localStorage['product'])
 
-    const getListUnit = () => {
+    const getSecret = () => {
 
         fetch(HOST_SERVER + '/Basa/GetRevealedSecret',
             {
@@ -41,20 +40,9 @@ const CommentPage = () => {
                 console.error('Error fetching data');
             });
     }
-    getListUnit();
+    getSecret();
 
-    
-
-    const patchArsenal = () => {
- 
-        _unitService.patchArsenal(arsenal,9);
-    }
-    const addArsenal = () => {
-
-        _unitService.addArsenal(createArsenalName, createArsenalNumCannon)
-        .then(a => { alert('add arsenal = '+a.ok)});
-    }
-
+   
     const submitForm = () => {
         setVisibleModal(true);
     }
@@ -76,13 +64,10 @@ const CommentPage = () => {
 
                     <AddproductComponent/>
                 <br />
-                <input type='text' name='arsenal' placeholder='arsenal' onChange={(e) => setArsenal(e.target.value)} />
-                    <button className="btn-comment" onClick={patchArsenal}>Update Arsenal</button>
-                    <br />
-                    <br />
-                    <input type='text' name='arsenalName' placeholder='name arsenal' onChange={(e) => setCreateArsenalName(e.target.value)} />
-                    <input type='text' name='arsenalNumCannon' placeholder='num cannon arsenal' onChange={(e) => setCreateArsenalNumCannon(e.target.value)} />
-                    <button className="btn-comment" onClick={addArsenal}>Add Arsenal</button>
+            
+
+            
+
                     <br />
                     <br />
                     <button onClick={submitForm}>Submit</button>
