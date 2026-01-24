@@ -56,18 +56,18 @@ namespace DuneWarSpeed.Controllers
             return scoreList;
         }
         [HttpPut("AddProduct")]
-        public async Task<IActionResult> AddProduct(string name)
+        public async Task<IActionResult> AddProduct(string name,int arsenalId)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    Arsenal arsenal = _context.Arsenal.FirstOrDefault();
+                    //Arsenal arsenal = _context.Arsenal.FirstOrDefault();
                     Factory factory = _context.Factory.FirstOrDefault();
                     Product product = new Product()
                     {
                         Name = name,
-                        ArsenalID = arsenal.ID,
+                        ArsenalID = arsenalId,
                         FactorioID = factory.ID
                     };
                     _productSevice.AddProduct(product);

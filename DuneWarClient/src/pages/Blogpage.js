@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from "react-router-do
 import { BlogFilter } from '../components/BlogFilter';
 import './Blogpage.css'
 import { HomeService } from '../services/home.service'
+import { ProductListComponent } from '../components/productList.component'
 
 const BlogPage = () => {
     const [posts, SetPost] = useState({})
@@ -32,22 +33,7 @@ const BlogPage = () => {
     const goBack = () => navigate('/post', { state: 123 })
     const goHome = () => navigate('/', { replace: true })
 
-    const handleDelete = (id)=> {
 
-        _homeService.deleteProduct(id)
-        .then(res => {
-
-            if (res.ok) {
-
-                return res.text();
-            } 
-            return res.text();
-            
-        }).then(result => {
-            console.log("   ====", result)
-            alert('Успешно удалено ' + result)
-        });
-    }
   
 
 
@@ -64,16 +50,9 @@ const BlogPage = () => {
             {console.log(searchParams.get('post') + "-ff[" + supQuery + "]f---" + postQuery)}
             <br />
             <br />
-            <h5>Product:</h5>
-    
-            {posts.length !== undefined ?
-                posts.filter(post => post.name.includes(postQuery) && post.id >= startForn)
-                    .map(post => (<div><Link key={post.id} to={'/post/${post.id}'}>
-                        <li>{post.id} == {post.name}  <a href={'post/'+post.id}> ссылкa</a> </li>
-                    </Link><button onClick={()=>handleDelete(post.id) }>delete</button></div>))
-                :
-                ""
-            }
+            <ProductListComponent productList={ posts } />
+
+            
 
         </>
     )

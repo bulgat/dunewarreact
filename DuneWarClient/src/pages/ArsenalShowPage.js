@@ -16,7 +16,7 @@ const ArsenalShowPage =()=>{
 
                 return a.json();
             }).then(b => {
-                console.log("0005 i  ", b)
+                console.log("0005 Arsenal ", b)
                setArsenal(b);
             })
     },[])
@@ -27,7 +27,7 @@ const ArsenalShowPage =()=>{
     }
 
     return (<>
-        <div> PAGE product {id}</div>
+        <div> Aresnal {id}</div>
         <h6>id:{arsenal.id}</h6>
         <h6>name:{arsenal.name}</h6>
         <h6>name:{arsenal.numCannon}</h6>

@@ -2,8 +2,8 @@ import { HOST_SERVER } from '../environment'
 
 const HomeService = () => {
     return {
-        addProduct(name) {
-            return fetch(HOST_SERVER + `/Home/AddProduct?name=${name}`,
+        addProduct(name, arsenalId) {
+            return fetch(HOST_SERVER + `/Home/AddProduct?name=${name}&arsenalId=${arsenalId}`,
                 {
                     method: 'PUT',
                     headers: {

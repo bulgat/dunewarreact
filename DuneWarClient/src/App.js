@@ -24,6 +24,8 @@ import rooReducer from './reducer/rootReducer';
 import { Provider } from 'react-redux';
 import { FooterComponent } from './components/footer.component';
 import { ArsenalPage } from './pages/ArsenalPage';
+import { ProductPage } from './pages/ProductPage'
+
 function App() {
 
     const store = createStore(rooReducer);
@@ -40,6 +42,7 @@ function App() {
                     </Route>
                     <Route path='/unitpage' element={<UnitPage />} />
                     <Route path='/blog' element={<BlogPage />} />
+                    <Route path='/blog/:id' element={<ProductPage />} />
                     <Route path='/arsenal/:id' element={<ArsenalShowPage />} />
                     <Route path='/arsenal/:id/edit' element={<EditArsenalPage />} />
 
