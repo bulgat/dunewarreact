@@ -41,6 +41,20 @@ const ArsenalPage = () => {
         console.log('Page: ', pageNumber);
     };
 
+    const itemRender: PaginationProps['itemRender'] = (_, type, originalElement) => {
+        if (type === 'prev') {
+            return <a>Previous</a>;
+        }
+        if (type === 'next') {
+            return <a>Next</a>;
+        }
+        if (type === 'page') {
+            return <a>{originalElement}@</a>
+        }
+
+        return originalElement;
+    };
+
     return (
         <>
             <div>
@@ -61,7 +75,11 @@ const ArsenalPage = () => {
                         return <li key={a.id}>{ index })  id:{ a.id }   {a.name} **** ****{a.numCannon} <a href={'arsenal/'+a.id}>Текст ссылки</a> </li>
                     })}
                 </ul>
-                <Pagination defaultCurrent={1} total={50} showSizeChanger onShowSizeChange={onShowSizeChange} onChange={onChange} />
+                <Pagination defaultCurrent={1} total={50} defaultPageSize={20}
+                    showSizeChanger onShowSizeChange={onShowSizeChange}
+                    pageSizeOptions={[10, 20, 50, 100, 200]} size='small'  
+                    itemRender={itemRender} showLessItems showTitle 
+                    onChange={onChange} />
             </div>
         </>)
 }
