@@ -15,6 +15,8 @@ public partial class Article
 
     public string? Description { get; set; }
 
+    public bool? Check { get; set; }
+
     public DateTime? CreatedAt { get; set; }
 
     public int Uid { get; set; }

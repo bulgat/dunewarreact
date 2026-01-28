@@ -1,4 +1,7 @@
-﻿using DuneWarLastFantasy.Models.other;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using DuneWarLastFantasy.DTO.Response;
+using DuneWarLastFantasy.Models.other;
 using Microsoft.EntityFrameworkCore;
 
 namespace DuneWarLastFantasy.Repositories
@@ -6,8 +9,10 @@ namespace DuneWarLastFantasy.Repositories
     public class ArsenalRepository
     {
         AppContextPostgree _context;
-        public ArsenalRepository(AppContextPostgree context) { 
+        IMapper _mapper;
+        public ArsenalRepository(AppContextPostgree context, IMapper mapper) { 
             _context = context;
+            _mapper = mapper;
         }
         private IOrderedEnumerable<Arsenal> GetQuery(bool sort)
         {
@@ -22,8 +27,18 @@ namespace DuneWarLastFantasy.Repositories
         public async Task<Arsenal> GetArsenalWithId(int id)
         {
             return _context.Arsenal.Include(a => a.Products).FirstOrDefault(a=>a.ID==id);
-            //return _context.Arsenal.Include(a => a.Products).Where(a => a.Products.Select(b => b.ID).Contains(id));
+
         }
+
+        public async Task<IEnumerable<ArsenalSlashResponse>> ArsenalMapList() {
+            return await _context.Arsenal.Include(a => a.Products).Select(a => _mapper.Map<ArsenalSlashResponse>(a)).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ArsenalSlashResponse>> ArsenalMapProjectToList()
+        {
+            return await _context.Arsenal.Include(a => a.Products).ProjectTo<ArsenalSlashResponse>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
         public int ArsenalCount(bool sort) {
             return GetQuery(sort).Count();
         }

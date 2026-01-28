@@ -1,4 +1,5 @@
 using DuneWarLastFantasy;
+using DuneWarLastFantasy.DTO.Response;
 using DuneWarLastFantasy.Models;
 using DuneWarLastFantasy.Models.other;
 using DuneWarLastFantasy.Service;
@@ -148,6 +149,18 @@ namespace DuneWarSpeed.Controllers
         public async Task<Arsenal> GetArsenalWithId(int id)
         {
             Arsenal arsenal = await _homeSevice.GetArsenalWithId(id);
+            return arsenal;
+        }
+        [HttpGet("ArsenalMapList")]
+        public async Task<IEnumerable<ArsenalSlashResponse>> ArsenalMapList()
+        {
+            var arsenal = await _homeSevice.ArsenalMapList();
+            return arsenal;
+        }
+        [HttpGet("ArsenalMapProjectToList")]
+        public async Task<IEnumerable<ArsenalSlashResponse>> ArsenalMapProjectToList()
+        {
+            var arsenal = await _homeSevice.ArsenalMapProjectToList();
             return arsenal;
         }
 
