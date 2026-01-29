@@ -1,7 +1,9 @@
 ﻿using DuneWarLastFantasy.Models;
+using DuneWarLastFantasy.Models.duneWar;
 using DuneWarLastFantasy.Models.other;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Diagnostics.Metrics;
 
 namespace DuneWarLastFantasy
 {
@@ -19,7 +21,26 @@ namespace DuneWarLastFantasy
         public DbSet<Arsenal> Arsenal {  get; set; }
         public DbSet<Factory> Factory { get; set; }
 
-        //dotnet ef migrations add kol
-        //dotnet ef update-datasbase
-    }
+        public DbSet<TypeProduct> TypeProduct { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /*
+            modelBuilder.Entity<Product>()
+                .HasOne(a => a.TypeProduct)
+                .WithOne(a => a.Product)
+                .HasForeignKey<Product>(c => c.TypeProductId);
+            
+            modelBuilder.Entity<TypeProduct>()
+            .HasOne(a => a.Product) // Author has one AuthorBiography
+            .WithOne(b=>b.TypeProduct)   // AuthorBiography has one Author
+            .HasForeignKey<Product>(b => b.TypeProductId);
+            //.HasForeignKey<Product>(a=>a.TypeProductId); 
+*/
+ 
+        }
+
+            //dotnet ef migrations add kol
+            //dotnet ef update-datasbase
+     }
 }

@@ -26,7 +26,7 @@ namespace DuneWarLastFantasy.Repositories
         }
         public async Task<Arsenal> GetArsenalWithId(int id)
         {
-            return _context.Arsenal.Include(a => a.Products).FirstOrDefault(a=>a.ID==id);
+            return _context.Arsenal.Include(a => a.Products).ThenInclude(b=>b.TypeProduct).FirstOrDefault(a=>a.ID==id);
 
         }
 

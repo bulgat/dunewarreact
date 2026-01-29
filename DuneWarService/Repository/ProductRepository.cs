@@ -39,6 +39,8 @@ namespace DuneWarLastFantasy.Repositories
         }
         public IEnumerable<Product> ProductAllStore()
         {
+            var koll = _context.TypeProduct.ToList();
+
             //Создает анонимные функции, объединяя их по Ид
             /*
             SELECT a."Name" AS "FirstName", f."Name" AS "SecondName"
