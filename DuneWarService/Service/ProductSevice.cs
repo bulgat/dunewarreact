@@ -35,6 +35,10 @@ namespace DuneWarLastFantasy.Service
         {
             return await _productRepository.DeleteProduct(id);
         }
+        public IEnumerable<Product> ProductAllStore()
+        {
+            return _productRepository.ProductAllStore();
+        }
     }
  
     

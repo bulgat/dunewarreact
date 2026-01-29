@@ -16,7 +16,7 @@ namespace DuneWarSpeed.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private HomeSevice _homeSevice;
-        private ProductSevice _productSevice;
+        private ProductSevice _productService;
         AppContextPostgree _context;
 
         public HomeController(ILogger<HomeController> logger,
@@ -27,7 +27,7 @@ namespace DuneWarSpeed.Controllers
             _logger = logger;
             _context = context;
             _homeSevice = homeSevice;
-            _productSevice = productSevice;
+            _productService = productSevice;
         }
 
         [HttpGet("GetVersion")]
@@ -71,7 +71,7 @@ namespace DuneWarSpeed.Controllers
                         ArsenalID = arsenalId,
                         FactorioID = factory.ID
                     };
-                    _productSevice.AddProduct(product);
+                    _productService.AddProduct(product);
 
                     //_context.Product.Add(product);
                     //_context.SaveChanges();
@@ -87,7 +87,7 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetProduct")]
         public async Task<Product> GetProduct(int id)
         {
-            return await _productSevice.GetProduct(id);
+            return await _productService.GetProduct(id);
         }
 
         [HttpPut("AddArsenal")]
@@ -118,7 +118,7 @@ namespace DuneWarSpeed.Controllers
         [HttpDelete("DeleteProduct")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
-            var res =  await _productSevice.DeleteProduct(id);
+            var res =  await _productService.DeleteProduct(id);
             if (res)
             {
                 return Ok("Delete");
@@ -128,14 +128,14 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetProductClassic")]
         public async Task<IEnumerable<Product>> GetProductClassic(bool? isArsenal)
         {
-            var productList = await _productSevice.GetProductClassic(isArsenal);
+            var productList = await _productService.GetProductClassic(isArsenal);
 
             return productList;
         }
         [HttpGet("GetProductInclude")]
         public List<Product> GetProductInclude()
         {
-            List<Product> productList = _productSevice.GetProductInclude();
+            List<Product> productList = _productService.GetProductInclude();
             return productList;
         }
 
@@ -164,6 +164,12 @@ namespace DuneWarSpeed.Controllers
             return arsenal;
         }
 
+        [HttpGet("ProductAllStore")]
+        public async Task<IEnumerable<Product>> ProductAllStore()
+        {
+            var arsenal =  _productService.ProductAllStore();
+            return arsenal;
+        }
 
         [HttpGet("ArsenalCount")]
         public int ArsenalCount(bool sort)

@@ -38,7 +38,7 @@ namespace DuneWarLastFantasy.Service
         {
             return await _arsenalRepository.ArsenalMapProjectToList();
         }
-
+  
         public async Task<bool> AddArsenal(Arsenal arsenal)
         {
             return await _arsenalRepository.AddArsenal(arsenal);

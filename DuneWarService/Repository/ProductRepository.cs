@@ -37,5 +37,24 @@ namespace DuneWarLastFantasy.Repositories
             _context.SaveChanges();
             return true;
         }
+        public IEnumerable<Product> ProductAllStore()
+        {
+            //Создает анонимные функции, объединяя их по Ид
+            /*
+            SELECT a."Name" AS "FirstName", f."Name" AS "SecondName"
+            FROM "DuneWar"."Arsenal" AS a
+            INNER JOIN "DuneWar"."Factory" AS f ON a."ID" = f."ID"
+            */
+            var innerJoinQuery = from e in _context.Arsenal
+                                 join d in _context.Factory on e.ID equals d.ID
+                                 select new
+                                 {
+                                     FirstName = e.Name,
+                                     SecondName = d.Name
+                                 };
+            var kol = innerJoinQuery.ToList();
+
+            return null;
+        }
     }
 }
