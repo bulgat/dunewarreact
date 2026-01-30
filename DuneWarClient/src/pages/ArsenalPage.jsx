@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd';
 import { AddArsenalComponent } from '../components/addArsenal.component'
+import { InfoLineComponent } from '../components/infoLine.component'
+import { LabelComponent } from '../components/label.component'
 
 const ArsenalPage = () => {
     const _loginService = LoginService();
@@ -72,7 +74,8 @@ const ArsenalPage = () => {
             <div>
                 <ul>
                     {arsenalList.map((a,index) => {
-                        return <li key={a.id}>{ index })  id:{ a.id }   {a.name} **** ****{a.numCannon} <a href={'arsenal/'+a.id}>Текст ссылки</a> </li>
+                        return <InfoLineComponent item={a} index={index} Label={ <LabelComponent/> } />
+                        
                     })}
                 </ul>
                 <Pagination defaultCurrent={1} total={50} defaultPageSize={20}
