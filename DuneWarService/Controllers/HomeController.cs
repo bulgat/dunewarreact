@@ -5,6 +5,7 @@ using DuneWarLastFantasy.Models.other;
 using DuneWarLastFantasy.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -33,9 +34,23 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetVersion")]
         public string GetVersion()
         {
-            
-            return "1.0.0";
+            var indexList = new List<int>() { 2, 5, 7, 2 }.Select((a, index) => index).ToList();
+            return string.Join(".", indexList);
         }
+
+        [HttpPost("GetStatus")]
+        public string GetStatus()
+        {
+            List< Student > studentList = new List<Student>() { new Student(),new Student(),new Student() };
+            IEnumerable<Student> enumList = studentList as IEnumerable<Student>;
+            foreach (var item in enumList)
+            {
+                item.StudentId = 6;
+            }
+
+            return "Alfa: "+ enumList.Last().StudentId;
+        }
+
         [HttpGet("GetScore")]
         public List<Score> GetScore()
         {
@@ -192,11 +207,7 @@ namespace DuneWarSpeed.Controllers
             return methodName;
         }
 
-        [HttpPost("GetStatus")]
-        public string GetStatus()
-        {
-            return "Alfa";
-        }
+
 
     }
 }

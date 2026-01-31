@@ -1,4 +1,5 @@
 import { HOST_SERVER } from '../environment'
+import axios from 'axios'
 
 const HomeService = () => {
     return {
@@ -82,6 +83,39 @@ const HomeService = () => {
                         Authorization: 'bearer gdfhdfhjdfhjdfjdj'
                     }
                 })
+        },
+        fetchVersion() {
+                return fetch(HOST_SERVER + '/home/getversion')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                //.then(data => {
+                //    setVersion(data);
+                //})
+                .catch(err => {
+                    console.error('Error fetching data');
+                });
+        },
+        fetchStatus() {
+            return axios.post(HOST_SERVER + '/home/getstatus')
+
+
+
+            /*
+            return fetch(HOST_SERVER + '/home/getstatus', {
+                method: 'POST', // Specify the method
+                headers: {
+                    'Content-Type': 'application/json', // Inform the server about the data type
+                }
+            })
+                .then(response => response.text()) // Parse the JSON response
+                .catch(error => {
+                    console.error('Error:', error); // Handle errors
+                });
+                */
         }
     }
 
