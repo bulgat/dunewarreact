@@ -34,7 +34,7 @@ namespace DuneWarLastFantasy.Repositories
         public async Task<bool> AddProduct(Product product)
         {
             await _context.Product.AddAsync(product);
-            _context.SaveChanges();
+           // _context.SaveChanges();
             return true;
         }
         public IEnumerable<Product> ProductAllStore()

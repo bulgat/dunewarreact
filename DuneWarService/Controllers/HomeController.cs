@@ -106,19 +106,16 @@ namespace DuneWarSpeed.Controllers
         }
 
         [HttpPut("AddArsenal")]
-        public async Task<bool> AddArsenal(string name, int numCannon)
+        public async Task<ActionResult> AddArsenal(string name, int numCannon)
         {
-            //var productList = _productSevice.GetProductInclude();
             Arsenal arsenal = new Arsenal()
             {
                 Name = name,
                 NumCannon = numCannon,
-                //Products = productList.ToList()
             };
 
-            //_context.Arsenal.Add(arsenal);
-            await _homeSevice.AddArsenal(arsenal);
-            return true;
+            return Ok( _homeSevice.AddArsenal(arsenal));
+  
         }
         [HttpPatch("PatchArsenal")]
         public async void PatchArsenal(string name, int numCannon)

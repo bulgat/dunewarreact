@@ -1,5 +1,6 @@
 ﻿using DuneWarLastFantasy.Models.other;
 using DuneWarLastFantasy.Repositories;
+using DuneWarLastFantasy.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -8,11 +9,12 @@ namespace DuneWarLastFantasy.Service
 {
     public class ProductSevice
     {
-
         ProductRepository _productRepository;
-        public ProductSevice(ProductRepository productRepository)
+        UnitOfWork _unitOfWork;
+        public ProductSevice(ProductRepository productRepository, UnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<IEnumerable<Product>> GetProductClassic(bool? isArsenal)
         {
@@ -29,7 +31,15 @@ namespace DuneWarLastFantasy.Service
         }
         public async Task<bool> AddProduct(Product product)
         {
-           return await _productRepository.AddProduct(product);
+            try
+            {
+                await _productRepository.AddProduct(product);
+                _unitOfWork.Save();
+            }
+            catch (Exception ex) {
+            
+            }
+            return false;
         }
         public async Task<bool> DeleteProduct(int id)
         {

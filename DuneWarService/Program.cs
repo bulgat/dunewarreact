@@ -1,6 +1,7 @@
 using AutoMapper;
 using DuneWarLastFantasy;
 using DuneWarLastFantasy.Repositories;
+using DuneWarLastFantasy.Repository;
 using DuneWarLastFantasy.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,8 @@ builder.Services.AddScoped<HomeSevice>();
 builder.Services.AddScoped<ProductSevice>();
 builder.Services.AddScoped<ArsenalRepository>();
 builder.Services.AddScoped<ProductRepository>();
-
+builder.Services.AddScoped<UnitOfWork>();
+ 
 //builder.Services.AddAutoMapper(typeof(Program));
 //builder.Services.AddAutoMapper(typeof(MappingProfile));
 //builder.Services.AddSingleton<MappingProfile>();

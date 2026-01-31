@@ -1,6 +1,7 @@
 ﻿using DuneWarLastFantasy.DTO.Response;
 using DuneWarLastFantasy.Models.other;
 using DuneWarLastFantasy.Repositories;
+using DuneWarLastFantasy.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -11,11 +12,12 @@ namespace DuneWarLastFantasy.Service
     {
         AppContextPostgree _context;
         ArsenalRepository _arsenalRepository;
-
-        public HomeSevice(AppContextPostgree context, ArsenalRepository arsenalRepository)
+        UnitOfWork _unitOfWork;
+        public HomeSevice(AppContextPostgree context, ArsenalRepository arsenalRepository, UnitOfWork unitOfWork)
         {
             _context = context;
             _arsenalRepository = arsenalRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<IEnumerable<Arsenal>> GetArsenal(bool sort)
         {
@@ -39,9 +41,20 @@ namespace DuneWarLastFantasy.Service
             return await _arsenalRepository.ArsenalMapProjectToList();
         }
   
-        public async Task<bool> AddArsenal(Arsenal arsenal)
+        public async Task<string> AddArsenal(Arsenal arsenal)
         {
-            return await _arsenalRepository.AddArsenal(arsenal);
+            try
+            {
+                _unitOfWork.Begin();
+                await _arsenalRepository.AddArsenal(arsenal);
+                _unitOfWork.Save();
+                _unitOfWork.Commit();
+                return "Сохранен";
+            }
+            catch (Exception ex) {
+                _unitOfWork.Rollback();
+                return "Ошибка "+ex.Message;
+            }
         }
     }
  

@@ -44,9 +44,17 @@ namespace DuneWarLastFantasy.Repositories
         }
         public async Task<bool> AddArsenal(Arsenal arsenal)
         {
-            _context.Arsenal.Add(arsenal);
-            _context.SaveChangesAsync();
-            return true;
+            try
+            {
+
+                _context.Arsenal.Add(arsenal);
+                
+                return true;
+            } catch(Exception err)
+            {
+
+            }
+            return false;
         }
     }
 }
