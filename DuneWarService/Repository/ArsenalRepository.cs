@@ -19,10 +19,10 @@ namespace DuneWarLastFantasy.Repositories
             return _context.Arsenal.AsEnumerable().OrderBy(x => x, new ComparerLinqSort(sort));
         }
 
-        public async Task<IEnumerable<Arsenal>> GetArsenal(bool sort)
+        public async Task<IEnumerable<Arsenal>> GetArsenal(int page, int size, bool sort)
         {
 
-            return  _context.Arsenal.Include(a=>a.Products).AsEnumerable().OrderBy(x => x, new ComparerLinqSort(sort)).ToList();
+            return   _context.Arsenal.Include(a=>a.Products).Skip((page-1)*size).Take(size).AsEnumerable().OrderBy(x => x, new ComparerLinqSort(sort)).ToList();
         }
         public async Task<Arsenal> GetArsenalWithId(int id)
         {

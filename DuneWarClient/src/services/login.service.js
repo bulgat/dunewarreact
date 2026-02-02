@@ -2,8 +2,8 @@ import { HOST_SERVER } from '../environment'
 
 const LoginService = () => {
     return {
-        getArsenal(name, numCannon) {
-            return fetch(HOST_SERVER + `/Home/getArsenal`,
+        getArsenal(page, size) {
+            return fetch(HOST_SERVER + `/Home/getArsenal?page=${page}&size=${size}&sort=${true}`,
                 {
                     method: 'Get',
                     /*

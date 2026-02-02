@@ -11,13 +11,15 @@ import { LabelComponent } from '../components/label.component'
 const ArsenalPage = () => {
     const _loginService = LoginService();
     const [arsenalList, setArsenalList] = useState([]);
+    const [page, setPage] = useState(1);
+    const [size, setSize] = useState(10);
     const navigate = useNavigate();
     const location = useLocation();
     const {signin} = useAuth();
     const fromPage = location.state?.from?.pathname || '/'
 
     useEffect(() => {
-        _loginService.getArsenal()
+        _loginService.getArsenal(page, size)
             .then(res => {
                 console.log('@@@@@@@@@22 res = ', res);
                 setArsenalList(res);
@@ -25,7 +27,7 @@ const ArsenalPage = () => {
             .catch(err => {
                 console.log("90  I    = ", err);
             });
-    }, []);
+    }, [page,size]);
 
  
     const handleSubmit=(event)=>{
@@ -37,10 +39,12 @@ const ArsenalPage = () => {
 
     const onShowSizeChange: PaginationProps['onShowSizeChange'] = (current, pageSize) => {
         console.log(current, pageSize);
+        setSize(pageSize);
     };
 
     const onChange: PaginationProps['onChange'] = (pageNumber) => {
         console.log('Page: ', pageNumber);
+        setPage(pageNumber);
     };
 
     const itemRender: PaginationProps['itemRender'] = (_, type, originalElement) => {
@@ -74,7 +78,7 @@ const ArsenalPage = () => {
             <div>
                 <ul>
                     {arsenalList.map((a,index) => {
-                        return <InfoLineComponent item={a} index={index} Label={ <LabelComponent/> } />
+                        return <InfoLineComponent item={a} index={index} Label={<LabelComponent name={ a.name } /> } />
                         
                     })}
                 </ul>

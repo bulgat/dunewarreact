@@ -19,9 +19,9 @@ namespace DuneWarLastFantasy.Service
             _arsenalRepository = arsenalRepository;
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Arsenal>> GetArsenal(bool sort)
+        public async Task<IEnumerable<Arsenal>> GetArsenal(int page, int size, bool sort)
         {
-            return await _arsenalRepository.GetArsenal(sort);
+            return await _arsenalRepository.GetArsenal(page, size, sort);
 
         }
         public int ArsenalCount(bool sort)

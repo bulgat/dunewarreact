@@ -27,7 +27,7 @@ namespace DuneWarLastFantasy
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Arsenal>().Property(c => c.ID).HasColumnName("ID").ValueGeneratedOnAdd();
             /*
             modelBuilder.Entity<TypeProduct>()
             .HasOne(a => a.Product) // Author has one AuthorBiography
@@ -35,7 +35,7 @@ namespace DuneWarLastFantasy
             .HasForeignKey<Product>(b => b.TypeProductId);
             //.HasForeignKey<Product>(a=>a.TypeProductId); 
 */
- 
+
         }
 
         public void BeginTransaction()

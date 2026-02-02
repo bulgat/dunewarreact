@@ -152,9 +152,9 @@ namespace DuneWarSpeed.Controllers
         }
 
         [HttpGet("GetArsenal")]
-        public async Task<IEnumerable<Arsenal>> GetArsenal(bool sort)
+        public async Task<IEnumerable<Arsenal>> GetArsenal(int page, int size,bool sort)
         {
-            IEnumerable<Arsenal> arsenalList =await _homeSevice.GetArsenal(sort);
+            IEnumerable<Arsenal> arsenalList =await _homeSevice.GetArsenal(page, size, sort);
             return arsenalList;
         }
         [HttpGet("GetArsenalWithId")]

@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from 'react'
 
-const LabelComponent = () => {
+const LabelComponent = ({ name }) => {
 
 
 
     return (
         <>
-            <img src='./robot.png' width='20px' />
+            <img src='./robot.png' width='20px' />{name }
         </>
     )
 }
