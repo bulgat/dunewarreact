@@ -32,7 +32,7 @@ namespace DuneWarSpeed.Controllers
         }
 
         [HttpGet("GetScoreList")]
-        public Task<IEnumerable<Score>> GetScoreList()
+        public Task<IQueryable<Score>> GetScoreList()
         {
 
             return _scoreService.GetScoreList();

@@ -4,6 +4,7 @@ using DuneWarLastFantasy.DTO.Response;
 using DuneWarLastFantasy.Models;
 using DuneWarLastFantasy.Models.other;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace DuneWarLastFantasy.Repositories
 {
@@ -15,9 +16,11 @@ namespace DuneWarLastFantasy.Repositories
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<Score>> GetScoreList()
+        public async Task<IQueryable<Score>> GetScoreList()
         {
-            return await _context.Score.ToListAsync();
+ 
+            return  _context.Score;
+
         }
 
        

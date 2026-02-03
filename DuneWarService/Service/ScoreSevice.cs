@@ -18,7 +18,7 @@ namespace DuneWarLastFantasy.Service
             _scoreRepository = scoreRepository;
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Score>> GetScoreList()
+        public async Task<IQueryable<Score>> GetScoreList()
         {
             return await _scoreRepository.GetScoreList();
 
