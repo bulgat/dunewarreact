@@ -37,8 +37,13 @@ namespace DuneWarSpeed.Controllers
 
             return _scoreService.GetScoreList();
         }
+        [HttpGet("AnonymousScoreList")]
+        public async Task<IEnumerable<ScoreResponse>> AnonymousScoreList()
+        {
+            return await _scoreService.AnonymousScoreList();
+        }
 
-        
+
 
 
     }

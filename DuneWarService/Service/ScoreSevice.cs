@@ -23,7 +23,10 @@ namespace DuneWarLastFantasy.Service
             return await _scoreRepository.GetScoreList();
 
         }
-        
+        public async Task<IEnumerable<ScoreResponse>> AnonymousScoreList()
+        {
+            return await _scoreRepository.AnonymousScoreList();
+        }
     }
  
     
