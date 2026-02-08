@@ -11,7 +11,10 @@ const NavBarDune =()=>{
             <Navbar bg="light" variant="light">
             
                 <Nav variant="pills" defaultActiveKey="/home">
+                    <div className='container-nav'>
 <div className='arrow-up'></div>
+                    </div>
+
                 <Nav.Item>
                     <Nav.Link href="/about">
                         <Button variant={"outline-success"}>Description</Button>
