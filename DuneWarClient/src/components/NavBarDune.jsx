@@ -2,14 +2,20 @@ import Nav from 'react-bootstrap/Nav';
 import {Container, Card, Form, Button, Row, Spinner} from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
+import './NavBarDune.css'
 
 const NavBarDune =()=>{
-    return(
-        <Navbar bg="light" variant="light">
-            <Nav variant="pills" defaultActiveKey="/home">
+    return (
+        <>
+            
+            <Navbar bg="light" variant="light">
+            
+                <Nav variant="pills" defaultActiveKey="/home">
+<div className='arrow-up'></div>
                 <Nav.Item>
                     <Nav.Link href="/about">
                         <Button variant={"outline-success"}>Description</Button>
+                         
                     </Nav.Link>
                     
                 </Nav.Item>
@@ -50,7 +56,8 @@ const NavBarDune =()=>{
                 </Nav.Item>
                      
             </Nav>
-        </Navbar>
+            </Navbar>
+        </>
     )
 }
 export {NavBarDune}

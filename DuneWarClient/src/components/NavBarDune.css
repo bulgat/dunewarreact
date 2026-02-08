@@ -1,0 +1,6 @@
+.arrow-up::before {
+    content: "\25B2"; /* Обычная стрелка вверх */
+    margin-right: 5px;
+    font-weight: bold;
+
+}
