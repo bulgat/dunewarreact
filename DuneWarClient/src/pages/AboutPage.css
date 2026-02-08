@@ -1,0 +1,12 @@
+.dynamic-head {
+    //background-color: aliceblue;
+    border: 5px solid aliceblue;
+    border-radius: 15px;
+    max-width: 150px; /* Изначально скрыт */
+    transition: max-width 0.5s ease-out; /* Анимация раскрытия */
+    height: 100px;
+}
+.dynamic-head:hover {
+    max-width: 500px; /* раскрытие */
+    height: 100px;
+}

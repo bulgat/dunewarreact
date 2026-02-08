@@ -3,6 +3,7 @@ import { Card, Image, Container } from 'react-bootstrap';
 import { useState } from 'react'
 import { HOST_SERVER } from '../environment'
 import { HomeService } from '../services/home.service'
+import './AboutPage.css'
 
 const AboutPage = () => {
 
@@ -47,7 +48,10 @@ const AboutPage = () => {
 
     return (
         <>
+            <div className='dynamic-head'>
             <h2>Dune remaster </h2>
+        </div>
+
             <br></br>
             
             <div className="backgroundImage">
