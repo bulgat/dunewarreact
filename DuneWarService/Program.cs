@@ -17,16 +17,13 @@ builder.Services.AddDbContext<AppContextPostgree>(opt =>
 opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<HomeSevice>();
 builder.Services.AddScoped<ProductSevice>();
+builder.Services.AddScoped<ArsenalSevice>();
 builder.Services.AddScoped<ScoreSevice>();
 builder.Services.AddScoped<ArsenalRepository>();
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<ScoreRepository>();
 builder.Services.AddScoped<UnitOfWork>();
- 
-//builder.Services.AddAutoMapper(typeof(Program));
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
-//builder.Services.AddSingleton<MappingProfile>();
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
 
 var app = builder.Build();

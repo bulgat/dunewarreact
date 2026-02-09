@@ -1,6 +1,7 @@
 import { useLocation,useNavigate } from "react-router-dom";
 import { useAuth } from "../hook/useAuth";
 import { LoginService } from '../services/login.service'
+import { HomeService } from '../services/home.service'
 import { useEffect, useState } from 'react'
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd';
@@ -10,6 +11,7 @@ import { LabelComponent } from '../components/label.component'
 
 const ArsenalPage = () => {
     const _loginService = LoginService();
+    const _homeService = HomeService();
     const [arsenalList, setArsenalList] = useState([]);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(10);
@@ -17,16 +19,25 @@ const ArsenalPage = () => {
     const location = useLocation();
     const {signin} = useAuth();
     const fromPage = location.state?.from?.pathname || '/'
+    const [allProductList, setAllProductList] = useState([]);
 
     useEffect(() => {
         _loginService.getArsenal(page, size)
             .then(res => {
-                console.log('@@@@@@@@@22 res = ', res);
+
                 setArsenalList(res);
             })
             .catch(err => {
                 console.log("90  I    = ", err);
             });
+        _homeService.getProductList(false).then(res => {
+    
+            return res.json();
+        }).then(arr => {
+            console.log('@@@@ res = ', arr);
+            setAllProductList(arr);
+        })
+
     }, [page,size]);
 
  
@@ -78,7 +89,8 @@ const ArsenalPage = () => {
             <div>
                 <ul>
                     {arsenalList.map((a,index) => {
-                        return <InfoLineComponent item={a} index={index} Label={<LabelComponent name={ a.name } /> } />
+                        return <InfoLineComponent item={a} index={index} allProductList={allProductList}
+                            Label={<LabelComponent name={a.name} />} />
                         
                     })}
                 </ul>

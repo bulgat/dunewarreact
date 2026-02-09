@@ -117,16 +117,7 @@ namespace DuneWarSpeed.Controllers
             return Ok( _homeSevice.AddArsenal(arsenal));
   
         }
-        [HttpPatch("PatchArsenal")]
-        public async void PatchArsenal(string name, int numCannon)
-        {
-            Arsenal arsenal = _context.Arsenal.FirstOrDefault();
-            arsenal.Name = name;
-            arsenal.NumCannon = numCannon;
-            _context.Arsenal.Update(arsenal);
-            _context.SaveChangesAsync();
-
-        }
+  
         [HttpDelete("DeleteProduct")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
@@ -152,10 +143,17 @@ namespace DuneWarSpeed.Controllers
         }
 
         [HttpGet("GetArsenal")]
-        public async Task<IEnumerable<Arsenal>> GetArsenal(int page, int size,bool sort)
+        public async Task<IEnumerable<ArsenalResponse>> GetArsenal(int page, int size,bool sort)
         {
-            IEnumerable<Arsenal> arsenalList =await _homeSevice.GetArsenal(page, size, sort);
-            return arsenalList;
+            var arsenalList = await _homeSevice.GetArsenal(page, size, sort);
+             var arsenalResponseList = arsenalList.Select(a=>new ArsenalResponse()
+                {
+                    ID=a.ID,
+                    Name=a.Name,
+                    NumCannon=a.NumCannon,
+                    ProductList = a.Products.Select(a=>a.Name).ToList(),
+                });
+            return arsenalResponseList;
         }
         [HttpGet("GetArsenalWithId")]
         public async Task<Arsenal> GetArsenalWithId(int id)

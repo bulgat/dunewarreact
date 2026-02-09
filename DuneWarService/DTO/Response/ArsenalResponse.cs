@@ -5,5 +5,6 @@
         public int ID { get; set; }
         public string Name { get; set; } = null!;
         public int NumCannon { get; set; }
+        public List<string> ProductList { get; set; }
     }
 }

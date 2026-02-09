@@ -44,8 +44,15 @@ const HomeService = () => {
                     }
                 })
         },
-        patchArsenal(name, numCannon) {
-            return fetch(HOST_SERVER + `/Home/PatchArsenal?name=${name}&numCannon=${numCannon}`,
+        patchArsenal(id, name, numCannon, productList) {
+            console.log('000 item = ', (HOST_SERVER + `/arsenal/PatchArsenal?id={id}&name=${name}&numCannon=${numCannon}`))
+            let list = '';
+            for (let item of productList) {
+                list += '&productList=' + item;
+            }
+
+
+            return fetch(HOST_SERVER + `/Arsenal/PatchArsenal?id=${id}&name=${name}&numCannon=${numCannon}${list}`,
                 {
                     method: 'PATCH',
                     body: JSON.stringify({

@@ -56,5 +56,13 @@ namespace DuneWarLastFantasy.Repositories
             }
             return false;
         }
+        public async Task<bool> UpdateArsenal(Arsenal arsenal)
+        {
+            var arsenalOld = _context.Arsenal.FirstOrDefault(a => arsenal.ID == arsenal.ID);
+            arsenalOld.Name = arsenal.Name;
+            arsenalOld.NumCannon =arsenal.NumCannon;
+
+            return true;
+        }
     }
 }
