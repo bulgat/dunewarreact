@@ -48,6 +48,11 @@ const NavBarDune =()=>{
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
+                    <Nav.Link href="/file">
+                         <Button variant={"outline-success"} >File</Button>
+                       </Nav.Link>
+                    </Nav.Item>
+                <Nav.Item>
                     <Nav.Link href="/login">
                         <Button variant={"outline-success"} >Login</Button>
                     </Nav.Link>
