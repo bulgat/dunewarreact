@@ -1,5 +1,6 @@
 ﻿using DuneWarLastFantasy.Models.other;
 using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 namespace DuneWarLastFantasy.Repositories
 {
@@ -37,6 +38,22 @@ namespace DuneWarLastFantasy.Repositories
  
             return true;
         }
+
+        public async Task<bool> InsertProduct(string name)
+        {
+            Arsenal arsenal = _context.Arsenal.FirstOrDefault();
+            Factory factorio = _context.Factory.FirstOrDefault();
+            Product product = new Product()
+            {
+                ArsenalID = arsenal.ID,
+                FactorioID = factorio.ID,
+                Name = name,
+            };
+            await _context.Product.AddAsync(product);
+
+            return true;
+        }
+
         public IEnumerable<Product> ProductAllStore()
         {
             var koll = _context.TypeProduct.ToList();

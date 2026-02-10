@@ -2,17 +2,45 @@ import { HOST_SERVER } from '../environment'
 import { useState } from 'react'
 import '../pages/CommentPage.css'
 import { HomeService } from '../services/home.service'
+import { ArsenalService } from '../services/arsenal.service'
 import { ActionModal } from '../modalWindow/ActionModal'
 import { AddproductComponent } from '../components/addProduct.component'
 import { AddArsenalComponent } from '../components/addArsenal.component'
+import { Select, Space } from 'antd';
+import type { SelectProps } from 'antd';
+import { useEffect } from 'react'
 
 const CommentPage = () => {
     const _unitService = HomeService();
+    const _arsenalService = ArsenalService();
     const [secret, setSecret] = useState(0);
     const [visibleModal, setVisibleModal] = useState(false);
+    const [page, size] = [1, 40]
+    const [options, setOptions] = useState([]);
 
+    useEffect(() => {
+        
+        _arsenalService.getArsenal(page, size)
+            .then(res => {
+                console.log("   I    = ", res);
 
-    console.log("mat  = ", localStorage['product'])
+                let resList = res.map(a => {
+                    return {
+                        label: a.name,
+                        value: a.id,
+                    }
+                })
+
+                setOptions(resList);
+
+                console.log("m   = ", options)
+            })
+            .catch(err => {
+                
+            });
+            
+    }, [])
+
 
     const getSecret = () => {
 
@@ -51,6 +79,10 @@ const CommentPage = () => {
         setVisibleModal(false);
     }
 
+    const handleChange = (value: string[]) => {
+        console.log(`selected ${value}`);
+    };
+
     console.log("apple".localeCompare("banana")); 
         console.log("banana".localeCompare("apple"));  
             console.log("apple".localeCompare("apple")); 
@@ -63,10 +95,21 @@ const CommentPage = () => {
             <div autoComplete='off' >
 
                     <AddproductComponent/>
-                <br />
-            
-
-            
+                    <br />
+                    <Select
+                        showSearch={{
+                            optionFilterProp: 'label',
+                            filterSort: (optionA, optionB) =>
+                                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase()),
+                        }}
+                        mode="multiple"
+                        allowClear
+                        style={{ width: '100%' }}
+                        placeholder="Please select"
+                        defaultValue={[]}
+                        onChange={handleChange}
+                        options={options}
+                    />
 
                     <br />
                     <br />

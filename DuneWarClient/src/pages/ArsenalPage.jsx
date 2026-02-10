@@ -2,6 +2,7 @@ import { useLocation,useNavigate } from "react-router-dom";
 import { useAuth } from "../hook/useAuth";
 import { LoginService } from '../services/login.service'
 import { HomeService } from '../services/home.service'
+import { ArsenalService } from '../services/arsenal.service'
 import { useEffect, useState } from 'react'
 import { Pagination } from 'antd';
 import type { PaginationProps } from 'antd';
@@ -12,6 +13,7 @@ import { LabelComponent } from '../components/label.component'
 const ArsenalPage = () => {
     const _loginService = LoginService();
     const _homeService = HomeService();
+    const _arsenalService = ArsenalService();
     const [arsenalList, setArsenalList] = useState([]);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(10);
@@ -22,7 +24,7 @@ const ArsenalPage = () => {
     const [allProductList, setAllProductList] = useState([]);
 
     useEffect(() => {
-        _loginService.getArsenal(page, size)
+        _arsenalService.getArsenal(page, size)
             .then(res => {
 
                 setArsenalList(res);

@@ -71,39 +71,7 @@ namespace DuneWarSpeed.Controllers
             List<Author> scoreList = _context.Author.ToList();
             return scoreList;
         }
-        [HttpPut("AddProduct")]
-        public async Task<IActionResult> AddProduct(string name,int arsenalId)
-        {
-            using (var transaction = _context.Database.BeginTransaction())
-            {
-                try
-                {
-                    //Arsenal arsenal = _context.Arsenal.FirstOrDefault();
-                    Factory factory = _context.Factory.FirstOrDefault();
-                    Product product = new Product()
-                    {
-                        Name = name,
-                        ArsenalID = arsenalId,
-                        FactorioID = factory.ID
-                    };
-                    _productService.AddProduct(product);
-
-                    //_context.Product.Add(product);
-                    //_context.SaveChanges();
-                    transaction.Commit();
-                    return Ok("save");
-                }
-                catch (Exception ex) {
-                    transaction.Rollback();
-                }
-            }
-            return BadRequest("Error save");
-        }
-        [HttpGet("GetProduct")]
-        public async Task<Product> GetProduct(int id)
-        {
-            return await _productService.GetProduct(id);
-        }
+        
 
         [HttpPut("AddArsenal")]
         public async Task<ActionResult> AddArsenal(string name, int numCannon)
