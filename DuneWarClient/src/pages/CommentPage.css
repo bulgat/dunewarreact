@@ -7,3 +7,6 @@
         background-color:blue;
     }
 }
+.ant-select-dropdown{
+    width:500px !important;
+}
