@@ -9,6 +9,10 @@ import { AddArsenalComponent } from '../components/addArsenal.component'
 import { Select, Space } from 'antd';
 import type { SelectProps } from 'antd';
 import { useEffect } from 'react'
+import type { RadioChangeEvent } from 'antd';
+
+
+//type SelectCommonPlacement = SelectProps['placement'];
 
 const CommentPage = () => {
     const _unitService = HomeService();
@@ -84,9 +88,10 @@ const CommentPage = () => {
     };
 
     console.log("apple".localeCompare("banana")); 
-        console.log("banana".localeCompare("apple"));  
-            console.log("apple".localeCompare("apple")); 
- 
+    console.log("banana".localeCompare("apple"));  
+    console.log("apple".localeCompare("apple")); 
+
+    const [placement, SetPlacement] = useState('bottomLeft');
 
     return (
         <>
@@ -96,7 +101,9 @@ const CommentPage = () => {
 
                     <AddproductComponent/>
                     <br />
-                    <Select
+                    <div>
+                    width
+                        <Select key={ 1 }
                         showSearch={{
                             optionFilterProp: 'label',
                             filterSort: (optionA, optionB) =>
@@ -110,22 +117,46 @@ const CommentPage = () => {
                         onChange={handleChange}
                         options={options}
                     />
+                    </div>
+                    <div>
+                    </div>
                     <br />
                     <br />
-                    <Select
-                        defaultValue="lucy"
+                    <div>
+                        <div className='up-select'>
+                            <Select key={2}
+                                defaultValue="lucy0"
+                                style={{ width: 120 }}
+                                onChange={handleChange}
+                                placement={placement}
+                                popupMatchSelectWidth={500}
+                                options={[
+                                    { value: 'jack0', label: 'Jack0-Jack0' },
+                                    { value: 'lucy0', label: 'Lucy0-Lucy0' },
+                                    { value: 'Yiminghe0', label: 'yiminghe0-yiminghe0' },
+                                    { value: 'disabled0', label: 'Disabled0-Disabled0' },
+                                ]}
+                            />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <Select key={2}
+                        defaultValue="lucy01"
                         style={{ width: 120 }}
                         onChange={handleChange}
                         options={[
-                            { value: 'jack', label: 'Jack' },
-                            { value: 'lucy', label: 'Lucy' },
-                            { value: 'Yiminghe', label: 'yiminghe' },
-                            { value: 'disabled', label: 'Disabled', disabled: true },
+                            { value: 'jack01', label: 'Jack01' },
+                            { value: 'lucy01', label: 'Lucy01' },
+                            { value: 'Yiminghe01', label: 'yiminghe01' },
+                            { value: 'disabled01', label: 'Disabled01' },
                         ]}
                     />
+                    <br />
+                    <br />
+                    <br />
 
-                    <br />
-                    <br />
                     <button onClick={submitForm}>Submit</button>
                     <br />
                     <br />

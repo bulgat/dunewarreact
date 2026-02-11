@@ -1,3 +1,4 @@
+using DuneWarLastFantasy.DTO.Response;
 using DuneWarLastFantasy.model;
 using DuneWarLastFantasy.Models.other;
 using DuneWarLastFantasy.Service;
@@ -30,6 +31,38 @@ namespace DuneWarSpeed.Controllers
             _arsenalSevice.UpdateArsenal(arsenal);
         
             return true;
+        }
+
+        [HttpGet("GetArsenal")]
+        public async Task<IEnumerable<ArsenalResponse>> GetArsenal(int page, int size, bool sort)
+        {
+            var arsenalList = await _arsenalSevice.GetArsenal(page, size, sort);
+            var arsenalResponseList = arsenalList.Select(a => new ArsenalResponse()
+            {
+                ID = a.ID,
+                Name = a.Name,
+                NumCannon = a.NumCannon,
+                ProductList = a.Products.Select(a => a.Name).ToList(),
+            });
+            return arsenalResponseList;
+        }
+        [HttpGet("GetArsenalWithId")]
+        public async Task<Arsenal> GetArsenalWithId(int id)
+        {
+            Arsenal arsenal = await _arsenalSevice.GetArsenalWithId(id);
+            return arsenal;
+        }
+        [HttpGet("ArsenalMapList")]
+        public async Task<IEnumerable<ArsenalSlashResponse>> ArsenalMapList()
+        {
+            var arsenal = await _arsenalSevice.ArsenalMapList();
+            return arsenal;
+        }
+        [HttpGet("ArsenalMapProjectToList")]
+        public async Task<IEnumerable<ArsenalSlashResponse>> ArsenalMapProjectToList()
+        {
+            var arsenal = await _arsenalSevice.ArsenalMapProjectToList();
+            return arsenal;
         }
     }
 }

@@ -69,7 +69,7 @@ const UnitPage = () => {
             <br />
             <br />
             <ul>
-                {getBasaPurchaseUnitScience.map(
+                {getBasaPurchaseUnitScience?.map(
                     item => <li key={item.IdImage} ><CardBattleUnit item={item} trigger={trigger} /> </li>)}
             </ul>
             <Link to='/'>Home</Link>

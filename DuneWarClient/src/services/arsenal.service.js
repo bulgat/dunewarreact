@@ -4,7 +4,7 @@ import axios from 'axios'
 const ArsenalService = () => {
     return {
         getArsenal(page, size) {
-            return fetch(HOST_SERVER + `/Home/getArsenal?page=${page}&size=${size}&sort=${true}`,
+            return fetch(HOST_SERVER + `/arsenal/getArsenal?page=${page}&size=${size}&sort=${true}`,
                 {
                     method: 'Get',
                     /*

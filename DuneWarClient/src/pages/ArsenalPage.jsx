@@ -30,7 +30,7 @@ const ArsenalPage = () => {
                 setArsenalList(res);
             })
             .catch(err => {
-                console.log("90  I    = ", err);
+                console.log("90   getArsenal  = ", err);
             });
         _homeService.getProductList(false).then(res => {
     
@@ -90,8 +90,9 @@ const ArsenalPage = () => {
             <h6>arsenal:</h6>
             <div>
                 <ul>
-                    {arsenalList.map((a,index) => {
-                        return <InfoLineComponent item={a} index={index} allProductList={allProductList}
+                    {arsenalList.map((a, index) => {
+                        console.log('=========', a.id)
+                        return <InfoLineComponent key={a.id } item={a} index={index} allProductList={allProductList}
                             Label={<LabelComponent name={a.name} />} />
                         
                     })}
