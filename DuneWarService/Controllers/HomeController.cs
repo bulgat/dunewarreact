@@ -35,7 +35,12 @@ namespace DuneWarSpeed.Controllers
         public string GetVersion()
         {
             var indexList = new List<int>() { 2, 5, 7, 2 }.Select((a, index) => index).ToList();
-            return string.Join(".", indexList);
+            var text = string.Join(".", indexList)+
+                "кампани€ состоит из 9 миссий дл€ каждого из трех домов <b>(јтридесы, ќрдосы, ’арконнены)</b>, " +
+                "цель которых Ч <s>захват территорий планеты јрракис</s>, сбор спайса и <h5>уничтожение вражеских</h5> " +
+                "баз. -»грок начинает с малого, /n - постепенно получа€ доступ к - т€желой технике и уникальным" +
+                " юнитам дома. ";
+            return text;
         }
 
         [HttpPost("GetStatus")]

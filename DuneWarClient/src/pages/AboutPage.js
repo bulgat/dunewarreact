@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { HOST_SERVER } from '../environment'
 import { HomeService } from '../services/home.service'
 import './AboutPage.css'
+import { TextHTMLComponent } from '../components/textHTML.component'
 
 const AboutPage = () => {
 
@@ -13,20 +14,12 @@ const AboutPage = () => {
 
     const fetchVersion = () =>{
 
-        //fetch(HOST_SERVER+'/home/getversion')
-        //    .then(response => {
-        //        if (!response.ok) {
-        //            throw new Error(`HTTP error! status: ${response.status}`);
-        //        }
-        //        return response.text();
-//    })
+
         _homeService.fetchVersion()
             .then(data => {
                 setVersion(data);
             })
-            //.catch(err => {
-            //    console.error('Error fetching data');
-            //});
+  
     }
 
     const fetchStatus = () => {
@@ -55,17 +48,18 @@ const AboutPage = () => {
             <br></br>
             
             <div className="backgroundImage">
-                <Container className="d-flex justify-content-center" style={{ height: window.innerHeight - 54 }}>
-
+ 
                     <ul>
                         <li>Dune </li>
                         <li>Походовая стратегия</li>
                     </ul>
 
-                </Container>
             </div>
+            <br></br>
+            <TextHTMLComponent version={version} />
+            <textarea id="comments" name="comments" rows="4" cols="50">{ version }</textarea>
             <Outlet />
-            <h5>version: {version}</h5>
+            
             <br></br>
             <h6>status project: {status}</h6>
             <br></br>
