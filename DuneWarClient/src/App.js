@@ -12,7 +12,7 @@ import { UnitPage } from './pages/UnitPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { EditArsenalPage } from './pages/EditArsenalPage';
 import { NavBarDune } from './components/NavBarDune'
-import { Loginpage } from './pages/Loginpage';
+import { LoginPage } from './pages/LoginPage';
 import { CommentPage } from './pages/CommentPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RequireAuth } from './hoc/RequireAuth';
@@ -54,7 +54,7 @@ function App() {
                         <LogOut />
                     </RequireAuth>}
                     />
-                    <Route path='/login' element={<Loginpage />} />
+                    <Route path='/login' element={<LoginPage />} />
                     <Route path='/arsenal' element={<ArsenalPage />} />
                     <Route path='/town/:id' element={<TownPage />} />
                     <Route path='/commentpage' element={<CommentPage />} />

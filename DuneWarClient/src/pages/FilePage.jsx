@@ -7,13 +7,14 @@ const FilePage = () => {
 
     const connectForbidden = () => {
         _homeService.getAuth().then(res => {
-            
+            /*
             if (res.ok == false) {
                 console.log('0000 error = ', res.status)
                 if (res.status == 403) {
-                    navigate('/auth-error')
+                    //navigate('/auth-error')
                 }
             }
+            */
         }).catch(err => {
             console.log('0100 error = ', err)
         });

@@ -1,6 +1,19 @@
 import { HOST_SERVER } from '../environment'
 import axios from 'axios'
 
+//перехват 403 ошибки у всех гет запросов, всех axious и редирект на еррор страницу.
+axios.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response && error.response.status === 403) {
+            // ƒействие: показать сообщение, перенаправить
+            console.error("Ќет прав доступа (403)");
+            window.location.href = '/auth-error'; // или использование react-router
+        }
+        return Promise.reject(error);
+    }
+);
+
 const HomeService = () => {
     return {
         addProduct(name, arsenalId) {
@@ -107,6 +120,9 @@ const HomeService = () => {
                 });
         },
         getAuth() {
+
+            return axios.get(HOST_SERVER + '/home/GetAuth')
+            /*
             return fetch(HOST_SERVER + `/Home/GetAuth`,
                 {
                     method: 'GET',
@@ -115,6 +131,7 @@ const HomeService = () => {
                         Authorization: 'bearer gdfhdfhjdfhjdfjdj'
                     }
                 })
+               */ 
         },
         fetchStatus() {
             return axios.post(HOST_SERVER + '/home/getstatus')
@@ -132,7 +149,7 @@ const HomeService = () => {
                 .catch(error => {
                     console.error('Error:', error); // Handle errors
                 });
-                */
+              */  
         }
     }
 

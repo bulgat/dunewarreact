@@ -3,7 +3,7 @@ import { useAuth } from "../hook/useAuth";
 import { LoginService } from '../services/login.service'
 import { useEffect, useState } from 'react'
 
-const Loginpage = () => {
+const LoginPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const {signin} = useAuth();
@@ -32,4 +32,4 @@ const Loginpage = () => {
             </div>
         </>)
 }
-export {Loginpage}
+export {LoginPage}
