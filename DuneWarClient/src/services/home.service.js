@@ -106,6 +106,16 @@ const HomeService = () => {
                     console.error('Error fetching data');
                 });
         },
+        getAuth() {
+            return fetch(HOST_SERVER + `/Home/GetAuth`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+                    }
+                })
+        },
         fetchStatus() {
             return axios.post(HOST_SERVER + '/home/getstatus')
 

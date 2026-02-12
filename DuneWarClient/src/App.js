@@ -26,6 +26,7 @@ import { FooterComponent } from './components/footer.component';
 import { ArsenalPage } from './pages/ArsenalPage';
 import { ProductPage } from './pages/ProductPage'
 import { FilePage } from './pages/FilePage'
+import { AuthErrorPage } from './pages/AuthErrorPage'
 function App() {
 
     const store = createStore(rooReducer);
@@ -47,6 +48,7 @@ function App() {
                     <Route path='/arsenal/:id/edit' element={<EditArsenalPage />} />
 
                     <Route path='*' element={<NotFoundPage />} />
+                    <Route path='/auth-error' element={<AuthErrorPage />} />
                     <Route path='/file' element={<FilePage />} />
                     <Route path='loginout' element={<RequireAuth>
                         <LogOut />

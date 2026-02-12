@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 
 namespace DuneWarSpeed.Controllers
 {
@@ -145,7 +146,11 @@ namespace DuneWarSpeed.Controllers
             return methodName;
         }
 
-
+        [HttpGet("GetAuth")]
+        public ActionResult GetAuth()
+        {
+            return new StatusCodeResult((int)HttpStatusCode.Forbidden);
+        }
 
     }
 }
