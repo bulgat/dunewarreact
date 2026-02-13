@@ -28,6 +28,12 @@ const ScoreService = () => {
                     return response.json();
                 })
                 
+        },
+        getFunctionList() {
+            return {
+                score: this.getScoreList,
+                student: this.getStudentList
+            }
         }
     }
 

@@ -41,8 +41,9 @@ const CommentPage = () => {
             .catch(err => {
                 
             });
+        console.log('ZZZ', _scoreService.getFunctionList()['score'])
             //score
-        _scoreService.getScoreList().then(res => {
+        _scoreService.getFunctionList()['score']().then(res => {
             const list = res.data.map(a => {
                 return {
                     value: a.id,
@@ -52,7 +53,7 @@ const CommentPage = () => {
             clasterList['score'] = list
         })
         //student
-        _scoreService.getStudentList().then(res => {
+        _scoreService.getFunctionList()['student']().then(res => {
              const list = res.data.map(a => {
                 return {
                     value: a.studentId,
