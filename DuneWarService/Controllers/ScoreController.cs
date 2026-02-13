@@ -42,7 +42,15 @@ namespace DuneWarSpeed.Controllers
         {
             return await _scoreService.AnonymousScoreList();
         }
+        [HttpGet("GetStudentList")]
+        public async Task<IEnumerable<Student>> GetStudentList()
+        {
 
+            var kol = await _context.Student.ToListAsync();
+
+            return kol;
+
+        }
 
 
 

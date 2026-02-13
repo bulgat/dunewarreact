@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DuneWarLastFantasy.Models;
 
@@ -14,8 +15,8 @@ public partial class Student
     public int? PreviousStandardId { get; set; }
 
     public virtual ICollection<Achievement> Achievements { get; set; } = new List<Achievement>();
-
+    [NotMapped]
     public virtual Standard? CurrentStandard { get; set; }
-
+    [NotMapped]
     public virtual Standard? PreviousStandard { get; set; }
 }

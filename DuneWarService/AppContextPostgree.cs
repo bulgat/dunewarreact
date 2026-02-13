@@ -24,7 +24,9 @@ namespace DuneWarLastFantasy
         public DbSet<Factory> Factory { get; set; }
 
         public DbSet<TypeProduct> TypeProduct { get; set; }
+        public DbSet<Student> Student { get; set; }
 
+        public DbSet<Standard> Standard { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Arsenal>().Property(c => c.ID).HasColumnName("ID").ValueGeneratedOnAdd();
@@ -35,7 +37,7 @@ namespace DuneWarLastFantasy
             .HasForeignKey<Product>(b => b.TypeProductId);
             //.HasForeignKey<Product>(a=>a.TypeProductId); 
 */
-
+            modelBuilder.Entity<Student>().Property(c=>c.StudentId).HasColumnName("StudentID").ValueGeneratedOnAdd();
         }
 
         public void BeginTransaction()

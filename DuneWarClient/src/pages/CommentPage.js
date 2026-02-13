@@ -10,24 +10,26 @@ import { Select, Space } from 'antd';
 import type { SelectProps } from 'antd';
 import { useEffect } from 'react'
 import type { RadioChangeEvent } from 'antd';
-
+import { ScoreService } from '../services/score.service'
 
 //type SelectCommonPlacement = SelectProps['placement'];
 
 const CommentPage = () => {
     const _unitService = HomeService();
+    const _scoreService = ScoreService();
     const _arsenalService = ArsenalService();
     const [secret, setSecret] = useState(0);
     const [visibleModal, setVisibleModal] = useState(false);
     const [page, size] = [1, 40]
     const [options, setOptions] = useState([]);
+    const [scoreList, setScoreList] = useState([]);
+    const [studentList, setStudentList] = useState([]);
 
     useEffect(() => {
         
         _arsenalService.getArsenal(page, size)
             .then(res => {
-                console.log("   I    = ", res);
-
+      
                 let resList = res.map(a => {
                     return {
                         label: a.name,
@@ -37,44 +39,41 @@ const CommentPage = () => {
 
                 setOptions(resList);
 
-                console.log("m   = ", options)
+                
             })
             .catch(err => {
                 
             });
-            
-    }, [])
-
-
-    const getSecret = () => {
-
-        fetch(HOST_SERVER + '/Basa/GetRevealedSecret',
-            {
-                method: 'POST',
-                body: 9,
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+        _scoreService.getScoreList().then(res => {
+            console.log("m   = ", res)
+            setScoreList(res.data.map(a => {
+                return {
+                    value: a.id,
+                    label: a.name
                 }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+            }));
+        })
+        _scoreService.getStudentList().then(res => {
+ 
+            setStudentList(res.data.map(a => {
+                return {
+                    value: a.studentId,
+                    label: a.name
                 }
-                return response.json();
-            })
+            }));
+        })
+        _scoreService.getSecret()
             .then(data => {
 
- 
+
                 setSecret(data);
             })
             .catch(err => {
                 console.error('Error fetching data');
             });
-    }
-    getSecret();
+    }, [])
 
-   
+
     const submitForm = () => {
         setVisibleModal(true);
     }
@@ -130,12 +129,7 @@ const CommentPage = () => {
                                 onChange={handleChange}
                                 placement={placement}
                                 popupMatchSelectWidth={500}
-                                options={[
-                                    { value: 'jack0', label: 'Jack0-Jack0' },
-                                    { value: 'lucy0', label: 'Lucy0-Lucy0' },
-                                    { value: 'Yiminghe0', label: 'yiminghe0-yiminghe0' },
-                                    { value: 'disabled0', label: 'Disabled0-Disabled0' },
-                                ]}
+                                options={scoreList}
                             />
                         </div>
                     </div>
@@ -146,12 +140,7 @@ const CommentPage = () => {
                         defaultValue="lucy01"
                         style={{ width: 120 }}
                         onChange={handleChange}
-                        options={[
-                            { value: 'jack01', label: 'Jack01' },
-                            { value: 'lucy01', label: 'Lucy01' },
-                            { value: 'Yiminghe01', label: 'yiminghe01' },
-                            { value: 'disabled01', label: 'Disabled01' },
-                        ]}
+                        options={studentList}
                     />
                     <br />
                     <br />

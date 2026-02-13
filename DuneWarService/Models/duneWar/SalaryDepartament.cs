@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DuneWarLastFantasy.Models;
+namespace DuneWarLastFantasy.Models.duneWar;
 
 public partial class SalaryDepartament
 {
