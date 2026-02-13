@@ -12,18 +12,15 @@ import { useEffect } from 'react'
 import type { RadioChangeEvent } from 'antd';
 import { ScoreService } from '../services/score.service'
 
-//type SelectCommonPlacement = SelectProps['placement'];
-
 const CommentPage = () => {
-    const _unitService = HomeService();
     const _scoreService = ScoreService();
     const _arsenalService = ArsenalService();
     const [secret, setSecret] = useState(0);
     const [visibleModal, setVisibleModal] = useState(false);
     const [page, size] = [1, 40]
     const [options, setOptions] = useState([]);
-    const [scoreList, setScoreList] = useState([]);
-    const [studentList, setStudentList] = useState([]);
+
+    const [clasterList, setClasterList] = useState({ });
 
     useEffect(() => {
         
@@ -44,23 +41,25 @@ const CommentPage = () => {
             .catch(err => {
                 
             });
+            //score
         _scoreService.getScoreList().then(res => {
-            console.log("m   = ", res)
-            setScoreList(res.data.map(a => {
+            const list = res.data.map(a => {
                 return {
                     value: a.id,
                     label: a.name
                 }
-            }));
+            })
+            clasterList['score'] = list
         })
+        //student
         _scoreService.getStudentList().then(res => {
- 
-            setStudentList(res.data.map(a => {
+             const list = res.data.map(a => {
                 return {
                     value: a.studentId,
                     label: a.name
                 }
-            }));
+            })
+            clasterList['student'] = list
         })
         _scoreService.getSecret()
             .then(data => {
@@ -71,6 +70,11 @@ const CommentPage = () => {
             .catch(err => {
                 console.error('Error fetching data');
             });
+        
+        console.log("apple".localeCompare("banana")); 
+        console.log("banana".localeCompare("apple"));  
+        console.log("apple".localeCompare("apple")); 
+        
     }, [])
 
 
@@ -85,10 +89,6 @@ const CommentPage = () => {
     const handleChange = (value: string[]) => {
         console.log(`selected ${value}`);
     };
-
-    console.log("apple".localeCompare("banana")); 
-    console.log("banana".localeCompare("apple"));  
-    console.log("apple".localeCompare("apple")); 
 
     const [placement, SetPlacement] = useState('bottomLeft');
 
@@ -124,12 +124,12 @@ const CommentPage = () => {
                     <div>
                         <div className='up-select'>
                             <Select key={2}
-                                defaultValue="lucy0"
+                                defaultValue="score"
                                 style={{ width: 120 }}
                                 onChange={handleChange}
                                 placement={placement}
                                 popupMatchSelectWidth={500}
-                                options={scoreList}
+                                options={clasterList['score']}
                             />
                         </div>
                     </div>
@@ -140,7 +140,7 @@ const CommentPage = () => {
                         defaultValue="lucy01"
                         style={{ width: 120 }}
                         onChange={handleChange}
-                        options={studentList}
+                        options={clasterList['student']}
                     />
                     <br />
                     <br />
