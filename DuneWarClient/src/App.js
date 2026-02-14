@@ -16,7 +16,7 @@ import { LoginPage } from './pages/LoginPage';
 import { CommentPage } from './pages/CommentPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RequireAuth } from './hoc/RequireAuth';
-import { LogOut } from './pages/LogOut'
+import { LogOutPage } from './pages/LogOutPage'
 import { AuthProvider } from './hoc/Authprovider';
 import { TownPage } from './pages/TownPage';
 import { createStore } from 'redux';
@@ -51,7 +51,7 @@ function App() {
                     <Route path='/auth-error' element={<AuthErrorPage />} />
                     <Route path='/file' element={<FilePage />} />
                     <Route path='loginout' element={<RequireAuth>
-                        <LogOut />
+                        <LogOutPage />
                     </RequireAuth>}
                     />
                     <Route path='/login' element={<LoginPage />} />

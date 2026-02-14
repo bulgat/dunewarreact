@@ -2,33 +2,52 @@ import { useLocation,useNavigate } from "react-router-dom";
 import { useAuth } from "../hook/useAuth";
 import { LoginService } from '../services/login.service'
 import { useEffect, useState } from 'react'
+import { Input } from 'antd';
 
 const LoginPage = () => {
-    const navigate = useNavigate();
+    const _loginService = LoginService();
+
     const location = useLocation();
     const {signin} = useAuth();
     const fromPage = location.state?.from?.pathname || '/'
-
-
-
+    const [loginName, setLoginName] = useState('');
+    const [password, setPassword] = useState('');
+    /*
     const handleSubmit=(event)=>{
         event.preventDefault();
         const form = event.target;
         const user = form.username.value;
         signin(user,()=>navigate(fromPage,{replace:true}));
     }
+    */
+    const handleClick = () => {
 
-    
+        _loginService.LoginUser(loginName, password).then(a => {
+            console.log('start pass = ', a)
+            _loginService.GetPassword().then(b => {
+                console.log('pass = ',b)
+            })
+        });
+    }
+
+
     return (
         <>
             <div>
                 <h1>Login Page</h1>
-                <form onSubmit={handleSubmit}>
+
                     <label>
-                        Name:<input name="username"/>
+                        <Input placeholder="login" onChange={(e) => {
+                            setLoginName(e.target.value);
+                    }} />
+                    <br></br>
+                    <Input placeholder="password" onChange={(e) => {
+                        setPassword(e.target.value);
+                    }} />
                     </label>
-                    <button type="submit">Login</button>
-                </form>
+                    <br></br>
+                    <button onClick={ handleClick }>Login</button>
+
             </div>
         </>)
 }

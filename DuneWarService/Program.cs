@@ -3,6 +3,7 @@ using DuneWarLastFantasy;
 using DuneWarLastFantasy.Repositories;
 using DuneWarLastFantasy.Repository;
 using DuneWarLastFantasy.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,13 +25,24 @@ builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<ScoreRepository>();
 builder.Services.AddScoped<UnitOfWork>();
 
+
 builder.Services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "kol_Cookie";
+        options.ExpireTimeSpan = TimeSpan.FromDays(1);
+        options.LoginPath = "/login/login";
+        options.AccessDeniedPath = "/login/error";
+    });
+
 
 var app = builder.Build();
 
 app.UseCors(builder =>
     builder
-      .WithOrigins("http://localhost:3000")
+      .WithOrigins("http://localhost:3000", "https://localhost:3000")
       .AllowAnyHeader()
       .AllowAnyMethod()
       .AllowCredentials()

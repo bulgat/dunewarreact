@@ -17,7 +17,8 @@ const UnitService = () => {
                     }),
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: 'bearer gdfhdfhjdfhjdfjdj'
+                        Authorization: 'bearer gdfhdfhjdfhjdfjdj',
+                        'Access-Control-Allow-Origin': '*' 
                     }
                 })
                 .then(response => {

@@ -1,10 +1,13 @@
 using DuneWarLastFantasy.model;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace DuneWarSpeed.Controllers
 {
     [ApiController]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Route("[controller]")]
     public class BasaController : ControllerBase
     {
