@@ -41,7 +41,7 @@ const CommentPage = () => {
             .catch(err => {
                 
             });
-        console.log('ZZZ', _scoreService.getFunctionList()['score'])
+  
             //score
         _scoreService.getFunctionList()['score']().then(res => {
             const list = res.data.map(a => {
@@ -64,7 +64,7 @@ const CommentPage = () => {
         })
         _scoreService.getSecret()
             .then(data => {
-
+                console.log('Z ', data)
 
                 setSecret(data);
             })

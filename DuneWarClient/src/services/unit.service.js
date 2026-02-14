@@ -1,36 +1,13 @@
 import { HOST_SERVER } from '../environment'
+import { InterceptorAxiosService } from './interceptorAxios.service'
+import axios from 'axios'
 
 const UnitService = () => {
+    const _interceptorAxiosService = InterceptorAxiosService();
     return {
-        getNum() { return 66; },
         getListUnit() {
-
-            return fetch(HOST_SERVER + '/Basa/GetUnitList',
-                {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        query: 'repo',
-                        variables: {
-                            org: 'iiii',
-                            repo: 'rrrrr'
-                        }
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'bearer gdfhdfhjdfhjdfjdj',
-                        'Access-Control-Allow-Origin': '*' 
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                
-                .catch(err => {
-                    console.error('Error fetching data');
-                });
+            return axios.post(HOST_SERVER + '/Basa/GetUnitList')
+            
         }
     }
 

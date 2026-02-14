@@ -5,6 +5,6 @@ const AuthErrorPage =()=>{
     <h3>У вас нет прав</h3>
         <img src='./soldier.jpg' />
     <br></br>
-        <Link to='/'>Home</Link></div>)
+        <Link to='/login'>login</Link></div>)
 }
 export { AuthErrorPage }

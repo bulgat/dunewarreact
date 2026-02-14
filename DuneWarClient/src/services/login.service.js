@@ -23,6 +23,9 @@ const LoginService = () => {
         },
         GetToken() {
             return axios.get(HOST_SERVER + `/login/GetToken`)
+        },
+        GetSecondSecret() {
+            return axios.get(HOST_SERVER + `/login/GetSecondSecret`);
         }
     }
 

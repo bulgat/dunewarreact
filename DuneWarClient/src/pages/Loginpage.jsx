@@ -14,6 +14,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
     const [secret, setSecret] = useState('');
+    const [secretSecond, setSecretSecond] = useState('');
     /*
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -33,10 +34,10 @@ const LoginPage = () => {
     }
 
     const handleToken = () => {
-        _loginService.GetToken().then(b => {
-            console.log('pass = ', b.data.access_token);
+        _loginService.GetToken().then(res => {
 
-            setToken(b.data.access_token);
+            localStorage['token'] = res.data.access_token;
+            setToken(res.data.access_token);
 
         })
     }
@@ -46,6 +47,14 @@ const LoginPage = () => {
             setSecret(b.data);
         })
     }
+
+    const handleGetSecondSecret = () => {
+        _loginService.GetSecondSecret().then(s => {
+            console.log('000 ss = ', s);
+            setSecretSecond(s.data);
+        })
+    }
+
 
     return (
         <>
@@ -72,7 +81,13 @@ const LoginPage = () => {
                 <br></br>
                 <button onClick={handleSecret}>GetSecret</button>
                 <br></br>
-                secret: {secret }
+                secret: {secret}
+                <br></br>
+                <br></br>
+                <button onClick={handleGetSecondSecret}>GetSecondSecret</button>
+                <br></br>
+                <br></br>
+                interceptor secret: {secretSecond }
             </div>
         </>)
 }

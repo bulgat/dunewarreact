@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace DuneWarSpeed.Controllers
 {
     [ApiController]
-    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize]
     [Route("[controller]")]
     public class BasaController : ControllerBase
     {

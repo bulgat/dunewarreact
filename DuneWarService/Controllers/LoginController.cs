@@ -23,7 +23,7 @@ using System.Text;
 namespace DuneWarSpeed.Controllers
 {
     [ApiController]
-    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize]
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
@@ -35,14 +35,6 @@ namespace DuneWarSpeed.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpGet("GetPassword")]
-        //[DisableCors]
-        //[EnableCors("AllowAll")]
-        [Authorize]
-        public async Task<ActionResult> GetPassword()
-        {
-            return Ok("44444444455555555555556666666666666");
-        }
         [HttpGet("LoginUser")]
         [AllowAnonymous]
         public async Task<ActionResult> LoginUser(string? name, string? password)
@@ -69,6 +61,16 @@ namespace DuneWarSpeed.Controllers
             return Ok(_tokenService.Token("1", "1"));
         }
 
-  
+        [HttpGet("GetPassword")]
+        public async Task<ActionResult> GetPassword()
+        {
+            return Ok("44444444455555555555556666666666666");
+        }
+
+        [HttpGet("GetSecondSecret")]
+        public async Task<ActionResult> GetSecondSecret()
+        {
+            return Ok("ghf dhdfja eq weqwe. m,.");
+        }
     }
 }

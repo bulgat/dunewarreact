@@ -12,6 +12,8 @@ const ScoreService = () => {
             return axios.get(HOST_SERVER + '/score/GetStudentList')
         },
         getSecret() {
+            return axios.post(HOST_SERVER + '/Basa/GetRevealedSecret')
+            /*
             return fetch(HOST_SERVER + '/Basa/GetRevealedSecret',
                 {
                     method: 'POST',
@@ -27,7 +29,7 @@ const ScoreService = () => {
                     }
                     return response.json();
                 })
-                
+                */
         },
         getFunctionList() {
             return {
