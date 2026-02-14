@@ -12,6 +12,7 @@ const LoginPage = () => {
     const fromPage = location.state?.from?.pathname || '/'
     const [loginName, setLoginName] = useState('');
     const [password, setPassword] = useState('');
+    const [token, setToken] = useState('');
     /*
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -30,6 +31,19 @@ const LoginPage = () => {
         });
     }
 
+    const handleToken = () => {
+        _loginService.GetToken().then(b => {
+            console.log('pass = ', b.data.access_token);
+
+            setToken(b.data.access_token);
+
+        })
+    }
+    const handleSecret = () => {
+        _loginService.GetPassword(token).then(b => {
+            console.log('SECRET  pass = ', b)
+        })
+    }
 
     return (
         <>
@@ -47,7 +61,14 @@ const LoginPage = () => {
                     </label>
                     <br></br>
                     <button onClick={ handleClick }>Login</button>
-
+                <br></br>
+                <br></br>
+                <button onClick={handleToken}>GetToken</button>
+                <br></br>
+                {token}
+                <br></br>
+                <br></br>
+                <button onClick={handleSecret}>GetSecret</button>
             </div>
         </>)
 }

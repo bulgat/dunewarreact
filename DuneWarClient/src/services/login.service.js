@@ -11,14 +11,18 @@ const LoginService = () => {
         LoginOut() {
             return axios.get(HOST_SERVER + `/login/LoginOut`)
         },
-        GetPassword() {
+        GetPassword(token) {
             return axios.get(HOST_SERVER + `/login/GetPassword`, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*' // whatever you want
+                    'Access-Control-Allow-Origin': '*',             	
+                    "Authorization": "Bearer " + token
                 }
             })
+        },
+        GetToken() {
+            return axios.get(HOST_SERVER + `/login/GetToken`)
         }
     }
 

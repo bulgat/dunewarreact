@@ -1,11 +1,15 @@
 using AutoMapper;
 using DuneWarLastFantasy;
+using DuneWarLastFantasy.Models.Token;
 using DuneWarLastFantasy.Repositories;
 using DuneWarLastFantasy.Repository;
 using DuneWarLastFantasy.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +28,7 @@ builder.Services.AddScoped<ArsenalRepository>();
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<ScoreRepository>();
 builder.Services.AddScoped<UnitOfWork>();
-
+builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
 
@@ -38,6 +42,47 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 
+/*
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+{
+    options.RequireHttpsMetadata = true;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        // ваш доп. конфиг
+    };
+});
+*/
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            // указывает, будет ли валидироваться издатель при валидации токена
+            ValidateIssuer = true,
+            // строка, представляющая издателя
+            ValidIssuer = AuthOptions.ISSUER,
+            // будет ли валидироваться потребитель токена
+            ValidateAudience = true,
+            // установка потребителя токена
+            ValidAudience = AuthOptions.AUDIENCE,
+            // будет ли валидироваться время существования
+            ValidateLifetime = true,
+            // установка ключа безопасности
+            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+            // валидация ключа безопасности
+            ValidateIssuerSigningKey = true,
+        };
+    });
+
+
 var app = builder.Build();
 
 app.UseCors(builder =>
@@ -46,7 +91,12 @@ app.UseCors(builder =>
       .AllowAnyHeader()
       .AllowAnyMethod()
       .AllowCredentials()
+      .WithExposedHeaders("custom-header")
   );
+
+
+
+
 
 if (app.Environment.IsDevelopment())
 {

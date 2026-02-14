@@ -2,36 +2,43 @@ using DuneWarLastFantasy;
 using DuneWarLastFantasy.DTO.Response;
 using DuneWarLastFantasy.Models;
 using DuneWarLastFantasy.Models.other;
+using DuneWarLastFantasy.Models.Token;
 using DuneWarLastFantasy.Service;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace DuneWarSpeed.Controllers
 {
     [ApiController]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
-        //HttpContext _context;
-        public LoginController(ILogger<HomeController> logger)
+        private readonly TokenService _tokenService;
+        public LoginController(ILogger<HomeController> logger, TokenService tokenService)
         {
             _logger = logger;
-            //_context = context;
+            _tokenService = tokenService;
         }
 
         [HttpGet("GetPassword")]
-        [DisableCors]
+        //[DisableCors]
+        //[EnableCors("AllowAll")]
+        //[Authorize]
         public async Task<ActionResult> GetPassword()
         {
             return Ok("44444444455555555555556666666666666");
@@ -54,5 +61,14 @@ namespace DuneWarSpeed.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Ok("out");
         }
+
+        [HttpGet("GetToken")]
+        [AllowAnonymous]
+        public IActionResult GetToken(string? username, string? password)
+        {
+            return Ok(_tokenService.Token("1", "1"));
+        }
+
+  
     }
 }
