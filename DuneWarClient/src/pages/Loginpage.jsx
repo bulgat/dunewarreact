@@ -13,6 +13,7 @@ const LoginPage = () => {
     const [loginName, setLoginName] = useState('');
     const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
+    const [secret, setSecret] = useState('');
     /*
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -42,6 +43,7 @@ const LoginPage = () => {
     const handleSecret = () => {
         _loginService.GetPassword(token).then(b => {
             console.log('SECRET  pass = ', b)
+            setSecret(b.data);
         })
     }
 
@@ -69,6 +71,8 @@ const LoginPage = () => {
                 <br></br>
                 <br></br>
                 <button onClick={handleSecret}>GetSecret</button>
+                <br></br>
+                secret: {secret }
             </div>
         </>)
 }

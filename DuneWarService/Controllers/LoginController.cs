@@ -38,7 +38,7 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetPassword")]
         //[DisableCors]
         //[EnableCors("AllowAll")]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult> GetPassword()
         {
             return Ok("44444444455555555555556666666666666");

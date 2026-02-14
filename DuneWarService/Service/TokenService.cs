@@ -41,7 +41,7 @@ namespace DuneWarLastFantasy.Service
       audience: AuthOptions.AUDIENCE,
       claims: identity.Claims,
       expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-      signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("jwtOptions.SigningKeysdgfdsgsdgsdfgsdfgsdsdfgsdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgfsdgsdfgsdfgsdfgsdfgsdgsdfgsdfgsdg")), SecurityAlgorithms.HmacSha512Signature));
+      signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512Signature));
 
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
