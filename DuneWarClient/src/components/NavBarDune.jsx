@@ -12,7 +12,7 @@ const NavBarDune =()=>{
             
                 <Nav variant="pills" defaultActiveKey="/home">
                     <div className='container-nav'>
-<div className='arrow-up'></div>
+                        <div className='arrow-up'></div>
                     </div>
 
                 <Nav.Item>
