@@ -1,3 +1,5 @@
-.mini-menu{
-    display:flex;
+.mini-menu {
+    display: inline-grid;
+    grid-auto-flow: column;
+    gap: 20px;
 }
