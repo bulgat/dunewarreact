@@ -19,7 +19,7 @@ const FilePage = () => {
  
     return (
         <>
-            <h2>FILE</h2>
+            <div className='head-text'>FILE</div>
             <div className='mini-menu'>
             {iconList.map(a => {
                 return <IconComponent number={ a } />
@@ -29,7 +29,7 @@ const FilePage = () => {
             <a href="./doc/polkan.pdf" download>Скачать pdf</a>
             <br></br>
             <br></br>
-            <button onClick={connectForbidden }>Conect Forbidden site</button>
+            <button onClick={connectForbidden } area-label='button connect' role='presentation'>Conect Forbidden site</button>
         </>)
 }
 export { FilePage }
