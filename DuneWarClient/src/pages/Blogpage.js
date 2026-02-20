@@ -4,6 +4,7 @@ import { BlogFilter } from '../components/BlogFilter';
 import './Blogpage.css'
 import { HomeService } from '../services/home.service'
 import { ProductListComponent } from '../components/productList.component'
+import { DatePicker, Space } from 'antd';
 
 const BlogPage = () => {
     const [posts, SetPost] = useState({})
@@ -33,16 +34,22 @@ const BlogPage = () => {
     const goBack = () => navigate('/post', { state: 123 })
     const goHome = () => navigate('/', { replace: true })
 
-
+    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+        console.log(date, dateString);
+    };
   
 
 
     return (
         <>
             <div>blog  = {posts.length}  </div>
-
+            <br></br>
+            <br></br>
+            <DatePicker onChange={onChange} style={{ width: '50%' }} />
+            <br></br>
+            <br></br>
             <BlogFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams} />
-
+            <br></br>
             <button onClick={goBack}>Go back</button>
             <button onClick={goHome}>Go Home</button>
             <br></br>

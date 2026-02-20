@@ -25,3 +25,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/DuneWarService/.vs/DuneWarLastFantasy/v17/*
+.futdcache.v2
+/FileContentIndex

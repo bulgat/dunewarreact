@@ -9,6 +9,8 @@ import type { PaginationProps } from 'antd';
 import { AddArsenalComponent } from '../components/addArsenal.component'
 import { InfoLineComponent } from '../components/infoLine.component'
 import { LabelComponent } from '../components/label.component'
+import { Alert } from 'antd';
+import { Button, message } from 'antd';
 
 const ArsenalPage = () => {
     const _loginService = LoginService();
@@ -30,15 +32,16 @@ const ArsenalPage = () => {
                 setArsenalList(res);
             })
             .catch(err => {
-                console.log("90   getArsenal  = ", err);
+                info('error', 'ERROR getArsenal' + err.message);
+                console.log("90  ERROR    = ", err);
             });
         _homeService.getProductList(false).then(res => {
     
             return res.json();
-        }).then(arr => {
-            console.log('@@@@ res = ', arr);
-            setAllProductList(arr);
-        })
+            }).then(arr => {
+                info('success', 'load product');
+                setAllProductList(arr);
+            })
 
     }, [page,size]);
 
@@ -51,12 +54,10 @@ const ArsenalPage = () => {
     }
 
     const onShowSizeChange: PaginationProps['onShowSizeChange'] = (current, pageSize) => {
-        console.log(current, pageSize);
         setSize(pageSize);
     };
 
     const onChange: PaginationProps['onChange'] = (pageNumber) => {
-        console.log('Page: ', pageNumber);
         setPage(pageNumber);
     };
 
@@ -74,8 +75,22 @@ const ArsenalPage = () => {
         return originalElement;
     };
 
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const info = (type,message) => {
+        messageApi.open({
+            type: type,
+            content: message,
+            className: 'custom-class',
+            style: {
+                marginTop: '20vh',
+            },
+        });
+    };
+
     return (
         <>
+
             <div>
                 <h1>Arsenal</h1>
                 <form onSubmit={handleSubmit}>
@@ -103,6 +118,7 @@ const ArsenalPage = () => {
                     itemRender={itemRender} showLessItems showTitle 
                     onChange={onChange} />
             </div>
+            {contextHolder}
         </>)
 }
 export { ArsenalPage }
