@@ -1,69 +1,70 @@
 
 import { useState, useRef, useEffect } from "react";
 import GlobalDune from "../globalDune";
-import {NavLink } from "react-router-dom"
-import {Container, Card, Form, Button, Row, Spinner} from 'react-bootstrap';
-import {TownModal} from  '../modalWindow/TownModal'
-import {globalDune} from '../globalDune'
+import { NavLink } from "react-router-dom"
+import { Container, Card, Form, Button, Row, Spinner } from 'react-bootstrap';
+import { TownModal } from '../modalWindow/TownModal'
+import { globalDune } from '../globalDune'
 import './Homepage.css'
 
 const HomePage = () => {
     const canvasRef = useRef(null);
-    const [name,setName] = useState("dune");
-    const [idIsland,setIdIsland] = useState(0);
-	const [money,setMoney] = useState(3500);
-    const [urlImage,setUrlImage] = useState("");
+    const [name, setName] = useState("dune");
+    const [idIsland, setIdIsland] = useState(0);
+    const [money, setMoney] = useState(3500);
+    const [urlImage, setUrlImage] = useState("");
     const globalDune = new GlobalDune();
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        globalDune.init(canvas);
     }, [])
 
     const handleClick = (e) => {
-    // implementation details
-	
-    globalDune.onTurn()
-    };
-    const handleClickkol = (name,e) => {
         // implementation details
-        
-        globalDune.TestClick() 
+
+        globalDune.onTurn()
     };
-    const nameClick = (nam,e) => {
-    // implementation details
-	
-	//name = "superdune";
-	setName("superdune")
-    globalDune.SelectHeroLeft() 
+    const handleClickkol = (name, e) => {
+        // implementation details
+
+        globalDune.TestClick()
+    };
+    const nameClick = (nam, e) => {
+        // implementation details
+
+        //name = "superdune";
+        setName("superdune")
+        globalDune.SelectHeroLeft()
     };
     const moneyClick = (e) => {
         setMoney(5001)
         globalDune.SelectHeroRight()
     }
-    
-    const setActiveStyle = ({isActive})=>({color:isActive?'var(--color-active)':'white'});
 
-    const [brandVisible,setBrandVisible] = useState(false);
+    const setActiveStyle = ({ isActive }) => ({ color: isActive ? 'var(--color-active)' : 'white' });
 
-    const ClickTownCard = (Name,IdIsland) =>{
-        
+    const [brandVisible, setBrandVisible] = useState(false);
+
+    const ClickTownCard = (Name, IdIsland) => {
+
         setName(Name);
         setIdIsland(IdIsland);
         let island_ar = window._battlePlanetModel._mapWorldModel._islandDemoMemento.GetIslandArray();
         const island = island_ar.filter(isl => isl.Id == IdIsland)[0];
 
         setUrlImage(island.Image);
-        console.log(IdIsland,"  Name= " ,Name)
+        console.log(IdIsland, "  Name= ", Name)
         //setBrandVisible(true);
         setBrandVisible(true);
-        
+
     }
-    const GoToTown =()=>{
-        
-        window.location.href = "/town/"+idIsland;
+    const GoToTown = () => {
+
+        window.location.href = "/town/" + idIsland;
     }
 
-    window.ClickTownCard =ClickTownCard;
+    window.ClickTownCard = ClickTownCard;
 
 
     return (
@@ -74,22 +75,22 @@ const HomePage = () => {
 
             <p>{name} is {money}</p>
             <div className='button-row'>
-            <Button onClick={handleClick.bind(this)}>turn</Button>
-            <Button onClick={(e)=>{handleClickkol("kol",e)}}>test</Button>
-            <Button onClick={(e) =>{nameClick("k",e)} }>Left</Button>
-            <Button onClick={(e) =>{moneyClick(e)}  }>Right</Button>
-            <Button onClick={(event) => { ClickTownCard(event, 0) }}>push</Button>
-</div>
-            <TownModal show={brandVisible} 
-            onHide={()=>setBrandVisible(false)} 
-            UrlImage={urlImage}
-            name ={name}
-            IdIsland ={idIsland}
-            GoToTown = {()=>GoToTown()}
+                <Button onClick={handleClick.bind(this)}>turn</Button>
+                <Button onClick={(e) => { handleClickkol("kol", e) }}>test</Button>
+                <Button onClick={(e) => { nameClick("k", e) }}>Left</Button>
+                <Button onClick={(e) => { moneyClick(e) }}>Right</Button>
+                <Button onClick={(event) => { ClickTownCard(event, 0) }}>push</Button>
+            </div>
+            <TownModal show={brandVisible}
+                onHide={() => setBrandVisible(false)}
+                UrlImage={urlImage}
+                name={name}
+                IdIsland={idIsland}
+                GoToTown={() => GoToTown()}
             />
-            
+
         </>
     )
 }
 
-export {HomePage}
+export { HomePage }

@@ -14,7 +14,7 @@ import { ViewImage } from './olddune/view/ViewImage'
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
 let ctx = null;
-var elementCtx = null;
+let elementCtx = null;
 var currentSecond = 0;
 var frameCount = 0;
 var framesLastSecond = 0;
@@ -104,10 +104,11 @@ let infanteryUnitAnim;
 let tankUnitScreen;
 let explodeUnitAnim;
 //Init
-window.onload = function () {
-    elementCtx = document.getElementById('gameCanvas');
-    ctx = document.getElementById('gameCanvas').getContext('2d');
-
+function initGlobalDune(canvas) {
+    //elementCtx = document.getElementById('gameCanvas');
+    //ctx = document.getElementById('gameCanvas').getContext('2d');
+    elementCtx = canvas;
+    ctx = canvas.getContext('2d');
 
     requestAnimationFrame(drawGame);
 
@@ -478,7 +479,10 @@ function RefreshHeroPower() {
 };
 
 export default class GlobalDune {
-
+    init(canvas) {
+        console.log('init GlobalDune =', canvas)
+        initGlobalDune(canvas);
+    }
 
     onTurn() {
 
