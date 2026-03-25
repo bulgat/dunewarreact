@@ -10,6 +10,7 @@ import { View } from "./olddune/view/View.js";
 import { ModelParamGame } from "./olddune/model/ModelParamGame";
 import { ViewTacticModel } from "./olddune/view/ViewTacticModel";
 import { ViewImage } from './olddune/view/ViewImage'
+import { MapWorldModel } from './olddune/mapWorld/MapWorldModel.js'
 
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
@@ -461,44 +462,43 @@ Character.prototype.moveTrend = function (PrototypeHeroDemoObj) {
 };
 
 
-function TurnEvent() {
-
-    TurnPush();
-
-    RefreshHeroPower();
-
-    window._mapWorldModel.Development(window.Grid_ar, window._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
-}
-function TurnPush() {
-    GlobalYear += 1;
-};
-function RefreshHeroPower() {
-    for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
-        window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].move = false;
-    }
-};
-
 export default class GlobalDune {
+    _mapWorldModel = new MapWorldModel();
+    _battlePlanetModel = new BattlePlanetModel();
+
+    TurnPush = ()=> {
+        GlobalYear += 1;
+    };
+
+    RefreshHeroPower=()=> {
+        for (var y = 0; y < window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++) {
+            window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].move = false;
+        }
+    };
+
     init(canvas) {
-        console.log('init GlobalDune =', canvas)
+        
         initGlobalDune(canvas);
     }
 
     onTurn() {
-
-        RefreshHeroPower();
-        TurnPush();
+        console.log('in turn GlobalDune =' )
+        
+        this.TurnPush();
+        this.RefreshHeroPower();
         _idSelect = 0;
 
-
+        //this._mapWorldModel.Development(window.Grid_ar, this._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+        window._CommandStrategy_ar = window._battlePlanetModel._mapWorldModel.Development(window.Grid_ar, window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
     }
 
     TestClick() {
 
-        RefreshHeroPower();
+        this.RefreshHeroPower();
         var modelStrategy = new ModelStrategy();
 
         window._CommandStrategy_ar = window._battlePlanetModel._mapWorldModel.Development(window.Grid_ar, window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
+        //window._CommandStrategy_ar = this._mapWorldModel.Development(window.Grid_ar, this._mapWorldModel._prototypeHeroDemo.GetHeroFleet());
     };
     SelectHeroLeft() {
 

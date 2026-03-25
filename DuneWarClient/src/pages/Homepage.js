@@ -22,6 +22,7 @@ const HomePage = () => {
 
     const handleClick = (e) => {
         // implementation details
+        console.log('TURN')
 
         globalDune.onTurn()
     };
@@ -75,7 +76,7 @@ const HomePage = () => {
 
             <p>{name} is {money}</p>
             <div className='button-row'>
-                <Button onClick={handleClick.bind(this)}>turn</Button>
+                <Button onClick={handleClick}>turn</Button>
                 <Button onClick={(e) => { handleClickkol("kol", e) }}>test</Button>
                 <Button onClick={(e) => { nameClick("k", e) }}>Left</Button>
                 <Button onClick={(e) => { moneyClick(e) }}>Right</Button>
