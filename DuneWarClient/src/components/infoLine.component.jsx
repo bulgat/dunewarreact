@@ -16,19 +16,15 @@ const InfoLineComponent = ({ item, index, Label, allProductList }) => {
     const style = true;
 
     const options: SelectProps['options'] = [];
-    /*
-    for (let i = 10; i < 36; i++) {
-        options.push({
-            label: i.toString(36) + i,
-            value: i.toString(36) + i,
-        });
-    }*/
+
+    let count = 0;
+    //
     for (let item of allProductList) {
         options.push({
-            label: item.name,
+            label: `-${count})`+item.name,
             value: item.id,
         });
-
+        count++;
     }
 
 
@@ -45,7 +41,7 @@ const InfoLineComponent = ({ item, index, Label, allProductList }) => {
 
     return (
 
-        <li key={item.id} className='li-info'>
+        <li key={item.id+'_line'} className='li-info'>
             <div className='line-info'>
                 <div className='mini-column'>{index})</div>
                 <div className={`mini-column ${style ? 'fat' : ''}`} >{Label}</div>

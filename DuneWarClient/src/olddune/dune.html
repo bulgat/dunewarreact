@@ -124,12 +124,7 @@ var _battleTerra = {
 	GridFleetVictimId:0
 };
 new CreateGridScenario().AddCountry();
-/*
-var DispositionCountry_ar = [
-	{PlayerControl:true,Peace:false},
-	{PlayerControl:false,Peace:false}
-];
-*/
+
 var _tileTypes = {
 0:{colour:"#685b48", sprite:[{x:0,y:0,w:16,h:16}]},
 1:{colour:"#5aa457", sprite:[{x:16,y:0,w:16,h:16}]},
@@ -183,8 +178,6 @@ var _mapWorldModel = new MapWorldModel();
 var _countHeroIndex=0;
 var _tileBox_ar;
 //set id select hero
-
-//_battlePlanetModel.SetSelectHeroId(1);
 
 var _gridScenario = new GridScenario();
 _gridScenario.Init();
@@ -282,8 +275,8 @@ var directions ={
 //Init
 window.onload = function()
 {
-	elementCtx = document.getElementById('game');
-	ctx=document.getElementById('game').getContext('2d');
+	elementCtx = document.getElementById('gameCanvas');
+    ctx = document.getElementById('gameCanvas').getContext('2d');
 	requestAnimationFrame(drawGame);
 
 	_tileset = new Image();
@@ -331,9 +324,7 @@ window.onload = function()
 
 	var heroSel = _battlePlanetModel.GetSelectHeroId();
 
-	//_buttonEvent_ar = new View().MouseDownPathActionFunction(1,[]);
 	_buttonEvent_ar =PathButtonEvent(1,[]);
-
 
 	// mouse
 	elementCtx.addEventListener('mousedown', e => {
@@ -344,8 +335,6 @@ window.onload = function()
 			if (_tileBox_ar[i].X<mouseX && _tileBox_ar[i].X+_tileBox_ar[i].Width>mouseX){
 
 				if (_tileBox_ar[i].Y<mouseY && _tileBox_ar[i].Y+_tileBox_ar[i].Height>mouseY){
-					// x mouse correct _tileBox_ar[i].SpotX
-					// y mouse correct _tileBox_ar[i].SpotY
 					var indexEventPath = GetPathIndex(_tileBox_ar[i].SpotX,_tileBox_ar[i].SpotY);
 
 
@@ -415,42 +404,20 @@ function PathButtonEvent(idHero,buttonEventPath_ar){
 var _countStepResult=0;
 function MouseDownAttackSemiTarget(ButEventOne)
 {
-
-
-		//var CommandAttack = mendMoveShip.GetCommandMoveFleet(null, _buttonEvent_ar[indexEventPath].Point,gridFleet);
-		//_CommandStrategy_ar.push(CommandAttack);
-
 		let CommandAttack = _mapWorldModel.CommandAttackFleet(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
-		//let kkol = new MendMoveShip().GetAttackCommand(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
-
 
 	_CommandStrategy_ar.push(CommandAttack);
 	//return true;
 	_mapWorldModel.GotoTactic(_battlePlanetModel.GetSelectHeroId(),ButEventOne.VictimFleet.GetId(),false,ButEventOne.LongRange,GlobalYear);
-	//_mapWorldModel._tactic = new Tactic();
-
-
-
 
 	   _mapWorldModel._tactic._unitResultTactic_ar.length
-
-
-
 
 	_viewTacticBattle = new ViewTacticBattle(_mapWorldModel._tactic.heroPlayer,_mapWorldModel._tactic.heroFiend);
 	_countStepResult=0;
 }
 function SetPathMouseClickMapView() {
-	//var idPath = 1;
-	//var buttonEventPath_ar =[];
-	//_buttonEvent_ar = new View().MouseDownPathActionFunction(idPath,buttonEventPath_ar);
+
 	_buttonEvent_ar = PathButtonEvent(1,[]);
-
-	//NameEvent
-	//for(var i=0;i<_buttonEvent_ar.length;i++){
-
-	//}
-
 }
 
 function GetPathIndex(SpotX,SpotY){
@@ -499,13 +466,10 @@ function drawGame(){
 		ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
 			_buttonEvent_ar[i].Point.X*tileW-(tileW/2)+tileW, _buttonEvent_ar[i].Point.Y*tileH-(tileH/2)+tileH, tileW, tileH);
 
-		//_buttonEvent_ar[i].NameEvent		AttackHero
-
 	}
 
 	var indexNameFleet = _mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
-	//ctx.fillStyle ='#ff0000';
-	//unitIconURL
+
 	// Draw All static.
 	for(var y=0; y<_mapWorldModel._prototypeHeroDemo.GetHeroFleet().length; y++){
 
@@ -529,8 +493,6 @@ function drawGame(){
 	ctx.fillText('FPS = '+framesLastSecond,10,20);
 	//draw move fleet
 
-
-
 	if(currentFrameTime<player.timeMoved+700)
 	{
 		if (_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0]!=_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[0] && _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1]!=_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileToPosition[1])
@@ -538,22 +500,12 @@ function drawGame(){
 			_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] +=player.moveTrend(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[0];
 			_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] +=player.moveTrend(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet])[1];
 
-		} else {
-
-
 		}
-
 	}
 	else
 	{
-
-
 		player.placeAt(_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[0],_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].tileTo[1],_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet]);
 		_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].move = true;
-
-		//if (_commStrCurrent!=null) {
-			//_commStrCurrent.NameCommand=="Stop";
-		//}
 	}
 	var unitType = _unitTypes[_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].type];
 
@@ -590,23 +542,16 @@ function drawGame(){
 
 						_commStrCurrent = commandStrategy;
 
-
 						break;
 					} else {
 						console.log(  _mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].Id+" ^^ ^^^^^^^"+_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[i].GetId()+"^^^^^^  i = "+i);
 					}
-					//console.log( " PrintAllFleetId = "+_mapWorldModel._prototypeHeroDemo.PrintAllFleetId()+" ^^ ^^^^^^^^^^^^^^^^^^  x= "+i+"     commandStrategy = "+commandStrategy);
-					//if (commandStrategy==null){
-						//return;
-					//}
 				}
 
 
 
 					player.timeMoved = currentFrameTime;
 					indexNameHero = _mapWorldModel._prototypeHeroDemo.GetHeroFleetIndex(_idSelect);
-
-				//console.log("-------------   _idSelect = "+_idSelect+"------   indexNameHero = "+indexNameHero+"--  _commStrCurrent = "+_commStrCurrent+"-- Name  Y = "+_commStrCurrent);
 
 					_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameHero].tileTo =[_commStrCurrent.GridFleetNewPoint.X,_commStrCurrent.GridFleetNewPoint.Y];
 
@@ -617,11 +562,6 @@ function drawGame(){
 				if (_commStrCurrent.NameCommand=="AttackFleet")
 				{
 					//AttackFleet
-
-
-
-
-
 					//Attack
 					_battleTerra.Time =currentFrameTime;
 					_battleTerra.GridFleetVictimId = _commStrCurrent.GridFleetVictim.Id;
@@ -636,31 +576,20 @@ function drawGame(){
 				}
 				//register command
 				var viewTerraAnimMove = new ViewTerraAnimMove();
-				viewTerraAnimMove.AnimationCommand(null,//bBattlePlanetView,
-        null,//StageWidthX,
-		null,//Tick,
-           _CommandStrategy_ar[0] //commandStrategy
+				viewTerraAnimMove.AnimationCommand(null,
+        null,
+		null,
+           _CommandStrategy_ar[0]
 			);
 
 			if (_CommandStrategy_ar[0].NameCommand=="MoveFleet"){
 
 				var heroFleet = _CommandStrategy_ar[0].GridFleet;
-				//heroFleet.SetPowerReserve();
 				heroFleet.SetNullPowerReserve();
 			}
 
 				RemoveCommandSteck();
 
-				//var ttt =_mapWorldModel._prototypeHeroDemo.GetHeroFleet()[1];
-
-					if (_CommandStrategy_ar.length>0){
-						if (_CommandStrategy_ar[0].NameCommand=="MoveFleet"){
-							// set select attack fiend hero.
-							//SetSelectAttackFiendHero();
-
-						}
-
-					}
 					SetPathMouseClickMapView();
 
 		}
@@ -700,16 +629,10 @@ ShowTacticBattle = function(currentFrameTime)
 
 			var percentStep = tick%stepTickResultTacticInt;
 			var pointTank = new Point(117, 45);
-
-
-		//if(tick>1000 && tick<1020){}
-
 			if( percentStep > 0 && percentStep<17)
 			{
 				if (_countStepResult<_mapWorldModel._tactic._unitResultTactic_ar.length){
 					//UnitIdDead
-
-					//block move ViewArmUnit
 					var unitDead = _mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(_mapWorldModel._tactic._unitResultTactic_ar[_countStepResult].UnitIdDead);
 					var unitWin = _mapWorldModel._prototypeHeroDemo.GetArmUnitWithId(_mapWorldModel._tactic._unitResultTactic_ar[_countStepResult].UnitIdWin);
 
@@ -725,12 +648,7 @@ ShowTacticBattle = function(currentFrameTime)
 		}
 
 		if(tick>3800) {
-		//3500
-			//_mapWorldModel._tactic.ReleaseDead();
 		}
-
-
-
 
 		var imageUnitX = _unitTypesList[typeUnit].sprite[0].x;
 		var imageUnitY = _unitTypesList[typeUnit].sprite[0].y;
@@ -750,8 +668,6 @@ ShowTacticBattle = function(currentFrameTime)
 
 		var ArmFiendList = _mapWorldModel._tactic.heroFiend.GetShipName().GetArmUnitArray();
 
-
-
 		ctx.save();
 		ctx.scale(-1, 1);
 
@@ -764,7 +680,6 @@ ShowTacticBattle = function(currentFrameTime)
 			{
 				_countAnimInfantery =0;
 			}
-			//_countAnimInfantery = 5;
 			var countAnimInf =  Math.round(_countAnimInfantery);
 
 			for(var i=0;i<ArmFiendList.length;i++){
@@ -781,13 +696,9 @@ ShowTacticBattle = function(currentFrameTime)
 			//attack
 			for(var i=0;i<ArmFiendList.length;i++)
 			{
-				//typeUnitFiend
 				drawUnitAnim(tick,i,Yheight,typeUnitFiend,ArmFiendList,true);
 			}
-
-
 			ctx.restore();
-
 		}
 
 		// attack
@@ -824,8 +735,6 @@ drawInfantaryAnim = function(tick,i,Yheight,typeUnit,ArmFiendList,countAnimInf,F
 
 						var countAnimInf = Math.round(ArmFiendList[i].ViewArmUnit.ExplodeTickInt);
 						if (new View().GetDeadArmUnit(ArmFiendList[i])){
-
-							//tickUnit = ArmList[i].ViewArmUnit.Tick;
 							//dead
 							imageUnitX = _unitAnimInfanteryList[5].sprite[0].x;
 							imageUnitY = _unitAnimInfanteryList[5].sprite[0].y;
@@ -875,23 +784,18 @@ drawUnitAnim = function(tickUnit,i,Yheight,typeUnit,ArmList,Fiend){
 				placeStartX =_viewTacticBattle._armListPlayerList[i].PlaceStartX;
 			}
 
-
-			//var tickUnit = tick;
-
 			if (ArmList[i].ViewArmUnit!=undefined){
 
 
 				ArmList[i].ViewArmUnit.ExplodeTickInt +=.06;
 				var countAnimInf = Math.round(ArmList[i].ViewArmUnit.ExplodeTickInt);
 				if (new View().GetDeadArmUnit(ArmList[i])){
-				//if (ArmList[i].ViewArmUnit.DeadUnit){
 					tickUnit = ArmList[i].ViewArmUnit.Tick;
 					//dead
 					imageUnitX = _unitTypesList[typeUnit].dead[0].x;
 					imageUnitY = _unitTypesList[typeUnit].dead[0].y;
 				}
 				if (new View().GetAttackArmUnit(ArmList[i])){
-				//if (ArmList[i].ViewArmUnit.AttackUnitWin){
 					//attack
 					if(countAnimInf>5)	{
 						imageUnitX = _unitTypesList[typeUnit].attack[0].x;
@@ -913,7 +817,6 @@ drawUnitAnim = function(tickUnit,i,Yheight,typeUnit,ArmList,Fiend){
 
 			if (ArmList[i].ViewArmUnit!=undefined){
 				if (new View().GetDeadArmUnit(ArmList[i])){
-				//if (ArmList[i].ViewArmUnit.DeadUnit){
 					drawExplodeAnim(placeStartX,tickUnit,i,Yheight,ArmList[i].ViewArmUnit.ExplodeTickInt,1,weightUnitPlace,heightUnitPlace);
 				}
 			}
@@ -922,24 +825,17 @@ drawUnitAnim = function(tickUnit,i,Yheight,typeUnit,ArmList,Fiend){
 drawExplodeAnim = function(placeStartX,tickUnit,i,Yheight,ExplodeTickInt,Scale,weightUnitPlace,heightUnitPlace){
 	var countAnimInf = Math.round(ExplodeTickInt);
 	var pointTank = new Point(97, 97);
-
-	//ctx.save();
-		//ctx.scale(-1, 1);
 	if(countAnimInf>5)	{
-		//countAnimInf =6;HEIGHT_FON
 		return;
 	}
-
-	//var correctY = pointTank.Y-Yheight;
 
 	var correctYinfantery =0;
 	if (Scale==4)
 	{
-		//infantery 85
 		correctYinfantery =85;
 	}
-	//4
-	heightUnitPlace -=pointTank.Y-5-correctYinfantery ;//Scale;
+
+	heightUnitPlace -=pointTank.Y-5-correctYinfantery ;
 
 
 	ctx.drawImage(explodeUnitAnim,
@@ -947,9 +843,7 @@ drawExplodeAnim = function(placeStartX,tickUnit,i,Yheight,ExplodeTickInt,Scale,w
 				_explodeAnimList[countAnimInf].sprite[0].y,
 				pointTank.X,
 				pointTank.Y,
-				//-WIDTH_TACTIC+placeStartX+(tickUnit/20)-(pointTank.X/7),
 				weightUnitPlace,
-				//(HEIGHT_TACTIC+(i*Yheight)-correctY),
 				heightUnitPlace,
 				pointTank.X*new View().GetScalePerspective(i)/Scale,
 				pointTank.Y*new View().GetScalePerspective(i)/Scale
@@ -984,8 +878,6 @@ function TurnEvent() {
 
 			RefreshHeroPower();
 			var ModelStrategy = new modelStrategy();
-			//ModelStrategy.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
-
 			_mapWorldModel.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 }
 function TurnPush(){
@@ -1000,22 +892,14 @@ function TestClick() {
  console.log("  TestClick     GotoModel");
 	RefreshHeroPower();
 		var modelStrategy = new ModelStrategy();
-	//_CommandStrategy_ar = modelStrategy.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
 	_CommandStrategy_ar = _mapWorldModel.Development(Grid_ar,_mapWorldModel._prototypeHeroDemo.GetHeroFleet());
-
-
-	//var wayGotoModel = new WayGotoModel(3, 4);
 
 	console.log( "   = Atta oFiend.     _CommandStrategy_ar  L = "+_CommandStrategy_ar.length);
 	for (var i=0;i<_CommandStrategy_ar.length;i++){
 		console.log(i+"   TOTAL  "+_CommandStrategy_ar[i].GridFleetNewPoint.X+"  $$$$$$$   = "+_CommandStrategy_ar[i].NameCommand );
 	}
 	console.log( "== $$ _CommandStrategy_ar = "+_CommandStrategy_ar );
-	/*
-	for(var i=0;i<_prototypeHeroDemo.length;i++){
 
-	}
-	*/
 };
 function SelectHeroLeft() {
 
@@ -1088,7 +972,7 @@ PrintMap = function(GridTile_ar,CreateMap_ar) {
 
 </head>
 <body>
-<canvas id="game" width="800" height="600"></canvas>
+<canvas ref={canvasRef} id="gameCanvas" width="800" height="600"></canvas>
 <br>
 <button  onclick="onTurn()">turn</button>
 <button  onclick="TestClick()">test</button>

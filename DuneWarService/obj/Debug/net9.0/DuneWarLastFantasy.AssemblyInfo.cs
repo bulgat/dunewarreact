@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DuneWarLastFantasy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5eaa78c5c8c9a47a3daf31250f8068ee3f7aae3b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+630522874c712f3be1fc7d12f3705148567f6ff8")]
 [assembly: System.Reflection.AssemblyProductAttribute("DuneWarLastFantasy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DuneWarLastFantasy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

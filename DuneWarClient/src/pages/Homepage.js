@@ -1,5 +1,5 @@
 
-import {useState} from "react";
+import { useState, useRef, useEffect } from "react";
 import GlobalDune from "../globalDune";
 import {NavLink } from "react-router-dom"
 import {Container, Card, Form, Button, Row, Spinner} from 'react-bootstrap';
@@ -7,12 +7,17 @@ import {TownModal} from  '../modalWindow/TownModal'
 import {globalDune} from '../globalDune'
 import './Homepage.css'
 
-const HomePage =()=>{
+const HomePage = () => {
+    const canvasRef = useRef(null);
     const [name,setName] = useState("dune");
     const [idIsland,setIdIsland] = useState(0);
 	const [money,setMoney] = useState(3500);
     const [urlImage,setUrlImage] = useState("");
     const globalDune = new GlobalDune();
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+    }, [])
 
     const handleClick = (e) => {
     // implementation details
@@ -65,7 +70,9 @@ const HomePage =()=>{
         <>
             <div>dune$</div>
             <NavLink to='/about' style={setActiveStyle}>About</NavLink>
-            <canvas id="game" width="800" height="600"></canvas>
+
+            <canvas ref={canvasRef} id="game" width="800" height="600"></canvas>
+
             <p>{name} is {money}</p>
             <div className='button-row'>
             <Button onClick={handleClick.bind(this)}>turn</Button>
