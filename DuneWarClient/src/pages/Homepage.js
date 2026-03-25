@@ -68,7 +68,6 @@ const HomePage = () => {
 
     return (
         <>
-            <div>dune$</div>
             <NavLink to='/about' style={setActiveStyle}>About</NavLink>
 
             <canvas ref={canvasRef} id="game" width="800" height="600"></canvas>

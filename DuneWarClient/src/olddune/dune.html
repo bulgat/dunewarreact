@@ -1,5 +1,18 @@
+
+
+
 <html>
-<head>
+
+<head></head>
+<body>
+	<canvas ref={canvasRef} id="gameCanvas" width="800" height="600"></canvas>
+	<br>
+	<button onclick="onTurn()">turn</button>
+	<button onclick="TestClick()">test</button>
+	<button onclick="SelectHeroLeft()"><</button>
+	<button onclick="SelectHeroRight()">></button>
+</body>
+
 <script src="modelStrategy/Point.js"></script>
 <script src="modelStrategy/CoordinateSearch.js"></script>
 <script src="mapWorld/model/FleetSacrifive.js"></script>
@@ -970,13 +983,6 @@ PrintMap = function(GridTile_ar,CreateMap_ar) {
 
 </script>
 
-</head>
-<body>
-<canvas ref={canvasRef} id="gameCanvas" width="800" height="600"></canvas>
-<br>
-<button  onclick="onTurn()">turn</button>
-<button  onclick="TestClick()">test</button>
-<button  onclick="SelectHeroLeft()"><</button>
-<button  onclick="SelectHeroRight()">></button>
-</body>
+
+
 </html>
