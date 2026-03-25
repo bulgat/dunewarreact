@@ -30,7 +30,6 @@ const InfoLineComponent = ({ item, index, Label, allProductList }) => {
 
     const handleChange = (value: string[]) => {
         //delete
-        console.log(`001 selected ${value}`);
         setProductList(value);
     };
 
