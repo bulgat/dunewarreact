@@ -12,6 +12,7 @@ import { ViewTacticModel } from "./olddune/view/ViewTacticModel";
 import { ViewImage } from './olddune/view/ViewImage'
 import { MapWorldModel } from './olddune/mapWorld/MapWorldModel.js'
 import CharacterUnit from './olddune/CharacterUnit.js'
+import AtlasUnit from './olddune/atlasUnit.js'
 
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
@@ -52,6 +53,10 @@ var _battleTerra = {
 };
 new CreateGridScenario().AddCountry();
 
+const _unitTypes = new AtlasUnit().unitTypes;
+
+console.log('array = ', _unitTypes)
+/*
 var _unitTypes = {
     0: { colour: "#685b48", sprite: [{ x: 0, y: 0, w: 32, h: 32 }] },
     1: { colour: "#685b48", sprite: [{ x: 32, y: 0, w: 32, h: 32 }] },
@@ -61,7 +66,7 @@ var _unitTypes = {
     5: { colour: "#685b48", sprite: [{ x: 160, y: 0, w: 32, h: 32 }] },
     6: { colour: "#685b48", sprite: [{ x: 192, y: 0, w: 32, h: 32 }] }
 };
-
+*/
 
 window._countHeroIndex = 0;
 let _tileBox_ar;
