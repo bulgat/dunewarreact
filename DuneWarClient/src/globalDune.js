@@ -13,6 +13,7 @@ import { ViewImage } from './olddune/view/ViewImage'
 import { MapWorldModel } from './olddune/mapWorld/MapWorldModel.js'
 import CharacterUnit from './olddune/CharacterUnit.js'
 import AtlasUnit from './olddune/atlasUnit.js'
+import QuadUnit from './olddune/quadUnit.js'
 
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
@@ -32,10 +33,14 @@ var _infanteryUnitURL = "/imageDune/infLine.png";
 var _explodeUnitURL = "/imageDune/explodeLine.png";
 let _tilesetLoaded = false;
 
+const QUAD = new QuadUnit();
+
+/*
 window.tileW = 40;
 window.tileH = 40;
 window.mapW = 20;
 window.mapH = 20;
+*/
 var mapH = 20;
 
 var _idSelect = 0;
@@ -261,7 +266,7 @@ function SetPathMouseClickMapView() {
 function drawGame() {
 
 
-    ctx.clearRect(0, 0, window.tileW * window.mapW, window.tileH * mapH);
+    ctx.clearRect(0, 0, QUAD.tileW * QUAD.mapW, QUAD.tileH * QUAD.mapH);
 
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
@@ -325,8 +330,8 @@ function drawGame() {
     new View().drawMapMoveUnitGround(ctx, unitIconSet, unitType, indexNameFleet, window._ViewImage._screenList);
 
     ctx.fillText('  ' + window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetCountUnitArm(),
-        window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] + window.tileW / 2 - 10,
-        window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] + window.tileH);
+        window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0] + QUAD.tileW / 2 - 10,
+        window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1] + QUAD.tileH);
 
 
     lastFrameTime = currentFrameTime;
@@ -474,8 +479,8 @@ export default class GlobalDune {
     }
 
     FillGrid() {
-        for (var x = 0; x < window.mapW; x++) {
-            for (var y = 0; y < mapH; y++) {
+        for (var x = 0; x < QUAD.mapW; x++) {
+            for (var y = 0; y < QUAD.mapH; y++) {
                 var basicTile = new BasicTile();
                 window.Grid_ar[window.Grid_ar.length] = basicTile.Grid(x, y);
 

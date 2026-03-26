@@ -1,8 +1,10 @@
 import {GridFleet} from "./GridFleet.js";
 import {ShipUnit} from "./ShipUnit.js";
-import {ArmUnit} from "./ArmUnit.js";
-
+import { ArmUnit } from "./ArmUnit.js";
+import QuadUnit from "../quadUnit.js";
 export class CreateFleetFast{
+	QUAD = new QuadUnit();
+
 	GetFleetFast = function(SpotX, SpotY, FlagId, image,
 			Name, UnitTypeId, BasaPurchaseUnitScience_ar,
 			AddOne, customShip)
@@ -46,7 +48,7 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 		nameHero.SetPoint(X,Y);
 		nameHero.type=Type;
 		nameHero.position=this.GetPositionPointArray(X, Y);
-		nameHero.tileToPosition=[window.tileW*X,window.tileH*Y];
+		nameHero.tileToPosition=[this.QUAD.tileW*X,this.QUAD.tileH*Y];
 		nameHero.tileFrom=[X,Y];
 		nameHero.tileTo=[X,Y];
 		nameHero.move= false;
@@ -61,6 +63,6 @@ this.HeroFleetAdd(SpotX, SpotY, UnitTypeId,FlagId);
 		window._countHeroIndex++;
 	}
 	GetPositionPointArray(X, Y) {
-		return [window.tileW/2+window.tileW*X,window.tileH/2+window.tileH*Y];
+		return [this.QUAD.tileW/2+this.QUAD.tileW*X,this.QUAD.tileH/2+this.QUAD.tileH*Y];
 	}
 }

@@ -1,3 +1,5 @@
+import QuadUnit from "./quadUnit";
+
 export default class CharacterUnit {
     tileFrom = [1, 1];
     tileTo = [1, 1];
@@ -9,14 +11,14 @@ export default class CharacterUnit {
     SpotY = 0;
     sprites = {};
 
-
+    QUAD = new QuadUnit();
 
     placeAt =  (x, y, PrototypeHeroDemoObj)=> {
         PrototypeHeroDemoObj.tileFrom = [x, y];
         PrototypeHeroDemoObj.tileTo = [x, y];
         PrototypeHeroDemoObj.SpotX = x;
         PrototypeHeroDemoObj.SpotY = y;
-        PrototypeHeroDemoObj.position = [32 / 2 + (x * window.tileW), 32 / 2 + (y * window.tileH)];
+        PrototypeHeroDemoObj.position = [32 / 2 + (x * this.QUAD.tileW), 32 / 2 + (y * this.QUAD.tileH)];
 
     };
     moveTrend = (PrototypeHeroDemoObj) => {

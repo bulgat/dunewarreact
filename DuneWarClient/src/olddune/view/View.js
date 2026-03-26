@@ -10,9 +10,12 @@ import {CreateFleetFast} from "../modelStrategy/CreateFleetFast.js";
 import {ViewArmUnit} from "./ViewArmUnit.js";
 import {ViewTacticModel} from "./ViewTacticModel";
 import {ViewDrawInfantery } from './ViewDrawInfantery';
-import {ViewTactic} from './ViewTactic';
+import { ViewTactic } from './ViewTactic';
+import QuadUnit from '../quadUnit'
 
 export class View {
+	QUAD = new QuadUnit();
+
 	_explodeAnimList = {
 		0:{sprite:[{x:0,y:0,w:97,h:97}]},
 		1:{sprite:[{x:97,y:0,w:160,h:97}]},
@@ -127,7 +130,7 @@ export class View {
 
 		var islandDemoMemento = new IslandDemoMemento();
 		islandDemoMemento.Init();
-
+		console.log('112 window.Grid_ar = ', window.Grid_ar)
 let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet(),
 	_battlePlanetModel.FlagIdHero,
@@ -154,20 +157,20 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 		
 		return getPath;
 	};
-	toIndex = function (x,y) {
-		return ((y*window.mapW)+x);
+	toIndex = function (x, y) {
+		return ((y * this.QUAD.mapW) + x);
 	};
 	CreateMap = function () {
-		var tileBox_ar =[];
-		for(var y=0; y<window.mapW; y++){
-			for(var x=0;x<window.mapH; x++)
+		var tileBox_ar = [];
+		for (var y = 0; y < this.QUAD.mapW; y++){
+			for (var x = 0; x < this.QUAD.mapH; x++)
 			{
 				let tileBox = new TileBox();
 				tileBox.Tile = this._tileTypes[window.gameMap[new View().toIndex(x,y)]];
-				tileBox.X= this._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].w+(x*window.tileW);
-				tileBox.Y= this._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].h+(y*window.tileH);
-				tileBox.Width =window.tileW;
-				tileBox.Height = window.tileH;
+				tileBox.X= this._tileTypes[window.gameMap[new View().toIndex(x,y)]].sprite[0].w+(x*this.QUAD.tileW);
+				tileBox.Y = this._tileTypes[window.gameMap[new View().toIndex(x, y)]].sprite[0].h + (y * this.QUAD.tileH);
+				tileBox.Width = this.QUAD.tileW;
+				tileBox.Height = this.QUAD.tileH;
 				tileBox.SpotX= x;
 				tileBox.SpotY= y;
 				tileBox_ar.push(tileBox);
@@ -318,7 +321,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 	DrawMapTileBackground = function(ctx,_tileBox_ar,_tileset){
 		for(var i=0; i<_tileBox_ar.length; i++){
 			ctx.drawImage(_tileset, _tileBox_ar[i].Tile.sprite[0].x, _tileBox_ar[i].Tile.sprite[0].y, _tileBox_ar[i].Tile.sprite[0].w, _tileBox_ar[i].Tile.sprite[0].h,
-				_tileBox_ar[i].X, _tileBox_ar[i].Y, window.tileW, window.tileH);
+				_tileBox_ar[i].X, _tileBox_ar[i].Y, this.QUAD.tileW, this.QUAD.tileH);
 		}
 	};
 	DrawIsland=function(ctx,_tileBox_ar,_tileset){
@@ -335,7 +338,7 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 			let unitTile = this._tileTypes[12];
 			
 			ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
-				island.SpotX*window.tileW-(window.tileW/2)+window.tileW, island.SpotX*window.tileH-(window.tileH/2)+window.tileH, window.tileW, window.tileH);
+				island.SpotX * this.QUAD.tileW - (this.QUAD.tileW / 2) + this.QUAD.tileW, island.SpotX * this.QUAD.tileH - (this.QUAD.tileH / 2) + this.QUAD.tileH, this.QUAD.tileW, this.QUAD.tileH);
 
 			i++;
 		}
@@ -351,7 +354,8 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 			}
 			//movePath
 			ctx.drawImage(_tileset, unitTile.sprite[0].x, unitTile.sprite[0].y, unitTile.sprite[0].w, unitTile.sprite[0].h,
-				_buttonEvent_ar[i].Point.X*window.tileW-(window.tileW/2)+window.tileW, _buttonEvent_ar[i].Point.Y*window.tileH-(window.tileH/2)+window.tileH, window.tileW, window.tileH);
+				_buttonEvent_ar[i].Point.X * this.QUAD.tileW - (this.QUAD.tileW / 2) + this.QUAD.tileW, _buttonEvent_ar[i].Point.Y * this.QUAD.tileH - (this.QUAD.tileH / 2)
+			+ this.QUAD.tileH, this.QUAD.tileW, this.QUAD.tileH);
 	
 		
 	
@@ -372,25 +376,18 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 					unitType.sprite[0].x, unitType.sprite[0].y, 
 					unitType.sprite[0].w, unitType.sprite[0].h,
 				position[0],
-				position[1],
-				window.tileW, window.tileH);
+					position[1],
+					this.QUAD.tileW, this.QUAD.tileH);
 	
 				ctx.fillStyle = "black"; 
 				ctx.font = '10px serif';
-				ctx.fillText(''+window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetCountUnitArm(),position[0]+window.tileW/2-10,position[1]+window.tileH);
+				ctx.fillText('' + window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetCountUnitArm(), position[0] + this.QUAD.tileW / 2 - 10, position[1] + this.QUAD.tileH);
 				
 
-				//let item = window._battlePlanetModel.GetDispositionCountryWithId(window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
-				//let indexImage = item.FlagImage;
 				let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[y].GetFlagId())
-//console.log("0000 flag  ",indexImage)
-				
-				
-				
-				this.drawFlagUnit(ctx,screenList,position[0],position[1],window.tileW,window.tileH,indexImage)
-				
-				
-				////.FlagImage 
+
+				this.drawFlagUnit(ctx, screenList, position[0], position[1], this.QUAD.tileW, this.QUAD.tileH, indexImage)
+	
 			}
 		}
 	};
@@ -412,20 +409,18 @@ let gridMapExistence =new AI_Behavior_Existence().PreparationMap(window.Grid_ar,
 			unitType.sprite[0].x, unitType.sprite[0].y, unitType.sprite[0].w, unitType.sprite[0].h,
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
-			window.tileW, window.tileH
+			this.QUAD.tileW, this.QUAD.tileH
 		);
 
-		//let indexImage = 0;
-
 		let indexImage = this.GetIndexFlagImage(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId());
-		//console.log("0011 flag  ",indexImage)
-		//console.log("0012 flag  ",window._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].GetFlagId())
 
 		this.drawFlagUnit(ctx,screenList,
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[0],
 			window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[indexNameFleet].position[1],
-			window.tileW,window.tileH,indexImage)
+			this.QUAD.tileW, this.QUAD.tileH, indexImage)
+
 	}
+	
 	/*
 	//tactic
 	--

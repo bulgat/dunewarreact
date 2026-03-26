@@ -175,7 +175,7 @@ export class BattlePlanetModel{
         {
             return [];
         }
-		
+        console.log('111  GridTile_ar == ', GridTile_ar)
 
 
         var buttonEvent_ar = [];

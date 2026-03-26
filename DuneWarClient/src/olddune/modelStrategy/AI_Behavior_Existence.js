@@ -49,7 +49,7 @@ export class AI_Behavior_Existence{
 			Island_ar,
 			ClearHeroPoint)
 	{
-
+		console.log(' GridTile_ar = ', GridTile_ar)
 		
 		var wallObstacle_ar = null;
 		if (Sea)

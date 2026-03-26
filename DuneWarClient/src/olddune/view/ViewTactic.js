@@ -10,10 +10,12 @@ import {CreateFleetFast} from "../modelStrategy/CreateFleetFast.js";
 import {ViewArmUnit} from "./ViewArmUnit.js";
 import {ViewTacticModel} from "./ViewTacticModel";
 import {ViewDrawInfantery } from './ViewDrawInfantery';
-import {View} from './View';
+import { View } from './View';
+import QuadUnit from '../quadUnit'
 
 export class ViewTactic{
 
+	QUAD = new QuadUnit();
 
 	ShowTacticBattle = function(ctx,currentFrameTime,_battleTerra,_countStepResult,
 		_countAnimInfantery,screenList,ResetCommStrCurrent)
@@ -166,8 +168,8 @@ export class ViewTactic{
             
 	}
 	DrawTacticFonPlanetBacground=function(ctx,screenList){
-		ctx.drawImage(screenList[1], window.tileW/2, window.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);
-		ctx.drawImage(screenList[2], window.tileW/2, window.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);
+		ctx.drawImage(screenList[1], this.QUAD.tileW / 2, this.QUAD.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);
+		ctx.drawImage(screenList[2], this.QUAD.tileW / 2, this.QUAD.tileH/2, new ViewTacticModel().WIDTH_FON, new ViewTacticModel().HEIGHT_FON);
 	}
 	TextTacticFon=function(ctx){
 		ctx.font = '18px serif';
