@@ -87,16 +87,7 @@ window.gameMap = new View().GetGameMap();
 
 window.Grid_ar = [];
 
-FillGrid();
-function FillGrid() {
-    for (var x = 0; x < window.mapW; x++) {
-        for (var y = 0; y < mapH; y++) {
-            var basicTile = new BasicTile();
-            window.Grid_ar[window.Grid_ar.length] = basicTile.Grid(x, y);
 
-        }
-    }
-}
 
 window._ViewImage = new ViewImage();
 
@@ -465,6 +456,22 @@ Character.prototype.moveTrend = function (PrototypeHeroDemoObj) {
 export default class GlobalDune {
     _mapWorldModel = new MapWorldModel();
     _battlePlanetModel = new BattlePlanetModel();
+
+    constructor() {
+        this.FillGrid();
+    }
+
+    
+
+    FillGrid() {
+        for (var x = 0; x < window.mapW; x++) {
+            for (var y = 0; y < mapH; y++) {
+                var basicTile = new BasicTile();
+                window.Grid_ar[window.Grid_ar.length] = basicTile.Grid(x, y);
+
+            }
+        }
+    }
 
     TurnPush = ()=> {
         GlobalYear += 1;
