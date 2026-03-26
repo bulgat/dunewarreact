@@ -180,7 +180,8 @@ function initGlobalDune(canvas) {
 
 
                         if (butEventOne.NameEvent == "AttackHero") {
-                            MouseDownAttackSemiTarget(butEventOne);
+                            console.log('this.MouseDownAttackSemiTarget = ',  new GlobalDune() )
+                            new GlobalDune().MouseDownAttackSemiTarget(butEventOne);
 
 
                             //break;
@@ -235,23 +236,8 @@ function initGlobalDune(canvas) {
 //let ClickTownCard;
 
 let _countStepResult = 0;
-function MouseDownAttackSemiTarget(ButEventOne) {
-
-    let CommandAttack = window._battlePlanetModel._mapWorldModel.CommandAttackFleet(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
-
-    window._CommandStrategy_ar.push(CommandAttack);
-
-    window._battlePlanetModel._mapWorldModel.GotoCreateTactic(window._battlePlanetModel.GetSelectHeroId(), ButEventOne.VictimFleet.GetId(), false, ButEventOne.LongRange, GlobalYear);
-
-    InitTacticBattleAttack();
-
-    _countStepResult = 0;
-}
-function InitTacticBattleAttack() {
 
 
-    window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._battlePlanetModel._mapWorldModel._tactic.heroPlayer, window._battlePlanetModel._mapWorldModel._tactic.heroFiend);
-}
 function InitTacticBattleAttackFiendAI(CommStrCurrent) {
     //FlagId
 
@@ -461,7 +447,24 @@ export default class GlobalDune {
         this.FillGrid();
     }
 
-    
+    MouseDownAttackSemiTarget(ButEventOne) {
+
+        let CommandAttack = window._battlePlanetModel._mapWorldModel.CommandAttackFleet(ButEventOne.HeroFleet, ButEventOne.VictimFleet, ButEventOne.LongRange);
+
+        window._CommandStrategy_ar.push(CommandAttack);
+
+        window._battlePlanetModel._mapWorldModel.GotoCreateTactic(window._battlePlanetModel.GetSelectHeroId(), ButEventOne.VictimFleet.GetId(), false, ButEventOne.LongRange, GlobalYear);
+
+        this.InitTacticBattleAttack();
+
+        _countStepResult = 0;
+    }
+
+    InitTacticBattleAttack() {
+
+
+        window._viewTacticModel.VIEW_TACTIC_BATTLE = new ViewTacticBattle(window._battlePlanetModel._mapWorldModel._tactic.heroPlayer, window._battlePlanetModel._mapWorldModel._tactic.heroFiend);
+    }
 
     FillGrid() {
         for (var x = 0; x < window.mapW; x++) {
