@@ -11,6 +11,7 @@ import { ModelParamGame } from "./olddune/model/ModelParamGame";
 import { ViewTacticModel } from "./olddune/view/ViewTacticModel";
 import { ViewImage } from './olddune/view/ViewImage'
 import { MapWorldModel } from './olddune/mapWorld/MapWorldModel.js'
+import CharacterUnit from './olddune/CharacterUnit.js'
 
 window._modelParamGame = new ModelParamGame();
 window._viewTacticModel = new ViewTacticModel();
@@ -66,8 +67,8 @@ window._countHeroIndex = 0;
 let _tileBox_ar;
 //set id select hero
 
-let player = new Character();
-
+let player = new CharacterUnit();
+/*
 function Character() {
     this.tileFrom = [1, 1];
     this.tileTo = [1, 1];
@@ -79,7 +80,7 @@ function Character() {
     this.SpotY = 0;
     this.sprites = {};
 };
-
+*/
 
 window._battlePlanetModel.SetSelectHeroId(window._battlePlanetModel._mapWorldModel._prototypeHeroDemo.GetHeroFleet()[0].GetId());
 
@@ -424,7 +425,7 @@ let ResetCommStrCurrent = function () {
 }
 
 var _countAnimInfantery = 0;
-
+/*
 Character.prototype.placeAt = function (x, y, PrototypeHeroDemoObj) {
     PrototypeHeroDemoObj.tileFrom = [x, y];
     PrototypeHeroDemoObj.tileTo = [x, y];
@@ -433,11 +434,12 @@ Character.prototype.placeAt = function (x, y, PrototypeHeroDemoObj) {
     PrototypeHeroDemoObj.position = [32 / 2 + (x * window.tileW), 32 / 2 + (y * window.tileH)];
 
 };
-
+*/
+/*
 Character.prototype.moveTrend = function (PrototypeHeroDemoObj) {
     return [PrototypeHeroDemoObj.tileTo[0] - PrototypeHeroDemoObj.tileFrom[0], PrototypeHeroDemoObj.tileTo[1] - PrototypeHeroDemoObj.tileFrom[1]];
 };
-
+*/
 
 export default class GlobalDune {
     _mapWorldModel = new MapWorldModel();
