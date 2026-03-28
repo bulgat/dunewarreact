@@ -2,6 +2,9 @@ import { HomeService } from '../services/home.service'
 import { useNavigate } from 'react-router-dom';
 import { IconComponent } from '../components/icon.component'
 import './FilePage.css'
+import { UploadOutlined } from '@ant-design/icons';
+import type { UploadProps } from 'antd';
+import { Button, message, Upload } from 'antd';
 
 const FilePage = () => {
     const _homeService = HomeService();
@@ -16,6 +19,25 @@ const FilePage = () => {
         });
         
     }
+
+
+    const props: UploadProps = {
+        action: '//jsonplaceholder.typicode.com/posts/',
+        listType: 'picture',
+        previewFile(file) {
+            console.log('Your upload file:', file);
+            // Your process logic. Here we just mock to the same file
+            return fetch('file/upload', {
+                method: 'POST',
+                body: file,
+            })
+                .then((res) => res.json())
+                .then(({ thumbnail }) => thumbnail);
+        },
+    };
+
+
+
  
     return (
         <>
@@ -28,6 +50,10 @@ const FilePage = () => {
             <br></br>
             <a href="./doc/polkan.pdf" download>Скачать pdf</a>
             <br></br>
+            <Upload {...props}>
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+            </Upload>
+
             <br></br>
             <button onClick={connectForbidden } area-label='button connect' role='presentation'>Conect Forbidden site</button>
         </>)

@@ -12,7 +12,7 @@ import { UnitPage } from './pages/UnitPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { EditArsenalPage } from './pages/EditArsenalPage';
 import { NavBarDune } from './components/NavBarDune'
-import { LoginPage } from './pages/LoginPage';
+import { LoginPage } from './pages/Loginpage';
 import { CommentPage } from './pages/CommentPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RequireAuth } from './hoc/RequireAuth';
