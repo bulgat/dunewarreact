@@ -70,7 +70,9 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetSecondSecret")]
         public async Task<ActionResult> GetSecondSecret()
         {
-            return Ok("ghf dhdfja eq weqwe. m,.");
+            SecretResponse secret = new SecretResponse(23, "secret log");
+
+            return Ok(secret.Secret);
         }
     }
 }
