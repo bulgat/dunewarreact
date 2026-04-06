@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 
 namespace DuneWarSpeed.Controllers
@@ -51,7 +52,11 @@ namespace DuneWarSpeed.Controllers
             return kol;
 
         }
-
+        [HttpGet("ScoreOData")]
+        public async Task<IActionResult> ScoreOData()
+        {
+            return Ok(await _scoreService.AnonymousScoreList());
+        }
 
 
     }

@@ -60,3 +60,4 @@ yarn-error.log*
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
 *.pdf
+/DuneWarService/obj/Debug/net10.0/DuneWarLastFantasy.GlobalUsings.g.cs
