@@ -60,3 +60,12 @@ yarn-error.log*
 /.vs/slnx.sqlite
 /.vs/VSWorkspaceState.json
 *.pdf
+/DuneWarService/obj/Debug/net10.0/DuneWarLastFantasy.GlobalUsings.g.cs
+/federation/app1/node_modules
+/federation/app1/.vs/app1/v17/TestStore/0
+/federation/app1/.vs/app1/FileContentIndex
+/federation/app1/.vs
+/federation/container/.vs/container/FileContentIndex
+/federation/container/.vs/container/v17/TestStore/0
+/federation/container/.vs
+/federation/container/node_modules

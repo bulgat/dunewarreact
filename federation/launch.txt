@@ -1,0 +1,4 @@
+master - container
+slave - app1
+
+npm start
