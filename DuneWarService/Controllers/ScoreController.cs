@@ -34,7 +34,7 @@ namespace DuneWarSpeed.Controllers
         [HttpGet("GetScoreList")]
         public Task<IQueryable<Score>> GetScoreList()
         {
-
+ 
             return _scoreService.GetScoreList();
         }
         [HttpGet("AnonymousScoreList")]
@@ -51,8 +51,18 @@ namespace DuneWarSpeed.Controllers
             return kol;
 
         }
+        /*
+        //Работающий редирект, но возникает зависание сваггера.
+        [HttpGet("GetRedirect")]
+        public RedirectToActionResult GetRedirect()
+        {
+            return RedirectToAction("TestRedirect");
+        }
 
+        public string TestRedirect() {
 
-
+            return "redirect Ok";
+        }
+        */
     }
 }
