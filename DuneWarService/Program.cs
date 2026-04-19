@@ -41,6 +41,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = "/login/error";
     });
 
+ 
 
 /*
 builder.Services.AddAuthentication(options =>

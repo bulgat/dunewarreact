@@ -1,7 +1,9 @@
 using DuneWarLastFantasy;
 using DuneWarLastFantasy.DTO.Response;
+using DuneWarLastFantasy.infrastructure;
 using DuneWarLastFantasy.Models;
 using DuneWarLastFantasy.Models.other;
+using DuneWarLastFantasy.Repository;
 using DuneWarLastFantasy.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,16 +22,18 @@ namespace DuneWarSpeed.Controllers
         private HomeSevice _homeSevice;
         private ScoreSevice _scoreService;
         AppContextPostgree _context;
-
+        private IHostEnvironment _environment;
         public ScoreController(ILogger<HomeController> logger,
             AppContextPostgree context,
             HomeSevice homeSevice,
-            ScoreSevice scoreSevice)
+            ScoreSevice scoreSevice,
+            IHostEnvironment environment)
         {
             _logger = logger;
             _context = context;
             _homeSevice = homeSevice;
             _scoreService = scoreSevice;
+            _environment = environment;
         }
 
         [HttpGet("GetScoreList")]
@@ -43,6 +47,7 @@ namespace DuneWarSpeed.Controllers
         {
             return await _scoreService.AnonymousScoreList();
         }
+        
         [HttpGet("GetStudentList")]
         public async Task<IEnumerable<Student>> GetStudentList()
         {
@@ -52,11 +57,18 @@ namespace DuneWarSpeed.Controllers
             return kol;
 
         }
+        //[RequireHttps]
         [HttpGet("ScoreOData")]
+        [PrintAttribute]
         public async Task<IActionResult> ScoreOData()
         {
+            var psevdoMassiv = new ProductRepositoryIndex();
+            psevdoMassiv["kol"] = new Product() { Name = "kol"};
+            var test = psevdoMassiv["kol"];
             return Ok(await _scoreService.AnonymousScoreList());
         }
+
+   
         /*
         //Работающий редирект, но возникает зависание сваггера.
         [HttpGet("GetRedirect")]
@@ -70,5 +82,6 @@ namespace DuneWarSpeed.Controllers
             return "redirect Ok";
         }
         */
+
     }
 }
