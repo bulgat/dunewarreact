@@ -11,7 +11,7 @@ import { ArsenalShowPage } from './pages/ArsenalShowPage';
 import { UnitPage } from './pages/UnitPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { EditArsenalPage } from './pages/EditArsenalPage';
-import { NavBarDune } from './components/NavBarDune'
+import { NavBarDune } from './navBar/NavBarDune'
 import { LoginPage } from './pages/Loginpage';
 import { CommentPage } from './pages/CommentPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,10 +27,11 @@ import { ArsenalPage } from './pages/ArsenalPage';
 import { ProductPage } from './pages/ProductPage'
 import { FilePage } from './pages/FilePage'
 import { AuthErrorPage } from './pages/AuthErrorPage'
+import { TablePage } from './pages/TablePage'
 function App() {
 
     const store = createStore(rooReducer);
-
+    //TablePage
     return (
         <Provider store={store}>
             <NavBarDune />
@@ -57,6 +58,7 @@ function App() {
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/arsenal' element={<ArsenalPage />} />
                     <Route path='/town/:id' element={<TownPage />} />
+                    <Route path='/table' element={<TablePage />} />
                     <Route path='/commentpage' element={<CommentPage />} />
 
                 </Routes>
