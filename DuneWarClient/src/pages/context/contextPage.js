@@ -4,10 +4,11 @@ import { useState, useReducer} from 'react'
 import { createContext } from 'react';
 import { ThemeContext } from './themeContext';
 import ChildContext from './childContext';
+import { InfoComponent } from './info.component'
 
 const ContextPage = () => {
     const [theme, setTheme] = useState('-dark kol-');
-    
+    const [info, setInfo] = useState(InfoComponent);
 
     return (
         <>
@@ -16,6 +17,7 @@ const ContextPage = () => {
             <ThemeContext.Provider value={theme}>
                 <ChildContext />
             </ThemeContext.Provider>
+            {info }
         </>
     )
 }
