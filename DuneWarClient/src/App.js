@@ -29,6 +29,7 @@ import { FilePage } from './pages/FilePage'
 import { AuthErrorPage } from './pages/AuthErrorPage'
 import { TablePage } from './pages/TablePage'
 import { ReduxPage } from './pages/redux/reduxPage'
+import { ContextPage } from './pages/context/contextPage'
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
                         <Route path="team" element={<><h2>super</h2><p>team</p></>} />
                     </Route>
                     <Route path='/redux' element={<ReduxPage />} />
+                    <Route path='/context' element={<ContextPage />} />
                     <Route path='/unitpage' element={<UnitPage />} />
                     <Route path='/blog' element={<BlogPage />} />
                     <Route path='/blog/:id' element={<ProductPage />} />
