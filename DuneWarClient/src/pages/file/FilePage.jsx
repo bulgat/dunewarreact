@@ -1,11 +1,11 @@
-import { HomeService } from '../services/home.service'
+import { HomeService } from '../../services/home.service'
 import { useNavigate } from 'react-router-dom';
-import { IconComponent } from '../components/icon.component'
+import { IconComponent } from '../../components/icon.component'
 import './FilePage.css'
 import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { Button, message, Upload } from 'antd';
-import { IFileUser } from './IFileUser';
+
 
 const FilePage = () => {
     const _homeService = HomeService();
