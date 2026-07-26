@@ -5,11 +5,13 @@ import './FilePage.css'
 import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import { Button, message, Upload } from 'antd';
+import { IFileUser } from './IFileUser';
 
 const FilePage = () => {
     const _homeService = HomeService();
     const navigate = useNavigate();
-    const iconList = [0,1,2,3,4,5,6,7,8,9]
+    const iconList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 
     const connectForbidden = () => {
         _homeService.getAuth().then(res => {

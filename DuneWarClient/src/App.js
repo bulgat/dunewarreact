@@ -25,7 +25,7 @@ import { Provider } from 'react-redux';
 import { FooterComponent } from './components/footer.component';
 import { ArsenalPage } from './pages/ArsenalPage';
 import { ProductPage } from './pages/ProductPage'
-import { FilePage } from './pages/FilePage'
+import { FilePage } from './pages/file/FilePage';
 import { AuthErrorPage } from './pages/AuthErrorPage'
 import { TablePage } from './pages/TablePage'
 import { ReduxPage } from './pages/redux/reduxPage'

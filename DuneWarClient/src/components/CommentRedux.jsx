@@ -7,7 +7,6 @@ const CommentRedux  =()=>{
     const dispatch = useDispatch();
 
     const handleInput=(e) =>{
-        console.log("0225 === DD = "+e.target.value )
         setTextComment(e.target.value)
     }
     const handleSave=(e) =>{
