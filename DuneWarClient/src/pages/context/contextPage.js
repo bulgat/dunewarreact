@@ -1,8 +1,5 @@
-import { Route, Routes, Link, Outlet } from "react-router-dom"
-import { Card, Image, Container } from 'react-bootstrap';
-import { useState, useReducer} from 'react'
-import { createContext } from 'react';
-import { ThemeContext } from './themeContext';
+import { useState} from 'react'
+import { ThemeContext } from './ThemeContext';
 import ChildContext from './childContext';
 import { InfoComponent } from './info.component'
 

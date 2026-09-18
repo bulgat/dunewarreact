@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ThemeContext } from './themeContext';
+import { ThemeContext } from './ThemeContext';
 
 export default function ChildContext() {
     // Step 3: Consume the nearest provided context value
