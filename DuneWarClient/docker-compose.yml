@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  dune-war-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dune-war-client
+    ports:
+      - "8080:80"
+    restart: unless-stopped
